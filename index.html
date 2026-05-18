@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+
+<html class="dark scroll-smooth" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bar Luna Llena | Web Oficial</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&amp;family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#F5F5F3",
+                        "secondary-container": "#C5A059",
+                        "inverse-primary": "#5F6575",
+                        "on-primary-container": "#8E9BB0",
+                        "on-primary-fixed": "#0B0F19",
+                        "on-background": "#F5F5F3",
+                        "primary-fixed-dim": "#C5A059",
+                        "outline-variant": "#253050",
+                        "error": "#FFB4AB",
+                        "on-error-container": "#FFDAD6",
+                        "surface-tint": "#C5A059",
+                        "surface-bright": "#1E263F",
+                        "primary": "#F5F5F3",
+                        "surface-container-high": "#1E263F",
+                        "on-tertiary-fixed-variant": "#8E9BB0",
+                        "on-secondary-container": "#0B0F19",
+                        "on-surface-variant": "#8E9BB0",
+                        "secondary": "#C5A059",
+                        "tertiary-fixed-dim": "#8E9BB0",
+                        "tertiary-container": "#111625",
+                        "tertiary": "#8E9BB0",
+                        "surface-dim": "#070A10",
+                        "primary-fixed": "#F5F5F3",
+                        "on-error": "#690005",
+                        "background": "#0B0F19",
+                        "secondary-fixed-dim": "#C5A059",
+                        "on-tertiary-container": "#8E9BB0",
+                        "on-primary": "#0B0F19",
+                        "on-secondary": "#0B0F19",
+                        "on-tertiary-fixed": "#F5F5F3",
+                        "on-secondary-fixed-variant": "#C5A059",
+                        "surface-container-highest": "#253050",
+                        "error-container": "#93000a",
+                        "surface": "#111625",
+                        "inverse-surface": "#F5F5F3",
+                        "inverse-on-surface": "#0B0F19",
+                        "on-primary-fixed-variant": "#8E9BB0",
+                        "surface-container": "#161D30",
+                        "secondary-fixed": "#D4AF37",
+                        "surface-container-low": "#0F1422",
+                        "surface-variant": "#1E263F",
+                        "on-tertiary": "#F5F5F3",
+                        "tertiary-fixed": "#F5F5F3",
+                        "outline": "#5F6575",
+                        "surface-container-lowest": "#070A10",
+                        "primary-container": "#070A10",
+                        "on-secondary-fixed": "#0B0F19"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "margin-desktop": "64px",
+                        "margin-mobile": "20px",
+                        "base": "8px",
+                        "container-max": "1200px",
+                        "section-gap": "100px"
+                    },
+                    "fontFamily": {
+                        "title-md": ["Playfair Display"],
+                        "body-md": ["Manrope"],
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"],
+                        "label-sm": ["Manrope"],
+                        "body-lg": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "title-md": ["20px", { "lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "headline-lg": ["36px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "1", "letterSpacing": "0.15em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "300" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Optimización de rendimiento de GPU para transiciones ultra-fluidas en móviles, tablets y ordenadores */
+        .allergen-badge, a, button, .group, iframe, img {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
+            will-change: transform, opacity, border-color, background-color;
+        }
+        /* Custom scrollbar premium con acento dorado */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0F19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(197, 160, 89, 0.25);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(197, 160, 89, 0.45);
+        }
+        .menu-leader {
+            border-bottom: 1px dotted rgba(197, 160, 89, 0.25); /* gold color with opacity */
+            flex-grow: 1;
+            margin: 0 16px;
+            position: relative;
+            top: -6px;
+        }
+        .allergen-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            color: #F5F5F3;
+            background: rgba(197, 160, 89, 0.08); /* sutil gold background */
+            border: 1px solid rgba(197, 160, 89, 0.25); /* sutil gold border */
+            padding: 2px 8px;
+            border-radius: 9999px; /* pill shape */
+            transition: all 0.2s ease;
+        }
+        .allergen-badge:hover {
+            background: rgba(197, 160, 89, 0.18);
+            border-color: rgba(197, 160, 89, 0.5);
+            transform: translateY(-1px) translateZ(0);
+        }
+        .item-description {
+            font-size: 0.85rem;
+            font-style: italic;
+            color: rgba(245, 245, 243, 0.6);
+            margin-top: 4px;
+            margin-bottom: 6px;
+            font-family: 'Manrope', sans-serif;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased pt-20">
+<!-- TopAppBar -->
+<header class="bg-background/90 backdrop-blur-md fixed top-0 w-full z-50 border-b border-white/10">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 w-full max-w-container-max mx-auto">
+<a href="#hero" class="font-title-md italic normal-case text-xl md:text-2xl text-secondary hover:text-secondary/80 transition-colors font-semibold tracking-wide">Bar Luna Llena</a>
+<nav class="hidden md:flex gap-8">
+<a class="text-on-surface hover:text-secondary transition-all font-title-md text-title-md uppercase tracking-widest pb-1 border-b border-transparent hover:border-secondary" href="#origen">Origen</a>
+<a class="text-on-surface hover:text-secondary transition-all font-title-md text-title-md uppercase tracking-widest pb-1 border-b border-transparent hover:border-secondary" href="#carta">Carta</a>
+<a class="text-on-surface hover:text-secondary transition-all font-title-md text-title-md uppercase tracking-widest pb-1 border-b border-transparent hover:border-secondary" href="#ubicacion">Ubicación</a>
+<a class="text-on-surface hover:text-secondary transition-all font-title-md text-title-md uppercase tracking-widest pb-1 border-b border-transparent hover:border-secondary" href="#contacto">Contacto</a>
+</nav>
+<a class="hidden md:inline-flex border border-secondary text-secondary font-label-sm text-label-sm uppercase tracking-[0.15em] px-6 py-3 rounded hover:bg-secondary hover:text-background transition-all duration-300" href="#contacto">Reservar</a>
+</div>
+</header>
+<!-- Hero Section -->
+<section id="hero" class="relative min-h-[80vh] flex items-center justify-center pt-20 px-margin-mobile md:px-margin-desktop" data-alt="Bar Luna Llena Hero Background" style="background-image: linear-gradient(to bottom, rgba(11,15,25,0.85), rgba(11,15,25,0.95)), url('assets/hero-bg.jpg'); background-size: cover; background-position: center;">
+<div class="z-10 flex flex-col items-center text-center gap-6 max-w-3xl mx-auto">
+<img alt="Bar Luna Llena Logo" width="224" height="224" class="w-56 h-56 object-contain rounded-full border border-secondary/20 p-2 bg-surface-container-low/50 backdrop-blur-sm shadow-xl transition-transform hover:scale-105 duration-500" src="assets/logo.jpg"/>
+<div class="flex flex-col items-center gap-3 mt-4">
+<span class="text-secondary font-label-sm text-[0.8rem] md:text-xs tracking-[0.3em] uppercase font-bold">EST. 2015 • SANTA CATALINA</span>
+<h1 class="font-display-lg text-4xl md:text-6xl text-on-surface tracking-widest uppercase font-bold">BAR LUNA LLENA</h1>
+<div class="w-12 h-[2px] bg-secondary/60 my-2"></div>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mx-auto font-light leading-relaxed">Tradición y calidad en un ambiente nocturno y sofisticado.</p>
+<a class="border border-secondary text-secondary font-label-sm text-label-sm uppercase tracking-[0.15em] px-8 py-4 rounded hover:bg-secondary/10 transition-all duration-300 hover:tracking-[0.2em] mt-4 inline-flex items-center gap-2" href="#carta">
+                DESCUBRIR LA CARTA DIGITAL
+                <span class="material-symbols-outlined text-[18px] animate-bounce">arrow_downward</span>
+</a>
+</div>
+</section>
+<!-- Nuestro Origen -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface" id="origen">
+<div class="max-w-container-max mx-auto">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg text-3xl md:text-4xl text-on-surface mb-4 tracking-wider uppercase font-bold">Nuestro Origen</h2>
+<div class="w-12 h-[2px] bg-secondary/60 mx-auto"></div>
+</div>
+<div class="grid md:grid-cols-2 gap-12 items-center">
+<div class="space-y-6">
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                        Desde 2015, Bar Luna Llena ha sido un faro en la noche palmesana. Comenzamos como un pequeño rincón familiar y hemos evolucionado hacia una experiencia gastronómica que mezcla la tradición de nuestras raíces con una atmósfera de sofisticación relajada.
+                    </p>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed font-light">
+                        Cada plato que servimos cuenta una historia de ingredientes seleccionados con cuidado y preparados con dedicación, bajo el brillo plateado de la luna llena.
+                    </p>
+<div class="grid grid-cols-3 gap-4 pt-4 border-t border-white/5">
+<div class="flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-3xl text-secondary mb-1">local_cafe</span>
+<span class="text-xs text-on-surface font-semibold uppercase tracking-wider">Café</span>
+</div>
+<div class="flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-3xl text-secondary mb-1">tapas</span>
+<span class="text-xs text-on-surface font-semibold uppercase tracking-wider">Tapas</span>
+</div>
+<div class="flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-3xl text-secondary mb-1">groups</span>
+<span class="text-xs text-on-surface font-semibold uppercase tracking-wider">Atención</span>
+</div>
+</div>
+</div>
+<div class="relative group overflow-hidden rounded-xl border border-secondary/20 shadow-2xl">
+<img alt="Ambiente Bar Luna Llena" class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-700" src="assets/ambience.jpg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#0B0F19]/90 via-transparent to-transparent flex items-end p-6">
+<p class="text-secondary font-display text-lg italic">Sofisticación y calidez en Palma</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Carta Digital -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface-container-lowest" id="carta">
+<div class="max-w-container-max mx-auto">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg text-3xl md:text-4xl text-on-surface mb-4 tracking-wider uppercase font-bold">Carta Digital</h2>
+<div class="w-12 h-[2px] bg-secondary/60 mx-auto"></div>
+</div>
+<div class="grid md:grid-cols-2 gap-x-16 gap-y-12">
+<!-- Group 1: Principales -->
+<div>
+<h3 class="font-title-md text-title-md text-secondary mb-8 uppercase tracking-widest border-b border-surface-variant pb-2">Principales</h3>
+<div class="space-y-6">
+<!-- Item 0 -->
+<div>
+<div class="flex items-end w-full">
+<span class="font-title-md text-[18px] text-on-surface font-semibold tracking-wide">HAMBURGUESA C/ PATATAS FRITAS</span>
+<div class="menu-leader"></div>
+<span class="font-body-md text-secondary font-semibold shrink-0">7,50 €</span>
+</div>
+<p class="item-description">Jugosa carne seleccionada con queso fundido, lechuga y tomate, acompañada de patatas fritas de la casa.</p>
+<div class="flex items-center mt-2 gap-1 flex-wrap">
+<span class="allergen-badge" title="Gluten">GLU</span>
+<span class="allergen-badge" title="Sésamo">SES</span>
+<span class="allergen-badge" title="Sulfitos">SUL</span>
+<span class="allergen-badge" title="Mostaza">MUST</span>
+</div>
+</div>
+<!-- Item 1 -->
+<div>
+<div class="flex items-end w-full">
+<span class="font-title-md text-[18px] text-on-surface font-semibold tracking-wide">PEPITO DE LOMO</span>
+<div class="menu-leader"></div>
+<span class="font-body-md text-secondary font-semibold shrink-0">4,50 €</span>
+</div>
+<p class="item-description">Lomo tierno a la plancha con pimientos seleccionados en pan rústico crujiente.</p>
+<div class="flex items-center mt-2 gap-1 flex-wrap">
+<span class="allergen-badge" title="Gluten">GLU</span>
+</div>
+</div>
+<!-- Item 2 -->
+<div>
+<div class="flex items-end w-full">
+<span class="font-title-md text-[18px] text-on-surface font-semibold tracking-wide">RACIÓN DE PATATAS FRITAS</span>
+<div class="menu-leader"></div>
+<span class="font-body-md text-secondary font-semibold shrink-0">4,00 €</span>
+</div>
+<p class="item-description">Patatas cortadas a mano al momento, fritas en aceite de oliva y sazonadas con sal marina.</p>
+<div class="flex items-center mt-2 gap-1 flex-wrap">
+<span class="allergen-badge" title="Sulfitos">SUL</span>
+</div>
+</div>
+<!-- Item 3 -->
+<div>
+<div class="flex items-end w-full">
+<span class="font-title-md text-[18px] text-on-surface font-semibold tracking-wide">RACIÓN DE PATATAS BRAVAS</span>
+<div class="menu-leader"></div>
+<span class="font-body-md text-secondary font-semibold shrink-0">4,50 €</span>
+</div>
+<p class="item-description">Patatas crujientes bañadas en nuestra salsa brava casera y un toque suave de alioli premium.</p>
+<div class="flex items-center mt-2 gap-1 flex-wrap">
+<span class="allergen-badge" title="Gluten">GLU</span>
+<span class="allergen-badge" title="Sulfitos">SUL</span>
+<span class="allergen-badge" title="Huevo">HUEV</span>
+<span class="allergen-badge" title="Mostaza">MUST</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Group 2: Sándwiches y Bocadillos -->
+<div>
+<h3 class="font-title-md text-title-md text-secondary mb-8 uppercase tracking-widest border-b border-surface-variant pb-2">Sándwiches &amp; Bocadillos</h3>
+<div class="space-y-6">
+<!-- Item 4 -->
+<div>
+<div class="flex items-end w-full">
+<span class="font-title-md text-[18px] text-on-surface font-semibold tracking-wide">SÁNDWICH MIXTO</span>
+<div class="menu-leader"></div>
+<span class="font-body-md text-secondary font-semibold shrink-0">4,00 €</span>
+</div>
+<p class="item-description">Jamón cocido de alta calidad y queso fundido en pan de molde artesanal con mantequilla dorada.</p>
+<div class="flex items-center mt-2 gap-1 flex-wrap">
+<span class="allergen-badge" title="Gluten">GLU</span>
+<span class="allergen-badge" title="Leche">LECH</span>
+<span class="allergen-badge" title="Soja">SOY</span>
+</div>
+</div>
+<!-- Item 5 -->
+<div>
+<div class="flex items-end w-full">
+<span class="font-title-md text-[18px] text-on-surface font-semibold tracking-wide">SÁNDWICH DE POLLO</span>
+<div class="menu-leader"></div>
+<span class="font-body-md text-secondary font-semibold shrink-0">4,50 €</span>
+</div>
+<p class="item-description">Pechuga jugosa deshilachada, lechuga tierna, mayonesa suave y un toque de especias seleccionadas.</p>
+<div class="flex items-center mt-2 gap-1 flex-wrap">
+<span class="allergen-badge" title="Gluten">GLU</span>
+<span class="allergen-badge" title="Leche">LECH</span>
+<span class="allergen-badge" title="Soja">SOY</span>
+</div>
+</div>
+<!-- Item 6 -->
+<div>
+<div class="flex items-end w-full">
+<span class="font-title-md text-[18px] text-on-surface font-semibold tracking-wide">SÁNDWICH DE TORTILLA FRANCESA</span>
+<div class="menu-leader"></div>
+<span class="font-body-md text-secondary font-semibold shrink-0">4,50 €</span>
+</div>
+<p class="item-description">Tortilla de huevos camperos esponjosa en pan de molde crujiente pincelado con aceite de oliva.</p>
+<div class="flex items-center mt-2 gap-1 flex-wrap">
+<span class="allergen-badge" title="Gluten">GLU</span>
+<span class="allergen-badge" title="Huevo">HUEV</span>
+<span class="allergen-badge" title="Soja">SOY</span>
+</div>
+</div>
+<!-- Item 9 -->
+<div>
+<div class="flex items-end w-full">
+<span class="font-title-md text-[18px] text-on-surface font-semibold tracking-wide">BOCADILLO DE TORTILLA FRANCESA</span>
+<div class="menu-leader"></div>
+<span class="font-body-md text-secondary font-semibold shrink-0">4,50 €</span>
+</div>
+<p class="item-description">Tortilla francesa clásica recién elaborada servida en pan de barra rústico con tomate restregado.</p>
+<div class="flex items-center mt-2 gap-1 flex-wrap">
+<span class="allergen-badge" title="Gluten">GLU</span>
+<span class="allergen-badge" title="Huevo">HUEV</span>
+<span class="allergen-badge" title="Soja">SOY</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Group 3: Platos Combinados -->
+<div class="md:col-span-2 mt-8">
+<h3 class="font-title-md text-title-md text-secondary mb-8 uppercase tracking-widest border-b border-surface-variant pb-2">Platos Combinados</h3>
+<div class="grid md:grid-cols-2 gap-x-16 gap-y-6">
+<!-- Item 10 -->
+<div>
+<div class="flex items-end w-full">
+<span class="font-title-md text-[18px] text-on-surface font-semibold tracking-wide">LOMO CON PATATAS Y ENSALADA</span>
+<div class="menu-leader"></div>
+<span class="font-body-md text-secondary font-semibold shrink-0">8,50 €</span>
+</div>
+<p class="item-description">Filetes de lomo de cerdo ibérico a la plancha acompañados de patatas crujientes y ensalada de temporada.</p>
+<div class="flex items-center mt-2 gap-1 flex-wrap">
+<span class="allergen-badge" title="Gluten">GLU</span>
+<span class="allergen-badge" title="Sésamo">SES</span>
+<span class="allergen-badge" title="Sulfitos">SUL</span>
+<span class="allergen-badge" title="Mostaza">MUST</span>
+</div>
+</div>
+<!-- Item 11 -->
+<div>
+<div class="flex items-end w-full">
+<span class="font-title-md text-[18px] text-on-surface font-semibold tracking-wide">PECHUGA DE POLLO C/ PATATAS Y ENSALADA</span>
+<div class="menu-leader"></div>
+<span class="font-body-md text-secondary font-semibold shrink-0">8,50 €</span>
+</div>
+<p class="item-description">Pechuga marinada a las finas hierbas, cocinada a la plancha, servida con patatas y vegetales frescos.</p>
+<div class="flex items-center mt-2 gap-1 flex-wrap">
+<span class="allergen-badge" title="Gluten">GLU</span>
+<span class="allergen-badge" title="Sésamo">SES</span>
+<span class="allergen-badge" title="Sulfitos">SUL</span>
+<span class="allergen-badge" title="Mostaza">MUST</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Leyenda Alérgenos -->
+<div class="mt-16 p-6 border-t border-surface-variant bg-surface/30 rounded-lg text-center">
+<p class="font-label-sm text-[11px] text-on-surface-variant/80 uppercase tracking-[0.12em] leading-relaxed max-w-3xl mx-auto">
+                    <span class="text-secondary font-bold mr-1">ALÉRGENOS EN CARTA:</span> GLU=Gluten • HUEV=Huevo • LECH=Leche/Lácteos • SOY=Soja • SES=Sésamo • SUL=Sulfitos • MUST=Mostaza
+                </p>
+</div>
+</div>
+</section>
+<!-- Localización y Contacto -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface relative" id="ubicacion">
+<div id="contacto" class="absolute -top-20"></div>
+<div class="max-w-container-max mx-auto">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg text-3xl md:text-4xl text-on-surface mb-4 tracking-wider uppercase font-bold">Localización &amp; Contacto</h2>
+<div class="w-12 h-[2px] bg-secondary/60 mx-auto"></div>
+</div>
+<div class="grid md:grid-cols-2 gap-12">
+<div class="space-y-8">
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-secondary text-2xl mt-1">location_on</span>
+<div>
+<h4 class="font-label-sm text-label-sm uppercase tracking-widest text-primary mb-2">Dirección</h4>
+<p class="font-body-md text-on-surface">Carrer de Cotoner, 16<br/>07013 Palma, Illes Balears</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-secondary text-2xl mt-1">schedule</span>
+<div>
+<h4 class="font-label-sm text-label-sm uppercase tracking-widest text-primary mb-2">Horario</h4>
+<p class="font-body-md text-on-surface">Lunes a Sábado: Abierto todo el día<br/>Domingo: CERRADO</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-secondary text-2xl mt-1">call</span>
+<div>
+<h4 class="font-label-sm text-label-sm uppercase tracking-widest text-primary mb-2">Teléfono</h4>
+<a class="font-body-md text-on-surface hover:text-secondary transition-colors" href="tel:+34631122757">+34 631 122 757</a>
+</div>
+</div>
+</div>
+<div class="h-64 md:h-full min-h-[350px] border border-secondary/30 rounded-xl overflow-hidden relative group shadow-2xl transition-all duration-300 hover:border-secondary/60">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3074.8872959897184!2d2.6322961!3d39.5733878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12979240eb0f9ef7%3A0xc3b83c5fe8cf9bf0!2sCarrer%20de%20Cotoner%2C%2016%2C%2007013%20Palma%2C%20Illes%20Balears!5e0!3m2!1ses!2ses!4v1715950000000!5m2!1ses!2ses" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+<div class="absolute inset-0 bg-[#0B0F19]/10 pointer-events-none group-hover:bg-transparent transition-all duration-300"></div>
+<a href="https://maps.google.com/?q=Carrer+de+Cotoner+16+07013+Palma" target="_blank" class="absolute bottom-4 right-4 bg-[#0B0F19]/90 border border-secondary/30 text-on-surface hover:text-background hover:bg-secondary hover:border-secondary font-label-sm text-xs px-4 py-2.5 rounded-lg flex items-center gap-2 transition-all duration-300 shadow-xl tracking-wider font-semibold uppercase backdrop-blur-sm">
+<span class="material-symbols-outlined text-[16px]">directions</span>
+                        Cómo Llegar
+                    </a>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-surface-dim full-width py-12 border-t border-white/5">
+<div class="flex flex-col items-center gap-6 px-margin-mobile text-center max-w-container-max mx-auto">
+<a href="#hero" class="font-title-md italic normal-case text-xl text-secondary hover:text-secondary/80 transition-colors font-semibold tracking-wide">Bar Luna Llena</a>
+<div class="flex gap-6">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary underline transition-all" href="#">Aviso Legal</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary underline transition-all" href="#">Privacidad</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary underline transition-all" href="https://www.instagram.com/barlunallena" target="_blank">Instagram</a>
+</div>
+<div class="font-body-md text-body-md text-on-surface-variant flex flex-col sm:flex-row items-center justify-center gap-2">
+<span>© 2026 Bar Luna Llena. Santa Catalina • Est. 2015.</span>
+<span class="hidden sm:inline text-secondary/30">•</span>
+<span class="text-sm">Creado por <a href="https://bymusamynext.netlify.app" target="_blank" class="text-secondary hover:underline font-semibold">ℳyNEXT</a></span>
+</div>
+</div>
+</footer>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="bg-surface-container-lowest/95 fixed bottom-0 w-full z-50 md:hidden border-t border-secondary/20 shadow-lg flex justify-around items-center py-3 w-full">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-bright/10 p-2 rounded w-full" href="#hero">
+<span class="material-symbols-outlined mb-1">home</span>
+<span class="font-label-sm text-label-sm uppercase">Inicio</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary font-bold scale-110 transition-transform p-2 rounded w-full" href="#carta">
+<span class="material-symbols-outlined mb-1 text-secondary">menu_book</span>
+<span class="font-label-sm text-label-sm uppercase text-secondary">Carta</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-bright/10 p-2 rounded w-full" href="tel:+34631122757">
+<span class="material-symbols-outlined mb-1">call</span>
+<span class="font-label-sm text-label-sm uppercase">Llamar</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-bright/10 p-2 rounded w-full" href="https://wa.me/34631122757" target="_blank">
+<span class="material-symbols-outlined mb-1">chat</span>
+<span class="font-label-sm text-label-sm uppercase">WhatsApp</span>
+</a>
+</nav>
+<!-- Floating WhatsApp Button (Desktop) -->
+<a class="hidden md:flex fixed bottom-8 right-8 bg-secondary text-background rounded-full p-4 shadow-lg hover:bg-secondary-fixed transition-colors z-40 items-center justify-center" href="https://wa.me/34631122757" target="_blank">
+<span class="material-symbols-outlined text-3xl">chat</span>
+</a>
+</body></html>
