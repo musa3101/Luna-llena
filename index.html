@@ -69,7 +69,7 @@
     }
     </script>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&amp;family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
         tailwind.config = {
@@ -141,12 +141,12 @@
                     },
                     "fontFamily": {
                         "title-md": ["Playfair Display"],
-                        "body-md": ["Manrope"],
+                        "body-md": ["Outfit"],
                         "headline-lg-mobile": ["Playfair Display"],
                         "headline-lg": ["Playfair Display"],
                         "display-lg": ["Playfair Display"],
-                        "label-sm": ["Manrope"],
-                        "body-lg": ["Manrope"]
+                        "label-sm": ["Outfit"],
+                        "body-lg": ["Outfit"]
                     },
                     "fontSize": {
                         "title-md": ["20px", { "lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500" }],
@@ -164,9 +164,25 @@
 <style>
         /* Smooth Scroll & Nav Links Premium */
         html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+        body { font-family: 'Outfit', sans-serif; }
         .nav-link-desktop { position: relative; padding-bottom: 4px; }
         .nav-link-desktop::after { content: ''; position: absolute; width: 0; height: 1px; bottom: 0; left: 50%; background-color: #C5A059; transition: all 0.3s ease; transform: translateX(-50%); }
         .nav-link-desktop:hover::after, .nav-link-desktop:active::after { width: 100%; }
+
+        /* Premium hover interactions */
+        button, .glowing-btn, .pdf-button, #fab-btn {
+            transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s ease, filter 0.25s ease;
+        }
+        button:hover, .glowing-btn:hover, .pdf-button:hover {
+            transform: translateY(-2.5px);
+            filter: brightness(1.08);
+        }
+        .wrapper .icon {
+            transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s ease;
+        }
+        .wrapper .icon:hover {
+            transform: translateY(-5px) scale(1.07);
+        }
         .nav-link-mobile { position: relative; transition: all 0.2s ease; }
         .nav-link-mobile:active { opacity: 0.7; transform: scale(0.95); color: #C5A059; }
         
@@ -617,7 +633,7 @@
 <header id="main-header" class="bg-[#050508]/85 backdrop-blur-xl fixed top-0 w-full z-50 border-b border-[#C5A059]/10 header-hidden shadow-xl transition-all duration-500">
 <div class="flex justify-between items-center px-6 md:px-12 h-16 md:h-20 w-full max-w-[1400px] mx-auto">
 <a href="#inicio" class="flex items-center transition-transform duration-300 hover:scale-[1.02] mr-8 md:mr-20">
-    <img src="./logo-hedder.svg" alt="Bar Luna Llena Logo" class="h-12 md:h-14 w-auto object-contain drop-shadow-lg scale-[1.4] md:scale-[1.7] origin-left mix-blend-lighten" loading="lazy">
+    <img src="./logo-hedder.svg" alt="Bar Luna Llena Logo" class="h-12 md:h-14 w-auto object-contain drop-shadow-lg scale-[1.4] md:scale-[1.7] origin-left mix-blend-lighten">
 </a>
 <nav class="hidden md:flex gap-10">
 <a class="nav-link-desktop text-white/90 hover:text-[#C5A059] transition-all font-body-md text-[13px] uppercase tracking-[0.2em]" href="#inicio">Inicio</a>
@@ -651,7 +667,7 @@
   </nav>
 </div>
 <!-- Hero Section -->
-<section id="inicio" class="relative min-h-[90dvh] flex flex-col items-center justify-center overflow-hidden" style="background-image: url('./assets/hero-bg.jpg'); background-size: cover; background-position: center;">
+<section id="inicio" class="relative min-h-[90dvh] flex flex-col items-center justify-center overflow-hidden" style="background-image: url('./assets/nuevo-hero.jpg'); background-size: cover; background-position: center;">
 
   <!-- Dark overlay: stronger gradient for text legibility -->
   <div class="absolute inset-0 z-0" style="background: linear-gradient(to bottom, rgba(5,5,12,0.55) 0%, rgba(5,5,12,0.72) 60%, rgba(5,5,12,0.92) 100%);"></div>
@@ -933,14 +949,18 @@
             <a class="font-body-md text-white/80 text-[15px] leading-relaxed font-light hover:text-[#C5A059] transition-colors" href="tel:+34631122757">+34 631 122 757</a>
         </div>
     </div>
+    <!-- Botón Reseñas -->
+    <div class="pt-2">
+        <a href="https://maps.app.goo.gl/Wvg1TphkJxpHRdtUA?g_st=ic" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-2 border border-[#C5A059]/60 text-[#C5A059] hover:bg-[#C5A059]/10 hover:border-[#C5A059] font-body-md text-[12px] uppercase tracking-[0.18em] font-semibold px-6 py-3 rounded-lg transition-all duration-300 shadow-md hover:shadow-[#C5A059]/20 hover:shadow-lg group">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="shrink-0 group-hover:scale-110 transition-transform duration-200"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            Leer + Reseñas en Google
+        </a>
+    </div>
 </div>
 <div class="h-[400px] rounded-xl overflow-hidden relative group shadow-2xl transition-all duration-500 hover:shadow-secondary/20">
 <div class="absolute inset-0 bg-[#0B0F19]/20 z-10 pointer-events-none group-hover:bg-transparent transition-all duration-500"></div>
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3074.8872959897184!2d2.6322961!3d39.5733878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12979240eb0f9ef7%3A0xc3b83c5fe8cf9bf0!2sCarrer%20de%20Cotoner%2C%2016%2C%2007013%20Palma%2C%20Illes%20Balears!5e0!3m2!1ses!2ses!4v1715950000000!5m2!1ses!2ses" width="100%" height="100%" style="border:0; filter: grayscale(20%) contrast(1.1);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="group-hover:scale-105 transition-transform duration-700"></iframe>
-<a href="https://maps.google.com/?q=Carrer+de+Cotoner+16+07013+Palma" target="_blank" class="absolute bottom-6 right-6 bg-[#111625] text-white hover:bg-secondary hover:text-background font-body-md text-[11px] px-5 py-3 rounded flex items-center gap-2 transition-all duration-300 shadow-xl tracking-[0.15em] font-medium uppercase z-20">
-<span class="material-symbols-outlined text-[16px]">directions</span>
-                        Cómo Llegar
-                    </a>
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3074.8872959897184!2d2.6322961!3d39.5733878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1297926775a5f759%3A0x4395597dbf2f305b!2sBar-Cafeter%C3%ADa%20Luna%20Lena!5e0!3m2!1ses!2ses!4v1715950000000!5m2!1ses!2ses" width="100%" height="100%" style="border:0; filter: grayscale(20%) contrast(1.1);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="group-hover:scale-105 transition-transform duration-700"></iframe>
 </div>
 </div>
 </div>
@@ -962,14 +982,34 @@
                 <img src="./assets/NEWLOGO.jpg" alt="Logo Bar Luna Llena" class="w-24 h-24 rounded-full border border-secondary/30 object-cover shadow-lg" loading="lazy" width="96" height="96">
             </div>
 
-            <!-- Right: Google Maps Icon -->
-            <div class="flex justify-center md:justify-end items-center">
-                <a href="https://maps.app.goo.gl/oMmsbPzK778piyZt5" target="_blank" class="w-12 h-12 rounded-full border border-[#C5A059]/30 bg-[#C5A059]/5 flex items-center justify-center shrink-0 hover:scale-110 hover:bg-[#C5A059]/10 transition-all duration-300 shadow-lg" aria-label="Google Maps">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C5A059" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                      <circle cx="12" cy="10" r="3"></circle>
-                    </svg>
-                </a>
+            <!-- Right: Social Icons + Trust Badges -->
+            <div class="flex flex-col items-center md:items-end gap-4">
+                <ul class="wrapper" style="padding:0;margin:0;">
+                    <li class="icon google-maps">
+                        <a href="https://maps.app.goo.gl/Wvg1TphkJxpHRdtUA?g_st=ic" target="_blank" style="color:inherit;text-decoration:none;display:flex;align-items:center;justify-content:center;width:100%;height:100%;" aria-label="Reseñas en Google Maps">
+                            <span class="tooltip">Reseñas</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        </a>
+                    </li>
+                    <li class="icon instagram">
+                        <a href="#" onclick="return false;" style="color:inherit;text-decoration:none;display:flex;align-items:center;justify-content:center;width:100%;height:100%;" aria-label="Instagram">
+                            <span class="tooltip">En mantenimiento</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </a>
+                    </li>
+                    <li class="icon facebook">
+                        <a href="#" onclick="return false;" style="color:inherit;text-decoration:none;display:flex;align-items:center;justify-content:center;width:100%;height:100%;" aria-label="Facebook">
+                            <span class="tooltip">En mantenimiento</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                        </a>
+                    </li>
+                </ul>
+                <!-- Trust Badges -->
+                <div class="flex items-center gap-3 opacity-50">
+                    <svg width="38" height="24" viewBox="0 0 38 24" fill="none" aria-label="Visa"><rect width="38" height="24" rx="4" fill="#e0e0e0"/><text x="19" y="17" text-anchor="middle" font-family="Outfit,sans-serif" font-size="10" font-weight="700" fill="#555" letter-spacing="1">VISA</text></svg>
+                    <svg width="38" height="24" viewBox="0 0 38 24" fill="none" aria-label="Mastercard"><rect width="38" height="24" rx="4" fill="#e0e0e0"/><circle cx="15" cy="12" r="7" fill="#aaa"/><circle cx="23" cy="12" r="7" fill="#888" fill-opacity="0.8"/></svg>
+                    <span style="font-family:'Outfit',sans-serif;font-size:0.6rem;letter-spacing:0.12em;color:rgba(245,245,243,0.4);text-transform:uppercase;">Aceptamos tarjetas</span>
+                </div>
             </div>
         </div>
 
@@ -982,11 +1022,61 @@
     </div>
 </footer>
 
-<!-- BottomNavBar (Mobile Only) Removed in favor of Hamburger Menu -->
-<!-- Floating WhatsApp Button (Desktop) -->
-<a class="hidden md:flex fixed bottom-8 right-8 bg-secondary text-background rounded-full p-4 shadow-lg hover:bg-secondary-fixed transition-colors z-40 items-center justify-center" href="https://wa.me/34631122757" target="_blank">
-<span class="material-symbols-outlined text-3xl">chat</span>
-</a>
+<!-- FAB Button (todos los dispositivos) -->
+<button id="fab-btn" onclick="openFabModal()" class="flex fixed bottom-8 right-6 md:right-8 bg-secondary text-background rounded-full p-4 shadow-2xl hover:bg-secondary/80 transition-all duration-300 z-40 items-center justify-center gap-2" aria-label="WhatsApp o Reserva">
+    <span class="material-symbols-outlined text-3xl">chat</span>
+</button>
+
+<!-- FAB Modal -->
+<div id="fab-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-[110] flex items-end md:items-center justify-center hidden opacity-0 transition-opacity duration-300">
+    <div id="fab-modal-content" class="bg-[#111625] border border-[#C5A059]/25 rounded-t-2xl md:rounded-2xl w-full md:max-w-sm p-7 relative shadow-2xl scale-95 transition-transform duration-300">
+        <button onclick="closeFabModal()" class="absolute top-4 right-4 p-2 text-white/40 hover:text-[#C5A059] transition-colors" aria-label="Cerrar">
+            <span class="material-symbols-outlined text-2xl">close</span>
+        </button>
+        <!-- Paso 1: Selección -->
+        <div id="fab-step-selection">
+            <p class="font-body-md text-[11px] uppercase tracking-[0.2em] text-[#C5A059] mb-1">Bar Luna Llena</p>
+            <h3 class="font-title-md text-xl text-white mb-6">¿Qué necesitas?</h3>
+            <div class="flex flex-col gap-3">
+                <button onclick="selectReservationFromFab()" class="w-full flex items-center gap-3 bg-white/5 hover:bg-[#C5A059]/10 border border-white/10 hover:border-[#C5A059]/40 rounded-xl px-5 py-4 text-white text-left transition-all duration-200">
+                    <span class="material-symbols-outlined text-[#C5A059] text-xl">event_seat</span>
+                    <div><p class="font-semibold text-sm">Reservar Mesa</p><p class="text-white/50 text-xs">Elige fecha, hora y personas</p></div>
+                </button>
+                <button onclick="goToOrderStep()" class="w-full flex items-center gap-3 bg-white/5 hover:bg-[#C5A059]/10 border border-white/10 hover:border-[#C5A059]/40 rounded-xl px-5 py-4 text-white text-left transition-all duration-200">
+                    <span class="material-symbols-outlined text-[#C5A059] text-xl">shopping_bag</span>
+                    <div><p class="font-semibold text-sm">Hacer un Pedido</p><p class="text-white/50 text-xs">Te avisamos por WhatsApp</p></div>
+                </button>
+            </div>
+        </div>
+        <!-- Paso 2: Pedido -->
+        <div id="fab-step-order" class="hidden">
+            <button onclick="goToSelectionStep()" class="flex items-center gap-1 text-white/40 hover:text-white text-xs mb-4 transition-colors">
+                <span class="material-symbols-outlined text-base">arrow_back</span> Volver
+            </button>
+            <h3 class="font-title-md text-xl text-white mb-5">Tu Pedido</h3>
+            <form onsubmit="sendFabOrder(event)" class="space-y-3">
+                <input id="order-nombre" type="text" placeholder="Nombre *" required class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-[#C5A059] transition-colors placeholder:text-white/30">
+                <input id="order-apellidos" type="text" placeholder="Apellidos" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-[#C5A059] transition-colors placeholder:text-white/30">
+                <input id="order-telefono" type="tel" placeholder="Teléfono *" required class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-[#C5A059] transition-colors placeholder:text-white/30">
+                <div class="bg-white/5 border border-white/10 rounded-lg p-4">
+                    <p class="text-[10px] uppercase tracking-widest text-white/40 mb-3">¿Qué te apetece?</p>
+                    <div class="grid grid-cols-2 gap-2">
+                        <label class="flex items-center gap-2 text-xs text-white/80 cursor-pointer"><input type="checkbox" name="order-cat" value="Tapas" class="accent-[#C5A059]"> Tapas</label>
+                        <label class="flex items-center gap-2 text-xs text-white/80 cursor-pointer"><input type="checkbox" name="order-cat" value="Hamburguesas" class="accent-[#C5A059]"> Burgers</label>
+                        <label class="flex items-center gap-2 text-xs text-white/80 cursor-pointer"><input type="checkbox" name="order-cat" value="Raciones" class="accent-[#C5A059]"> Raciones</label>
+                        <label class="flex items-center gap-2 text-xs text-white/80 cursor-pointer"><input type="checkbox" name="order-cat" value="Bebidas" class="accent-[#C5A059]"> Bebidas</label>
+                    </div>
+                </div>
+                <textarea id="order-notas" rows="2" placeholder="Detalles del pedido..." class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-[#C5A059] transition-colors resize-none placeholder:text-white/30"></textarea>
+                <div class="glowing-btn-container theme-gold w-full" style="display:block;">
+                    <button type="submit" class="glowing-btn w-full" style="font-size:12px;">
+                        <span class="material-symbols-outlined text-sm">send</span> Enviar por WhatsApp
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 <!-- Cookies Banner -->
 <div id="cookie-banner" class="[--shadow:rgba(60,64,67,0.3)_0_1px_2px_0,rgba(60,64,67,0.15)_0_2px_6px_2px] w-11/12 md:w-auto rounded-2xl bg-surface-container border border-secondary/20 [box-shadow:var(--shadow)] max-w-[320px]">
@@ -1050,16 +1140,72 @@ window.addEventListener('pageshow', (event) => {
     }, 500);
 });
 
-// Cookie Logic
+// Cookie Logic — se muestra en cada sesión hasta que el usuario acepta
 setTimeout(() => {
-    if(!localStorage.getItem('cookies_accepted')) {
+    if(!sessionStorage.getItem('cookies_accepted')) {
         document.getElementById('cookie-banner').classList.add('show');
     }
 }, 2000);
 
 document.getElementById('accept-cookies').addEventListener('click', () => {
-    localStorage.setItem('cookies_accepted', 'true');
+    sessionStorage.setItem('cookies_accepted', 'true');
     document.getElementById('cookie-banner').classList.remove('show');
+});
+</script>
+
+<script>
+// ---- FAB Modal ----
+function openFabModal() {
+    const modal = document.getElementById('fab-modal');
+    const content = document.getElementById('fab-modal-content');
+    goToSelectionStep();
+    modal.classList.remove('hidden');
+    setTimeout(() => {
+        modal.classList.remove('opacity-0');
+        content.classList.remove('scale-95');
+        content.classList.add('scale-100');
+    }, 10);
+    document.body.style.overflow = 'hidden';
+}
+function closeFabModal() {
+    const modal = document.getElementById('fab-modal');
+    const content = document.getElementById('fab-modal-content');
+    modal.classList.add('opacity-0');
+    content.classList.remove('scale-100');
+    content.classList.add('scale-95');
+    setTimeout(() => { modal.classList.add('hidden'); document.body.style.overflow = 'auto'; }, 300);
+}
+function goToSelectionStep() {
+    document.getElementById('fab-step-selection').classList.remove('hidden');
+    document.getElementById('fab-step-order').classList.add('hidden');
+}
+function goToOrderStep() {
+    document.getElementById('fab-step-selection').classList.add('hidden');
+    document.getElementById('fab-step-order').classList.remove('hidden');
+}
+function selectReservationFromFab() {
+    closeFabModal();
+    setTimeout(() => openReservation(), 350);
+}
+function sendFabOrder(e) {
+    e.preventDefault();
+    const nombre = document.getElementById('order-nombre').value;
+    const apellidos = document.getElementById('order-apellidos').value;
+    const telefono = document.getElementById('order-telefono').value;
+    const notas = document.getElementById('order-notas').value;
+    const cats = [...document.querySelectorAll('input[name="order-cat"]:checked')].map(c => c.value);
+    if (cats.length === 0) { alert('Por favor, selecciona al menos una categoría.'); return; }
+    let msg = `Hola Bar Luna Llena 🌙! Quiero hacer un pedido:%0A%0A`;
+    msg += `👤 *Nombre:* ${nombre} ${apellidos}%0A`;
+    msg += `📞 *Teléfono:* ${telefono}%0A`;
+    msg += `🍔 *Categorías:* ${cats.join(', ')}%0A`;
+    if (notas.trim()) msg += `📝 *Detalles:* ${notas}%0A`;
+    window.open(`https://wa.me/34631122757?text=${msg}`, '_blank');
+    closeFabModal();
+}
+// Cerrar al hacer clic fuera del modal
+document.getElementById('fab-modal').addEventListener('click', function(e) {
+    if (e.target === this) closeFabModal();
 });
 </script>
 
