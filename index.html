@@ -3,9 +3,9 @@
 <html class="dark scroll-smooth overflow-x-hidden" lang="es"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Bar Luna Llena | Web Oficial</title>
+<title>Bar Luna Llena | Bar Cafetería en Santa Catalina, Palma de Mallorca</title>
     <!-- Meta etiquetas de SEO Local y Redes Sociales -->
-    <meta name="description" content="Bar Luna Llena en Santa Catalina, Palma de Mallorca. Disfruta de nuestras exquisitas hamburguesas caseras, pepitos de lomo, tapas tradicionales y un ambiente nocturno sofisticado y acogedor. ¡Reserva o consúltanos por WhatsApp!"/>
+    <meta name="description" content="Bar Luna Llena en Santa Catalina, Palma de Mallorca. Disfruta de nuestras exquisitas hamburguesas caseras, pepitos de lomo, tapas tradicionales y un ambiente único. ¡Reserva hoy!"/>
     <meta name="keywords" content="Bar Luna Llena, Santa Catalina, Palma de Mallorca, Bar Palma, Cafetería Palma, Hamburguesas Palma, Tapas Palma, Pepitos de lomo, Carta digital, Restaurante Palma"/>
     <meta name="robots" content="index, follow"/>
     <link rel="canonical" href="https://barlunallena.pages.dev"/>
@@ -13,15 +13,15 @@
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website"/>
-    <meta property="og:title" content="Bar Luna Llena | Bar Cafetería en Santa Catalina, Palma"/>
+    <meta property="og:title" content="Bar Luna Llena | Bar Cafetería en Santa Catalina, Palma de Mallorca"/>
     <meta property="og:description" content="Disfruta de nuestras exquisitas hamburguesas caseras, pepitos de lomo y tapas en el mejor ambiente de Palma de Mallorca."/>
     <meta property="og:image" content="https://barlunallena.pages.dev/assets/NEWLOGO.jpg"/>
     <meta property="og:url" content="https://barlunallena.pages.dev"/>
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image"/>
-    <meta name="twitter:title" content="Bar Luna Llena | Bar Cafetería en Santa Catalina, Palma"/>
-    <meta name="twitter:description" content="Tradición y calidad en un ambiente nocturno y sofisticado en Palma de Mallorca."/>
+    <meta name="twitter:title" content="Bar Luna Llena | Bar Cafetería en Santa Catalina, Palma de Mallorca"/>
+    <meta name="twitter:description" content="Tradición y calidad en un ambiente único en Palma de Mallorca."/>
     <meta name="twitter:image" content="https://barlunallena.pages.dev/assets/NEWLOGO.jpg"/>
 
     <!-- Datos Estructurados JSON-LD (SEO Local para Google) -->
@@ -35,6 +35,8 @@
       "url": "https://barlunallena.pages.dev",
       "telephone": "+34631122757",
       "priceRange": "$$",
+      "servesCuisine": "Tapas, Hamburguesas, Cafetería, Desayunos",
+      "hasMap": "https://maps.app.goo.gl/Wvg1TphkJxpHRdtUA",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Carrer de Cotoner, 16",
@@ -69,8 +71,9 @@
     }
     </script>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;family=Playfair+Display:ital,wght@0,400..700;1,400..700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -165,6 +168,9 @@
         /* Smooth Scroll & Nav Links Premium */
         html { scroll-behavior: smooth; scroll-padding-top: 100px; }
         body { font-family: 'Outfit', sans-serif; }
+        .font-title-md {
+            font-family: 'Playfair Display', serif;
+        }
         .nav-link-desktop { position: relative; padding-bottom: 4px; }
         .nav-link-desktop::after { content: ''; position: absolute; width: 0; height: 1px; bottom: 0; left: 50%; background-color: #C5A059; transition: all 0.3s ease; transform: translateX(-50%); }
         .nav-link-desktop:hover::after, .nav-link-desktop:active::after { width: 100%; }
@@ -356,60 +362,145 @@
         }
 
         /* Loader */
+        /* Loader */
         #loader-wrapper {
           position: fixed;
           inset: 0;
-          background-color: #0B0F19;
+          background-color: #050508;
           z-index: 99999;
           display: flex;
           justify-content: center;
           align-items: center;
           transition: opacity 0.5s ease, visibility 0.5s;
         }
+        .loader-container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 1.5rem;
+        }
         .loader {
-          --main-size: 4em;
-          --text-color: #C5A059;
-          --shine-color: rgba(197, 160, 89, 0.25);
-          --shadow-color: #5F6575;
+          width: 180px;
+          height: 120px;
+          position: relative;
           display: flex;
           justify-content: center;
           align-items: center;
-          overflow: hidden;
-          user-select: none;
-          position: relative;
-          font-size: var(--main-size);
-          font-weight: 900;
-          text-transform: uppercase;
-          color: var(--text-color);
-          width: 7.3em;
-          height: 1em;
-          filter: drop-shadow(0 0 0.05em var(--shine-color));
         }
-        .loader .text { display: flex; align-items: center; justify-content: center; text-align: center; white-space: nowrap; overflow: hidden; position: absolute; }
-        .loader .text:nth-child(1) { clip-path: polygon(0% 0%, 11.11% 0%, 11.11% 100%, 0% 100%); font-size: calc(var(--main-size) / 20); margin-left: -2.1em; opacity: 0.6; }
-        .loader .text:nth-child(2) { clip-path: polygon(11.11% 0%, 22.22% 0%, 22.22% 100%, 11.11% 100%); font-size: calc(var(--main-size) / 16); margin-left: -0.98em; opacity: 0.7; }
-        .loader .text:nth-child(3) { clip-path: polygon(22.22% 0%, 33.33% 0%, 33.33% 100%, 22.22% 100%); font-size: calc(var(--main-size) / 13); margin-left: -0.33em; opacity: 0.8; }
-        .loader .text:nth-child(4) { clip-path: polygon(33.33% 0%, 44.44% 0%, 44.44% 100%, 33.33% 100%); font-size: calc(var(--main-size) / 11); margin-left: -0.05em; opacity: 0.9; }
-        .loader .text:nth-child(5) { clip-path: polygon(44.44% 0%, 55.55% 0%, 55.55% 100%, 44.44% 100%); font-size: calc(var(--main-size) / 10); margin-left: 0em; opacity: 1; }
-        .loader .text:nth-child(6) { clip-path: polygon(55.55% 0%, 66.66% 0%, 66.66% 100%, 55.55% 100%); font-size: calc(var(--main-size) / 11); margin-left: 0.05em; opacity: 0.9; }
-        .loader .text:nth-child(7) { clip-path: polygon(66.66% 0%, 77.77% 0%, 77.77% 100%, 66.66% 100%); font-size: calc(var(--main-size) / 13); margin-left: 0.33em; opacity: 0.8; }
-        .loader .text:nth-child(8) { clip-path: polygon(77.77% 0%, 88.88% 0%, 88.88% 100%, 77.77% 100%); font-size: calc(var(--main-size) / 16); margin-left: 0.98em; opacity: 0.7; }
-        .loader .text:nth-child(9) { clip-path: polygon(88.88% 0%, 100% 0%, 100% 100%, 88.88% 100%); font-size: calc(var(--main-size) / 20); margin-left: 2.1em; opacity: 0.6; }
-        .loader .text span { animation: scrolling 2s cubic-bezier(0.1, 0.6, 0.9, 0.4) infinite, shadow 2s cubic-bezier(0.1, 0.6, 0.9, 0.4) infinite; }
-        .loader .text:nth-child(1) span { background: linear-gradient(to right, var(--text-color) 4%, var(--shadow-color) 7%); background-size: 200% auto; background-clip: text; color: transparent; }
-        .loader .text:nth-child(2) span { background: linear-gradient(to right, var(--text-color) 9%, var(--shadow-color) 13%); background-size: 200% auto; background-clip: text; color: transparent; }
-        .loader .text:nth-child(3) span { background: linear-gradient(to right, var(--text-color) 15%, var(--shadow-color) 18%); background-size: 200% auto; background-clip: text; color: transparent; }
-        .loader .text:nth-child(4) span { background: linear-gradient(to right, var(--text-color) 20%, var(--shadow-color) 23%); background-size: 200% auto; background-clip: text; color: transparent; }
-        .loader .text:nth-child(6) span { background: linear-gradient(to right, var(--shadow-color) 29%, var(--text-color) 32%); background-size: 200% auto; background-clip: text; color: transparent; }
-        .loader .text:nth-child(7) span { background: linear-gradient(to right, var(--shadow-color) 34%, var(--text-color) 37%); background-size: 200% auto; background-clip: text; color: transparent; }
-        .loader .text:nth-child(8) span { background: linear-gradient(to right, var(--shadow-color) 39%, var(--text-color) 42%); background-size: 200% auto; background-clip: text; color: transparent; }
-        .loader .text:nth-child(9) span { background: linear-gradient(to right, var(--shadow-color) 45%, var(--text-color) 48%); background-size: 200% auto; background-clip: text; color: transparent; }
-        .loader .line { position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; height: 0.05em; width: calc(var(--main-size) / 2); margin-top: 0.9em; border-radius: 0.05em; }
-        .loader .line::before { content: ""; position: absolute; height: 100%; width: 100%; background-color: var(--text-color); opacity: 0.3; }
-        .loader .line::after { content: ""; position: absolute; height: 100%; width: 100%; background-color: var(--text-color); border-radius: 0.05em; transform: translateX(-90%); animation: wobble 2s cubic-bezier(0.5, 0.8, 0.5, 0.2) infinite; }
-        @keyframes wobble { 0% { transform: translateX(-90%); } 50% { transform: translateX(90%); } 100% { transform: translateX(-90%); } }
-        @keyframes scrolling { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
-        @keyframes shadow { 0% { background-position: -98% 0; } 100% { background-position: 102% 0; } }
+        .loader .cup {
+          position: absolute;
+          width: 50px;
+          height: 36px;
+          background-color: #F5F5F3;
+          border: 2px solid #C5A059;
+          z-index: 1;
+          border-radius: 3px 3px 15px 15px;
+          animation: expansion 5s infinite ease-in-out;
+          transform-origin: center;
+        }
+        .cup::after {
+          content: "";
+          position: absolute;
+          top: -3px;
+          width: calc(100% - 2px);
+          height: 3px;
+          background: #C5A059;
+          border: 1px solid #C5A059;
+          border-radius: 50%;
+        }
+        .cup::before {
+          content: "";
+          position: absolute;
+          top: 30px;
+          width: calc(100% - 2px);
+          height: 6px;
+          background: #ffffff00;
+          border: 1.5px solid #C5A059;
+          border-top: none;
+          border-radius: 50%;
+          z-index: -1;
+        }
+        .loader .cup .cup-handle {
+          position: absolute;
+          width: 9px;
+          height: 18px;
+          background-color: #F5F5F3;
+          border: 2px solid #C5A059;
+          right: -9px;
+          top: 5px;
+          border-radius: 3px 15px 25px 3px;
+        }
+        .loader .cup .smoke {
+          position: absolute;
+          bottom: 100%;
+          left: 50%;
+          width: 18px;
+          height: 30px;
+          background: rgba(197, 160, 89, 0.4);
+          border-radius: 50%;
+          transform: translateX(-50%);
+          animation: rise 5s infinite ease-in-out;
+          filter: blur(6px);
+        }
+        .loader .cup .smoke.one {
+          animation-delay: 0s;
+        }
+        .loader .cup .smoke.two {
+          animation-delay: 0.8s;
+        }
+        .loader .cup .smoke.three {
+          animation-delay: 1.6s;
+        }
+        .loader .load {
+          position: absolute;
+          font-size: 11px;
+          opacity: 0.6;
+          top: 55%;
+          left: 50%;
+          transform: translateX(-50%);
+          z-index: -1;
+          color: #C5A059;
+          letter-spacing: 0.05em;
+        }
+        @keyframes expansion {
+          0% { width: 50px; transform: translateX(0); }
+          40% { width: 130px; transform: translateX(0); }
+          80% { width: 50px; transform: translateX(65px); }
+          90% { width: 130px; transform: translateX(0); }
+          100% { width: 50px; transform: translateX(0); }
+        }
+        @keyframes rise {
+          0% { transform: translate(-50%, 0) scale(0.4); opacity: 0; }
+          30% { opacity: 0.7; }
+          60% { opacity: 0.4; }
+          100% { transform: translate(-50%, -100px) scale(1.2); opacity: 0; }
+        }
+
+        /* Micro-animaciones sutiles para el Hero */
+        @keyframes heroFadeIn {
+          from { opacity: 0; transform: translateY(15px); }
+          to { opacity: 1; }
+        }
+        .hero-fade-in {
+          opacity: 0;
+          animation: heroFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+          animation-delay: 3.5s;
+        }
+        @keyframes gentleBob {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(6px); }
+        }
+        .gentle-bob {
+          animation: gentleBob 2.2s infinite ease-in-out !important;
+        }
+        @keyframes ctaPulse {
+          0%, 100% { transform: scale(1); }
+          50% { transform: scale(1.03); }
+        }
+        .cta-pulse {
+          animation: ctaPulse 4s infinite ease-in-out;
+        }
 
         /* Cookies Banner */
         #cookie-banner {
@@ -615,53 +706,76 @@
 
 <!-- Loader -->
 <div id="loader-wrapper">
-  <div class="loader">
-    <div class="text"><span>Loading</span></div>
-    <div class="text"><span>Loading</span></div>
-    <div class="text"><span>Loading</span></div>
-    <div class="text"><span>Loading</span></div>
-    <div class="text"><span>Loading</span></div>
-    <div class="text"><span>Loading</span></div>
-    <div class="text"><span>Loading</span></div>
-    <div class="text"><span>Loading</span></div>
-    <div class="text"><span>Loading</span></div>
-    <div class="line"></div>
+  <div class="loader-container">
+    <div class="loader">
+      <div class="cup">
+        <div class="cup-handle"></div>
+        <div class="smoke one"></div>
+        <div class="smoke two"></div>
+        <div class="smoke three"></div>
+      </div>
+      <div class="load">..........................</div>
+    </div>
+    <!-- Título Bar Luna Llena -->
+    <h2 class="font-title-md text-lg md:text-xl text-secondary tracking-[0.25em] uppercase font-light animate-pulse mt-2">Bar Luna Llena</h2>
   </div>
 </div>
 
 <!-- TopAppBar -->
 <header id="main-header" class="bg-[#050508]/85 backdrop-blur-xl fixed top-0 w-full z-50 border-b border-[#C5A059]/10 header-hidden shadow-xl transition-all duration-500">
 <div class="flex justify-between items-center px-6 md:px-12 h-16 md:h-20 w-full max-w-[1400px] mx-auto">
-<a href="#inicio" class="flex items-center transition-transform duration-300 hover:scale-[1.02] mr-8 md:mr-20">
-    <img src="./logo-hedder.svg" alt="Bar Luna Llena Logo" class="h-12 md:h-14 w-auto object-contain drop-shadow-lg scale-[1.4] md:scale-[1.7] origin-left mix-blend-lighten">
+<a href="#inicio" class="flex items-center transition-transform duration-300 hover:scale-[1.02] mr-8 md:mr-20 logo-home-trigger">
+    <img src="./logo-hedder.svg" alt="Bar Luna Llena Logo" class="h-12 md:h-14 w-auto object-contain drop-shadow-lg scale-[1.65] md:scale-[1.7] origin-left mix-blend-lighten">
 </a>
 <nav class="hidden md:flex gap-10">
-<a class="nav-link-desktop text-white/90 hover:text-[#C5A059] transition-all font-body-md text-[13px] uppercase tracking-[0.2em]" href="#inicio">Inicio</a>
-<a class="nav-link-desktop text-white/90 hover:text-[#C5A059] transition-all font-body-md text-[13px] uppercase tracking-[0.2em]" href="#origen">Origen</a>
-<a class="nav-link-desktop text-white/90 hover:text-[#C5A059] transition-all font-body-md text-[13px] uppercase tracking-[0.2em]" href="#carta">Carta</a>
-<a class="nav-link-desktop text-white/90 hover:text-[#C5A059] transition-all font-body-md text-[13px] uppercase tracking-[0.2em]" href="#ubicacion">Ubicación</a>
+<a data-i18n="nav_inicio" class="nav-link-desktop text-white/90 hover:text-[#C5A059] transition-all font-body-md text-[13px] uppercase tracking-[0.2em]" href="#inicio">Inicio</a>
+<a data-i18n="nav_historia" class="nav-link-desktop text-white/90 hover:text-[#C5A059] transition-all font-body-md text-[13px] uppercase tracking-[0.2em]" href="#origen">Historia</a>
+<a data-i18n="nav_carta" class="nav-link-desktop text-white/90 hover:text-[#C5A059] transition-all font-body-md text-[13px] uppercase tracking-[0.2em]" href="#carta">Carta</a>
+<a data-i18n="nav_ubicacion" class="nav-link-desktop text-white/90 hover:text-[#C5A059] transition-all font-body-md text-[13px] uppercase tracking-[0.2em]" href="#ubicacion">Ubicación</a>
 </nav>
-<div class="hidden md:inline-block glowing-btn-container theme-gold">
-  <button onclick="openReservation()" class="glowing-btn">Reservar</button>
+<div class="hidden md:flex items-center gap-4">
+    <!-- Selector de Idioma Escritorio -->
+    <div class="flex items-center gap-1.5 font-body-md text-[13px] tracking-wider text-white/90 mr-2">
+        <button onclick="setLanguage('es')" id="lang-btn-es-desktop" class="hover:text-secondary transition-colors font-bold text-secondary focus:outline-none">ES</button>
+        <span class="text-white/20">/</span>
+        <button onclick="setLanguage('en')" id="lang-btn-en-desktop" class="hover:text-secondary transition-colors font-light text-white/50 focus:outline-none">EN</button>
+    </div>
+    <div class="glowing-btn-container theme-gold">
+      <button data-i18n="btn_reservar" onclick="openReservation()" class="glowing-btn">Reservar</button>
+    </div>
 </div>
-<button id="mobile-menu-btn" class="md:hidden flex flex-col justify-center items-center w-[44px] h-[44px] space-y-1.5 focus:outline-none z-[60] relative" aria-label="Abrir menú">
+<button id="mobile-menu-btn" class="md:hidden flex flex-col justify-center items-center w-[50px] h-[50px] space-y-1.5 focus:outline-none z-[60] relative" aria-label="Abrir menú">
   <span class="block w-6 h-[2px] bg-secondary transition-transform duration-300 origin-center"></span>
   <span class="block w-6 h-[2px] bg-secondary transition-opacity duration-300"></span>
   <span class="block w-6 h-[2px] bg-secondary transition-transform duration-300 origin-center"></span>
 </button>
 </div>
 </header>
-
+ 
 <!-- Mobile Full-Screen Menu -->
 <div id="mobile-menu" class="fixed inset-0 bg-[#0B0F19]/98 backdrop-blur-xl z-[55] flex flex-col justify-center items-center opacity-0 pointer-events-none transition-opacity duration-500 min-h-[100dvh]">
-  <nav class="flex flex-col gap-8 text-center w-full px-6">
-    <a onclick="closeMobileMenu()" class="nav-link-mobile text-white hover:text-secondary text-2xl uppercase tracking-[0.2em] py-4 w-full flex items-center justify-center min-h-[44px]" href="#inicio">Inicio</a>
-    <a onclick="closeMobileMenu()" class="nav-link-mobile text-white hover:text-secondary text-2xl uppercase tracking-[0.2em] py-4 w-full flex items-center justify-center min-h-[44px]" href="#origen">Origen</a>
-    <a onclick="closeMobileMenu()" class="nav-link-mobile text-white hover:text-secondary text-2xl uppercase tracking-[0.2em] py-4 w-full flex items-center justify-center min-h-[44px]" href="#carta">Carta</a>
-    <a onclick="closeMobileMenu()" class="nav-link-mobile text-white hover:text-secondary text-2xl uppercase tracking-[0.2em] py-4 w-full flex items-center justify-center min-h-[44px]" href="#ubicacion">Ubicación</a>
+  <!-- Logo en la esquina superior izquierda -->
+  <div class="absolute top-4 left-6 z-[60]">
+      <img src="./logo-hedder.svg" alt="Bar Luna Llena Logo" class="h-12 w-auto object-contain mix-blend-lighten scale-[1.6] origin-left">
+  </div>
+  <!-- Botón de cerrar (X) rojo en la esquina superior derecha -->
+  <button onclick="closeMobileMenu()" class="absolute top-4 right-6 text-red-500 hover:text-red-600 focus:outline-none z-[60] flex items-center justify-center w-[44px] h-[44px]" aria-label="Cerrar menú">
+      <span class="material-symbols-outlined text-3xl">close</span>
+  </button>
+  <nav class="flex flex-col gap-6 text-center w-full px-6">
+    <!-- Selector de Idioma Móvil -->
+    <div class="flex items-center justify-center gap-4 font-body-md text-sm tracking-widest text-white/90 mb-4 border-b border-white/10 pb-4">
+        <button onclick="setLanguage('es')" id="lang-btn-es-mobile" class="hover:text-secondary transition-colors font-bold text-secondary focus:outline-none">ES</button>
+        <span class="text-white/20">|</span>
+        <button onclick="setLanguage('en')" id="lang-btn-en-mobile" class="hover:text-secondary transition-colors font-light text-white/50 focus:outline-none">EN</button>
+    </div>
+    <a data-i18n="nav_inicio" onclick="closeMobileMenu()" class="nav-link-mobile text-white hover:text-secondary text-2xl uppercase tracking-[0.2em] py-4 w-full flex items-center justify-center min-h-[44px]" href="#inicio">Inicio</a>
+    <a data-i18n="nav_historia" onclick="closeMobileMenu()" class="nav-link-mobile text-white hover:text-secondary text-2xl uppercase tracking-[0.2em] py-4 w-full flex items-center justify-center min-h-[44px]" href="#origen">Historia</a>
+    <a data-i18n="nav_carta" onclick="closeMobileMenu()" class="nav-link-mobile text-white hover:text-secondary text-2xl uppercase tracking-[0.2em] py-4 w-full flex items-center justify-center min-h-[44px]" href="#carta">Carta</a>
+    <a data-i18n="nav_ubicacion" onclick="closeMobileMenu()" class="nav-link-mobile text-white hover:text-secondary text-2xl uppercase tracking-[0.2em] py-4 w-full flex items-center justify-center min-h-[44px]" href="#ubicacion">Ubicación</a>
     <div class="w-full flex justify-center mt-4">
         <div class="glowing-btn-container theme-gold w-full">
-            <button onclick="closeMobileMenu(); openReservation()" class="glowing-btn text-xl w-full flex items-center justify-center min-h-[44px]">Reservar</button>
+            <button data-i18n="btn_reservar" onclick="closeMobileMenu(); openReservation()" class="glowing-btn text-xl w-full flex items-center justify-center min-h-[44px]">Reservar</button>
         </div>
     </div>
   </nav>
@@ -673,58 +787,76 @@
   <div class="absolute inset-0 z-0" style="background: linear-gradient(to bottom, rgba(5,5,12,0.55) 0%, rgba(5,5,12,0.72) 60%, rgba(5,5,12,0.92) 100%);"></div>
 
   <!-- Hero content -->
-  <div class="relative z-10 flex flex-col items-center text-center px-6 max-w-2xl mx-auto w-full" style="gap: 0;">
+  <div class="relative z-10 flex flex-col items-start text-left md:items-center md:text-center px-6 max-w-2xl mx-auto w-full -translate-y-4 md:translate-y-0 hero-fade-in" style="gap: 0;">
 
     <!-- Eyebrow label -->
-    <span style="letter-spacing: 0.35em; font-size: 0.7rem; color: #C5A059; text-transform: uppercase; font-weight: 700; margin-bottom: 1.25rem; display: block; opacity: 0.9;">EST. 2015 &nbsp;·&nbsp; SANTA CATALINA, PALMA</span>
+    <span data-i18n="hero_eyebrow" class="pl-6 md:pl-0" style="letter-spacing: 0.35em; font-size: 0.7rem; color: #C5A059; text-transform: uppercase; font-weight: 700; margin-bottom: 1.25rem; display: block; opacity: 0.9;">EST. 2015 &nbsp;·&nbsp; SANTA CATALINA, PALMA</span>
 
-    <!-- Main title -->
-    <h1 style="font-size: clamp(2.6rem, 8vw, 5rem); font-weight: 800; color: #ffffff; text-transform: uppercase; letter-spacing: 0.12em; line-height: 1.05; margin: 0 0 1.1rem 0; text-shadow: 0 2px 32px rgba(0,0,0,0.7);">
+    <!-- Main title (Oculto en móvil) -->
+    <h1 class="hidden md:block" style="font-size: clamp(2.6rem, 8vw, 5rem); font-weight: 800; color: #ffffff; text-transform: uppercase; letter-spacing: 0.12em; line-height: 1.05; margin: 0 0 1.1rem 0; text-shadow: 0 2px 32px rgba(0,0,0,0.7);">
       BAR<br><span style="color: #C5A059;">LUNA LLENA</span>
     </h1>
 
-    <!-- Gold divider -->
-    <div style="width: 52px; height: 2px; background: linear-gradient(90deg, transparent, #C5A059, transparent); margin: 0 auto 1.25rem;"></div>
+    <!-- Gold divider (Oculto en móvil) -->
+    <div class="hidden md:block" style="width: 52px; height: 2px; background: linear-gradient(90deg, transparent, #C5A059, transparent); margin: 0 auto 1.25rem;"></div>
 
-    <!-- Tagline -->
-    <p style="font-size: clamp(0.9rem, 2.5vw, 1.1rem); color: rgba(255,255,255,0.72); font-weight: 300; line-height: 1.65; letter-spacing: 0.04em; max-width: 480px; margin: 0 auto 2.2rem;">
+    <!-- Tagline (Móvil: Cita elegante Serif) -->
+    <p data-i18n="hero_tagline_mobile" class="block md:hidden font-title-md text-white/95 text-[20px] font-medium leading-relaxed italic mb-14 max-w-[75%] pl-6">
+      "Tradición, calidad y un ambiente único en el corazón de Santa Catalina."
+    </p>
+
+    <!-- Tagline (Desktop/Tablet: Texto descriptivo Sans-serif) -->
+    <p data-i18n="hero_tagline_desktop" class="hidden md:block font-body-md text-white/72 text-lg font-light leading-relaxed mb-8 max-w-[480px] mx-auto">
       Tradición, calidad y un ambiente nocturno y sofisticado en el corazón de Santa Catalina.
     </p>
 
     <!-- CTA button -->
-    <div class="glowing-btn-container theme-gold">
-      <a class="glowing-btn" href="#carta">
-        DESCUBRIR LA CARTA DIGITAL
-        <span class="material-symbols-outlined text-[18px] animate-bounce">arrow_downward</span>
-      </a>
+    <div class="w-full flex justify-center mt-28 md:mt-4">
+        <div class="glowing-btn-container theme-gold cta-pulse">
+            <a class="glowing-btn" style="width: auto; height: auto; min-height: unset; padding: 12px 22px; font-size: 11px;" href="#carta">
+                <span data-i18n="hero_btn">DESCUBRIR LA CARTA DIGITAL</span>
+                <span class="material-symbols-outlined text-[15px] animate-bounce">arrow_downward</span>
+            </a>
+        </div>
     </div>
+
+
 
   </div>
 
   <!-- Subtle scroll indicator -->
   <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 opacity-50">
-    <span class="material-symbols-outlined text-white text-xl animate-bounce">expand_more</span>
+    <span class="material-symbols-outlined text-white text-xl gentle-bob">expand_more</span>
   </div>
 
 </section>
 <!-- Nuestro Origen -->
-<section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface" id="origen">
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface overflow-x-hidden" id="origen">
 <div class="max-w-container-max mx-auto">
 <div class="text-center mb-16">
-<h2 class="font-title-md text-3xl md:text-4xl text-secondary mb-4 tracking-[0.2em] uppercase font-medium">Nuestro Origen</h2>
-<div class="w-12 h-[2px] bg-secondary/60 mx-auto"></div>
+    <span data-i18n="story_eyebrow" class="text-[#C5A059] text-[11px] font-bold uppercase tracking-[0.3em] block mb-2">Sobre Nosotros</span>
+    <h2 data-i18n="story_title" class="font-title-md text-3xl md:text-5xl text-white mb-4 font-semibold italic">Nuestra Historia</h2>
+    <div class="w-12 h-[2px] bg-[#C5A059]/60 mx-auto mt-4"></div>
 </div>
 <div class="grid md:grid-cols-2 gap-12 items-center">
 <div class="space-y-8">
     <div class="relative">
         <span class="absolute -top-8 -left-6 text-8xl text-[#C5A059]/10 font-serif leading-none">"</span>
-        <p class="font-title-md text-xl md:text-2xl text-white/90 leading-relaxed relative z-10 font-light">
-            Nacimos con la ilusión de crear un refugio en el corazón de Palma, un rincón donde la tradición y el cariño se saborean en cada plato. Desde el primer día, queremos que al cruzar nuestra puerta te sientas como en casa.
+        <p data-i18n="story_quote" class="font-title-md text-xl md:text-2xl text-white/90 leading-relaxed relative z-10 font-light">
+            En el corazón de Santa Catalina, Bar Luna Llena lleva más de una década siendo un punto de encuentro para vecinos, visitantes y amantes de la buena gastronomía.
         </p>
     </div>
-    <p class="font-body-md text-[16px] text-white/60 leading-relaxed font-light mt-6">
-        Ven y descubre nuestra terraza, un espacio mágico y acogedor bajo la luna llena, diseñado para que te relajes, conectes con los tuyos y disfrutes de momentos inolvidables.
-    </p>
+    <div class="space-y-4 font-body-md text-[15px] text-white/60 leading-relaxed font-light mt-6">
+        <p data-i18n="story_p1">
+            Nuestra esencia siempre ha sido la misma: ofrecer un ambiente cercano, buena comida y un lugar donde disfrutar sin prisas.
+        </p>
+        <p data-i18n="story_p2">
+            Y si hay un rincón especial, es nuestra terraza. Un espacio al aire libre donde empezar el día con un café, compartir unas tapas o disfrutar de una cena mientras se vive el ambiente único de Santa Catalina.
+        </p>
+        <p data-i18n="story_p3">
+            Más que un restaurante, queremos ser ese lugar al que siempre apetece volver.
+        </p>
+    </div>
 
     <div class="grid grid-cols-3 gap-6 pt-8 border-t border-[#C5A059]/20 mt-8">
         <!-- Café -->
@@ -733,12 +865,12 @@
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C5A059" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M17 8h1a4 4 0 1 1 0 8h-1"></path>
                   <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"></path>
-                  <line x1="6" y1="2" x2="6" y2="4"></line>
-                  <line x1="10" y1="2" x2="10" y2="4"></line>
-                  <line x1="14" y1="2" x2="14" y2="4"></line>
+                  <line class="steam-line steam-1" x1="6" y1="2" x2="6" y2="4"></line>
+                  <line class="steam-line steam-2" x1="10" y1="2" x2="10" y2="4"></line>
+                  <line class="steam-line steam-3" x1="14" y1="2" x2="14" y2="4"></line>
                 </svg>
             </div>
-            <span class="text-[11px] text-white/70 font-semibold uppercase tracking-[0.2em] group-hover:text-[#C5A059] transition-colors">Café</span>
+            <span data-i18n="story_icon_coffee" class="text-[11px] text-white/70 font-semibold uppercase tracking-[0.2em] group-hover:text-[#C5A059] transition-colors">Café</span>
         </div>
         
         <!-- Tapas -->
@@ -746,11 +878,11 @@
             <div class="w-16 h-16 rounded-full border border-[#C5A059]/30 bg-[#C5A059]/5 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-[#C5A059]/10 transition-all duration-300 shadow-lg">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C5A059" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M2 17h20"></path>
-                  <path d="M12 4a8 8 0 0 0-8 8v5h16v-5a8 8 0 0 0-8-8z"></path>
+                  <path class="tapas-lid" d="M12 4a8 8 0 0 0-8 8v5h16v-5a8 8 0 0 0-8-8z"></path>
                   <circle cx="12" cy="4" r="2"></circle>
                 </svg>
             </div>
-            <span class="text-[11px] text-white/70 font-semibold uppercase tracking-[0.2em] group-hover:text-[#C5A059] transition-colors">Tapas</span>
+            <span data-i18n="story_icon_tapas" class="text-[11px] text-white/70 font-semibold uppercase tracking-[0.2em] group-hover:text-[#C5A059] transition-colors">Tapas</span>
         </div>
         
         <!-- Terraza Acogedora -->
@@ -759,36 +891,190 @@
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C5A059" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M2 22h20"></path>
                   <path d="M12 2v20"></path>
-                  <path d="M4 12c0-4.4 3.6-8 8-8s8 3.6 8 8H4z"></path>
+                  <path class="umbrella-top" d="M4 12c0-4.4 3.6-8 8-8s8 3.6 8 8H4z"></path>
                 </svg>
             </div>
-            <span class="text-[11px] text-white/70 font-semibold uppercase tracking-[0.2em] group-hover:text-[#C5A059] transition-colors">Terraza</span>
+            <span data-i18n="story_icon_terrace" class="text-[11px] text-white/70 font-semibold uppercase tracking-[0.2em] group-hover:text-[#C5A059] transition-colors">Terraza</span>
         </div>
     </div>
 </div>
 <style>
-.origen-gallery-card {
-  width: 100%;
-  max-width: 340px;
-  aspect-ratio: 190 / 254;
-  margin: 0 auto;
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-  border-radius: 6px;
-  overflow: hidden;
+.origen-swiper-container {
   position: relative;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
 }
-.origen-photo-wrapper {
-  background: rgb(236, 236, 236);
-  padding: 12px;
+.origen-swiper {
+  width: 100%;
+  height: 420px;
+  overflow: visible;
+}
+.origen-swiper .swiper-slide {
+  width: 280px;
+  height: 380px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+  background: #1e1e24;
+  opacity: 0.15;
+  filter: blur(8px);
+  transition: opacity 0.4s ease, transform 0.4s ease, filter 0.4s ease;
+  display: grid;
+  grid-template-areas: "stack";
+}
+.origen-swiper .swiper-slide img,
+.origen-swiper .swiper-slide video {
+  grid-area: stack;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.origen-swiper .swiper-slide::after {
+  content: "";
+  display: block;
+  grid-area: stack;
+  background-color: rgba(0, 0, 0, 0.65);
+  transition: background-color 0.4s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+.origen-swiper .swiper-slide-active {
+  opacity: 1;
+  filter: blur(0);
+}
+.origen-swiper .swiper-slide-active::after {
+  background-color: rgba(0, 0, 0, 0);
+}
+.origen-swiper .swiper-slide-next {
+  opacity: 0.65;
+  filter: blur(3px);
+}
+.origen-swiper .swiper-slide-next::after {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.origen-swiper .swiper-slide-prev {
+  opacity: 0.2;
+  filter: blur(7px);
+}
+.origen-swiper .swiper-slide-prev::after {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.origen-swiper-container .swiper-button-prev,
+.origen-swiper-container .swiper-button-next {
+  color: #C5A059 !important;
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+}
+.origen-swiper-container .swiper-button-prev::after,
+.origen-swiper-container .swiper-button-next::after {
+  font-size: 24px !important;
+  font-weight: bold;
+}
+.origen-swiper-container .swiper-button-prev {
+  left: -30px;
+}
+.origen-swiper-container .swiper-button-next {
+  right: -30px;
+}
+
+/* Media Query para móviles (Responsividad total) */
+@media (max-width: 640px) {
+  .origen-swiper-container {
+    max-width: 100%;
+    padding: 0 10px;
+    overflow: hidden;
+  }
+  .origen-swiper {
+    height: 310px;
+  }
+  .origen-swiper .swiper-slide {
+    width: 200px;
+    height: 270px;
+  }
+  .origen-swiper-container .swiper-button-prev {
+    left: -10px;
+  }
+  .origen-swiper-container .swiper-button-next {
+    right: -10px;
+  }
+}
+
+/* Micro-animaciones para los iconos SVG */
+@keyframes steamAnimation {
+  0% { transform: translateY(0); opacity: 0.5; }
+  50% { transform: translateY(-4px); opacity: 1; }
+  100% { transform: translateY(-8px); opacity: 0; }
+}
+@keyframes tapasLidAnimation {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(-8deg) translateY(-2px); }
+  50% { transform: rotate(4deg); }
+  75% { transform: rotate(-2deg); }
+  100% { transform: rotate(0deg); }
+}
+@keyframes umbrellaAnimation {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(15deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.steam-line {
+  transform-origin: bottom center;
+  transition: opacity 0.3s ease;
+}
+.group:hover .steam-1 {
+  animation: steamAnimation 1.2s infinite ease-in-out;
+}
+.group:hover .steam-2 {
+  animation: steamAnimation 1.2s infinite ease-in-out 0.3s;
+}
+.group:hover .steam-3 {
+  animation: steamAnimation 1.2s infinite ease-in-out 0.6s;
+}
+
+.tapas-lid {
+  transform-origin: 12px 17px;
+}
+.group:hover .tapas-lid {
+  animation: tapasLidAnimation 0.8s ease-in-out;
+}
+
+.umbrella-top {
+  transform-origin: 12px 12px;
+}
+.group:hover .umbrella-top {
+  animation: umbrellaAnimation 1s ease-in-out;
 }
 </style>
-<div class="origen-gallery-card">
-    <!-- Video de Origen -->
-    <video id="origen-video" src="./video-origen.MP4" autoplay loop muted playsinline preload="metadata" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-100 z-10"></video>
-    
-    <!-- Foto de Origen -->
-    <div id="origen-photo-wrapper" class="absolute inset-0 w-full h-full origen-photo-wrapper transition-opacity duration-1000 opacity-0 pointer-events-none z-20">
-        <img alt="Ambiente Bar Luna Llena" class="w-full h-full object-cover rounded-sm" src="./foto-origen-ll.jpg" loading="lazy" width="340" height="454"/>
+<div class="origen-swiper-container">
+    <div class="swiper origen-swiper">
+        <div class="swiper-wrapper">
+            <!-- Slide 1 (Foto 1) -->
+            <div class="swiper-slide">
+                <img class="w-full h-full object-cover" src="./ORIGEN-FOTOS-LL/1FOTO.jpeg" alt="Terraza de Bar Luna Llena en Santa Catalina, Palma de Mallorca">
+            </div>
+            <!-- Slide 2 (Vídeo) -->
+            <div class="swiper-slide">
+                <video id="origen-carousel-video" loop muted playsinline class="w-full h-full object-cover pointer-events-none" src="./video-origen.MP4"></video>
+            </div>
+            <!-- Slide 3 (Foto 3) -->
+            <div class="swiper-slide">
+                <img class="w-full h-full object-cover" src="./ORIGEN-FOTOS-LL/3RA_FOTO.jpg" alt="Cafetería Bar Luna Llena en Santa Catalina - Desayunos y tapas tradicionales">
+            </div>
+            <!-- Slide 4 (Foto 4) -->
+            <div class="swiper-slide">
+                <img class="w-full h-full object-cover" src="./ORIGEN-FOTOS-LL/4TA%20FOTO.jpg" alt="Salón interior de Bar Luna Llena en Palma de Mallorca">
+            </div>
+            <!-- Slide 5 (Foto 5) -->
+            <div class="swiper-slide">
+                <img class="w-full h-full object-cover" src="./ORIGEN-FOTOS-LL/5TAFOTO.jpg" alt="Tapas tradicionales y raciones en Palma de Mallorca, Mallorca">
+            </div>
+        </div>
+        <!-- Botones de Navegación dentro del swiper -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
     </div>
 </div>
 </div>
@@ -798,85 +1084,87 @@
 <section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface-container-lowest" id="carta">
 <div class="max-w-container-max mx-auto">
 <div class="text-center mb-16">
-<h2 class="font-title-md text-3xl md:text-4xl text-secondary mb-4 tracking-[0.2em] uppercase font-medium">Carta Digital</h2>
-<div class="w-12 h-[2px] bg-secondary/60 mx-auto"></div>
+    <span data-i18n="menu_eyebrow" class="text-[#C5A059] text-[11px] font-bold uppercase tracking-[0.3em] block mb-2">Gastronomía</span>
+    <h2 data-i18n="menu_title" class="font-title-md text-3xl md:text-5xl text-white mb-4 font-semibold italic">Carta Digital</h2>
+    <div class="w-12 h-[2px] bg-[#C5A059]/60 mx-auto mt-4"></div>
 </div>
 
         <!-- Platos Destacados (Visual) -->
         <div class="mb-16">
-            <h3 class="font-title-md text-2xl text-secondary mb-8 uppercase tracking-[0.2em] border-b border-white/10 pb-4 font-light">Destacados para Picar</h3>
+            <h3 data-i18n="menu_subtitle" class="font-title-md text-2xl text-secondary mb-8 tracking-[0.05em] border-b border-white/10 pb-4 font-light">Destacados para Picar</h3>
             <style>
             .flip-card-inner { transition: transform 0.8s; transform-style: preserve-3d; }
             .flip-front, .flip-back { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
             .flip-back { transform: rotateY(180deg); }
             .flipped .flip-card-inner { transform: rotateY(180deg); }
             .dish-style {
-                background: rgb(223, 225, 235);
-                border-radius: 50px;
-                box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+                background: #F4F4F6;
+                border-radius: 24px;
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+                border: 1px solid rgba(255, 255, 255, 0.1);
             }
             </style>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10 perspective-1000" style="perspective: 1000px;">
                 <!-- Burger -->
-                <div class="h-[420px] w-full group cursor-pointer relative" onclick="this.classList.toggle('flipped')">
-                    <div class="flip-card-inner absolute w-full h-full rounded-[50px] shadow-2xl">
-                        <div class="flip-front absolute w-full h-full dish-style flex flex-col p-5">
-                            <div class="h-56 overflow-hidden relative rounded-[35px] shadow-md border border-white/20">
-                                <img src="./assets/burger.jpg" alt="Hamburguesa Premium" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" width="300" height="224">
-                                <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>
+                <div class="h-[330px] w-full group cursor-pointer relative" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner absolute w-full h-full rounded-[24px] shadow-lg">
+                        <div class="flip-front absolute w-full h-full dish-style flex flex-col p-4">
+                            <div class="h-[180px] overflow-hidden relative rounded-[18px] shadow-sm border border-black/5">
+                                <img src="./assets/burger.jpg" alt="Hamburguesa casera en Santa Catalina - Bar Luna Llena" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" width="300" height="180">
+                                <div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors"></div>
                             </div>
                             <div class="p-2 flex-grow flex flex-col justify-center items-center text-center">
-                                <h4 class="font-title-md text-xl text-black font-bold mb-2 drop-shadow-sm">Burger Luna Llena</h4>
-                                <p class="font-body-md text-black/50 text-[12px] font-bold uppercase tracking-widest">Tocar para detalles</p>
+                                <h4 data-i18n="dish_burger_title" class="font-title-md text-lg text-black font-bold mb-1 drop-shadow-sm">Burger Luna Llena</h4>
+                                <p data-i18n="dish_hint_front" class="font-body-md text-black/40 text-[10px] font-bold uppercase tracking-widest">Tocar para detalles</p>
                             </div>
                         </div>
-                        <div class="flip-back absolute w-full h-full dish-style p-10 flex flex-col justify-center items-center text-center">
-                            <span class="material-symbols-outlined text-black/80 text-5xl mb-4 drop-shadow-sm">restaurant</span>
-                            <h4 class="font-title-md text-2xl text-black font-bold mb-4 drop-shadow-sm">Burger Luna Llena</h4>
-                            <p class="font-body-md text-black/80 text-[15px] font-medium leading-relaxed drop-shadow-sm">Jugosa carne doble seleccionada 100% vacuno con queso fundido, bacón crujiente, lechuga y tomate en pan artesanal. Acompañada de patatas fritas.</p>
-                            <span class="text-black/50 text-[11px] font-bold uppercase tracking-widest mt-8">Tocar para voltear</span>
+                        <div class="flip-back absolute w-full h-full dish-style p-6 flex flex-col justify-center items-center text-center">
+                            <span class="material-symbols-outlined text-black/70 text-4xl mb-2">restaurant</span>
+                            <h4 data-i18n="dish_burger_title" class="font-title-md text-xl text-black font-bold mb-2">Burger Luna Llena</h4>
+                            <p data-i18n="dish_burger_desc" class="font-body-md text-black/70 text-[13px] font-normal leading-relaxed">Jugosa carne doble seleccionada 100% vacuno con queso fundido, bacon crujiente, lechuga y tomate en pan artesanal. Acompañada de patatas fritas.</p>
+                            <span data-i18n="dish_hint_back" class="text-black/40 text-[9px] font-bold uppercase tracking-widest mt-4">Tocar para voltear</span>
                         </div>
                     </div>
                 </div>
                 <!-- Bravas -->
-                <div class="h-[420px] w-full group cursor-pointer relative" onclick="this.classList.toggle('flipped')">
-                    <div class="flip-card-inner absolute w-full h-full rounded-[50px] shadow-2xl">
-                        <div class="flip-front absolute w-full h-full dish-style flex flex-col p-5">
-                            <div class="h-56 overflow-hidden relative rounded-[35px] shadow-md border border-white/20">
-                                <img src="./assets/tapas.jpg" alt="Tapas Tradicionales" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" width="300" height="224">
-                                <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>
+                <div class="h-[330px] w-full group cursor-pointer relative" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner absolute w-full h-full rounded-[24px] shadow-lg">
+                        <div class="flip-front absolute w-full h-full dish-style flex flex-col p-4">
+                            <div class="h-[180px] overflow-hidden relative rounded-[18px] shadow-sm border border-black/5">
+                                <img src="./assets/tapas.jpg" alt="Tapas en Palma de Mallorca - Patatas Bravas de Bar Luna Llena" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" width="300" height="180">
+                                <div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors"></div>
                             </div>
                             <div class="p-2 flex-grow flex flex-col justify-center items-center text-center">
-                                <h4 class="font-title-md text-xl text-black font-bold mb-2 drop-shadow-sm">Bravas Caseras</h4>
-                                <p class="font-body-md text-black/50 text-[12px] font-bold uppercase tracking-widest">Tocar para detalles</p>
+                                <h4 data-i18n="dish_bravas_title" class="font-title-md text-lg text-black font-bold mb-1 drop-shadow-sm">Bravas Caseras</h4>
+                                <p data-i18n="dish_hint_front" class="font-body-md text-black/40 text-[10px] font-bold uppercase tracking-widest">Tocar para detalles</p>
                             </div>
                         </div>
-                        <div class="flip-back absolute w-full h-full dish-style p-10 flex flex-col justify-center items-center text-center">
-                            <span class="material-symbols-outlined text-black/80 text-5xl mb-4 drop-shadow-sm">tapas</span>
-                            <h4 class="font-title-md text-2xl text-black font-bold mb-4 drop-shadow-sm">Bravas Caseras</h4>
-                            <p class="font-body-md text-black/80 text-[15px] font-medium leading-relaxed drop-shadow-sm">Auténticas patatas cortadas a mano, fritas al momento y bañadas en nuestra salsa brava casera secreta con un toque suave de alioli premium.</p>
-                            <span class="text-black/50 text-[11px] font-bold uppercase tracking-widest mt-8">Tocar para voltear</span>
+                        <div class="flip-back absolute w-full h-full dish-style p-6 flex flex-col justify-center items-center text-center">
+                            <span class="material-symbols-outlined text-black/70 text-4xl mb-2">tapas</span>
+                            <h4 data-i18n="dish_bravas_title" class="font-title-md text-xl text-black font-bold mb-2">Bravas Caseras</h4>
+                            <p data-i18n="dish_bravas_desc" class="font-body-md text-black/70 text-[13px] font-normal leading-relaxed">Auténticas patatas cortadas a mano, fritas al momento y bañadas en nuestra salsa brava casera secreta con un toque suave de alioli premium.</p>
+                            <span data-i18n="dish_hint_back" class="text-black/40 text-[9px] font-bold uppercase tracking-widest mt-4">Tocar para voltear</span>
                         </div>
                     </div>
                 </div>
                 <!-- Pepito -->
-                <div class="h-[420px] w-full group cursor-pointer relative" onclick="this.classList.toggle('flipped')">
-                    <div class="flip-card-inner absolute w-full h-full rounded-[50px] shadow-2xl">
-                        <div class="flip-front absolute w-full h-full dish-style flex flex-col p-5">
-                            <div class="h-56 overflow-hidden relative rounded-[35px] shadow-md border border-white/20">
-                                <img src="./assets/pepito.jpg" alt="Pepito de Lomo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" width="300" height="224">
-                                <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>
+                <div class="h-[330px] w-full group cursor-pointer relative" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner absolute w-full h-full rounded-[24px] shadow-lg">
+                        <div class="flip-front absolute w-full h-full dish-style flex flex-col p-4">
+                            <div class="h-[180px] overflow-hidden relative rounded-[18px] shadow-sm border border-black/5">
+                                <img src="./assets/pepito.jpg" alt="Pepito de lomo en Palma de Mallorca - Bar Luna Llena" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" width="300" height="180">
+                                <div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors"></div>
                             </div>
                             <div class="p-2 flex-grow flex flex-col justify-center items-center text-center">
-                                <h4 class="font-title-md text-xl text-black font-bold mb-2 drop-shadow-sm">Pepito Clásico</h4>
-                                <p class="font-body-md text-black/50 text-[12px] font-bold uppercase tracking-widest">Tocar para detalles</p>
+                                <h4 data-i18n="dish_pepito_title" class="font-title-md text-lg text-black font-bold mb-1 drop-shadow-sm">Pepito Clásico</h4>
+                                <p data-i18n="dish_hint_front" class="font-body-md text-black/40 text-[10px] font-bold uppercase tracking-widest">Tocar para detalles</p>
                             </div>
                         </div>
-                        <div class="flip-back absolute w-full h-full dish-style p-10 flex flex-col justify-center items-center text-center">
-                            <span class="material-symbols-outlined text-black/80 text-5xl mb-4 drop-shadow-sm">lunch_dining</span>
-                            <h4 class="font-title-md text-2xl text-black font-bold mb-4 drop-shadow-sm">Pepito Clásico</h4>
-                            <p class="font-body-md text-black/80 text-[15px] font-medium leading-relaxed drop-shadow-sm">Lomo tierno a la plancha con pimientos asados seleccionados y queso fundido, servido en pan rústico crujiente recién horneado. El clásico de siempre.</p>
-                            <span class="text-black/50 text-[11px] font-bold uppercase tracking-widest mt-8">Tocar para voltear</span>
+                        <div class="flip-back absolute w-full h-full dish-style p-6 flex flex-col justify-center items-center text-center">
+                            <span class="material-symbols-outlined text-black/70 text-4xl mb-2">lunch_dining</span>
+                            <h4 data-i18n="dish_pepito_title" class="font-title-md text-xl text-black font-bold mb-2">Pepito Clásico</h4>
+                            <p data-i18n="dish_pepito_desc" class="font-body-md text-black/70 text-[13px] font-normal leading-relaxed">Lomo tierno a la plancha con pimientos asados seleccionados y queso fundido, servido en pan rústico crujiente recién horneado. El clásico de siempre.</p>
+                            <span data-i18n="dish_hint_back" class="text-black/40 text-[9px] font-bold uppercase tracking-widest mt-4">Tocar para voltear</span>
                         </div>
                     </div>
                 </div>
@@ -895,14 +1183,14 @@
 
                 <div class="relative overflow-hidden inline-block p-12">
                   <div class="pdf-backdrop"></div>
-                  <a href="./assets/carta-es.pdf" target="_blank" class="pdf-button">
+                  <a href="./assets/carta-es.pdf#toolbar=0&navpanes=0" target="_blank" class="pdf-button pdf-link">
                     <div class="pdf-a pdf-l"></div>
                     <div class="pdf-a pdf-r"></div>
                     <div class="pdf-a pdf-t"></div>
                     <div class="pdf-a pdf-b"></div>
                     <div class="pdf-button-text flex items-center justify-center gap-2 uppercase tracking-widest text-[12px] font-semibold">
                       <span class="material-symbols-outlined text-xl">picture_as_pdf</span>
-                      VER CARTA COMPLETA (PDF)
+                      <span data-i18n="menu_pdf_btn">VER CARTA COMPLETA</span>
                     </div>
                   </a>
                 </div>
@@ -914,8 +1202,9 @@
 <div id="contacto" class="absolute -top-20"></div>
 <div class="max-w-container-max mx-auto">
 <div class="text-center mb-16">
-<h2 class="font-title-md text-3xl md:text-4xl text-secondary mb-4 tracking-[0.2em] uppercase font-medium">Localización & Contacto</h2>
-<div class="w-12 h-[2px] bg-secondary/60 mx-auto"></div>
+    <span class="text-[#C5A059] text-[11px] font-bold uppercase tracking-[0.3em] block mb-2">Visítanos</span>
+    <h2 data-i18n="contact_title" class="font-title-md text-3xl md:text-5xl text-white mb-4 font-semibold italic">Localización & Contacto</h2>
+    <div class="w-12 h-[2px] bg-[#C5A059]/60 mx-auto mt-4"></div>
 </div>
 <div class="grid md:grid-cols-2 gap-12 items-center">
 <div class="space-y-10 pl-0 md:pl-8">
@@ -924,7 +1213,7 @@
             <span class="material-symbols-outlined text-[#C5A059] text-[22px]">location_on</span>
         </div>
         <div>
-            <h4 class="font-title-md text-[13px] font-semibold uppercase tracking-[0.2em] text-[#C5A059] mb-2">Dirección</h4>
+            <h4 data-i18n="contact_address_title" class="font-title-md text-[13px] font-semibold uppercase tracking-[0.2em] text-[#C5A059] mb-2">Dirección</h4>
             <p class="font-body-md text-white/80 text-[15px] leading-relaxed font-light">Carrer de Cotoner, 16<br/>07013 Palma, Illes Balears</p>
         </div>
     </div>
@@ -933,8 +1222,8 @@
             <span class="material-symbols-outlined text-[#C5A059] text-[22px]">schedule</span>
         </div>
         <div>
-            <h4 class="font-title-md text-[13px] font-semibold uppercase tracking-[0.2em] text-[#C5A059] mb-2">Horario</h4>
-            <p class="font-body-md text-white/80 text-[15px] leading-relaxed font-light">
+            <h4 data-i18n="contact_hours_title" class="font-title-md text-[13px] font-semibold uppercase tracking-[0.2em] text-[#C5A059] mb-2">Horario</h4>
+            <p data-i18n="contact_hours_value" class="font-body-md text-white/80 text-[15px] leading-relaxed font-light">
                 <span class="text-white/90">Lunes a Sábado:</span> 08:00h - 23:00h<br/>
                 <span class="text-white/90">Domingo:</span> Cerrado
             </p>
@@ -945,7 +1234,7 @@
             <span class="material-symbols-outlined text-[#C5A059] text-[22px]">call</span>
         </div>
         <div>
-            <h4 class="font-title-md text-[13px] font-semibold uppercase tracking-[0.2em] text-[#C5A059] mb-2">Teléfono</h4>
+            <h4 data-i18n="contact_phone_title" class="font-title-md text-[13px] font-semibold uppercase tracking-[0.2em] text-[#C5A059] mb-2">Teléfono</h4>
             <a class="font-body-md text-white/80 text-[15px] leading-relaxed font-light hover:text-[#C5A059] transition-colors" href="tel:+34631122757">+34 631 122 757</a>
         </div>
     </div>
@@ -954,14 +1243,13 @@
         <a href="https://maps.app.goo.gl/Wvg1TphkJxpHRdtUA?g_st=ic" target="_blank" rel="noopener noreferrer"
            class="inline-flex items-center gap-2 border border-[#C5A059]/60 text-[#C5A059] hover:bg-[#C5A059]/10 hover:border-[#C5A059] font-body-md text-[12px] uppercase tracking-[0.18em] font-semibold px-6 py-3 rounded-lg transition-all duration-300 shadow-md hover:shadow-[#C5A059]/20 hover:shadow-lg group">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="shrink-0 group-hover:scale-110 transition-transform duration-200"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-            Leer + Reseñas en Google
+            <span data-i18n="contact_reviews_btn">Leer + Reseñas en Google</span>
         </a>
     </div>
 </div>
 <div class="h-[400px] rounded-xl overflow-hidden relative group shadow-2xl transition-all duration-500 hover:shadow-secondary/20">
 <div class="absolute inset-0 bg-[#0B0F19]/20 z-10 pointer-events-none group-hover:bg-transparent transition-all duration-500"></div>
 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3074.8872959897184!2d2.6322961!3d39.5733878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1297926775a5f759%3A0x4395597dbf2f305b!2sBar-Cafeter%C3%ADa%20Luna%20Lena!5e0!3m2!1ses!2ses!4v1715950000000!5m2!1ses!2ses" width="100%" height="100%" style="border:0; filter: grayscale(20%) contrast(1.1);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="group-hover:scale-105 transition-transform duration-700"></iframe>
-</div>
 </div>
 </div>
 </section>
@@ -971,19 +1259,24 @@
 <footer class="bg-surface-dim full-width py-12 border-t border-white/5 relative">
     <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-center text-center">
-            <!-- Left: Legal -->
-            <div class="flex flex-col md:flex-row gap-6 justify-center md:justify-start items-center">
-                <a href="#" onclick="openLegal('aviso'); return false;" class="font-body-md text-sm text-on-surface-variant hover:text-secondary transition-colors py-1 flex items-center min-h-[44px]">Aviso Legal</a>
-                <a href="#" onclick="openLegal('privacidad'); return false;" class="font-body-md text-sm text-on-surface-variant hover:text-secondary transition-colors py-1 flex items-center min-h-[44px]">Privacidad</a>
-            </div>
-            
-            <!-- Center: Logo -->
-            <div class="flex flex-col items-center justify-center">
-                <img src="./assets/NEWLOGO.jpg" alt="Logo Bar Luna Llena" class="w-24 h-24 rounded-full border border-secondary/30 object-cover shadow-lg" loading="lazy" width="96" height="96">
+            <!-- Center Logo: Primer elemento en móvil (order-1), segundo en desktop (order-2) -->
+            <div class="flex flex-col items-center justify-center order-1 md:order-2">
+                <a href="#inicio" class="logo-home-trigger block transition-transform duration-300 hover:scale-105">
+                    <img src="./assets/NEWLOGO.jpg" alt="Logo Bar Luna Llena" class="w-24 h-24 rounded-full border border-secondary/30 object-cover shadow-lg" loading="lazy" width="96" height="96">
+                </a>
+                <span data-i18n="footer_slogan" class="text-[10px] text-white/40 tracking-[0.25em] uppercase mt-3 font-light font-body-md">El bar del barrio</span>
             </div>
 
-            <!-- Right: Social Icons + Trust Badges -->
-            <div class="flex flex-col items-center md:items-end gap-4">
+            <!-- Left Legal: Segundo elemento en móvil (order-2), primero en desktop (order-1) -->
+            <div class="flex flex-wrap gap-x-6 gap-y-2 justify-center md:justify-start items-center order-2 md:order-1 max-w-xs md:max-w-none mx-auto md:mx-0">
+                <a data-i18n="footer_legal_aviso" href="#" onclick="openLegal('aviso'); return false;" class="font-body-md text-sm text-on-surface-variant hover:text-secondary transition-colors py-1 flex items-center min-h-[44px]">Aviso Legal</a>
+                <a data-i18n="footer_legal_terminos" href="#" onclick="openLegal('terminos'); return false;" class="font-body-md text-sm text-on-surface-variant hover:text-secondary transition-colors py-1 flex items-center min-h-[44px]">Términos y Condiciones</a>
+                <a data-i18n="footer_legal_privacidad" href="#" onclick="openLegal('privacidad'); return false;" class="font-body-md text-sm text-on-surface-variant hover:text-secondary transition-colors py-1 flex items-center min-h-[44px]">Privacidad</a>
+                <a data-i18n="footer_legal_cookies" href="#" onclick="openLegal('cookies'); return false;" class="font-body-md text-sm text-on-surface-variant hover:text-secondary transition-colors py-1 flex items-center min-h-[44px]">Cookies</a>
+            </div>
+            
+            <!-- Right Social: Tercer elemento en móvil (order-3), tercero en desktop (order-3) -->
+            <div class="flex flex-col items-center md:items-end gap-4 order-3 md:order-3">
                 <ul class="wrapper" style="padding:0;margin:0;">
                     <li class="icon google-maps">
                         <a href="https://maps.app.goo.gl/Wvg1TphkJxpHRdtUA?g_st=ic" target="_blank" style="color:inherit;text-decoration:none;display:flex;align-items:center;justify-content:center;width:100%;height:100%;" aria-label="Reseñas en Google Maps">
@@ -1005,18 +1298,27 @@
                     </li>
                 </ul>
                 <!-- Trust Badges -->
-                <div class="flex items-center gap-3 opacity-50">
-                    <svg width="38" height="24" viewBox="0 0 38 24" fill="none" aria-label="Visa"><rect width="38" height="24" rx="4" fill="#e0e0e0"/><text x="19" y="17" text-anchor="middle" font-family="Outfit,sans-serif" font-size="10" font-weight="700" fill="#555" letter-spacing="1">VISA</text></svg>
-                    <svg width="38" height="24" viewBox="0 0 38 24" fill="none" aria-label="Mastercard"><rect width="38" height="24" rx="4" fill="#e0e0e0"/><circle cx="15" cy="12" r="7" fill="#aaa"/><circle cx="23" cy="12" r="7" fill="#888" fill-opacity="0.8"/></svg>
-                    <span style="font-family:'Outfit',sans-serif;font-size:0.6rem;letter-spacing:0.12em;color:rgba(245,245,243,0.4);text-transform:uppercase;">Aceptamos tarjetas</span>
+                <div class="flex items-center gap-3 transition-opacity duration-300 hover:opacity-100" style="opacity: 0.85;">
+                    <!-- Visa Logo -->
+                    <svg width="38" height="24" viewBox="0 0 38 24" fill="none" aria-label="Visa" class="shadow-md rounded-[4px] overflow-hidden">
+                        <rect width="38" height="24" rx="4" fill="#1434CB"/>
+                        <text x="19" y="17" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="10" font-weight="800" fill="#F7B600" letter-spacing="1">VISA</text>
+                    </svg>
+                    <!-- Mastercard Logo -->
+                    <svg width="38" height="24" viewBox="0 0 38 24" fill="none" aria-label="Mastercard" class="shadow-md rounded-[4px] overflow-hidden">
+                        <rect width="38" height="24" rx="4" fill="#FFFFFF"/>
+                        <circle cx="15" cy="12" r="7" fill="#EB001B"/>
+                        <circle cx="23" cy="12" r="7" fill="#F79E1B" fill-opacity="0.85"/>
+                    </svg>
+                    <span data-i18n="footer_cards" style="font-family:'Outfit',sans-serif;font-size:0.6rem;letter-spacing:0.12em;color:rgba(245,245,243,0.5);text-transform:uppercase;">Aceptamos tarjetas</span>
                 </div>
             </div>
         </div>
 
         <div class="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
-            <span style="font-family:'Manrope',sans-serif;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:300;color:rgba(245,245,243,0.28);">© 2026 Bar Luna Llena. Todos los derechos reservados.</span>
+            <span data-i18n="footer_copyright" style="font-family:'Manrope',sans-serif;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:300;color:rgba(245,245,243,0.28);">© 2026 Bar Luna Llena. Todos los derechos reservados.</span>
             <span style="font-family:'Manrope',sans-serif;font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;font-weight:300;color:rgba(245,245,243,0.28);">
-                Made by <a href="https://mynextbymusa.com" target="_blank" rel="noopener noreferrer" style="color:#C5A059;font-weight:500;letter-spacing:0.28em;text-decoration:none;transition:opacity 0.3s ease;opacity:0.75;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.75'">MYNEXT</a>
+                <span data-i18n="footer_made_by">Made by</span> <a href="https://mynextbymusa.com" target="_blank" rel="noopener noreferrer" style="color:#C5A059;font-weight:500;letter-spacing:0.28em;text-decoration:none;transition:opacity 0.3s ease;opacity:0.75;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.75'">MYNEXT</a>
             </span>
         </div>
     </div>
@@ -1036,41 +1338,41 @@
         <!-- Paso 1: Selección -->
         <div id="fab-step-selection">
             <p class="font-body-md text-[11px] uppercase tracking-[0.2em] text-[#C5A059] mb-1">Bar Luna Llena</p>
-            <h3 class="font-title-md text-xl text-white mb-6">¿Qué necesitas?</h3>
+            <h3 data-i18n="fab_step1_title" class="font-title-md text-xl text-white mb-6">¿Qué necesitas?</h3>
             <div class="flex flex-col gap-3">
                 <button onclick="selectReservationFromFab()" class="w-full flex items-center gap-3 bg-white/5 hover:bg-[#C5A059]/10 border border-white/10 hover:border-[#C5A059]/40 rounded-xl px-5 py-4 text-white text-left transition-all duration-200">
                     <span class="material-symbols-outlined text-[#C5A059] text-xl">event_seat</span>
-                    <div><p class="font-semibold text-sm">Reservar Mesa</p><p class="text-white/50 text-xs">Elige fecha, hora y personas</p></div>
+                    <div><p data-i18n="fab_step1_btn1_title" class="font-semibold text-sm">Reservar Mesa</p><p data-i18n="fab_step1_btn1_desc" class="text-white/50 text-xs">Elige fecha, hora y personas</p></div>
                 </button>
                 <button onclick="goToOrderStep()" class="w-full flex items-center gap-3 bg-white/5 hover:bg-[#C5A059]/10 border border-white/10 hover:border-[#C5A059]/40 rounded-xl px-5 py-4 text-white text-left transition-all duration-200">
                     <span class="material-symbols-outlined text-[#C5A059] text-xl">shopping_bag</span>
-                    <div><p class="font-semibold text-sm">Hacer un Pedido</p><p class="text-white/50 text-xs">Te avisamos por WhatsApp</p></div>
+                    <div><p data-i18n="fab_step1_btn2_title" class="font-semibold text-sm">Hacer un Pedido</p><p data-i18n="fab_step1_btn2_desc" class="text-white/50 text-xs">Te avisamos por WhatsApp</p></div>
                 </button>
             </div>
         </div>
         <!-- Paso 2: Pedido -->
         <div id="fab-step-order" class="hidden">
             <button onclick="goToSelectionStep()" class="flex items-center gap-1 text-white/40 hover:text-white text-xs mb-4 transition-colors">
-                <span class="material-symbols-outlined text-base">arrow_back</span> Volver
+                <span class="material-symbols-outlined text-base">arrow_back</span> <span data-i18n="fab_step2_back">Volver</span>
             </button>
-            <h3 class="font-title-md text-xl text-white mb-5">Tu Pedido</h3>
+            <h3 data-i18n="fab_step2_title" class="font-title-md text-xl text-white mb-5">Tu Pedido</h3>
             <form onsubmit="sendFabOrder(event)" class="space-y-3">
-                <input id="order-nombre" type="text" placeholder="Nombre *" required class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-[#C5A059] transition-colors placeholder:text-white/30">
-                <input id="order-apellidos" type="text" placeholder="Apellidos" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-[#C5A059] transition-colors placeholder:text-white/30">
-                <input id="order-telefono" type="tel" placeholder="Teléfono *" required class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-[#C5A059] transition-colors placeholder:text-white/30">
+                <input id="order-nombre" data-i18n-placeholder="fab_step2_placeholder_name" type="text" placeholder="Nombre *" required class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-[#C5A059] transition-colors placeholder:text-white/30">
+                <input id="order-apellidos" data-i18n-placeholder="fab_step2_placeholder_surname" type="text" placeholder="Apellidos" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-[#C5A059] transition-colors placeholder:text-white/30">
+                <input id="order-telefono" data-i18n-placeholder="fab_step2_placeholder_phone" type="tel" placeholder="Teléfono *" required class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-[#C5A059] transition-colors placeholder:text-white/30">
                 <div class="bg-white/5 border border-white/10 rounded-lg p-4">
-                    <p class="text-[10px] uppercase tracking-widest text-white/40 mb-3">¿Qué te apetece?</p>
+                    <p data-i18n="fab_step2_checkbox_title" class="text-[10px] uppercase tracking-widest text-white/40 mb-3">¿Qué te apetece?</p>
                     <div class="grid grid-cols-2 gap-2">
-                        <label class="flex items-center gap-2 text-xs text-white/80 cursor-pointer"><input type="checkbox" name="order-cat" value="Tapas" class="accent-[#C5A059]"> Tapas</label>
-                        <label class="flex items-center gap-2 text-xs text-white/80 cursor-pointer"><input type="checkbox" name="order-cat" value="Hamburguesas" class="accent-[#C5A059]"> Burgers</label>
-                        <label class="flex items-center gap-2 text-xs text-white/80 cursor-pointer"><input type="checkbox" name="order-cat" value="Raciones" class="accent-[#C5A059]"> Raciones</label>
-                        <label class="flex items-center gap-2 text-xs text-white/80 cursor-pointer"><input type="checkbox" name="order-cat" value="Bebidas" class="accent-[#C5A059]"> Bebidas</label>
+                        <label class="flex items-center gap-2 text-xs text-white/80 cursor-pointer"><input type="checkbox" name="order-cat" value="Tapas" class="accent-[#C5A059]"> <span data-i18n="fab_step2_cat_tapas">Tapas</span></label>
+                        <label class="flex items-center gap-2 text-xs text-white/80 cursor-pointer"><input type="checkbox" name="order-cat" value="Hamburguesas" class="accent-[#C5A059]"> <span data-i18n="fab_step2_cat_burgers">Burgers</span></label>
+                        <label class="flex items-center gap-2 text-xs text-white/80 cursor-pointer"><input type="checkbox" name="order-cat" value="Raciones" class="accent-[#C5A059]"> <span data-i18n="fab_step2_cat_portions">Raciones</span></label>
+                        <label class="flex items-center gap-2 text-xs text-white/80 cursor-pointer"><input type="checkbox" name="order-cat" value="Bebidas" class="accent-[#C5A059]"> <span data-i18n="fab_step2_cat_drinks">Bebidas</span></label>
                     </div>
                 </div>
-                <textarea id="order-notas" rows="2" placeholder="Detalles del pedido..." class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-[#C5A059] transition-colors resize-none placeholder:text-white/30"></textarea>
+                <textarea id="order-notas" data-i18n-placeholder="fab_step2_placeholder_notes" rows="2" placeholder="Detalles del pedido..." class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-[#C5A059] transition-colors resize-none placeholder:text-white/30"></textarea>
                 <div class="glowing-btn-container theme-gold w-full" style="display:block;">
                     <button type="submit" class="glowing-btn w-full" style="font-size:12px;">
-                        <span class="material-symbols-outlined text-sm">send</span> Enviar por WhatsApp
+                        <span class="material-symbols-outlined text-sm">send</span> <span data-i18n="fab_step2_submit">Enviar por WhatsApp</span>
                     </button>
                 </div>
             </form>
@@ -1084,14 +1386,14 @@
     <span class="relative mx-auto -mt-16 mb-6 flex justify-center items-center w-16 h-16 rounded-full bg-secondary text-background border-4 border-surface-container shadow-lg">
       <span class="material-symbols-outlined text-3xl">cookie</span>
     </span>
-    <h5 class="text-sm font-semibold mb-2 text-center text-on-surface">Tu privacidad es importante</h5>
+    <h5 data-i18n="cookies_title" class="text-sm font-semibold mb-2 text-center text-on-surface">Tu privacidad es importante</h5>
     <p class="w-full mb-4 text-xs text-on-surface-variant text-center">
-      Utilizamos cookies para mejorar tu experiencia, analizar el tráfico y personalizar el contenido. 
-      <br/><a href="#" class="mt-2 inline-block text-secondary hover:underline underline-offset-2">Política de Privacidad</a>
+      <span data-i18n="cookies_desc">Utilizamos cookies para mejorar tu experiencia, analizar el tráfico y personalizar el contenido.</span>
+      <br/><a data-i18n="cookies_link" href="#" onclick="openLegal('privacidad'); return false;" class="mt-2 inline-block text-secondary hover:underline underline-offset-2">Política de Privacidad</a>
     </p>
     <div class="flex justify-between items-center w-full mt-2">
-      <button class="text-xs text-on-surface-variant hover:text-secondary hover:underline underline-offset-2">Más Opciones</button>
-      <button id="accept-cookies" class="font-semibold py-2 px-6 text-sm rounded-lg transition-colors text-background bg-secondary hover:bg-secondary/80">Aceptar</button>
+      <button data-i18n="cookies_btn_options" onclick="openLegal('cookies'); return false;" class="text-xs text-on-surface-variant hover:text-secondary hover:underline underline-offset-2">Más Opciones</button>
+      <button data-i18n="cookies_btn_accept" id="accept-cookies" class="font-semibold py-2 px-6 text-sm rounded-lg transition-colors text-background bg-secondary hover:bg-secondary/80">Aceptar</button>
     </div>
   </div>
 </div>
@@ -1108,7 +1410,32 @@ window.addEventListener('load', () => {
             header.classList.remove('header-hidden');
         }
         setTimeout(() => loader.style.visibility = 'hidden', 500);
-    }, 1000);
+    }, 3500); // Aumentado a 3.5 segundos de duración del loading en la carga inicial
+});
+
+// Logo Home Trigger Logic (Header y Footer Logos)
+document.querySelectorAll('.logo-home-trigger').forEach(logo => {
+    logo.addEventListener('click', (e) => {
+        // Si ya estamos en inicio, simplemente mostramos la animación
+        const loader = document.getElementById('loader-wrapper');
+        const header = document.getElementById('main-header');
+        
+        loader.style.visibility = 'visible';
+        loader.style.opacity = '1';
+        if (header) {
+            header.classList.add('header-hidden');
+        }
+        
+        setTimeout(() => {
+            loader.style.opacity = '0';
+            setTimeout(() => {
+                loader.style.visibility = 'hidden';
+                if (header && window.scrollY < 80) {
+                    header.classList.remove('header-hidden');
+                }
+            }, 500);
+        }, 3200); // Aumentado a 3.2 segundos al pulsar los logos para volver arriba
+    });
 });
 
 // PDF Loader Trigger
@@ -1122,22 +1449,34 @@ document.querySelectorAll('.pdf-link').forEach(btn => {
         }
         loader.style.visibility = 'visible';
         loader.style.opacity = '1';
+        
         setTimeout(() => {
-            window.location.href = btn.href;
-        }, 1500);
+            window.open(btn.href, '_blank');
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.visibility = 'hidden';
+                    if (header && window.scrollY < 80) {
+                        header.classList.remove('header-hidden');
+                    }
+                }, 500);
+            }, 800); // Pequeño retraso tras abrir el PDF para ocultar el loader
+        }, 3500); // Aumentado a 3.5 segundos antes de abrir el PDF
     });
 });
 
 window.addEventListener('pageshow', (event) => {
-    const loader = document.getElementById('loader-wrapper');
-    const header = document.getElementById('main-header');
-    loader.style.opacity = '0';
-    setTimeout(() => {
-        loader.style.visibility = 'hidden';
-        if (header && window.scrollY < 80) {
-            header.classList.remove('header-hidden');
-        }
-    }, 500);
+    if (event.persisted) {
+        const loader = document.getElementById('loader-wrapper');
+        const header = document.getElementById('main-header');
+        loader.style.opacity = '0';
+        setTimeout(() => {
+            loader.style.visibility = 'hidden';
+            if (header && window.scrollY < 80) {
+                header.classList.remove('header-hidden');
+            }
+        }, 500);
+    }
 });
 
 // Cookie Logic — se muestra en cada sesión hasta que el usuario acepta
@@ -1224,19 +1563,263 @@ document.getElementById('fab-modal').addEventListener('click', function(e) {
 
 <script>
 const legalTexts = {
-    'bases': { title: 'Bases Legales', text: '<p>Las presentes bases legales regulan el uso del sitio web de <strong>Bar Luna Llena</strong>, situado en Carrer de Cotoner, 16, 07013 Palma.</p><p>Nos reservamos el derecho a modificar la oferta gastronómica, ingredientes y precios en cualquier momento sin previo aviso. Las imágenes mostradas en este sitio web tienen fines puramente ilustrativos y pueden no corresponder exactamente con la presentación final de los platos.</p>' },
-    'privacidad': { title: 'Política de Privacidad', text: '<p>En <strong>Bar Luna Llena</strong> valoramos y respetamos su privacidad. Este sitio web tiene una finalidad puramente informativa y de presentación del menú.</p><p><strong>Uso de Cookies:</strong> Utilizamos únicamente cookies técnicas necesarias para el funcionamiento de la web (como guardar sus preferencias del banner de cookies). No realizamos seguimiento publicitario de terceros.</p><p>Si nos contacta a través del correo electrónico proporcionado, su dirección de email será utilizada exclusivamente para responder a su consulta y no será incluida en ninguna base de datos de marketing sin su consentimiento expreso.</p>' },
-    'aviso': { title: 'Aviso Legal', text: '<p><strong>Información del Establecimiento:</strong><br><br>Bar Luna Llena<br>Carrer de Cotoner, 16<br>07013 Palma, Illes Balears<br>Email: barlunallena16@gmail.com<br>Teléfono: +34 631 122 757</p><p><strong>Propiedad Intelectual:</strong><br>Todo el contenido de esta web, incluyendo textos, fotografías de platos y logotipo, está protegido por las leyes de propiedad intelectual e industrial. Queda terminantemente prohibida su reproducción sin autorización previa de Bar Luna Llena.</p>' }
+    'es': {
+        'terminos': { 
+            title: 'Términos y Condiciones', 
+            text: '<p><strong>1. Aceptación de las Condiciones:</strong><br>El acceso y uso de este sitio web atribuye la condición de usuario e implica la aceptación plena de todas las condiciones aquí expuestas. Este sitio web tiene una función puramente informativa sobre la oferta culinaria y la facilitación de reservas en Bar Luna Llena.</p><p><strong>2. Propiedad Intelectual y de Marca:</strong><br>Todos los elementos gráficos, diseño de la interfaz, textos, fotografías de platos y código fuente presentes en esta web son propiedad intelectual exclusiva de <strong>Bar Luna Llena</strong> y están protegidos por las leyes internacionales de derechos de autor. Cualquier intento de plagio, reproducción o robo de elementos de este sitio web será perseguido legalmente.</p><p><strong>3. Respaldo Tecnológico:</strong><br>El desarrollo técnico, mantenimiento continuo de la plataforma y el soporte tecnológico de este sitio web están íntegramente respaldados y garantizados por <strong>MYNEXT</strong>.</p>' 
+        },
+        'privacidad': { 
+            title: 'Política de Privacidad', 
+            text: '<p>En <strong>Bar Luna Llena</strong> protegemos sus datos personales. De conformidad con el RGPD, le informamos que no almacenamos datos personales de navegación de forma persistente en nuestros servidores.</p><p><strong>Formulario de Reserva:</strong><br>Al enviar una solicitud de reserva, los datos introducidos se transfieren de forma segura mediante protocolo HTTPS para generar un mensaje de WhatsApp directo con nuestro equipo. No almacenamos dicha información en bases de datos comerciales externas.</p><p>El soporte de esta plataforma de comunicación segura cuenta con el respaldo de <strong>MYNEXT</strong>.</p>' 
+        },
+        'aviso': { 
+            title: 'Aviso Legal', 
+            text: '<p><strong>Información del Establecimiento:</strong><br>En cumplimiento de la Ley 34/2002 de Servicios de la Sociedad de la Información y Comercio Electrónico, se detalla:<br>- <strong>Denominación Social:</strong> Bar Luna Llena<br>- <strong>Dirección Postal:</strong> Carrer de Cotoner, 16, 07013 Palma de Mallorca, Illes Balears, España<br>- <strong>Contacto de Email:</strong> barlunallena16@gmail.com<br>- <strong>Teléfono de Atención:</strong> +34 631 122 757</p><p><strong>Derechos Reservados:</strong><br>Queda prohibida la copia o reproducción total o parcial de los contenidos, código informático o imágenes de este sitio web sin la autorización expresa por escrito de Bar Luna Llena. El desarrollo y respaldo tecnológico de esta web corresponden a <strong>MYNEXT</strong>.</p>' 
+        },
+        'cookies': { 
+            title: 'Política de Cookies', 
+            text: '<p><strong>Uso de Cookies:</strong><br>Este sitio web utiliza únicamente cookies técnicas de carácter esencial. Estas cookies son necesarias para garantizar la navegación fluida, la carga correcta del carrusel multimedia y recordar sus preferencias respecto a la configuración del portal.</p><p>No utilizamos cookies de seguimiento publicitario ni compartimos perfiles de navegación de nuestros usuarios con terceras empresas de marketing. Las herramientas de carga técnica y optimización del sitio están respaldadas tecnológicamente por <strong>MYNEXT</strong>.</p>' 
+        }
+    },
+    'en': {
+        'terminos': { 
+            title: 'Terms & Conditions', 
+            text: '<p><strong>1. Acceptance of Terms:</strong><br>Access to and use of this website attributes the status of user and implies full acceptance of all conditions stated herein. This website serves a purely informative purpose regarding the culinary offer and reservation inquiries at Bar Luna Llena.</p><p><strong>2. Intellectual Property & Trademark:</strong><br>All graphic elements, interface design, texts, dish photographs, and source code on this website are the exclusive intellectual property of <strong>Bar Luna Llena</strong> and are protected by international copyright laws. Any attempt at plagiarism, reproduction, or theft of website elements will be legally pursued.</p><p><strong>3. Technological Support:</strong><br>The technical development, ongoing maintenance of the platform, and support of this website are fully backed and guaranteed by <strong>MYNEXT</strong>.</p>' 
+        },
+        'privacidad': { 
+            title: 'Privacy Policy', 
+            text: '<p>At <strong>Bar Luna Llena</strong>, we protect your personal data. In compliance with the GDPR, we inform you that we do not persistently store browsing data on our servers.</p><p><strong>Reservation Form:</strong><br>Upon sending a reservation request, the entered data is securely transferred via HTTPS to generate a direct WhatsApp message to our team. We do not store this information in external commercial databases.</p><p>The support of this secure communication platform is backed by <strong>MYNEXT</strong>.</p>' 
+        },
+        'aviso': { 
+            title: 'Legal Notice', 
+            text: '<p><strong>Establishment Information:</strong><br>In compliance with Law 34/2002 on Information Society Services and Electronic Commerce, details are as follows:<br>- <strong>Trade Name:</strong> Bar Luna Llena<br>- <strong>Postal Address:</strong> Carrer de Cotoner, 16, 07013 Palma de Mallorca, Illes Balears, Spain<br>- <strong>Email Contact:</strong> barlunallena16@gmail.com<br>- <strong>Support Phone:</strong> +34 631 122 757</p><p><strong>Rights Reserved:</strong><br>Copying or reproducing all or part of the contents, computer code, or images on this website is strictly prohibited without the express written permission of Bar Luna Llena. Technical development and support correspond to <strong>MYNEXT</strong>.</p>' 
+        },
+        'cookies': { 
+            title: 'Cookies Policy', 
+            text: '<p><strong>Use of Cookies:</strong><br>This website uses only essential technical cookies. These cookies are required to guarantee smooth browsing, correct loading of the media carousel, and to remember your preferences regarding portal configuration.</p><p>We do not use advertising tracking cookies or share user browsing profiles with third-party marketing companies. Technical loading and optimization tools are backed by <strong>MYNEXT</strong>.</p>' 
+        }
+    }
 };
+
+const translations = {
+  'es': {
+    'nav_inicio': 'Inicio',
+    'nav_historia': 'Historia',
+    'nav_carta': 'Carta',
+    'nav_ubicacion': 'Ubicación',
+    'btn_reservar': 'Reservar',
+    'hero_eyebrow': 'EST. 2015 &nbsp;·&nbsp; SANTA CATALINA, PALMA',
+    'hero_tagline_mobile': '"Tradición, calidad y un ambiente único en el corazón de Santa Catalina."',
+    'hero_tagline_desktop': 'Tradición, calidad y un ambiente nocturno y sofisticado en el corazón de Santa Catalina.',
+    'hero_btn': 'DESCUBRIR LA CARTA DIGITAL',
+    'story_eyebrow': 'Sobre Nosotros',
+    'story_title': 'Nuestra Historia',
+    'story_quote': 'En el corazón de Santa Catalina, Bar Luna Llena lleva más de una década siendo un punto de encuentro para vecinos, visitantes y amantes de la buena gastronomía.',
+    'story_p1': 'Nuestra esencia siempre ha sido la misma: ofrecer un ambiente cercano, buena comida y un lugar donde disfrutar sin prisas.',
+    'story_p2': 'Y si hay un rincón especial, es nuestra terraza. Un espacio al aire libre donde empezar el día con un café, compartir unas tapas o disfrutar de una cena mientras se vive el ambiente único de Santa Catalina.',
+    'story_p3': 'Más que un restaurante, queremos ser ese lugar al que siempre apetece volver.',
+    'story_icon_coffee': 'Café',
+    'story_icon_tapas': 'Tapas',
+    'story_icon_terrace': 'Terraza',
+    'menu_eyebrow': 'Gastronomía',
+    'menu_title': 'Carta Digital',
+    'menu_subtitle': 'Destacados para Picar',
+    'dish_burger_title': 'Burger Luna Llena',
+    'dish_hint_front': 'Tocar para detalles',
+    'dish_hint_back': 'Tocar para voltear',
+    'dish_burger_desc': 'Jugosa carne doble seleccionada 100% vacuno con queso fundido, bacon crujiente, lechuga y tomate en pan artesanal. Acompañada de patatas fritas.',
+    'dish_bravas_title': 'Bravas Caseras',
+    'dish_bravas_desc': 'Auténticas patatas cortadas a mano, fritas al momento y bañadas en nuestra salsa brava casera secreta con un toque suave de alioli premium.',
+    'dish_pepito_title': 'Pepito Clásico',
+    'dish_pepito_desc': 'Lomo tierno a la plancha con pimientos asados seleccionados y queso fundido, servido en pan rústico crujiente recién horneado. El clásico de siempre.',
+    'menu_pdf_btn': 'VER CARTA COMPLETA',
+    'contact_eyebrow': 'Visítanos',
+    'contact_title': 'Localización & Contacto',
+    'contact_address_title': 'Dirección',
+    'contact_hours_title': 'Horario',
+    'contact_hours_value': '<span class="text-white/90">Lunes a Sábado:</span> 08:00h - 23:00h<br/><span class="text-white/90">Domingo:</span> Cerrado',
+    'contact_phone_title': 'Teléfono',
+    'contact_reviews_btn': 'Leer + Reseñas en Google',
+    'footer_slogan': 'El bar del barrio',
+    'footer_legal_aviso': 'Aviso Legal',
+    'footer_legal_terminos': 'Términos y Condiciones',
+    'footer_legal_privacidad': 'Privacidad',
+    'footer_legal_cookies': 'Cookies',
+    'footer_cards': 'Aceptamos tarjetas',
+    'footer_copyright': '© 2026 Bar Luna Llena. Todos los derechos reservados.',
+    'footer_made_by': 'Made by',
+    'res_title': 'Haz tu Reserva',
+    'res_people': 'Personas',
+    'res_date': 'Día',
+    'res_time': 'Hora',
+    'res_allergies': '¿Alguna Alergia?',
+    'res_allergies_placeholder': 'Ej: Sin gluten, intolerancia a la lactosa...',
+    'res_submit_btn': 'Enviar por WhatsApp',
+    'fab_step1_title': '¿Qué necesitas?',
+    'fab_step1_btn1_title': 'Reservar Mesa',
+    'fab_step1_btn1_desc': 'Elige fecha, hora y personas',
+    'fab_step1_btn2_title': 'Hacer un Pedido',
+    'fab_step1_btn2_desc': 'Te avisamos por WhatsApp',
+    'fab_step2_back': 'Volver',
+    'fab_step2_title': 'Tu Pedido',
+    'fab_step2_placeholder_name': 'Nombre *',
+    'fab_step2_placeholder_surname': 'Apellidos',
+    'fab_step2_placeholder_phone': 'Teléfono *',
+    'fab_step2_checkbox_title': '¿Qué te apetece?',
+    'fab_step2_cat_tapas': 'Tapas',
+    'fab_step2_cat_burgers': 'Burgers',
+    'fab_step2_cat_portions': 'Raciones',
+    'fab_step2_cat_drinks': 'Bebidas',
+    'fab_step2_placeholder_notes': 'Detalles del pedido...',
+    'fab_step2_submit': 'Enviar por WhatsApp',
+    'cookies_title': 'Tu privacidad es importante',
+    'cookies_desc': 'Utilizamos cookies para mejorar tu experiencia, analizar el tráfico y personalizar el contenido.',
+    'cookies_link': 'Política de Privacidad',
+    'cookies_btn_options': 'Más Opciones',
+    'cookies_btn_accept': 'Aceptar'
+  },
+  'en': {
+    'nav_inicio': 'Home',
+    'nav_historia': 'Our Story',
+    'nav_carta': 'Menu',
+    'nav_ubicacion': 'Location',
+    'btn_reservar': 'Book a Table',
+    'hero_eyebrow': 'EST. 2015 &nbsp;·&nbsp; SANTA CATALINA, PALMA',
+    'hero_tagline_mobile': '"Tradition, quality and a unique atmosphere in the heart of Santa Catalina."',
+    'hero_tagline_desktop': 'Tradition, quality and a unique atmosphere in the heart of Santa Catalina.',
+    'hero_btn': 'DISCOVER DIGITAL MENU',
+    'story_eyebrow': 'About Us',
+    'story_title': 'Our Story',
+    'story_quote': 'In the heart of Santa Catalina, Bar Luna Llena has been a meeting point for locals, visitors and lovers of great gastronomy for over a decade.',
+    'story_p1': 'Our essence has always been the same: to offer a warm atmosphere, great food and a place to enjoy without haste.',
+    'story_p2': 'And if there is a special corner, it is our terrace. An outdoor space to start the day with a coffee, share some tapas or enjoy a dinner while experiencing the unique atmosphere of Santa Catalina.',
+    'story_p3': 'More than a restaurant, we want to be that place you always want to return to.',
+    'story_icon_coffee': 'Coffee',
+    'story_icon_tapas': 'Tapas',
+    'story_icon_terrace': 'Terrace',
+    'menu_eyebrow': 'Gastronomy',
+    'menu_title': 'Digital Menu',
+    'menu_subtitle': 'Featured to Share',
+    'dish_burger_title': 'Luna Llena Burger',
+    'dish_hint_front': 'Tap for details',
+    'dish_hint_back': 'Tap to flip',
+    'dish_burger_desc': 'Juicy double premium 100% beef patty with melted cheese, crispy bacon, lettuce and tomato in artisan bread. Served with french fries.',
+    'dish_bravas_title': 'Homemade Bravas',
+    'dish_bravas_desc': 'Authentic hand-cut potatoes, freshly fried and topped with our secret homemade brava sauce with a smooth touch of premium aioli.',
+    'dish_pepito_title': 'Classic Pepito',
+    'dish_pepito_desc': 'Tender grilled pork loin with roasted peppers and melted cheese, served in crispy freshly baked rustic bread. A timeless classic.',
+    'menu_pdf_btn': 'VIEW FULL MENU',
+    'contact_eyebrow': 'Visit Us',
+    'contact_title': 'Location & Contact',
+    'contact_address_title': 'Address',
+    'contact_hours_title': 'Opening Hours',
+    'contact_hours_value': '<span class="text-white/90">Monday to Saturday:</span> 08:00h - 23:00h<br/><span class="text-white/90">Sunday:</span> Closed',
+    'contact_phone_title': 'Phone',
+    'contact_reviews_btn': 'Read Google Reviews',
+    'footer_slogan': 'The neighborhood bar',
+    'footer_legal_aviso': 'Legal Notice',
+    'footer_legal_terminos': 'Terms & Conditions',
+    'footer_legal_privacidad': 'Privacy Policy',
+    'footer_legal_cookies': 'Cookies Policy',
+    'footer_cards': 'We accept cards',
+    'footer_copyright': '© 2026 Bar Luna Llena. All rights reserved.',
+    'footer_made_by': 'Made by',
+    'res_title': 'Book a Table',
+    'res_people': 'People',
+    'res_date': 'Date',
+    'res_time': 'Time',
+    'res_allergies': 'Any Allergies?',
+    'res_allergies_placeholder': 'E.g. Gluten-free, lactose intolerant...',
+    'res_submit_btn': 'Send via WhatsApp',
+    'fab_step1_title': 'What do you need?',
+    'fab_step1_btn1_title': 'Book a Table',
+    'fab_step1_btn1_desc': 'Choose date, time and guests',
+    'fab_step1_btn2_title': 'Place an Order',
+    'fab_step1_btn2_desc': 'We will notify you via WhatsApp',
+    'fab_step2_back': 'Back',
+    'fab_step2_title': 'Your Order',
+    'fab_step2_placeholder_name': 'First Name *',
+    'fab_step2_placeholder_surname': 'Last Name',
+    'fab_step2_placeholder_phone': 'Phone Number *',
+    'fab_step2_checkbox_title': 'What do you fancy?',
+    'fab_step2_cat_tapas': 'Tapas',
+    'fab_step2_cat_burgers': 'Burgers',
+    'fab_step2_cat_portions': 'Portions',
+    'fab_step2_cat_drinks': 'Drinks',
+    'fab_step2_placeholder_notes': 'Order details...',
+    'fab_step2_submit': 'Send via WhatsApp',
+    'cookies_title': 'Your privacy matters',
+    'cookies_desc': 'We use cookies to improve your experience, analyze traffic and personalize content.',
+    'cookies_link': 'Privacy Policy',
+    'cookies_btn_options': 'More Options',
+    'cookies_btn_accept': 'Accept'
+  }
+};
+
+let currentLang = 'es';
+
+function setLanguage(lang) {
+    currentLang = lang;
+    
+    // Update active class on selector buttons
+    document.querySelectorAll('[id^="lang-btn-es"]').forEach(el => {
+        if (lang === 'es') {
+            el.classList.add('font-bold', 'text-secondary');
+            el.classList.remove('font-light', 'text-white/50');
+        } else {
+            el.classList.remove('font-bold', 'text-secondary');
+            el.classList.add('font-light', 'text-white/50');
+        }
+    });
+    
+    document.querySelectorAll('[id^="lang-btn-en"]').forEach(el => {
+        if (lang === 'en') {
+            el.classList.add('font-bold', 'text-secondary');
+            el.classList.remove('font-light', 'text-white/50');
+        } else {
+            el.classList.remove('font-bold', 'text-secondary');
+            el.classList.add('font-light', 'text-white/50');
+        }
+    });
+    
+    // Translate standard elements
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+            el.innerHTML = translations[lang][key];
+        }
+    });
+    
+    // Update inputs placeholders
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (translations[lang] && translations[lang][key]) {
+            el.setAttribute('placeholder', translations[lang][key]);
+        }
+    });
+    
+    // Update PDF link dynamically
+    document.querySelectorAll('.pdf-link').forEach(link => {
+        if (lang === 'es') {
+            link.setAttribute('href', './assets/carta-es.pdf#toolbar=0&navpanes=0');
+        } else {
+            link.setAttribute('href', './assets/carta-es.pdf#page=3&toolbar=0&navpanes=0');
+        }
+    });
+    
+    // Update HTML document language
+    document.documentElement.setAttribute('lang', lang);
+}
 
 function openLegal(type) {
     const modal = document.getElementById('legal-modal');
-    document.getElementById('legal-title').innerHTML = legalTexts[type].title;
-    document.getElementById('legal-content').innerHTML = legalTexts[type].text;
+    document.getElementById('legal-title').innerHTML = legalTexts[currentLang][type].title;
+    document.getElementById('legal-content').innerHTML = legalTexts[currentLang][type].text;
     modal.classList.remove('hidden');
     setTimeout(() => modal.classList.remove('opacity-0'), 10);
     document.body.style.overflow = 'hidden';
 }
+
 
 function closeLegal() {
     const modal = document.getElementById('legal-modal');
@@ -1246,6 +1829,82 @@ function closeLegal() {
         document.body.style.overflow = 'auto';
     }, 300);
 }
+
+// Supabase Backend Integration Settings
+// Reemplaza estas credenciales con las de tu proyecto de Supabase para activar la edición dinámica desde base de datos.
+const SUPABASE_URL = "";
+const SUPABASE_ANON_KEY = "";
+
+async function loadSupabaseContent() {
+    if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+        console.log("Supabase no configurado. Utilizando contenido estático local.");
+        return;
+    }
+    try {
+        if (!window.supabase) {
+            console.warn("Librería de Supabase no cargada correctamente.");
+            return;
+        }
+        const { createClient } = window.supabase;
+        const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        
+        // Cargar contenidos del sitio (site_content)
+        const { data: contentData, error: contentError } = await supabase
+            .from('site_content')
+            .select('key, value_es, value_en');
+            
+        if (!contentError && contentData) {
+            contentData.forEach(item => {
+                if (translations.es[item.key] !== undefined) {
+                    translations.es[item.key] = item.value_es;
+                }
+                if (translations.en[item.key] !== undefined) {
+                    translations.en[item.key] = item.value_en;
+                }
+            });
+            console.log("Traducciones dinámicas cargadas desde Supabase.");
+        } else if (contentError) {
+            console.error("Error al obtener site_content:", contentError);
+        }
+        
+        // Cargar platos destacados (dishes)
+        const { data: dishesData, error: dishesError } = await supabase
+            .from('dishes')
+            .select('*')
+            .eq('is_active', true);
+            
+        if (!dishesError && dishesData) {
+            dishesData.forEach(dish => {
+                const titleKey = `dish_${dish.key}_title`;
+                const descKey = `dish_${dish.key}_desc`;
+                
+                if (translations.es[titleKey] !== undefined) translations.es[titleKey] = dish.title_es;
+                if (translations.en[titleKey] !== undefined) translations.en[titleKey] = dish.title_en;
+                if (translations.es[descKey] !== undefined) translations.es[descKey] = dish.description_es;
+                if (translations.en[descKey] !== undefined) translations.en[descKey] = dish.description_en;
+                
+                // Actualizar imágenes de platos de forma dinámica
+                const imgElements = document.querySelectorAll('img');
+                imgElements.forEach(img => {
+                    const alt = img.getAttribute('alt') || '';
+                    if (alt.includes(dish.title_es) || img.src.includes(dish.key)) {
+                        if (dish.image_url) {
+                            img.src = dish.image_url;
+                        }
+                    }
+                });
+            });
+            console.log("Platos destacados cargados desde Supabase.");
+        } else if (dishesError) {
+            console.error("Error al obtener platos:", dishesError);
+        }
+        
+        // Refrescar el idioma actual para aplicar cambios
+        setLanguage(currentLang);
+    } catch (err) {
+        console.error("Error en conexión con Supabase:", err);
+    }
+}
 </script>
 <!-- Modal Reservas -->
 <div id="reservation-modal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-[100] flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
@@ -1254,37 +1913,39 @@ function closeLegal() {
             <span class="material-symbols-outlined text-3xl">close</span>
         </button>
         <img src="./assets/NEWLOGO.jpg" alt="Bar Luna Llena Logo" class="w-24 h-24 object-contain rounded-full border border-secondary/30 mb-6 shadow-xl" loading="lazy">
-        <h3 class="font-title-md text-2xl text-[#C5A059] mb-8 tracking-widest uppercase text-center">Haz tu Reserva</h3>
+        <h3 data-i18n="res_title" class="font-title-md text-2xl text-[#C5A059] mb-8 tracking-widest uppercase text-center">Haz tu Reserva</h3>
         
         <form id="reservation-form" class="w-full space-y-5" onsubmit="sendReservation(event)">
             <div>
-                <label class="block font-body-md text-[12px] text-white/60 uppercase tracking-widest mb-2">Personas</label>
+                <label data-i18n="res_people" class="block font-body-md text-[12px] text-white/60 uppercase tracking-widest mb-2">Personas</label>
                 <input type="number" id="res-personas" min="1" max="20" required class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#C5A059] transition-colors">
             </div>
             <div class="grid grid-cols-2 gap-4">
                 <div>
-                    <label class="block font-body-md text-[12px] text-white/60 uppercase tracking-widest mb-2">Día</label>
+                    <label data-i18n="res_date" class="block font-body-md text-[12px] text-white/60 uppercase tracking-widest mb-2">Día</label>
                     <input type="date" id="res-dia" required class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#C5A059] transition-colors">
                 </div>
                 <div>
-                    <label class="block font-body-md text-[12px] text-white/60 uppercase tracking-widest mb-2">Hora</label>
+                    <label data-i18n="res_time" class="block font-body-md text-[12px] text-white/60 uppercase tracking-widest mb-2">Hora</label>
                     <input type="time" id="res-hora" required class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#C5A059] transition-colors">
                 </div>
             </div>
             <div>
-                <label class="block font-body-md text-[12px] text-white/60 uppercase tracking-widest mb-2">¿Alguna Alergia?</label>
-                <textarea id="res-alergias" rows="2" placeholder="Ej: Sin gluten, intolerancia a la lactosa..." class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#C5A059] transition-colors resize-none"></textarea>
+                <label data-i18n="res_allergies" class="block font-body-md text-[12px] text-white/60 uppercase tracking-widest mb-2">¿Alguna Alergia?</label>
+                <textarea data-i18n-placeholder="res_allergies_placeholder" id="res-alergias" rows="2" placeholder="Ej: Sin gluten, intolerancia a la lactosa..." class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#C5A059] transition-colors resize-none"></textarea>
             </div>
             
             <div class="glowing-btn-container theme-gold w-full mt-4" style="display: block;">
                 <button type="submit" class="glowing-btn" style="font-size: 13px; width: 100%;">
-                    <span class="material-symbols-outlined">send</span> Enviar por WhatsApp
+                    <span class="material-symbols-outlined">send</span> <span data-i18n="res_submit_btn">Enviar por WhatsApp</span>
                 </button>
             </div>
         </form>
     </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
 let lastScrollY = window.scrollY;
 const header = document.getElementById('main-header');
@@ -1373,73 +2034,72 @@ function sendReservation(e) {
     closeReservation();
 }
 
-// IntersectionObserver to auto-play/pause the video with sutil sound when visible, and transition to photo
-const origenVideo = document.getElementById('origen-video');
-const photoWrapper = document.getElementById('origen-photo-wrapper');
-let isVideoActive = true;
-let isSectionVisible = false;
-
-function showVideo() {
-    if (!photoWrapper || !origenVideo) return;
-    isVideoActive = true;
-    photoWrapper.classList.replace('opacity-100', 'opacity-0');
-    photoWrapper.classList.add('pointer-events-none');
-    origenVideo.classList.replace('opacity-0', 'opacity-100');
-    origenVideo.currentTime = 0;
-    if (isSectionVisible) {
-        origenVideo.muted = false;
-        origenVideo.volume = 0.15;
-        origenVideo.play().catch(err => {
-            origenVideo.muted = true;
-            origenVideo.play();
-        });
-    }
-}
-
-function showPhoto() {
-    if (!photoWrapper || !origenVideo) return;
-    isVideoActive = false;
-    origenVideo.classList.replace('opacity-100', 'opacity-0');
-    photoWrapper.classList.replace('opacity-0', 'opacity-100');
-    photoWrapper.classList.remove('pointer-events-none');
-    
-    setTimeout(() => {
-        if (isSectionVisible) {
-            showVideo();
-        } else {
-            // Reset to video so it starts with the video next time
-            isVideoActive = true;
-            photoWrapper.classList.replace('opacity-100', 'opacity-0');
-            photoWrapper.classList.add('pointer-events-none');
-            origenVideo.classList.replace('opacity-0', 'opacity-100');
-        }
-    }, 6000); // Muestra la foto por 6 segundos
-}
-
-if (origenVideo && photoWrapper) {
-    origenVideo.addEventListener('ended', () => {
-        showPhoto();
+// Inicialización de Swiper con efecto Coverflow para la sección "Nuestro Origen"
+document.addEventListener('DOMContentLoaded', () => {
+    const origenSwiper = new Swiper('.origen-swiper', {
+        slidesPerView: 'auto',
+        centeredSlides: true,
+        grabCursor: true,
+        loop: true,
+        effect: 'coverflow',
+        coverflowEffect: {
+            rotate: 0,
+            stretch: 80,
+            depth: 200,
+            slideShadows: false
+        },
+        autoplay: {
+            delay: 3400,
+            disableOnInteraction: false,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
     });
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                isSectionVisible = true;
-                if (isVideoActive) {
-                    origenVideo.muted = false;
-                    origenVideo.volume = 0.15;
-                    origenVideo.play().catch(err => {
-                        origenVideo.muted = true;
-                        origenVideo.play();
-                    });
-                }
-            } else {
-                isSectionVisible = false;
-                origenVideo.pause();
-            }
+    function handleVideoAutoplay() {
+        const activeSlide = origenSwiper.slides[origenSwiper.activeIndex];
+        // Encontrar el video del slide activo
+        const activeVideo = activeSlide ? activeSlide.querySelector('video') : null;
+        
+        // Pausar y resetear todos los videos de origen
+        document.querySelectorAll('.origen-swiper video').forEach(v => {
+            v.pause();
+            v.currentTime = 0;
         });
-    }, { threshold: 0.15 });
-    observer.observe(origenVideo);
-}
+
+        if (activeVideo) {
+            // Detener temporalmente el autoplay de Swiper para que se reproduzca el video
+            origenSwiper.autoplay.stop();
+            // Desmutar con volumen sutil
+            activeVideo.muted = false;
+            activeVideo.volume = 0.15;
+            activeVideo.play().catch(err => {
+                console.log("Autoplay del video bloqueado por el navegador:", err);
+                origenSwiper.autoplay.start();
+            });
+        } else {
+            // Reanudar autoplay normal si no es un slide de video
+            if (!origenSwiper.autoplay.running) {
+                origenSwiper.autoplay.start();
+            }
+        }
+    }
+
+    // Escuchar el cambio de diapositivas
+    origenSwiper.on('slideChange', handleVideoAutoplay);
+
+    // Escuchar el final de la reproducción en todos los videos (incluidos los clones del loop)
+    document.querySelectorAll('.origen-swiper video').forEach(video => {
+        video.addEventListener('ended', () => {
+            origenSwiper.slideNext();
+            origenSwiper.autoplay.start();
+        });
+    });
+
+    // Cargar contenido dinámico desde Supabase (si está configurado)
+    loadSupabaseContent();
+});
 </script>
 </body></html>
