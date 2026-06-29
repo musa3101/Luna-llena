@@ -722,7 +722,7 @@
 </div>
 
 <!-- TopAppBar -->
-<header id="main-header" class="bg-[#050508]/85 backdrop-blur-xl fixed top-0 w-full z-50 border-b border-[#C5A059]/10 header-hidden shadow-xl transition-all duration-500">
+<header id="main-header" class="bg-[#050508]/85 backdrop-blur-xl fixed top-0 w-full z-50 border-b border-[#C5A059]/10 header-hidden shadow-xl transition-all duration-500 overflow-hidden">
 <div class="flex justify-between items-center px-6 md:px-12 h-16 md:h-20 w-full max-w-[1400px] mx-auto">
 <a href="#inicio" class="flex items-center transition-transform duration-300 hover:scale-[1.02] mr-8 md:mr-20 logo-home-trigger">
     <img src="./logo-hedder.svg" alt="Bar Luna Llena Logo" class="h-12 md:h-14 w-auto object-contain drop-shadow-lg scale-[1.65] md:scale-[1.7] origin-left mix-blend-lighten">
@@ -1441,17 +1441,17 @@ document.querySelectorAll('.logo-home-trigger').forEach(logo => {
 // PDF Loader Trigger
 document.querySelectorAll('.pdf-link').forEach(btn => {
     btn.addEventListener('click', (e) => {
-        e.preventDefault();
+        // Removemos e.preventDefault() y window.open asíncrono para evitar 
+        // que los navegadores móviles bloqueen la apertura del PDF.
         const loader = document.getElementById('loader-wrapper');
         const header = document.getElementById('main-header');
         if (header) {
             header.classList.add('header-hidden');
         }
-        loader.style.visibility = 'visible';
-        loader.style.opacity = '1';
-        
-        setTimeout(() => {
-            window.open(btn.href, '_blank');
+        if (loader) {
+            loader.style.visibility = 'visible';
+            loader.style.opacity = '1';
+            
             setTimeout(() => {
                 loader.style.opacity = '0';
                 setTimeout(() => {
@@ -1460,8 +1460,8 @@ document.querySelectorAll('.pdf-link').forEach(btn => {
                         header.classList.remove('header-hidden');
                     }
                 }, 500);
-            }, 800); // Pequeño retraso tras abrir el PDF para ocultar el loader
-        }, 3500); // Aumentado a 3.5 segundos antes de abrir el PDF
+            }, 3500); 
+        }
     });
 });
 
