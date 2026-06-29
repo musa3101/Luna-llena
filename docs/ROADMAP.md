@@ -25,6 +25,9 @@
 - [x] Adaptación del visor de PDF para que la versión inglesa salte directamente a la sección de menú en inglés (página 3, `#page=3`).
 - [x] Optimización crítica del rendimiento de imágenes pesadas mediante compresión programática en Python (reducción total de 7.5 MB).
 - [x] Conectar la base de datos de producción de Supabase rellenando las credenciales `SUPABASE_URL` y `SUPABASE_ANON_KEY` en `index.html`.
+- [x] Corregido el desbordamiento del logo en la cabecera móvil.
+- [x] Solucionado el problema de apertura del menú PDF en navegadores móviles.
+- [x] Sincronización final del proyecto en GitHub y GitLab.
 
 ## Próximas mejoras prioritarias
 - Ninguna. El proyecto está completamente terminado y en producción.
