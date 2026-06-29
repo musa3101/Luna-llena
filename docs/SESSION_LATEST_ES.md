@@ -41,4 +41,4 @@
 - Configurada e implementada la estructura de conexión con el backend dinámico de Supabase.
 
 ## Qué queda pendiente
-- Rellenar la URL y anon key de Supabase en `index.html` una vez creada la base de datos y cargada la semilla SQL.
+- Ninguno. El backend de Supabase está 100% desplegado con la semilla SQL y conectado a producción en index.html.

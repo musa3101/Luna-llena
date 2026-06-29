@@ -24,10 +24,7 @@
 - [x] Implementación de soporte bilingüe completo (ES/EN) con traductor instantáneo en JS y selector responsivo en cabecera desktop y móvil.
 - [x] Adaptación del visor de PDF para que la versión inglesa salte directamente a la sección de menú en inglés (página 3, `#page=3`).
 - [x] Optimización crítica del rendimiento de imágenes pesadas mediante compresión programática en Python (reducción total de 7.5 MB).
-- [x] Integración del backend dinámico con Supabase (esquema SQL y script de recuperación) con fallback automático al diccionario local.
-
-## Tareas en progreso
-- Ninguna.
+- [x] Conectar la base de datos de producción de Supabase rellenando las credenciales `SUPABASE_URL` y `SUPABASE_ANON_KEY` en `index.html`.
 
 ## Próximas mejoras prioritarias
-- [ ] Conectar la base de datos de producción de Supabase rellenando las credenciales `SUPABASE_URL` y `SUPABASE_ANON_KEY` en `index.html`.
+- Ninguna. El proyecto está completamente terminado y en producción.
