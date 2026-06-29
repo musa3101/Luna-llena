@@ -19,9 +19,11 @@
   - Verificación responsive exhaustiva en un viewport simulado de iPhone (390x844px).
   - Comprobación de correcto funcionamiento del menú de hamburguesa, giros de tarjetas de platos, links del footer y traducción en caliente.
   - Verificación de consola sin errores de JavaScript.
+- **Repositorio de Respaldo en GitLab:** Se vinculó el repositorio de GitLab, se resolvió el conflicto de historias divergentes en el archivo `README.md` (reescribiéndolo con la información técnica y de Supabase), y se sincronizaron GitHub y GitLab para tener redundancia total del proyecto.
 
 ## Archivos modificados/creados
 - [index.html](file:///Users/musa/Downloads/WEBS recientes/BAR LUNA LLENA/LL v2✅/index.html) (Modificado)
+- [README.md](file:///Users/musa/Downloads/WEBS recientes/BAR LUNA LLENA/LL v2✅/README.md) (Modificado)
 - [docs/supabase_schema.sql](file:///Users/musa/Downloads/WEBS recientes/BAR LUNA LLENA/LL v2✅/docs/supabase_schema.sql) (Creado)
 - [docs/ROADMAP.md](file:///Users/musa/Downloads/WEBS recientes/BAR LUNA LLENA/LL v2✅/docs/ROADMAP.md) (Modificado)
 - [docs/SESSION_LATEST_ES.md](file:///Users/musa/Downloads/WEBS recientes/BAR LUNA LLENA/LL v2✅/docs/SESSION_LATEST_ES.md) (Modificado)
