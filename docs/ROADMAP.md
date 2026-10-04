@@ -27,7 +27,17 @@
 - [x] Conectar la base de datos de producción de Supabase rellenando las credenciales `SUPABASE_URL` y `SUPABASE_ANON_KEY` en `index.html`.
 - [x] Corregido el desbordamiento del logo en la cabecera móvil.
 - [x] Solucionado el problema de apertura del menú PDF en navegadores móviles.
-- [x] Sincronización final del proyecto en GitHub y GitLab.
+- [x] Nuevas imágenes hiperrealistas generadas para Burger Luna Llena y Pepito Clásico con Coca-Cola de cristal.
+- [x] Optimización visual de las tarjetas del menú interactivo (imágenes un 25% más grandes, eliminación de espacios vacíos).
+- [x] Implementación de cache-busting en imágenes para evitar retención de caché en Safari.
+- [x] Animación del logo en el header: entrada suave desde la izquierda y fade-out hacia arriba en scroll.
+- [x] Separadores de sección con diseño de la bandera de Bangladesh (verde - sol rojo - verde).
+- [x] Navegación suave universal y sincronización de enlaces del menú con compensación de cabecera.
+- [x] Limpieza y depuración integral del proyecto: eliminación de componentes `.tsx` no usados, duplicados y fotos redundantes.
+- [x] Consolidación y estructuración de todos los archivos multimedia y carrusel dentro de `assets/`.
+- [x] Migración de documentación a `docs/TYPOGRAPHY.md`.
+- [x] Auditoría de seguridad y protección de archivos sensibles en `.gitignore`.
+- [x] Fusión a `main` y despliegue completado en GitHub y GitLab con build en Cloudflare Pages.
 
 ## Próximas mejoras prioritarias
-- Ninguna. El proyecto está completamente terminado y en producción.
+- Ninguna. Proyecto 100% completado, optimizado y en producción.
