@@ -11,12 +11,18 @@
     <meta name="google-site-verification" content="Jz3dMFIZohYyEsYBlXARkKbF_g5Q7USOLrc0RthOQ_Y"/>
     <link rel="canonical" href="https://barlunallena.pages.dev"/>
     
-    <!-- Favicon Suite Redondo de Alta Calidad (Transparente para Google y Navegadores) -->
-    <link rel="icon" type="image/png" sizes="48x48" href="./assets/favicon-48x48.png?v=2"/>
-    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png?v=2"/>
-    <link rel="icon" type="image/png" sizes="192x192" href="./assets/favicon-192x192.png?v=2"/>
-    <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png?v=2"/>
-    <link rel="shortcut icon" href="./favicon.ico?v=2"/>
+    <!-- Configuración de Nombre de Sitio para Google Search y Aplicaciones Móviles -->
+    <meta name="application-name" content="Bar Luna Llena 16"/>
+    <meta name="apple-mobile-web-app-title" content="Bar Luna Llena 16"/>
+    
+    <!-- Favicon Suite Redondo de Alta Calidad (Google Search, Móviles y Navegadores) -->
+    <link rel="icon" href="./favicon.ico" sizes="any"/>
+    <link rel="icon" type="image/png" sizes="48x48" href="./assets/favicon-48x48.png"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png"/>
+    <link rel="icon" type="image/png" sizes="192x192" href="./assets/favicon-192x192.png"/>
+    <link rel="icon" type="image/png" sizes="512x512" href="./assets/favicon-512x512.png"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png"/>
+    <link rel="manifest" href="./manifest.json"/>
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website"/>
@@ -32,64 +38,66 @@
     <meta name="twitter:description" content="Tradición y calidad en un ambiente único en Palma de Mallorca."/>
     <meta name="twitter:image" content="https://barlunallena.pages.dev/assets/favicon-512x512.png"/>
 
-    <!-- Datos Estructurados JSON-LD (Google Site Name + SEO Local BarOrPub) -->
+    <!-- Datos Estructurados JSON-LD (Google Site Name Oficial) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@graph": [
+      "@type": "WebSite",
+      "name": "Bar Luna Llena 16",
+      "alternateName": [
+        "Bar Luna Llena",
+        "Luna Llena 16",
+        "Bar Cafetería Luna Llena",
+        "Bar Luna Llena Santa Catalina"
+      ],
+      "url": "https://barlunallena.pages.dev/"
+    }
+    </script>
+
+    <!-- Datos Estructurados JSON-LD (SEO Local Bar Cafetería) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BarOrPub",
+      "@id": "https://barlunallena.pages.dev/#barlunallena",
+      "name": "Bar Luna Llena 16",
+      "alternateName": "Bar Luna Llena",
+      "image": "https://barlunallena.pages.dev/assets/favicon-512x512.png",
+      "url": "https://barlunallena.pages.dev/",
+      "telephone": "+34631122757",
+      "priceRange": "$$",
+      "servesCuisine": "Tapas, Hamburguesas, Cafetería, Desayunos",
+      "hasMap": "https://maps.app.goo.gl/Wvg1TphkJxpHRdtUA",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Carrer de Cotoner, 16",
+        "addressLocality": "Palma de Mallorca",
+        "postalCode": "07013",
+        "addressRegion": "Illes Balears",
+        "addressCountry": "ES"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 39.5733878,
+        "longitude": 2.6322961
+      },
+      "openingHoursSpecification": [
         {
-          "@type": "WebSite",
-          "@id": "https://barlunallena.pages.dev/#website",
-          "name": "Bar Luna Llena 16",
-          "alternateName": [
-            "Bar Luna Llena",
-            "Luna Llena 16",
-            "Bar Luna Llena Santa Catalina"
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
           ],
-          "url": "https://barlunallena.pages.dev"
-        },
-        {
-          "@type": "BarOrPub",
-          "@id": "https://barlunallena.pages.dev/#barlunallena",
-          "name": "Bar Luna Llena 16",
-          "image": "https://barlunallena.pages.dev/assets/favicon-512x512.png",
-          "url": "https://barlunallena.pages.dev",
-          "telephone": "+34631122757",
-          "priceRange": "$$",
-          "servesCuisine": "Tapas, Hamburguesas, Cafetería, Desayunos",
-          "hasMap": "https://maps.app.goo.gl/Wvg1TphkJxpHRdtUA",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Carrer de Cotoner, 16",
-            "addressLocality": "Palma de Mallorca",
-            "postalCode": "07013",
-            "addressRegion": "Illes Balears",
-            "addressCountry": "ES"
-          },
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": 39.5733878,
-            "longitude": 2.6322961
-          },
-          "openingHoursSpecification": [
-            {
-              "@type": "OpeningHoursSpecification",
-              "dayOfWeek": [
-                "Monday",
-                "Tuesday",
-                "Wednesday",
-                "Thursday",
-                "Friday",
-                "Saturday"
-              ],
-              "opens": "08:00",
-              "closes": "23:00"
-            }
-          ],
-          "sameAs": [
-            "https://www.instagram.com/barlunallena"
-          ]
+          "opens": "08:00",
+          "closes": "23:00"
         }
+      ],
+      "sameAs": [
+        "https://www.instagram.com/barlunallena"
       ]
     }
     </script>
