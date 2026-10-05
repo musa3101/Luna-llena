@@ -8,6 +8,7 @@
     <meta name="description" content="Bar Luna Llena 16 en Santa Catalina, Palma de Mallorca. Disfruta de nuestras exquisitas hamburguesas caseras, pepitos de lomo, tapas tradicionales y un ambiente único. ¡Reserva hoy!"/>
     <meta name="keywords" content="Bar Luna Llena 16, Bar Luna Llena, Santa Catalina, Palma de Mallorca, Bar Palma, Cafetería Palma, Hamburguesas Palma, Tapas Palma, Pepitos de lomo, Carta digital, Restaurante Palma"/>
     <meta name="robots" content="index, follow"/>
+    <meta name="google-site-verification" content="Jz3dMFIZohYyEsYBlXARkKbF_g5Q7USOLrc0RthOQ_Y"/>
     <link rel="canonical" href="https://barlunallena.pages.dev"/>
     
     <!-- Favicon Suite Redondo de Alta Calidad (Transparente para Google y Navegadores) -->
@@ -1539,7 +1540,7 @@
                 </svg>
 
                 <div class="relative inline-flex items-center justify-center p-3">
-                  <a href="./assets/carta-es.pdf#toolbar=0&navpanes=0" class="liquid-glass-btn pdf-link group" aria-label="Ver carta completa">
+                  <a href="./menu" class="liquid-glass-btn pdf-link group" aria-label="Ver carta completa">
                     <!-- Capa de distorsión líquida de fondo -->
                     <div class="absolute inset-0 -z-10 rounded-full overflow-hidden pointer-events-none" style="backdrop-filter: url(#container-glass) blur(8px); -webkit-backdrop-filter: blur(8px);"></div>
 
@@ -1759,7 +1760,7 @@
     <!-- Botón Cerrar -->
     <button onclick="closeMenuViewer()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white/90 hover:text-white transition-all duration-200 border border-white/10 active:scale-95 text-xs font-medium cursor-pointer" aria-label="Cerrar carta">
       <span class="material-symbols-outlined text-base">close</span>
-      <span>Cerrar</span>
+      <span data-i18n="menu_close">Cerrar</span>
     </button>
     
     <!-- Título centrado discreto -->
@@ -1799,13 +1800,17 @@
     </div>
 
     <!-- Indicador de página 2 / 2 y botón inferior de cerrar -->
-    <div class="flex flex-col items-center gap-4 my-4">
+    <div class="flex flex-col items-center gap-3 my-4">
       <div class="text-white/40 text-[11px] font-medium tracking-widest uppercase">
         Pág. 2 / 2
       </div>
       <button onclick="closeMenuViewer()" class="px-6 py-2.5 rounded-full bg-white/10 hover:bg-white/15 border border-white/15 text-white/90 text-xs font-semibold uppercase tracking-[0.16em] transition-all active:scale-95 cursor-pointer">
-        Volver a la Web
+        <span data-i18n="menu_back_to_web">Volver a la Web</span>
       </button>
+      <a href="./assets/carta-luna-llena.pdf" target="_blank" class="inline-flex items-center gap-1.5 text-white/50 hover:text-[#C5A059] text-[11px] uppercase tracking-[0.18em] transition-colors py-1 cursor-pointer" aria-label="Descargar PDF original">
+        <span class="material-symbols-outlined text-sm">download</span>
+        <span data-i18n="menu_download_pdf">Descargar PDF original</span>
+      </a>
     </div>
   </div>
 </div>
@@ -1837,8 +1842,18 @@ if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
 }
 
-// 1. Control de posición inicial: si no viene de regresar de la carta, siempre al Hero
-if (sessionStorage.getItem('return_to_carta') !== 'true') {
+// 1. Control de posición inicial y detección de ruta directa de Carta
+const checkIsMenuRoute = () => {
+    const p = window.location.pathname.replace(/\/+$/, '');
+    const urlParams = new URLSearchParams(window.location.search);
+    return p === '/menu' || p === '/carta' ||
+           urlParams.has('menu') || urlParams.has('carta') || urlParams.has('qr') || urlParams.has('mesa') ||
+           window.location.hash === '#menu' || window.location.hash === '#carta-viewer';
+};
+
+const isDirectMenuRequest = checkIsMenuRoute();
+
+if (!isDirectMenuRequest && sessionStorage.getItem('return_to_carta') !== 'true') {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     if (window.location.hash) {
         history.replaceState(null, null, window.location.pathname + window.location.search);
@@ -1850,7 +1865,7 @@ window.addEventListener('load', () => {
     const loader = document.getElementById('loader-wrapper');
     const header = document.getElementById('main-header');
 
-    // CASO A: El usuario vuelve hacia atrás desde el PDF de la carta
+    // CASO A: El usuario vuelve hacia atrás desde el visor o navegación previa
     if (sessionStorage.getItem('return_to_carta') === 'true') {
         sessionStorage.removeItem('return_to_carta');
         if (loader) {
@@ -1869,18 +1884,32 @@ window.addEventListener('load', () => {
         return;
     }
 
-    // CASO B: El cliente escaneó el código QR de mesa (?qr=..., ?carta=..., ?menu=..., ?mesa=...)
-    const urlParams = new URLSearchParams(window.location.search);
-    const isQrScan = urlParams.has('qr') || urlParams.has('menu') || urlParams.has('carta') || urlParams.has('mesa');
-    if (isQrScan) {
-        sessionStorage.setItem('return_to_carta', 'true');
+    // CASO B: El cliente escaneó el código QR de mesa o entró por /menu, /carta, ?menu...
+    if (isDirectMenuRequest) {
+        if (header) {
+            header.classList.add('header-hidden');
+        }
+        const savedLang = localStorage.getItem('user_lang') || 'es';
+        if (typeof switchMenuLang === 'function') {
+            switchMenuLang(savedLang);
+        }
+        
         setTimeout(() => {
-            const currentLang = localStorage.getItem('user_lang') || 'es';
-            const pdfUrl = currentLang === 'en' 
-                ? './assets/carta-es.pdf#page=3&toolbar=0&navpanes=0' 
-                : './assets/carta-es.pdf#toolbar=0&navpanes=0';
-            window.location.href = pdfUrl;
-        }, 1400); // 1.4s mostrando la marca antes de abrir el menú en la mesa
+            if (loader) {
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.visibility = 'hidden';
+                    loader.style.display = 'none';
+                }, 300);
+            }
+            const modal = document.getElementById('menu-viewer-modal');
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.scrollTop = 0;
+                document.documentElement.style.overflow = 'hidden';
+                document.body.style.overflow = 'hidden';
+            }
+        }, 1100); // 1.1s mostrando la marca antes de abrir la carta interactiva en la mesa
         return;
     }
 
@@ -1941,11 +1970,11 @@ document.querySelectorAll('.logo-home-trigger').forEach(logo => {
 });
 
 // ==========================================================================
-// VISOR DE CARTA NATIVO RESPONSIVE (Mini-Loading 2s & Selector de Idioma ES/EN)
+// VISOR DE CARTA NATIVO RESPONSIVE (Mini-Loading & Selector de Idioma ES/EN)
 // ==========================================================================
 let menuViewerLang = 'es';
 
-function openMenuViewer() {
+function openMenuViewer(updateHistory = true) {
     // Sincronizar con el idioma global actual de la web
     switchMenuLang(currentLang || 'es');
     
@@ -1961,7 +1990,7 @@ function openMenuViewer() {
         loader.style.opacity = '1';
     }
     
-    // 2. Exactamente 2 segundos de loading (como pidió el usuario: "unos 2 segundos")
+    // 2. Loading fluido y elegante
     setTimeout(() => {
         if (loader) {
             loader.style.opacity = '0';
@@ -1979,10 +2008,17 @@ function openMenuViewer() {
             document.documentElement.style.overflow = 'hidden';
             document.body.style.overflow = 'hidden';
         }
-    }, 2000);
+
+        // Actualizar URL en el navegador a /menu sin recargar para compartir o ver limpia
+        if (updateHistory && window.location.pathname.replace(/\/+$/, '') !== '/menu') {
+            try {
+                window.history.pushState({ modal: 'menu' }, '', '/menu');
+            } catch (e) {}
+        }
+    }, 1100);
 }
 
-function closeMenuViewer() {
+function closeMenuViewer(updateHistory = true) {
     const modal = document.getElementById('menu-viewer-modal');
     if (modal) {
         modal.classList.add('hidden');
@@ -1993,7 +2029,23 @@ function closeMenuViewer() {
     if (header) {
         header.classList.remove('header-hidden');
     }
+
+    // Restaurar URL limpia si estábamos en /menu o /carta
+    if (updateHistory) {
+        const cleanPath = window.location.pathname.replace(/\/(menu|carta)\/?$/, '') || '/';
+        try {
+            window.history.pushState(null, '', cleanPath);
+        } catch (e) {}
+    }
 }
+
+// Soporte nativo para botón 'Atrás' del móvil (cierra el modal sin salir de la web)
+window.addEventListener('popstate', (e) => {
+    const modal = document.getElementById('menu-viewer-modal');
+    if (modal && !modal.classList.contains('hidden')) {
+        closeMenuViewer(false);
+    }
+});
 
 function switchMenuLang(lang) {
     menuViewerLang = lang;
@@ -2020,6 +2072,10 @@ function switchMenuLang(lang) {
         if (btnEn) {
             btnEn.className = 'w-8 h-8 rounded-full border border-white/20 bg-white/10 text-white flex items-center justify-center text-sm transition-all duration-300 active:scale-95 hover:bg-white/20 cursor-pointer';
         }
+    }
+
+    if (currentLang !== lang && typeof setLanguage === 'function') {
+        setLanguage(lang);
     }
 }
 
@@ -2291,6 +2347,9 @@ const translations = {
     'dish_pepito_title': 'Pepito Clásico',
     'dish_pepito_desc': 'Lomo tierno a la plancha con pimientos asados seleccionados y queso fundido, servido en pan rústico crujiente recién horneado. El clásico de siempre.',
     'menu_pdf_btn': 'VER CARTA COMPLETA',
+    'menu_close': 'Cerrar',
+    'menu_back_to_web': 'Volver a la Web',
+    'menu_download_pdf': 'Descargar PDF original',
     'contact_eyebrow': 'Visítanos',
     'contact_title': 'Localización & Contacto',
     'contact_address_title': 'Dirección',
@@ -2370,6 +2429,9 @@ const translations = {
     'dish_pepito_title': 'Classic Pepito',
     'dish_pepito_desc': 'Tender grilled pork loin with roasted peppers and melted cheese, served in crispy freshly baked rustic bread. A timeless classic.',
     'menu_pdf_btn': 'VIEW FULL MENU',
+    'menu_close': 'Close',
+    'menu_back_to_web': 'Back to Website',
+    'menu_download_pdf': 'Download original PDF',
     'contact_eyebrow': 'Visit Us',
     'contact_title': 'Location & Contact',
     'contact_address_title': 'Address',
@@ -2475,13 +2537,9 @@ function setLanguage(lang) {
         }
     });
     
-    // Update PDF link dynamically
+    // Update menu link
     document.querySelectorAll('.pdf-link').forEach(link => {
-        if (lang === 'es') {
-            link.setAttribute('href', './assets/carta-es.pdf#toolbar=0&navpanes=0');
-        } else {
-            link.setAttribute('href', './assets/carta-es.pdf#page=3&toolbar=0&navpanes=0');
-        }
+        link.setAttribute('href', './menu');
     });
     
     // Update HTML document language

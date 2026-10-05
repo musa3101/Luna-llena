@@ -96,5 +96,9 @@ if [ -f package.json ]; then
   npm run dev
 else
   echo "🌐 Servidor estático disponible en http://localhost:8085"
-  python3 -m http.server 8085
+  if [ -f server.py ]; then
+    python3 server.py 8085
+  else
+    python3 -m http.server 8085
+  fi
 fi

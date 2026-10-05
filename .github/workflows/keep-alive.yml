@@ -2,15 +2,15 @@ name: Keep Supabase Alive
 
 on:
   schedule:
-    # Se ejecuta a las 06:00 UTC cada 2 días (lunes, miércoles, viernes y domingo)
-    - cron: '0 6 * * 0,1,3,5'
-  workflow_dispatch: # Permite ejecución manual desde GitHub Actions
+    # Se ejecuta a las 00:00 cada martes y viernes (dos veces por semana)
+    - cron: '0 0 * * 2,5'
+  workflow_dispatch: # Permite ejecución manual desde GitHub
 
 jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
-      - name: Ping Supabase Database & Health
+      - name: Ping Supabase Health Endpoint
         run: |
           URL="${{ secrets.SUPABASE_URL }}"
           KEY="${{ secrets.SUPABASE_ANON_KEY }}"
@@ -20,15 +20,7 @@ jobs:
           if [ -z "$KEY" ]; then
             KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFqcWhzamF5ZGtudm50b2htbW56Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTEwNDM4NDQsImV4cCI6MjEwNjYxOTg0NH0.ZxznNBdEieNy8IjJtt1CQFFlhQynorQaG_4q7MaI0ew"
           fi
-          echo "Haciendo ping a la base de datos de Supabase ($URL)..."
-          # Consulta real a la base de datos (PostgreSQL) para reiniciar el contador de inactividad
-          curl --fail -s -X GET "$URL/rest/v1/business_info?select=id" \
-            -H "apikey: $KEY" \
-            -H "Authorization: Bearer $KEY" > /dev/null
-          
-          # Consulta de respaldo a contenidos
-          curl --fail -s -X GET "$URL/rest/v1/site_content?select=key&limit=1" \
-            -H "apikey: $KEY" \
-            -H "Authorization: Bearer $KEY" > /dev/null
-
-          echo "✅ Ping a Supabase completado con éxito. Base de datos activa."
+          echo "Pinging Supabase at $URL..."
+          curl --fail -s -X GET "$URL/auth/v1/health" \
+            -H "apikey: $KEY" > /dev/null
+          echo "Ping successful!"
