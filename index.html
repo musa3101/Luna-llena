@@ -2009,10 +2009,10 @@ function openMenuViewer(updateHistory = true) {
             document.body.style.overflow = 'hidden';
         }
 
-        // Actualizar URL en el navegador a /menu sin recargar para compartir o ver limpia
-        if (updateHistory && window.location.pathname.replace(/\/+$/, '') !== '/menu') {
+        // Actualizar URL en el navegador a /?menu=1 sin recargar
+        if (updateHistory && !window.location.search.includes('menu')) {
             try {
-                window.history.pushState({ modal: 'menu' }, '', '/menu');
+                window.history.pushState({ modal: 'menu' }, '', '/?menu=1');
             } catch (e) {}
         }
     }, 1100);
@@ -2030,11 +2030,10 @@ function closeMenuViewer(updateHistory = true) {
         header.classList.remove('header-hidden');
     }
 
-    // Restaurar URL limpia si estábamos en /menu o /carta
+    // Restaurar URL limpia sin parámetros de menú
     if (updateHistory) {
-        const cleanPath = window.location.pathname.replace(/\/(menu|carta)\/?$/, '') || '/';
         try {
-            window.history.pushState(null, '', cleanPath);
+            window.history.pushState(null, '', '/');
         } catch (e) {}
     }
 }

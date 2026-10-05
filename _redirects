@@ -1,12 +1,12 @@
 # ----------------------------------------------------------------------------
-# Cloudflare Pages Redirects & Rewrites - Bar Luna Llena
+# Cloudflare Pages Redirects - Bar Luna Llena
 # ----------------------------------------------------------------------------
 
-# 1. Redirección del código QR impreso en mesas (apuntaba directo al PDF antiguo)
-/assets/carta-es.pdf /menu 302
+# 1. Redirección del QR físico de mesa al menú interactivo
+/assets/carta-es.pdf /?menu=1 302
 
-# 2. Rutas limpias SPA para la Carta Digital
-/menu /index.html 200
-/menu/ /index.html 200
-/carta /index.html 200
-/carta/ /index.html 200
+# 2. Rutas directas para compartir o entrar al Menú
+/menu /?menu=1 302
+/menu/ /?menu=1 302
+/carta /?menu=1 302
+/carta/ /?menu=1 302
