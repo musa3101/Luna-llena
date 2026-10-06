@@ -8,11 +8,13 @@
 - [x] Rutas `/menu` y `/carta` + botón "Atrás" del móvil en el visor de carta.
 - [x] Verificación de Google Search Console y `sitemap.xml` actualizado.
 - [x] `manifest.json`, datos estructurados `WebSite` y suite de favicons para que Google muestre "Bar Luna Llena 16".
+- [x] **Auditoría completa de SEO & Geo SEO:** Corrección canónica del sitemap, Geo meta tags (Palma / Santa Catalina), Schema `BarOrPub` enriquecido con menú, reservas y pagos, jerarquía H1 y optimización de OpenGraph.
 
 ## Tareas en progreso
-- [ ] Que Google cambie "Cloudflare" por el nombre del bar (falta "Solicitar indexación"; depende de Google).
+- [ ] Procesamiento en Google de los nuevos datos estructurados, Geo tags y nombre del sitio ("Bar Luna Llena 16").
 
 ## Próximas mejoras prioritarias
-1. Borrar o rotar la API key de Google que se pegó en el chat.
-2. Conectar Search Console de forma automática (Cuenta de Servicio + archivo `.json` + script).
-3. Valorar un dominio propio (ej. `barlunallena.com`) para tener mejor marca en Google.
+1. Solicitar re-indexación en Search Console con el `sitemap.xml` limpio.
+2. Borrar o rotar la API key de Google que se pegó en el chat.
+3. Conectar Search Console de forma automática (Cuenta de Servicio + archivo `.json` + script).
+4. Valorar un dominio propio (ej. `barlunallena.com`) para consolidar la presencia de marca.
