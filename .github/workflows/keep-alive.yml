@@ -14,13 +14,12 @@ jobs:
         run: |
           URL="${{ secrets.SUPABASE_URL }}"
           KEY="${{ secrets.SUPABASE_ANON_KEY }}"
-          if [ -z "$URL" ]; then
-            URL="https://qjqhsjaydknvntohmmnz.supabase.co"
-          fi
-          if [ -z "$KEY" ]; then
-            KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFqcWhzamF5ZGtudm50b2htbW56Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTEwNDM4NDQsImV4cCI6MjEwNjYxOTg0NH0.ZxznNBdEieNy8IjJtt1CQFFlhQynorQaG_4q7MaI0ew"
+          if [ -z "$URL" ] || [ -z "$KEY" ]; then
+            echo "Error: SUPABASE_URL and SUPABASE_ANON_KEY secrets are required in GitHub repository settings."
+            exit 1
           fi
           echo "Pinging Supabase at $URL..."
           curl --fail -s -X GET "$URL/auth/v1/health" \
             -H "apikey: $KEY" > /dev/null
           echo "Ping successful!"
+

@@ -2287,12 +2287,12 @@ function sendFabOrder(e) {
     }
 
     const isEn = (currentLang === 'en');
-    let msg = isEn ? `Hello Bar Luna Llena 🌙! I would like to place an order:%0A%0A` : `Hola Bar Luna Llena 🌙! Quiero hacer un pedido:%0A%0A`;
-    msg += `${isEn ? '👤 *Name:*' : '👤 *Nombre:*'} ${nombre} ${apellidos}%0A`;
-    msg += `${isEn ? '📞 *Phone:*' : '📞 *Teléfono:*'} ${telefono}%0A`;
-    msg += `${isEn ? '🍔 *Categories:*' : '🍔 *Categorías:*'} ${cats.join(', ')}%0A`;
-    if (notas.trim()) msg += `${isEn ? '📝 *Details:*' : '📝 *Detalles:*'} ${notas}%0A`;
-    window.open(`https://wa.me/34631122757?text=${msg}`, '_blank');
+    let msg = isEn ? "Hello Bar Luna Llena 🌙! I would like to place an order:\n\n" : "Hola Bar Luna Llena 🌙! Quiero hacer un pedido:\n\n";
+    msg += `${isEn ? '👤 Name:' : '👤 Nombre:'} ${nombre} ${apellidos}\n`;
+    msg += `${isEn ? '📞 Phone:' : '📞 Teléfono:'} ${telefono}\n`;
+    msg += `${isEn ? '🍔 Categories:' : '🍔 Categorías:'} ${cats.join(', ')}\n`;
+    if (notas.trim()) msg += `${isEn ? '📝 Details:' : '📝 Detalles:'} ${notas}\n`;
+    window.open(`https://wa.me/34631122757?text=${encodeURIComponent(msg)}`, '_blank');
     closeFabModal();
 }
 // Cerrar al hacer clic fuera del modal
@@ -2751,7 +2751,6 @@ async function loadSupabaseContent() {
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
 let lastScrollY = window.scrollY;
@@ -2891,15 +2890,15 @@ function sendReservation(e) {
     }
 
     const isEn = (currentLang === 'en');
-    let mensaje = isEn ? `Hello Bar Luna Llena 🌙! I would like to book a table:%0A%0A` : `Hola Bar Luna Llena 🌙! Me gustaría hacer una reserva:%0A%0A`;
-    mensaje += `${isEn ? '👥 *Guests:*' : '👥 *Personas:*'} ${personas}%0A`;
-    mensaje += `${isEn ? '📅 *Date:*' : '📅 *Día:*'} ${dia}%0A`;
-    mensaje += `${isEn ? '🕒 *Time:*' : '🕒 *Hora:*'} ${hora}%0A`;
+    let mensaje = isEn ? "Hello Bar Luna Llena 🌙! I would like to book a table:\n\n" : "Hola Bar Luna Llena 🌙! Me gustaría hacer una reserva:\n\n";
+    mensaje += `${isEn ? '👥 Guests:' : '👥 Personas:'} ${personas}\n`;
+    mensaje += `${isEn ? '📅 Date:' : '📅 Día:'} ${dia}\n`;
+    mensaje += `${isEn ? '🕒 Time:' : '🕒 Hora:'} ${hora}\n`;
     if (alergias.trim() !== '') {
-        mensaje += `${isEn ? '⚠️ *Allergies:*' : '⚠️ *Alergias:*'} ${alergias}%0A`;
+        mensaje += `${isEn ? '⚠️ Allergies:' : '⚠️ Alergias:'} ${alergias}\n`;
     }
     
-    const whatsappUrl = `https://wa.me/34631122757?text=${mensaje}`;
+    const whatsappUrl = `https://wa.me/34631122757?text=${encodeURIComponent(mensaje)}`;
     window.open(whatsappUrl, '_blank');
     closeReservation();
 }

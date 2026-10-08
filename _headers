@@ -1,0 +1,24 @@
+# ----------------------------------------------------------------------------
+# Cloudflare Pages Security & Cache Headers - Bar Luna Llena 16
+# ----------------------------------------------------------------------------
+
+# Global Security Headers
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), payment=()
+
+# Cache policy for static assets (images, webp, pdf, video, icons)
+/assets/*
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+
+/favicon.ico
+  Cache-Control: public, max-age=2592000
+
+# HTML documents: ensure immediate updates on redeploy
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/
+  Cache-Control: public, max-age=0, must-revalidate

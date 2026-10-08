@@ -46,11 +46,9 @@ jobs:
         run: |
           URL="\${{ secrets.SUPABASE_URL }}"
           KEY="\${{ secrets.SUPABASE_ANON_KEY }}"
-          if [ -z "\$URL" ]; then
-            URL="$SB_URL"
-          fi
-          if [ -z "\$KEY" ]; then
-            KEY="$SB_KEY"
+          if [ -z "\$URL" ] || [ -z "\$KEY" ]; then
+            echo "Error: SUPABASE_URL and SUPABASE_ANON_KEY secrets are required in GitHub repository settings."
+            exit 1
           fi
           echo "Pinging Supabase at \$URL..."
           curl --fail -s -X GET "\$URL/auth/v1/health" \\
@@ -71,11 +69,9 @@ keep_alive:
     - |
       URL="\${SUPABASE_URL}"
       KEY="\${SUPABASE_ANON_KEY}"
-      if [ -z "\$URL" ]; then
-        URL="$SB_URL"
-      fi
-      if [ -z "\$KEY" ]; then
-        KEY="$SB_KEY"
+      if [ -z "\$URL" ] || [ -z "\$KEY" ]; then
+        echo "Error: Las variables de entorno SUPABASE_URL y SUPABASE_ANON_KEY son requeridas en GitLab CI/CD Settings."
+        exit 1
       fi
       echo "Pinging Supabase at \$URL..."
       curl --fail -s -X GET "\$URL/auth/v1/health" \\
