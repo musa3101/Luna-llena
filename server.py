@@ -17,6 +17,12 @@ class CloudflarePagesHandler(http.server.SimpleHTTPRequestHandler):
             return super().translate_path('/legal.html')
         return super().translate_path(path)
 
+    def end_headers(self):
+        self.send_header('Cache-Control', 'no-cache, no-store, must-revalidate')
+        self.send_header('Pragma', 'no-cache')
+        self.send_header('Expires', '0')
+        super().end_headers()
+
     def do_GET(self):
         clean_path = self.path.split('?')[0].rstrip('/')
         

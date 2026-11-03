@@ -147,3 +147,4 @@ mcp_config.json
 *.key
 .env.*
 !.env.example
+test-results/

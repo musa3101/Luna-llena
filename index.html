@@ -276,6 +276,39 @@
             font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
+        /* Animación fluida de apertura/cierre de menú pantalla completa */
+        #mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform;
+        }
+
+        #mobile-menu.menu-active {
+            transform: translateX(0);
+            pointer-events: auto;
+        }
+
+        /* Banner Ticker Marquee Autoplay Continuo */
+        @keyframes menuTickerScroll {
+            0% {
+                transform: translate3d(0, 0, 0);
+            }
+            100% {
+                transform: translate3d(-50%, 0, 0);
+            }
+        }
+
+        .menu-ticker-track {
+            display: flex;
+            width: max-content;
+            animation: menuTickerScroll 22s linear infinite;
+            will-change: transform;
+        }
+
+        .menu-ticker-track:hover {
+            animation-play-state: paused;
+        }
+
         /* ==========================================================================
            MYNEXT - SISTEMA TIPOGRÁFICO Y JERARQUÍA (gpt-taste & impeccable)
            ========================================================================== */
@@ -831,7 +864,15 @@
             border: 1px solid rgba(197, 160, 89, 0.2);
         }
 
-        /* Loader */
+        /* Bloqueo total de scroll cuando el loading o el menú móvil están activos */
+        html.scroll-locked,
+        body.scroll-locked {
+            overflow: hidden !important;
+            height: 100% !important;
+            touch-action: none !important;
+            overscroll-behavior: none !important;
+        }
+
         /* Loader */
         #loader-wrapper {
             position: fixed;
@@ -842,6 +883,9 @@
             justify-content: center;
             align-items: center;
             transition: opacity 0.5s ease, visibility 0.5s;
+            touch-action: none !important;
+            overscroll-behavior: none !important;
+            pointer-events: auto;
         }
 
         .loader-container {
@@ -1047,7 +1091,7 @@
             position: fixed;
             bottom: 24px;
             right: 24px;
-            z-index: 99990;
+            z-index: 9000;
             transform: translateY(150%);
             transition: transform 0.5s ease-out;
         }
@@ -1250,10 +1294,27 @@
             color: #fff;
             border-color: #e4405f;
         }
+
+        /* Paginación de Reseñas Google (Puntos de cristal y oro) */
+        .reviews-swiper-pagination .swiper-pagination-bullet {
+            background: rgba(255, 255, 255, 0.25) !important;
+            opacity: 1 !important;
+            width: 7px !important;
+            height: 7px !important;
+            border-radius: 9999px !important;
+            transition: all 0.3s ease !important;
+            cursor: pointer !important;
+            margin: 0 4px !important;
+        }
+
+        .reviews-swiper-pagination .swiper-pagination-bullet-active {
+            background: #C5A059 !important;
+            width: 22px !important;
+        }
     </style>
 </head>
 
-<body class="bg-background text-on-surface font-body-md antialiased pt-20 overflow-x-hidden">
+<body class="bg-background text-on-surface font-body-md antialiased pt-20 overflow-x-hidden scroll-locked">
 
     <!-- Loader -->
     <div id="loader-wrapper">
@@ -1319,89 +1380,105 @@
         </div>
     </header>
 
-    <!-- Mobile Full-Screen Menu -->
+    <!-- Mobile Full-Screen Menu (Dark Luxury para Bar Luna Llena) -->
     <div id="mobile-menu"
-        class="fixed inset-0 z-[55] flex flex-col opacity-0 pointer-events-none transition-opacity duration-500 min-h-[100dvh] overscroll-none">
-        <!-- 1. Header Azul Marino Oscuro -->
-        <div
-            class="w-full bg-[#080E21] border-b border-[#C5A059]/20 flex items-center justify-between px-6 h-16 md:h-20 shrink-0 shadow-lg">
-            <!-- Logo -->
-            <a href="#inicio" onclick="closeMobileMenu()"
-                class="flex items-center transition-transform hover:scale-[1.02] origin-left">
+        class="fixed inset-0 z-[99999] w-full h-[100dvh] bg-[#070A14] flex flex-col justify-between overflow-y-auto overscroll-contain pointer-events-none shadow-2xl">
+        
+        <!-- 1. Cabecera del Menú: Logo a la izquierda + Botón CERRAR ✕ estilo píldora -->
+        <div class="flex items-center justify-between px-6 py-5 border-b border-[#C5A059]/15 shrink-0 bg-[#070A14]/95 backdrop-blur-md sticky top-0 z-10 w-full">
+            <a href="#inicio" onclick="closeMobileMenu()" class="flex items-center gap-3">
                 <img src="./assets/logo-luna-llena.png?v=5" alt="Bar Luna Llena Logo"
-                    class="h-10 md:h-12 w-auto object-contain">
+                    class="h-9 w-auto object-contain">
             </a>
-            <!-- Botón de cerrar estilizado -->
+            <!-- Botón Píldora Cerrar estilo Infinito -->
             <button onclick="closeMobileMenu()"
-                class="w-10 h-10 rounded-full bg-white/10 hover:bg-[#C5A059]/20 text-white/90 hover:text-secondary focus:outline-none flex items-center justify-center transition-all border border-white/10 active:scale-95"
+                class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#C5A059]/40 bg-white/[0.03] hover:bg-[#C5A059]/15 text-[#C5A059] text-[11px] font-bold tracking-[0.2em] uppercase transition-all duration-300 active:scale-95 cursor-pointer"
                 aria-label="Cerrar menú">
-                <span class="material-symbols-outlined text-2xl">close</span>
+                <span>CERRAR</span>
+                <span class="text-xs leading-none">✕</span>
             </button>
         </div>
 
-        <!-- 2. Cuerpo del Menú Translúcido con Glassmorphism -->
-        <div
-            class="flex-1 flex flex-col justify-center items-center px-6 py-8 backdrop-blur-2xl bg-[#050508]/85 overflow-y-auto">
-            <nav class="flex flex-col items-center gap-5 text-center w-full max-w-sm mx-auto">
-                <!-- Enlaces con Tipografía Impeccable (Playfair Display) -->
+        <!-- 2. Cuerpo Central: Enlaces Editoriales + Idiomas en medio + Botón Reservar FlowButton -->
+        <div class="px-6 py-8 flex-1 flex flex-col justify-center items-center w-full max-w-sm mx-auto">
+            <nav class="flex flex-col w-full">
+                <!-- Enlace Inicio -->
                 <a data-i18n="nav_inicio" onclick="closeMobileMenu()"
-                    class="font-title-md text-2xl sm:text-3xl text-white/95 hover:text-secondary active:text-secondary tracking-[0.16em] uppercase py-2.5 w-full flex items-center justify-center transition-all duration-300 hover:scale-105"
-                    href="#inicio">Inicio</a>
+                    class="font-title-md text-2xl sm:text-[28px] text-[#FDFBF7] hover:text-[#C5A059] py-3.5 border-b border-white/[0.08] flex items-center justify-between transition-colors duration-200 group"
+                    href="#inicio">
+                    <span class="tracking-wide">Inicio</span>
+                    <span class="text-[#C5A059]/40 text-xs tracking-widest group-hover:text-[#C5A059] transition-colors">01</span>
+                </a>
+                <!-- Enlace Historia -->
                 <a data-i18n="nav_historia" onclick="closeMobileMenu()"
-                    class="font-title-md text-2xl sm:text-3xl text-white/95 hover:text-secondary active:text-secondary tracking-[0.16em] uppercase py-2.5 w-full flex items-center justify-center transition-all duration-300 hover:scale-105"
-                    href="#origen">Historia</a>
+                    class="font-title-md text-2xl sm:text-[28px] text-[#FDFBF7] hover:text-[#C5A059] py-3.5 border-b border-white/[0.08] flex items-center justify-between transition-colors duration-200 group"
+                    href="#origen">
+                    <span class="tracking-wide">Historia</span>
+                    <span class="text-[#C5A059]/40 text-xs tracking-widest group-hover:text-[#C5A059] transition-colors">02</span>
+                </a>
+                <!-- Enlace Carta -->
                 <a data-i18n="nav_carta" onclick="closeMobileMenu()"
-                    class="font-title-md text-2xl sm:text-3xl text-white/95 hover:text-secondary active:text-secondary tracking-[0.16em] uppercase py-2.5 w-full flex items-center justify-center transition-all duration-300 hover:scale-105"
-                    href="#carta">Carta</a>
+                    class="font-title-md text-2xl sm:text-[28px] text-[#FDFBF7] hover:text-[#C5A059] py-3.5 border-b border-white/[0.08] flex items-center justify-between transition-colors duration-200 group"
+                    href="#carta">
+                    <span class="tracking-wide">Carta</span>
+                    <span class="text-[#C5A059]/40 text-xs tracking-widest group-hover:text-[#C5A059] transition-colors">03</span>
+                </a>
+                <!-- Enlace Ubicación / Dónde estamos -->
                 <a data-i18n="nav_ubicacion" onclick="closeMobileMenu()"
-                    class="font-title-md text-2xl sm:text-3xl text-white/95 hover:text-secondary active:text-secondary tracking-[0.16em] uppercase py-2.5 w-full flex items-center justify-center transition-all duration-300 hover:scale-105"
-                    href="#ubicacion">Ubicación</a>
-
-                <!-- 3. Selector de Idioma Tipo Píldora con Banderas (Abajo entre Ubicación y Reservar) -->
-                <div class="flex items-center justify-center gap-2.5 w-full my-3.5 pt-3.5 border-t border-white/10">
-                    <!-- Píldora ES (Activa por defecto) -->
-                    <button onclick="setLanguage('es')" id="lang-pill-es-mobile"
-                        class="lang-pill-mobile flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] transition-all duration-300 bg-[#C5A059] text-[#0B0F19] font-bold shadow-md scale-105"
-                        aria-label="Cambiar idioma a Español">
-                        <span class="text-[13px] leading-none">🇪🇸</span>
-                        <span class="tracking-wider">ES</span>
-                    </button>
-                    <!-- Píldora EN -->
-                    <button onclick="setLanguage('en')" id="lang-pill-en-mobile"
-                        class="lang-pill-mobile flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] transition-all duration-300 bg-white/5 border border-white/15 text-white/70 font-medium hover:bg-white/10"
-                        aria-label="Change language to English">
-                        <span class="text-[13px] leading-none">🇬🇧</span>
-                        <span class="tracking-wider">EN</span>
-                    </button>
-                </div>
-
-                <!-- 4. Botón de Reserva Interactivo 21st.dev (FlowButton) -->
-                <div class="w-full flex justify-center mt-2">
-                    <button onclick="scrollToReservationSection()" class="flow-btn" aria-label="Reservar mesa">
-                        <!-- Flecha izquierda que entra (arr-2) -->
-                        <svg class="flow-btn-arr-left" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round">
-                            <path d="M5 12h14"></path>
-                            <path d="m12 5 7 7-7 7"></path>
-                        </svg>
-
-                        <!-- Texto -->
-                        <span data-i18n="btn_reservar" class="flow-btn-text">
-                            Reservar
-                        </span>
-
-                        <!-- Círculo expansivo de fondo -->
-                        <span class="flow-btn-circle"></span>
-
-                        <!-- Flecha derecha que sale (arr-1) -->
-                        <svg class="flow-btn-arr-right" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round">
-                            <path d="M5 12h14"></path>
-                            <path d="m12 5 7 7-7 7"></path>
-                        </svg>
-                    </button>
-                </div>
+                    class="font-title-md text-2xl sm:text-[28px] text-[#FDFBF7] hover:text-[#C5A059] py-3.5 border-b border-white/[0.08] flex items-center justify-between transition-colors duration-200 group"
+                    href="#ubicacion">
+                    <span class="tracking-wide">Dónde estamos</span>
+                    <span class="text-[#C5A059]/40 text-xs tracking-widest group-hover:text-[#C5A059] transition-colors">04</span>
+                </a>
             </nav>
+
+            <!-- Idiomas en medio (Centrado entre navegación y botón de reserva) -->
+            <div class="flex items-center justify-center gap-6 mt-8 mb-5 text-[13px] tracking-[0.25em] uppercase font-semibold">
+                <button onclick="setLanguage('es')" id="lang-pill-es-mobile"
+                    class="cursor-pointer transition-all pb-1 border-b-2 border-[#C5A059] text-[#C5A059]">
+                    ES
+                </button>
+                <span class="text-white/20 select-none">/</span>
+                <button onclick="setLanguage('en')" id="lang-pill-en-mobile"
+                    class="cursor-pointer transition-all pb-1 border-b-2 border-transparent text-white/40 hover:text-white/80">
+                    EN
+                </button>
+            </div>
+
+            <!-- Botón de Reserva (FlowButton interactivo original que le gusta al usuario) -->
+            <div class="w-full flex justify-center mt-2 mb-2">
+                <button onclick="scrollToReservationSection()" class="flow-btn" aria-label="Reservar mesa">
+                    <!-- Flecha izquierda que entra (arr-2) -->
+                    <svg class="flow-btn-arr-left" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M5 12h14"></path>
+                        <path d="m12 5 7 7-7 7"></path>
+                    </svg>
+
+                    <!-- Texto -->
+                    <span data-i18n="btn_reservar_mesa" class="flow-btn-text">
+                        Reservar Mesa
+                    </span>
+
+                    <!-- Círculo expansivo de fondo -->
+                    <span class="flow-btn-circle"></span>
+
+                    <!-- Flecha derecha que sale (arr-1) -->
+                    <svg class="flow-btn-arr-right" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M5 12h14"></path>
+                        <path d="m12 5 7 7-7 7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- 3. Footer: Ticker Marquee a pie de pantalla (Sin teléfono, dirección ni horario) -->
+        <div class="relative overflow-hidden bg-gradient-to-r from-[#4A0D13] via-[#66101A] to-[#4A0D13] py-2.5 border-t border-[#C5A059]/30 shrink-0 w-full">
+            <div class="menu-ticker-track text-white text-[11px] sm:text-xs font-sans font-semibold tracking-[0.2em] uppercase whitespace-nowrap">
+                <span class="inline-block px-4">Palma de Mallorca &nbsp;·&nbsp; Santa Catalina &nbsp;<span class="text-[#C5A059]">✦</span>&nbsp; Tapas Caseras &nbsp;<span class="text-[#C5A059]">✦</span>&nbsp; Hamburguesas 100% Vacuno &nbsp;<span class="text-[#C5A059]">✦</span>&nbsp; Bocadillos Rústicos &nbsp;<span class="text-[#C5A059]">✦</span>&nbsp; Bar Luna Llena &nbsp;<span class="text-[#C5A059]">✦</span>&nbsp;</span>
+                <span class="inline-block px-4">Palma de Mallorca &nbsp;·&nbsp; Santa Catalina &nbsp;<span class="text-[#C5A059]">✦</span>&nbsp; Tapas Caseras &nbsp;<span class="text-[#C5A059]">✦</span>&nbsp; Hamburguesas 100% Vacuno &nbsp;<span class="text-[#C5A059]">✦</span>&nbsp; Bocadillos Rústicos &nbsp;<span class="text-[#C5A059]">✦</span>&nbsp; Bar Luna Llena &nbsp;<span class="text-[#C5A059]">✦</span>&nbsp;</span>
+            </div>
         </div>
     </div>
     <!-- Hero Section -->
@@ -1537,52 +1614,78 @@
                         </p>
                     </div>
 
-                    <div class="grid grid-cols-3 gap-6 pt-8 border-t border-[#C5A059]/20 mt-8">
-                        <!-- Café -->
-                        <div class="flex flex-col items-center text-center group cursor-default">
-                            <div
-                                class="w-16 h-16 rounded-full border border-[#C5A059]/30 bg-[#C5A059]/5 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-[#C5A059]/10 transition-all duration-300 shadow-lg">
-                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C5A059"
-                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M17 8h1a4 4 0 1 1 0 8h-1"></path>
-                                    <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"></path>
-                                    <line class="steam-line steam-1" x1="6" y1="2" x2="6" y2="4"></line>
-                                    <line class="steam-line steam-2" x1="10" y1="2" x2="10" y2="4"></line>
-                                    <line class="steam-line steam-3" x1="14" y1="2" x2="14" y2="4"></line>
-                                </svg>
+                    <div class="story-badges-grid grid grid-cols-3 gap-4 sm:gap-6 pt-8 border-t border-[#C5A059]/20 mt-8">
+                        <!-- 1. Café -->
+                        <div class="story-badge-item flex flex-col items-center text-center group cursor-pointer" style="transition-delay: 0ms;">
+                            <!-- Medallón Doble Bisel Artesanal -->
+                            <div class="relative p-[3px] rounded-full border border-[#C5A059]/25 bg-gradient-to-b from-[#C5A059]/20 via-white/[0.02] to-transparent shadow-[0_8px_20px_rgba(0,0,0,0.5)] group-hover:border-[#C5A059]/60 group-hover:shadow-[0_0_22px_rgba(197,160,89,0.25)] transition-all duration-300">
+                                <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full border border-[#C5A059]/20 bg-[#070A14] flex items-center justify-center transition-all duration-300 group-hover:scale-[1.05] group-hover:bg-[#C5A059]/10">
+                                    <svg class="story-icon story-icon-coffee" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C5A059"
+                                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <!-- Platillo fino -->
+                                        <path d="M3.5 19h17"></path>
+                                        <!-- Taza Bistro de autor -->
+                                        <path d="M5.5 8.5h11c0 4.2-2 7.5-5.5 7.5s-5.5-3.3-5.5-7.5Z"></path>
+                                        <!-- Asa elegante -->
+                                        <path d="M16.5 10c1.8 0 3 1.2 3 2.7 0 1.8-1.4 2.8-3 2.8"></path>
+                                        <!-- Olas de vapor orgánicas -->
+                                        <path class="coffee-steam coffee-steam-1" d="M8.5 5.5c-.8-1 .8-2 0-3"></path>
+                                        <path class="coffee-steam coffee-steam-2" d="M13.5 5.5c-.8-1 .8-2 0-3"></path>
+                                    </svg>
+                                </div>
                             </div>
                             <span data-i18n="story_icon_coffee"
-                                class="text-xs text-white/80 font-semibold uppercase tracking-[0.22em] group-hover:text-[#C5A059] transition-colors">Café</span>
+                                class="text-xs text-white/80 font-semibold uppercase tracking-[0.22em] group-hover:text-[#C5A059] transition-colors mt-3">Café</span>
                         </div>
 
-                        <!-- Tapas -->
-                        <div class="flex flex-col items-center text-center group cursor-default">
-                            <div
-                                class="w-16 h-16 rounded-full border border-[#C5A059]/30 bg-[#C5A059]/5 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-[#C5A059]/10 transition-all duration-300 shadow-lg">
-                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C5A059"
-                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M2 17h20"></path>
-                                    <path class="tapas-lid" d="M12 4a8 8 0 0 0-8 8v5h16v-5a8 8 0 0 0-8-8z"></path>
-                                    <circle cx="12" cy="4" r="2"></circle>
-                                </svg>
+                        <!-- 2. Pet Friendly (Huella con corazón interior) -->
+                        <div class="story-badge-item flex flex-col items-center text-center group cursor-pointer" style="transition-delay: 140ms;">
+                            <!-- Medallón Doble Bisel Artesanal -->
+                            <div class="relative p-[3px] rounded-full border border-[#C5A059]/25 bg-gradient-to-b from-[#C5A059]/20 via-white/[0.02] to-transparent shadow-[0_8px_20px_rgba(0,0,0,0.5)] group-hover:border-[#C5A059]/60 group-hover:shadow-[0_0_22px_rgba(197,160,89,0.25)] transition-all duration-300">
+                                <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full border border-[#C5A059]/20 bg-[#070A14] flex items-center justify-center transition-all duration-300 group-hover:scale-[1.05] group-hover:bg-[#C5A059]/10">
+                                    <svg class="story-icon story-icon-pet" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C5A059"
+                                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <!-- 4 Almohadillas / Dedos de la pata -->
+                                        <ellipse cx="6" cy="9.5" rx="1.6" ry="2.2" transform="rotate(-20 6 9.5)"></ellipse>
+                                        <ellipse cx="9.8" cy="6.2" rx="1.6" ry="2.3" transform="rotate(-6 9.8 6.2)"></ellipse>
+                                        <ellipse cx="14.2" cy="6.2" rx="1.6" ry="2.3" transform="rotate(6 14.2 6.2)"></ellipse>
+                                        <ellipse cx="18" cy="9.5" rx="1.6" ry="2.2" transform="rotate(20 18 9.5)"></ellipse>
+                                        <!-- Almohadilla central de la pata -->
+                                        <path d="M12 12c-3.2 0-5.6 1.8-5.6 4.6 0 2.4 2.4 4.4 5.6 4.4s5.6-2 5.6-4.4c0-2.8-2.4-4.6-5.6-4.6Z"></path>
+                                        <!-- Corazón interior en la almohadilla -->
+                                        <path class="pet-heart" d="M12 18.2c-1.4-1.2-2.5-2-2.5-3 0-.8.6-1.4 1.4-1.4.5 0 .9.2 1.1.6.2-.4.6-.6 1.1-.6.8 0 1.4.6 1.4 1.4 0 1-1.1 1.8-2.5 3Z" fill="#C5A059" fill-opacity="0.3"></path>
+                                    </svg>
+                                </div>
                             </div>
-                            <span data-i18n="story_icon_tapas"
-                                class="text-xs text-white/80 font-semibold uppercase tracking-[0.22em] group-hover:text-[#C5A059] transition-colors">Tapas</span>
+                            <span data-i18n="story_icon_pet"
+                                class="text-xs text-white/80 font-semibold uppercase tracking-[0.22em] group-hover:text-[#C5A059] transition-colors mt-3">Pet Friendly</span>
                         </div>
 
-                        <!-- Terraza Acogedora -->
-                        <div class="flex flex-col items-center text-center group cursor-default">
-                            <div
-                                class="w-16 h-16 rounded-full border border-[#C5A059]/30 bg-[#C5A059]/5 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-[#C5A059]/10 transition-all duration-300 shadow-lg">
-                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C5A059"
-                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M2 22h20"></path>
-                                    <path d="M12 2v20"></path>
-                                    <path class="umbrella-top" d="M4 12c0-4.4 3.6-8 8-8s8 3.6 8 8H4z"></path>
-                                </svg>
+                        <!-- 3. Terraza (Sombrilla bistro mediterránea) -->
+                        <div class="story-badge-item flex flex-col items-center text-center group cursor-pointer" style="transition-delay: 280ms;">
+                            <!-- Medallón Doble Bisel Artesanal -->
+                            <div class="relative p-[3px] rounded-full border border-[#C5A059]/25 bg-gradient-to-b from-[#C5A059]/20 via-white/[0.02] to-transparent shadow-[0_8px_20px_rgba(0,0,0,0.5)] group-hover:border-[#C5A059]/60 group-hover:shadow-[0_0_22px_rgba(197,160,89,0.25)] transition-all duration-300">
+                                <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full border border-[#C5A059]/20 bg-[#070A14] flex items-center justify-center transition-all duration-300 group-hover:scale-[1.05] group-hover:bg-[#C5A059]/10">
+                                    <svg class="story-icon story-icon-terrace" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C5A059"
+                                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <!-- Base de terraza -->
+                                        <path d="M4 21.5h16"></path>
+                                        <!-- Soporte de pie -->
+                                        <path d="M8.5 21.5l3.5-3 3.5 3"></path>
+                                        <!-- Mástil -->
+                                        <line x1="12" y1="18.5" x2="12" y2="4.5"></line>
+                                        <!-- Remate superior -->
+                                        <circle cx="12" cy="4" r="1" fill="#C5A059"></circle>
+                                        <!-- Toldo bistro festoneado -->
+                                        <g class="terrace-canopy-group">
+                                            <path class="terrace-canopy" d="M3.5 12.5C5.5 6.5 12 5 12 5s6.5 1.5 8.5 7.5c-1.5.5-3.5 0-4.5-.5-1 .5-3 .5-4 0-1 .5-3 .5-4 0-.9.5-2.5.5-4 .5Z"></path>
+                                            <path class="terrace-ribs" d="M12 5c-1.4 2.5-2.3 5-2.5 7.5M12 5c1.4 2.5 2.3 5 2.5 7.5" opacity="0.6"></path>
+                                        </g>
+                                    </svg>
+                                </div>
                             </div>
                             <span data-i18n="story_icon_terrace"
-                                class="text-xs text-white/80 font-semibold uppercase tracking-[0.22em] group-hover:text-[#C5A059] transition-colors">Terraza</span>
+                                class="text-xs text-white/80 font-semibold uppercase tracking-[0.22em] group-hover:text-[#C5A059] transition-colors mt-3">Terraza</span>
                         </div>
                     </div>
                 </div>
@@ -1707,91 +1810,140 @@
                         }
                     }
 
-                    /* Micro-animaciones para los iconos SVG */
-                    @keyframes steamAnimation {
-                        0% {
-                            transform: translateY(0);
-                            opacity: 0.5;
-                        }
-
-                        50% {
-                            transform: translateY(-4px);
-                            opacity: 1;
-                        }
-
-                        100% {
-                            transform: translateY(-8px);
-                            opacity: 0;
-                        }
+                    /* ==========================================================================
+                       MICROINTERACCIONES ARTESANALES (Café, Pet Friendly, Terraza)
+                       ========================================================================== */
+                    .story-badge-item {
+                        opacity: 0;
+                        transform: translateY(18px) scale(0.94);
+                        transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+                        will-change: transform, opacity;
                     }
 
-                    @keyframes tapasLidAnimation {
-                        0% {
-                            transform: rotate(0deg);
-                        }
-
-                        25% {
-                            transform: rotate(-8deg) translateY(-2px);
-                        }
-
-                        50% {
-                            transform: rotate(4deg);
-                        }
-
-                        75% {
-                            transform: rotate(-2deg);
-                        }
-
-                        100% {
-                            transform: rotate(0deg);
-                        }
+                    .story-badge-item.is-visible {
+                        opacity: 1;
+                        transform: translateY(0) scale(1);
                     }
 
-                    @keyframes umbrellaAnimation {
-                        0% {
-                            transform: rotate(0deg);
-                        }
-
-                        50% {
-                            transform: rotate(15deg);
-                        }
-
-                        100% {
-                            transform: rotate(0deg);
-                        }
-                    }
-
-                    .steam-line {
+                    /* 1. Microinteracción Vapor de Café */
+                    .coffee-steam {
                         transform-origin: bottom center;
                         transition: opacity 0.3s ease;
                     }
 
-                    .group:hover .steam-1 {
-                        animation: steamAnimation 1.2s infinite ease-in-out;
+                    .coffee-steam-1 {
+                        animation: steamFloatLoop 3.2s ease-in-out infinite;
                     }
 
-                    .group:hover .steam-2 {
-                        animation: steamAnimation 1.2s infinite ease-in-out 0.3s;
+                    .coffee-steam-2 {
+                        animation: steamFloatLoop 3.2s ease-in-out infinite 1.2s;
                     }
 
-                    .group:hover .steam-3 {
-                        animation: steamAnimation 1.2s infinite ease-in-out 0.6s;
+                    .group:hover .coffee-steam-1 {
+                        animation: steamActiveFloat 1.2s ease-in-out infinite;
                     }
 
-                    .tapas-lid {
-                        transform-origin: 12px 17px;
+                    .group:hover .coffee-steam-2 {
+                        animation: steamActiveFloat 1.2s ease-in-out infinite 0.3s;
                     }
 
-                    .group:hover .tapas-lid {
-                        animation: tapasLidAnimation 0.8s ease-in-out;
+                    @keyframes steamFloatLoop {
+                        0%, 100% {
+                            transform: translateY(0);
+                            opacity: 0.45;
+                        }
+                        50% {
+                            transform: translateY(-2px);
+                            opacity: 0.9;
+                        }
                     }
 
-                    .umbrella-top {
-                        transform-origin: 12px 12px;
+                    @keyframes steamActiveFloat {
+                        0% {
+                            transform: translateY(0) scaleX(1);
+                            opacity: 0.8;
+                        }
+                        50% {
+                            transform: translateY(-3px) scaleX(1.15);
+                            opacity: 1;
+                        }
+                        100% {
+                            transform: translateY(-6px) scaleX(1.3);
+                            opacity: 0;
+                        }
                     }
 
-                    .group:hover .umbrella-top {
-                        animation: umbrellaAnimation 1s ease-in-out;
+                    /* 2. Microinteracción Pet Friendly (Pata y latido de corazón afectuoso) */
+                    .pet-heart {
+                        transform-origin: 12px 15px;
+                        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), fill-opacity 0.3s ease;
+                    }
+
+                    .group:hover .story-icon-pet {
+                        animation: pawBounce 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+                    }
+
+                    .group:hover .pet-heart {
+                        fill-opacity: 0.75;
+                        animation: heartBeatSoft 1s ease-in-out infinite;
+                    }
+
+                    @keyframes pawBounce {
+                        0% {
+                            transform: scale(1);
+                        }
+                        35% {
+                            transform: scale(1.14) rotate(-3deg);
+                        }
+                        65% {
+                            transform: scale(0.96) rotate(2deg);
+                        }
+                        100% {
+                            transform: scale(1) rotate(0deg);
+                        }
+                    }
+
+                    @keyframes heartBeatSoft {
+                        0%, 100% {
+                            transform: scale(1);
+                        }
+                        25% {
+                            transform: scale(1.25);
+                        }
+                        50% {
+                            transform: scale(0.98);
+                        }
+                        75% {
+                            transform: scale(1.15);
+                        }
+                    }
+
+                    /* 3. Microinteracción Terraza (Brisa suave en toldo bistro) */
+                    .terrace-canopy-group {
+                        transform-origin: 12px 5px;
+                        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+                    }
+
+                    .group:hover .terrace-canopy-group {
+                        animation: terraceBreeze 1.3s cubic-bezier(0.4, 0, 0.2, 1);
+                    }
+
+                    @keyframes terraceBreeze {
+                        0% {
+                            transform: rotate(0deg);
+                        }
+                        25% {
+                            transform: rotate(4deg);
+                        }
+                        50% {
+                            transform: rotate(-3deg);
+                        }
+                        75% {
+                            transform: rotate(1.5deg);
+                        }
+                        100% {
+                            transform: rotate(0deg);
+                        }
                     }
                 </style>
                 <div class="origen-swiper-container">
@@ -1799,7 +1951,7 @@
                         <div class="swiper-wrapper">
                             <!-- Slide 1 (Foto 1) -->
                             <div class="swiper-slide">
-                                <img class="w-full h-full object-cover" src="./assets/origen/1FOTO.jpeg"
+                                <img class="w-full h-full object-cover" src="./assets/origen/1FOTO.webp"
                                     alt="Terraza de Bar Luna Llena en Santa Catalina, Palma de Mallorca">
                             </div>
                             <!-- Slide 2 (Vídeo) -->
@@ -1819,17 +1971,17 @@
                             </div>
                             <!-- Slide 3 (Foto 3) -->
                             <div class="swiper-slide">
-                                <img class="w-full h-full object-cover" src="./assets/origen/3RA_FOTO.jpg"
+                                <img class="w-full h-full object-cover" src="./assets/origen/3RA_FOTO.webp"
                                     alt="Cafetería Bar Luna Llena en Santa Catalina - Desayunos y tapas tradicionales">
                             </div>
                             <!-- Slide 4 (Foto 4) -->
                             <div class="swiper-slide">
-                                <img class="w-full h-full object-cover" src="./assets/origen/4TA_FOTO.jpg"
+                                <img class="w-full h-full object-cover" src="./assets/origen/4TA_FOTO.webp"
                                     alt="Salón interior de Bar Luna Llena en Palma de Mallorca">
                             </div>
                             <!-- Slide 5 (Foto 5) -->
                             <div class="swiper-slide">
-                                <img class="w-full h-full object-cover" src="./assets/origen/5TAFOTO.jpg"
+                                <img class="w-full h-full object-cover" src="./assets/origen/5TAFOTO.webp"
                                     alt="Tapas tradicionales y raciones en Palma de Mallorca, Mallorca">
                             </div>
                         </div>
@@ -2194,7 +2346,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="text-center mt-12 mb-8 flex flex-col justify-center items-center">
+                <div class="text-center mt-16 sm:mt-24 mb-10 sm:mb-14 pt-2 flex flex-col justify-center items-center">
                     <!-- SVG Filter para el efecto de refracción líquida (21st.dev Liquid Glass) -->
                     <svg class="absolute w-0 h-0 pointer-events-none" aria-hidden="true">
                         <defs>
@@ -2226,6 +2378,330 @@
                     </div>
                 </div>
             </div>
+    </section>
+
+    <!-- Separador de Página - Bandera de Bangladesh -->
+    <div class="bd-divider-wrapper" aria-hidden="true">
+        <div class="bd-divider-track">
+            <div class="bd-divider-green-left"></div>
+            <div class="bd-divider-red-sun"></div>
+            <div class="bd-divider-green-right"></div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         SECCIÓN RESEÑAS GOOGLE (Staggered Testimonials Grid 21st.dev)
+         ========================================================================== -->
+    <section class="py-20 md:py-28 px-margin-mobile md:px-margin-desktop bg-[#070A14] relative overflow-hidden" id="opiniones">
+        <!-- Resplandor ambiental de fondo -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#C5A059]/5 blur-[120px] rounded-full pointer-events-none"></div>
+
+        <div class="max-w-container-max mx-auto relative z-10">
+            <!-- Encabezado de Sección con Insignia Oficial de Google -->
+            <div class="text-center mb-16 md:mb-20">
+                <!-- Eyebrow con icono Google y calificación -->
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-[#C5A059]/30 mb-4 backdrop-blur-sm shadow-sm">
+                    <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"/>
+                        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"/>
+                    </svg>
+                    <span data-i18n="reviews_badge" class="text-xs font-semibold tracking-wider text-[#C5A059] uppercase">4.8 ★★★★★ · Google Maps</span>
+                </div>
+
+                <h2 data-i18n="reviews_title"
+                    class="font-title-md text-3xl sm:text-4xl md:text-5xl text-white mb-4 font-semibold tracking-tight text-balance">
+                    ¿Y qué opinan sobre nosotros?</h2>
+                <div class="w-14 h-[2px] bg-gradient-to-r from-transparent via-[#C5A059] to-transparent mx-auto mt-3"></div>
+            </div>
+
+            <!-- Carrusel Horizontal Deslizable con Autoplay Suave (Swiper para Móvil y Desktop) -->
+            <div class="reviews-swiper-container relative w-full overflow-hidden px-1 py-4">
+                <div class="swiper reviews-swiper w-full !overflow-visible">
+                    <div class="swiper-wrapper items-stretch">
+                        
+                        <!-- 1. John smith -->
+                        <div class="swiper-slide h-auto flex-shrink-0 flex flex-col">
+                            <figure class="group relative flex flex-col justify-between gap-5 p-6 sm:p-7 rounded-2xl bg-[#0B0F19]/90 border border-white/10 hover:border-[#C5A059]/50 transition-all duration-300 shadow-xl backdrop-blur-md h-full"
+                                style="background: radial-gradient(80% 60% at 50% 0%, rgba(197, 160, 89, 0.08) 0%, rgba(11, 15, 25, 0.95) 100%);">
+                                
+                                <!-- Cruces de precisión técnica (+) -->
+                                <svg aria-hidden="true" class="hidden sm:block pointer-events-none absolute top-0 left-0 z-10 w-3.5 h-3.5 -translate-x-1/2 -translate-y-1/2 stroke-1 stroke-[#C5A059]/60" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+                                <svg aria-hidden="true" class="hidden sm:block pointer-events-none absolute top-0 right-0 z-10 w-3.5 h-3.5 translate-x-1/2 -translate-y-1/2 stroke-1 stroke-[#C5A059]/60" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+
+                                <!-- Cabecera: Estrellas + Badge Pendiente -->
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-1 text-[#C5A059] text-sm tracking-wider">
+                                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                                    </div>
+                                    <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#C5A059]/15 border border-[#C5A059]/30 text-[10px] text-[#C5A059] font-medium tracking-wide">
+                                        <span>Pendiente</span>
+                                    </span>
+                                </div>
+
+                                <!-- Reseña -->
+                                <blockquote class="flex gap-3 my-1">
+                                    <svg aria-hidden="true" class="w-5 h-5 shrink-0 text-[#C5A059]/60 stroke-1 mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                        <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z" />
+                                        <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z" />
+                                    </svg>
+                                    <p class="flex-1 font-body-md text-sm text-white/90 leading-relaxed font-normal">
+                                        "Muy buena experiencia y Miah es un chico muy amable que nos atendió! La comida es espectacular y la terraza que lo acompaña en el corazón de Santa Catalina esta super bien!!"
+                                    </p>
+                                </blockquote>
+
+                                <!-- Puntuaciones oficiales Google: Comida / Servicio / Ambiente -->
+                                <div class="flex flex-wrap items-center gap-1.5 text-[10px] sm:text-[11px] font-medium py-1.5 px-3 rounded-lg bg-white/[0.04] border border-white/[0.08] text-white/70 w-fit">
+                                    <span>Comida: <strong class="text-[#C5A059]">5/5</strong></span>
+                                    <span class="text-white/20">|</span>
+                                    <span>Servicio: <strong class="text-[#C5A059]">5/5</strong></span>
+                                    <span class="text-white/20">|</span>
+                                    <span>Ambiente: <strong class="text-[#C5A059]">5/5</strong></span>
+                                </div>
+
+                                <!-- Autor -->
+                                <figcaption class="flex items-center gap-3 pt-3 border-t border-white/[0.08] mt-auto">
+                                    <div class="w-10 h-10 rounded-full ring-2 ring-[#C5A059]/40 ring-offset-2 ring-offset-[#0B0F19] bg-[#2E6F40] text-white flex items-center justify-center font-bold text-sm select-none">
+                                        J
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <cite class="font-title-md font-semibold text-white text-sm not-italic tracking-wide">
+                                            John smith
+                                        </cite>
+                                        <p class="text-white/45 text-[11px] tracking-wide">
+                                            2 reseñas · Tamaño del grupo: 3-4 personas
+                                        </p>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <!-- 2. Daniel J Serra -->
+                        <div class="swiper-slide h-auto flex-shrink-0 flex flex-col">
+                            <figure class="group relative flex flex-col justify-between gap-5 p-6 sm:p-7 rounded-2xl bg-[#0B0F19]/90 border border-white/10 hover:border-[#C5A059]/50 transition-all duration-300 shadow-xl backdrop-blur-md h-full"
+                                style="background: radial-gradient(80% 60% at 50% 0%, rgba(197, 160, 89, 0.08) 0%, rgba(11, 15, 25, 0.95) 100%);">
+                                
+                                <svg aria-hidden="true" class="hidden sm:block pointer-events-none absolute top-0 left-0 z-10 w-3.5 h-3.5 -translate-x-1/2 -translate-y-1/2 stroke-1 stroke-[#C5A059]/60" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+                                <svg aria-hidden="true" class="hidden sm:block pointer-events-none absolute top-0 right-0 z-10 w-3.5 h-3.5 translate-x-1/2 -translate-y-1/2 stroke-1 stroke-[#C5A059]/60" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-1 text-[#C5A059] text-sm tracking-wider">
+                                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                                    </div>
+                                    <span class="text-[11px] text-white/45 font-sans">Hace 3 meses</span>
+                                </div>
+
+                                <blockquote class="flex gap-3 my-1">
+                                    <svg aria-hidden="true" class="w-5 h-5 shrink-0 text-[#C5A059]/60 stroke-1 mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                        <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z" />
+                                        <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z" />
+                                    </svg>
+                                    <p class="flex-1 font-body-md text-sm text-white/90 leading-relaxed font-normal">
+                                        "Un servicio inmejorable. El dueño super atento, servicial y simpático. Buena comida y céntrico, al lado de Santa Catalina. Un 10!"
+                                    </p>
+                                </blockquote>
+
+                                <div class="flex flex-wrap items-center gap-1.5 text-[10px] sm:text-[11px] font-medium py-1.5 px-3 rounded-lg bg-white/[0.04] border border-white/[0.08] text-white/70 w-fit">
+                                    <span>Comida: <strong class="text-[#C5A059]">5/5</strong></span>
+                                    <span class="text-white/20">|</span>
+                                    <span>Servicio: <strong class="text-[#C5A059]">5/5</strong></span>
+                                    <span class="text-white/20">|</span>
+                                    <span>Ambiente: <strong class="text-[#C5A059]">5/5</strong></span>
+                                </div>
+
+                                <figcaption class="flex items-center gap-3 pt-3 border-t border-white/[0.08] mt-auto">
+                                    <div class="w-10 h-10 rounded-full ring-2 ring-[#C5A059]/40 ring-offset-2 ring-offset-[#0B0F19] bg-[#7B42BC] text-white flex items-center justify-center font-bold text-sm select-none">
+                                        D
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <cite class="font-title-md font-semibold text-white text-sm not-italic tracking-wide">
+                                            Daniel J Serra
+                                        </cite>
+                                        <p class="text-white/45 text-[11px] tracking-wide">
+                                            2 reseñas · Cena (1-10 €)
+                                        </p>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <!-- 3. René Fernández Díaz (Local Guide) -->
+                        <div class="swiper-slide h-auto flex-shrink-0 flex flex-col">
+                            <figure class="group relative flex flex-col justify-between gap-5 p-6 sm:p-7 rounded-2xl bg-[#0B0F19]/90 border border-white/10 hover:border-[#C5A059]/50 transition-all duration-300 shadow-xl backdrop-blur-md h-full"
+                                style="background: radial-gradient(80% 60% at 50% 0%, rgba(197, 160, 89, 0.08) 0%, rgba(11, 15, 25, 0.95) 100%);">
+                                
+                                <svg aria-hidden="true" class="hidden sm:block pointer-events-none absolute top-0 left-0 z-10 w-3.5 h-3.5 -translate-x-1/2 -translate-y-1/2 stroke-1 stroke-[#C5A059]/60" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+                                <svg aria-hidden="true" class="hidden sm:block pointer-events-none absolute top-0 right-0 z-10 w-3.5 h-3.5 translate-x-1/2 -translate-y-1/2 stroke-1 stroke-[#C5A059]/60" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-1 text-[#C5A059] text-sm tracking-wider">
+                                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                                    </div>
+                                    <span class="text-[11px] text-white/45 font-sans">Hace 2 años</span>
+                                </div>
+
+                                <blockquote class="flex gap-3 my-1">
+                                    <svg aria-hidden="true" class="w-5 h-5 shrink-0 text-[#C5A059]/60 stroke-1 mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                        <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z" />
+                                        <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z" />
+                                    </svg>
+                                    <p class="flex-1 font-body-md text-sm text-white/90 leading-relaxed font-normal">
+                                        "Paramos para comer algo después de visitar el castillo de Bellver. Teníamos poco tiempo para coger un avión... Nos prepararon unos bocadillos super buenos en tiempo récord y a precio ajustado. Agradecemos la eficiencia, amabilidad y simpatía. 🙂"
+                                    </p>
+                                </blockquote>
+
+                                <div class="flex flex-wrap items-center gap-1.5 text-[10px] sm:text-[11px] font-medium py-1.5 px-3 rounded-lg bg-white/[0.04] border border-white/[0.08] text-white/70 w-fit">
+                                    <span>Comida: <strong class="text-[#C5A059]">5/5</strong></span>
+                                    <span class="text-white/20">|</span>
+                                    <span>Servicio: <strong class="text-[#C5A059]">5/5</strong></span>
+                                    <span class="text-white/20">|</span>
+                                    <span>Ambiente: <strong class="text-[#C5A059]">5/5</strong></span>
+                                </div>
+
+                                <figcaption class="flex items-center gap-3 pt-3 border-t border-white/[0.08] mt-auto">
+                                    <div class="relative w-10 h-10 rounded-full ring-2 ring-[#C5A059]/40 ring-offset-2 ring-offset-[#0B0F19] bg-[#C5A059] text-[#070A14] flex items-center justify-center font-bold text-sm select-none">
+                                        R
+                                        <span class="absolute -bottom-0.5 -right-0.5 w-4 h-4 rounded-full bg-[#EA4335] text-white text-[9px] flex items-center justify-center font-black shadow-xs">★</span>
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <cite class="font-title-md font-semibold text-white text-sm not-italic tracking-wide">
+                                            René Fernández Díaz
+                                        </cite>
+                                        <p class="text-white/45 text-[11px] tracking-wide">
+                                            Local Guide · 34 reseñas · 28 fotos
+                                        </p>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <!-- 4. Manuel Berdasco (Local Guide) -->
+                        <div class="swiper-slide h-auto flex-shrink-0 flex flex-col">
+                            <figure class="group relative flex flex-col justify-between gap-5 p-6 sm:p-7 rounded-2xl bg-[#0B0F19]/90 border border-white/10 hover:border-[#C5A059]/50 transition-all duration-300 shadow-xl backdrop-blur-md h-full"
+                                style="background: radial-gradient(80% 60% at 50% 0%, rgba(197, 160, 89, 0.08) 0%, rgba(11, 15, 25, 0.95) 100%);">
+                                
+                                <svg aria-hidden="true" class="hidden sm:block pointer-events-none absolute top-0 left-0 z-10 w-3.5 h-3.5 -translate-x-1/2 -translate-y-1/2 stroke-1 stroke-[#C5A059]/60" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+                                <svg aria-hidden="true" class="hidden sm:block pointer-events-none absolute top-0 right-0 z-10 w-3.5 h-3.5 translate-x-1/2 -translate-y-1/2 stroke-1 stroke-[#C5A059]/60" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-1 text-[#C5A059] text-sm tracking-wider">
+                                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                                    </div>
+                                    <span class="text-[11px] text-white/45 font-sans">Hace 2 años</span>
+                                </div>
+
+                                <blockquote class="flex gap-3 my-1">
+                                    <svg aria-hidden="true" class="w-5 h-5 shrink-0 text-[#C5A059]/60 stroke-1 mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                        <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z" />
+                                        <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z" />
+                                    </svg>
+                                    <p class="flex-1 font-body-md text-sm text-white/90 leading-relaxed font-normal">
+                                        "Teníamos prisa: 5 hamburguesas con patatas y un bocadillo de tortilla a media tarde. Un hombre amable aceptó el reto y en 15 minutos nos tuvo todo preparado. La comida más que correcta y el precio inferior a 10€. ¡Muchas gracias!"
+                                    </p>
+                                </blockquote>
+
+                                <div class="flex flex-wrap items-center gap-1.5 text-[10px] sm:text-[11px] font-medium py-1.5 px-3 rounded-lg bg-white/[0.04] border border-white/[0.08] text-white/70 w-fit">
+                                    <span>Comida: <strong class="text-[#C5A059]">4/5</strong></span>
+                                    <span class="text-white/20">|</span>
+                                    <span>Servicio: <strong class="text-[#C5A059]">5/5</strong></span>
+                                    <span class="text-white/20">|</span>
+                                    <span>Ambiente: <strong class="text-[#C5A059]">5/5</strong></span>
+                                </div>
+
+                                <figcaption class="flex items-center gap-3 pt-3 border-t border-white/[0.08] mt-auto">
+                                    <div class="relative w-10 h-10 rounded-full ring-2 ring-[#C5A059]/40 ring-offset-2 ring-offset-[#0B0F19] bg-[#3B5998] text-white flex items-center justify-center font-bold text-sm select-none">
+                                        M
+                                        <span class="absolute -bottom-0.5 -right-0.5 w-4 h-4 rounded-full bg-[#EA4335] text-white text-[9px] flex items-center justify-center font-black shadow-xs">★</span>
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <cite class="font-title-md font-semibold text-white text-sm not-italic tracking-wide">
+                                            Manuel Berdasco
+                                        </cite>
+                                        <p class="text-white/45 text-[11px] tracking-wide">
+                                            Local Guide · 51 reseñas · 5 fotos
+                                        </p>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <!-- 5. Felix Linde & Sandra Bikowski (Valoraciones 5 estrellas) -->
+                        <div class="swiper-slide h-auto flex-shrink-0 flex flex-col">
+                            <figure class="group relative flex flex-col justify-between gap-5 p-6 sm:p-7 rounded-2xl bg-[#0B0F19]/90 border border-white/10 hover:border-[#C5A059]/50 transition-all duration-300 shadow-xl backdrop-blur-md h-full"
+                                style="background: radial-gradient(80% 60% at 50% 0%, rgba(197, 160, 89, 0.08) 0%, rgba(11, 15, 25, 0.95) 100%);">
+                                
+                                <svg aria-hidden="true" class="hidden sm:block pointer-events-none absolute top-0 left-0 z-10 w-3.5 h-3.5 -translate-x-1/2 -translate-y-1/2 stroke-1 stroke-[#C5A059]/60" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+                                <svg aria-hidden="true" class="hidden sm:block pointer-events-none absolute top-0 right-0 z-10 w-3.5 h-3.5 translate-x-1/2 -translate-y-1/2 stroke-1 stroke-[#C5A059]/60" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-1 text-[#C5A059] text-sm tracking-wider">
+                                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                                    </div>
+                                    <span class="text-[11px] text-[#C5A059] font-semibold tracking-wider uppercase font-sans">Google 5.0</span>
+                                </div>
+
+                                <div class="space-y-4 my-1">
+                                    <div class="flex items-center justify-between pb-3 border-b border-white/[0.08]">
+                                        <div class="flex items-center gap-3">
+                                            <div class="relative w-9 h-9 rounded-full ring-1 ring-[#C5A059]/40 bg-[#D81B60] text-white flex items-center justify-center font-bold text-xs select-none">
+                                                F
+                                                <span class="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-[#EA4335] text-white text-[8px] flex items-center justify-center font-black">★</span>
+                                            </div>
+                                            <div class="flex flex-col">
+                                                <cite class="font-title-md font-semibold text-white text-xs not-italic">Felix Linde</cite>
+                                                <span class="text-white/40 text-[10px]">Local Guide · Hace 4 meses</span>
+                                            </div>
+                                        </div>
+                                        <div class="text-[#C5A059] text-xs font-semibold">★★★★★</div>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-9 h-9 rounded-full ring-1 ring-[#C5A059]/40 bg-[#8E24AA] text-white flex items-center justify-center font-bold text-xs select-none">
+                                                S
+                                            </div>
+                                            <div class="flex flex-col">
+                                                <cite class="font-title-md font-semibold text-white text-xs not-italic">Sandra Bikowski</cite>
+                                                <span class="text-white/40 text-[10px]">5 reseñas · Hace 1 año</span>
+                                            </div>
+                                        </div>
+                                        <div class="text-[#C5A059] text-xs font-semibold">★★★★★</div>
+                                    </div>
+                                </div>
+
+                                <div class="pt-3 border-t border-white/[0.08] mt-auto">
+                                    <p class="text-white/45 text-[11px] tracking-wide">
+                                        Reseñas 5 estrellas verificadas en Google Maps
+                                    </p>
+                                </div>
+                            </figure>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Paginación de puntos dorados -->
+                <div class="reviews-swiper-pagination flex justify-center items-center gap-2 mt-8"></div>
+            </div>
+
+            <!-- Botones de Acción para Reseñas en Google Maps -->
+            <div class="mt-12 md:mt-20 text-center flex flex-col sm:flex-row items-center justify-center gap-4">
+                <!-- Botón 1: Ver todas las reseñas -->
+                <a href="https://maps.app.goo.gl/Wvg1TphkJxpHRdtUA?g_st=ic" target="_blank" rel="noopener noreferrer"
+                    class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-full border border-[#C5A059]/40 bg-white/[0.03] hover:bg-[#C5A059]/15 text-[#C5A059] hover:text-white text-xs font-bold tracking-[0.2em] uppercase transition-all duration-300 active:scale-95 shadow-lg group">
+                    <span data-i18n="reviews_cta">Ver todas las reseñas en Google Maps</span>
+                    <span class="transition-transform group-hover:translate-x-1 font-black">→</span>
+                </a>
+                <!-- Botón 2: Escribir una reseña (Abre modal directo de reseña en Google) -->
+                <a href="https://search.google.com/local/writereview?placeid=ChIJWfelVW-SlxIRWzAvv31ZlUM" target="_blank" rel="noopener noreferrer"
+                    class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full border border-[#C5A059]/50 bg-[#C5A059]/15 hover:bg-[#C5A059] text-[#C5A059] hover:text-[#070A14] text-xs font-bold tracking-[0.2em] uppercase transition-all duration-300 active:scale-95 shadow-lg group">
+                    <svg class="size-4 shrink-0 text-[#C5A059] group-hover:text-[#070A14] transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"></path>
+                    </svg>
+                    <span data-i18n="reviews_write_btn">Escribir una reseña</span>
+                </a>
+            </div>
+        </div>
     </section>
 
     <!-- Separador de Página - Bandera de Bangladesh -->
@@ -2347,90 +2823,116 @@
     </div>
 
     <!-- Footer Organizado -->
-    <footer class="bg-surface-dim full-width py-12 border-t border-white/5 relative">
+    <footer class="bg-surface-dim full-width py-14 border-t border-white/5 relative">
         <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-center text-center">
-                <!-- Center Logo: Primer elemento en móvil (order-1), segundo en desktop (order-2) -->
-                <div class="flex flex-col items-center justify-center order-1 md:order-2">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left items-start">
+                <!-- Columna 1: Identidad y Redes -->
+                <div class="flex flex-col items-center md:items-start gap-4">
                     <a href="#inicio" class="logo-home-trigger block transition-transform duration-300 hover:scale-105">
                         <img src="./assets/NEWLOGO.jpg" alt="Logo Bar Luna Llena"
-                            class="w-24 h-24 rounded-full border border-secondary/30 object-cover shadow-lg"
+                            class="w-20 h-20 md:w-24 md:h-24 rounded-full border border-secondary/30 object-cover shadow-lg"
                             loading="lazy" width="96" height="96">
                     </a>
-                    <span data-i18n="footer_slogan"
-                        class="text-xs text-secondary/80 tracking-[0.25em] uppercase mt-3 font-medium font-body-md">El
-                        bar del barrio</span>
+                    <div>
+                        <h3 class="font-title-md text-lg text-white font-semibold tracking-wide">Bar Luna Llena</h3>
+                        <p data-i18n="footer_slogan"
+                            class="text-xs text-secondary/80 tracking-[0.24em] uppercase mt-1 font-medium font-body-md">El
+                            bar del barrio</p>
+                    </div>
+
+                    <!-- Redes Sociales -->
+                    <div class="mt-2">
+                        <ul class="wrapper !w-auto !p-0 !m-0 flex flex-wrap !justify-center md:!justify-start">
+                            <li class="icon google-maps !m-1.5 md:!ml-0 md:!mr-2.5">
+                                <a href="https://maps.app.goo.gl/Wvg1TphkJxpHRdtUA?g_st=ic" target="_blank"
+                                    rel="noopener noreferrer"
+                                    style="color:inherit;text-decoration:none;display:flex;align-items:center;justify-content:center;width:100%;height:100%;"
+                                    aria-label="Reseñas en Google Maps">
+                                    <span data-i18n="footer_tooltip_reviews" class="tooltip">Reseñas</span>
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                        <circle cx="12" cy="10" r="3"></circle>
+                                    </svg>
+                                </a>
+                            </li>
+                            <li class="icon instagram !m-1.5 md:!mx-2.5">
+                                <a href="#" onclick="return false;"
+                                    style="color:inherit;text-decoration:none;display:flex;align-items:center;justify-content:center;width:100%;height:100%;"
+                                    aria-label="Instagram">
+                                    <span data-i18n="footer_tooltip_maintenance" class="tooltip">En mantenimiento</span>
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                                    </svg>
+                                </a>
+                            </li>
+                            <li class="icon facebook !m-1.5 md:!ml-2.5 md:!mr-0">
+                                <a href="#" onclick="return false;"
+                                    style="color:inherit;text-decoration:none;display:flex;align-items:center;justify-content:center;width:100%;height:100%;"
+                                    aria-label="Facebook">
+                                    <span data-i18n="footer_tooltip_maintenance" class="tooltip">En mantenimiento</span>
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                                    </svg>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
-                <!-- Left Legal: Segundo elemento en móvil (order-2), primero en desktop (order-1) -->
-                <div
-                    class="flex flex-wrap gap-x-6 gap-y-2 justify-center md:justify-start items-center order-2 md:order-1 max-w-xs md:max-w-none mx-auto md:mx-0">
-                    <a data-i18n="footer_legal_aviso" href="#" onclick="openLegal('aviso'); return false;"
-                        class="font-body-md text-xs md:text-sm text-white/60 hover:text-secondary uppercase tracking-[0.16em] transition-colors py-1 flex items-center min-h-[44px]">Aviso
-                        Legal</a>
-                    <a data-i18n="footer_legal_terminos" href="#" onclick="openLegal('terminos'); return false;"
-                        class="font-body-md text-xs md:text-sm text-white/60 hover:text-secondary uppercase tracking-[0.16em] transition-colors py-1 flex items-center min-h-[44px]">Términos
-                        y Condiciones</a>
-                    <a data-i18n="footer_legal_privacidad" href="#" onclick="openLegal('privacidad'); return false;"
-                        class="font-body-md text-xs md:text-sm text-white/60 hover:text-secondary uppercase tracking-[0.16em] transition-colors py-1 flex items-center min-h-[44px]">Privacidad</a>
-                    <a data-i18n="footer_legal_cookies" href="#" onclick="openLegal('cookies'); return false;"
-                        class="font-body-md text-xs md:text-sm text-white/60 hover:text-secondary uppercase tracking-[0.16em] transition-colors py-1 flex items-center min-h-[44px]">Cookies</a>
+                <!-- Columna 2: Navegación Rápida -->
+                <div class="flex flex-col items-center md:items-start">
+                    <h4 data-i18n="footer_col_nav"
+                        class="font-title-md text-xs uppercase tracking-[0.24em] font-semibold text-secondary mb-5">Navegación</h4>
+                    <nav class="flex flex-col gap-2.5 items-center md:items-start w-full">
+                        <a href="#inicio" data-i18n="nav_inicio"
+                            class="font-body-md text-sm text-white/70 hover:text-secondary uppercase tracking-[0.14em] transition-colors py-1 flex items-center min-h-[36px]">Inicio</a>
+                        <a href="#historia" data-i18n="nav_historia"
+                            class="font-body-md text-sm text-white/70 hover:text-secondary uppercase tracking-[0.14em] transition-colors py-1 flex items-center min-h-[36px]">Historia</a>
+                        <a href="#carta" data-i18n="nav_carta"
+                            class="font-body-md text-sm text-white/70 hover:text-secondary uppercase tracking-[0.14em] transition-colors py-1 flex items-center min-h-[36px]">Carta</a>
+                        <a href="#ubicacion" data-i18n="nav_ubicacion"
+                            class="font-body-md text-sm text-white/70 hover:text-secondary uppercase tracking-[0.14em] transition-colors py-1 flex items-center min-h-[36px]">Dónde estamos</a>
+                        <a href="#ubicacion" data-i18n="btn_reservar"
+                            class="font-body-md text-sm text-secondary hover:text-secondary/80 uppercase tracking-[0.14em] transition-colors py-1 flex items-center min-h-[36px] font-semibold">Reservar Mesa</a>
+                    </nav>
                 </div>
 
-                <!-- Right Social: Tercer elemento en móvil (order-3), tercero en desktop (order-3) -->
-                <div class="flex flex-col items-center md:items-end gap-4 order-3 md:order-3">
-                    <ul class="wrapper" style="padding:0;margin:0;">
-                        <li class="icon google-maps">
-                            <a href="https://maps.app.goo.gl/Wvg1TphkJxpHRdtUA?g_st=ic" target="_blank"
-                                rel="noopener noreferrer"
-                                style="color:inherit;text-decoration:none;display:flex;align-items:center;justify-content:center;width:100%;height:100%;"
-                                aria-label="Reseñas en Google Maps">
-                                <span data-i18n="footer_tooltip_reviews" class="tooltip">Reseñas</span>
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                    <circle cx="12" cy="10" r="3"></circle>
-                                </svg>
-                            </a>
-                        </li>
-                        <li class="icon instagram">
-                            <a href="#" onclick="return false;"
-                                style="color:inherit;text-decoration:none;display:flex;align-items:center;justify-content:center;width:100%;height:100%;"
-                                aria-label="Instagram">
-                                <span data-i18n="footer_tooltip_maintenance" class="tooltip">En mantenimiento</span>
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                                </svg>
-                            </a>
-                        </li>
-                        <li class="icon facebook">
-                            <a href="#" onclick="return false;"
-                                style="color:inherit;text-decoration:none;display:flex;align-items:center;justify-content:center;width:100%;height:100%;"
-                                aria-label="Facebook">
-                                <span data-i18n="footer_tooltip_maintenance" class="tooltip">En mantenimiento</span>
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                                </svg>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- Trust Badges -->
+                <!-- Columna 3: Legal & Pagos -->
+                <div class="flex flex-col items-center md:items-start">
+                    <h4 data-i18n="footer_col_legal"
+                        class="font-title-md text-xs uppercase tracking-[0.24em] font-semibold text-secondary mb-5">Legal & Pagos</h4>
+
+                    <div class="flex flex-col gap-2 items-center md:items-start w-full mb-6">
+                        <a data-i18n="footer_legal_aviso" href="#" onclick="openLegal('aviso'); return false;"
+                            class="font-body-md text-xs text-white/60 hover:text-secondary uppercase tracking-[0.16em] transition-colors py-1 flex items-center min-h-[32px]">Aviso
+                            Legal</a>
+                        <a data-i18n="footer_legal_terminos" href="#" onclick="openLegal('terminos'); return false;"
+                            class="font-body-md text-xs text-white/60 hover:text-secondary uppercase tracking-[0.16em] transition-colors py-1 flex items-center min-h-[32px]">Términos
+                            y Condiciones</a>
+                        <a data-i18n="footer_legal_privacidad" href="#" onclick="openLegal('privacidad'); return false;"
+                            class="font-body-md text-xs text-white/60 hover:text-secondary uppercase tracking-[0.16em] transition-colors py-1 flex items-center min-h-[32px]">Privacidad</a>
+                        <a data-i18n="footer_legal_cookies" href="#" onclick="openLegal('cookies'); return false;"
+                            class="font-body-md text-xs text-white/60 hover:text-secondary uppercase tracking-[0.16em] transition-colors py-1 flex items-center min-h-[32px]">Cookies</a>
+                    </div>
+
+                    <!-- Trust Badges (Tarjetas) -->
                     <div class="flex items-center gap-3 transition-opacity duration-300 hover:opacity-100"
-                        style="opacity: 0.85;">
+                        style="opacity: 0.9;">
                         <!-- Visa Logo -->
                         <svg width="38" height="24" viewBox="0 0 38 24" fill="none" aria-label="Visa"
-                            class="shadow-md rounded-[4px] overflow-hidden">
+                            class="shadow-md rounded-[4px] overflow-hidden shrink-0">
                             <rect width="38" height="24" rx="4" fill="#1434CB" />
                             <text x="19" y="17" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="10"
                                 font-weight="800" fill="#F7B600" letter-spacing="1">VISA</text>
                         </svg>
                         <!-- Mastercard Logo -->
                         <svg width="38" height="24" viewBox="0 0 38 24" fill="none" aria-label="Mastercard"
-                            class="shadow-md rounded-[4px] overflow-hidden">
+                            class="shadow-md rounded-[4px] overflow-hidden shrink-0">
                             <rect width="38" height="24" rx="4" fill="#FFFFFF" />
                             <circle cx="15" cy="12" r="7" fill="#EB001B" />
                             <circle cx="23" cy="12" r="7" fill="#F79E1B" fill-opacity="0.85" />
@@ -2443,7 +2945,7 @@
             </div>
 
             <div
-                class="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+                class="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
                 <span data-i18n="footer_copyright"
                     class="font-body-md text-[11px] tracking-[0.18em] uppercase font-light text-white/35">© 2026 Bar
                     Luna Llena. Todos los derechos reservados.</span>
@@ -2455,6 +2957,11 @@
             </div>
         </div>
     </footer>
+
+    <!-- Halftone Wordmark Interactive Animation (Bar Luna Llena) -->
+    <div id="halftone-wordmark-wrapper" class="w-full relative overflow-hidden select-none bg-[#070A14] border-t border-white/5 cursor-crosshair" style="height: clamp(180px, 26vw, 340px); touch-action: pan-y;" title="Interactúa con el cursor o toca para crear ondas">
+        <canvas id="halftone-wordmark-canvas" class="absolute inset-0 w-full h-full block" aria-label="Luna llena 🌛"></canvas>
+    </div>
 
     <!-- FAB Modal -->
     <div id="fab-modal"
@@ -2545,82 +3052,85 @@
         </div>
     </div>
 
-    <!-- Modal Visor de Carta Responsive & Multi-idioma (21st.dev / Móvil Centrado) -->
+    <!-- Modal Visor de Carta Responsive & Multi-idioma (Dark Luxury / Inmersivo y Limpio) -->
     <div id="menu-viewer-modal"
-        class="fixed inset-0 z-[9999] hidden bg-[#050508]/96 backdrop-blur-2xl flex flex-col items-center overflow-y-auto"
+        class="fixed inset-0 z-[9999] hidden bg-[#050508]/98 backdrop-blur-2xl flex flex-col items-center overflow-y-auto overscroll-contain"
         role="dialog" aria-modal="true" aria-label="Visor de Carta">
 
-        <!-- Barra de Control Flotante Sticky -->
-        <div
-            class="sticky top-0 z-50 w-full max-w-2xl flex items-center justify-between px-4 py-3 bg-[#050508]/85 backdrop-blur-xl border-b border-white/10 shadow-lg">
-            <!-- Botón Cerrar -->
+        <!-- Barra de Control Superior Sticky con Auto-Hide Inteligente al Scroll -->
+        <div id="menu-viewer-header"
+            class="sticky top-0 z-50 w-full flex items-center justify-between px-4 sm:px-6 py-3.5 bg-[#070A14]/92 backdrop-blur-md border-b border-[#C5A059]/20 shadow-[0_4px_25px_rgba(0,0,0,0.7)] transition-transform duration-300 ease-out will-change-transform">
+            <!-- Botón Cerrar (Izquierda) -->
             <button onclick="closeMenuViewer()"
-                class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white/90 hover:text-white transition-all duration-200 border border-white/10 active:scale-95 text-xs font-medium cursor-pointer"
+                class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#C5A059]/40 bg-white/[0.04] hover:bg-[#C5A059]/15 text-[#C5A059] text-[11px] font-bold tracking-[0.18em] uppercase transition-all duration-300 active:scale-95 cursor-pointer shadow-sm"
                 aria-label="Cerrar carta">
-                <span class="material-symbols-outlined text-base">close</span>
+                <span class="text-xs leading-none">✕</span>
                 <span data-i18n="menu_close">Cerrar</span>
             </button>
 
-            <!-- Título centrado discreto -->
-            <div
-                class="hidden sm:flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-semibold text-[#C5A059]">
-                <span class="material-symbols-outlined text-base">restaurant</span>
-                <span data-i18n="menu_title">Carta Digital</span>
+            <!-- Identificador de Marca Discreto (Centro) -->
+            <div class="flex items-center gap-2.5">
+                <img src="./assets/logo-luna-llena.png?v=5" alt="Bar Luna Llena" class="h-6 sm:h-7 w-auto object-contain">
+                <span class="font-title-md text-xs sm:text-sm tracking-[0.16em] text-white/90 uppercase font-light hidden xs:inline">Carta Digital</span>
             </div>
 
-            <!-- Selector de Idioma Flotante (Iconos redonditos discretos ES / EN) -->
-            <div class="flex items-center gap-2">
-                <!-- Bandera España -->
+            <!-- Selector de Idioma Segmentado (Derecha) -->
+            <div class="inline-flex items-center p-0.5 rounded-full bg-white/[0.05] border border-[#C5A059]/30 backdrop-blur-sm shadow-inner">
+                <!-- Opción ES -->
                 <button onclick="switchMenuLang('es')" id="menu-lang-es"
-                    class="w-8 h-8 rounded-full border border-[#C5A059] bg-[#C5A059] text-black flex items-center justify-center text-sm shadow-md transition-all duration-300 scale-105 active:scale-95 cursor-pointer"
+                    class="flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold tracking-wider transition-all duration-300 cursor-pointer bg-gradient-to-r from-[#C5A059] to-[#E5C98D] text-[#070A14] shadow-sm"
                     aria-label="Carta en Español" title="Español">
-                    <span class="leading-none text-base">🇪🇸</span>
+                    <span class="text-xs leading-none">🇪🇸</span>
+                    <span>ES</span>
                 </button>
-                <!-- Bandera Inglaterra -->
+                <!-- Opción EN -->
                 <button onclick="switchMenuLang('en')" id="menu-lang-en"
-                    class="w-8 h-8 rounded-full border border-white/20 bg-white/10 text-white flex items-center justify-center text-sm transition-all duration-300 active:scale-95 hover:bg-white/20 cursor-pointer"
+                    class="flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold tracking-wider transition-all duration-300 cursor-pointer text-white/60 hover:text-white"
                     aria-label="Menu in English" title="English">
-                    <span class="leading-none text-base">🇬🇧</span>
+                    <span class="text-xs leading-none">🇬🇧</span>
+                    <span>EN</span>
                 </button>
             </div>
         </div>
 
-        <!-- Contenedor Centrado de Páginas (Full Responsive en Móvil y Desktop) -->
-        <div class="w-full max-w-xl mx-auto px-3 sm:px-4 py-6 flex flex-col items-center gap-5">
+        <!-- Contenedor Continuo de Páginas: Página 1 y Página 2 al deslizar, limpio y sin espacio sobrante en el footer -->
+        <div class="w-full max-w-2xl mx-auto px-2 sm:px-4 pt-4 pb-0 flex flex-col items-center gap-3">
             <!-- Página 1 -->
             <div
-                class="w-full rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-[#0B0F19] transition-all duration-300">
+                class="w-full rounded-xl sm:rounded-2xl overflow-hidden shadow-[0_10px_35px_rgba(0,0,0,0.6)] border border-[#C5A059]/20 bg-[#0B0F19] transition-all duration-300">
                 <img id="menu-page-1" src="./assets/menu-es-1.webp" alt="Carta Bar Luna Llena Página 1"
                     class="w-full h-auto block select-none" loading="eager" />
             </div>
 
-            <!-- Indicador de página 1 / 2 -->
-            <div class="text-white/40 text-[11px] font-medium tracking-widest uppercase">
-                Pág. 1 / 2
-            </div>
-
-            <!-- Página 2 -->
+            <!-- Página 2 (Se visualiza deslizando abajo limpiamente) -->
             <div
-                class="w-full rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-[#0B0F19] transition-all duration-300">
+                class="w-full rounded-xl sm:rounded-2xl overflow-hidden shadow-[0_10px_35px_rgba(0,0,0,0.6)] border border-[#C5A059]/20 bg-[#0B0F19] transition-all duration-300">
                 <img id="menu-page-2" src="./assets/menu-es-2.webp" alt="Carta Bar Luna Llena Página 2"
                     class="w-full h-auto block select-none" loading="lazy" />
             </div>
 
-            <!-- Indicador de página 2 / 2 y botón inferior de cerrar -->
-            <div class="flex flex-col items-center gap-3 my-4">
-                <div class="text-white/40 text-[11px] font-medium tracking-widest uppercase">
-                    Pág. 2 / 2
-                </div>
-                <button onclick="closeMenuViewer()"
-                    class="px-6 py-2.5 rounded-full bg-white/10 hover:bg-white/15 border border-white/15 text-white/90 text-xs font-semibold uppercase tracking-[0.16em] transition-all active:scale-95 cursor-pointer">
-                    <span data-i18n="menu_back_to_web">Volver a la Web</span>
-                </button>
-                <a href="./assets/carta-luna-llena.pdf" target="_blank"
-                    class="inline-flex items-center gap-1.5 text-white/50 hover:text-[#C5A059] text-[11px] uppercase tracking-[0.18em] transition-colors py-1 cursor-pointer"
-                    aria-label="Descargar PDF original">
-                    <span class="material-symbols-outlined text-sm">download</span>
-                    <span data-i18n="menu_download_pdf">Descargar PDF original</span>
-                </a>
+            <!-- Aviso de Alérgenos: Sin iconos, tipografía limpia y discreta -->
+            <div class="w-full text-center px-4 pt-2 pb-0.5">
+                <p data-i18n="menu_allergens_notice" class="text-[11px] sm:text-xs text-white/60 font-light leading-relaxed tracking-wide max-w-lg mx-auto">
+                    Si presenta alguna alergia o intolerancia alimentaria, por favor consulte con nuestro personal antes de realizar su pedido.
+                </p>
+            </div>
+
+            <!-- Footer Compacto de la Carta: Términos, Aviso Legal y Privacidad en horizontal -->
+            <div class="w-full mt-3 pt-3 border-t border-white/10 flex items-center justify-center gap-3 sm:gap-4 text-[10px] sm:text-[11px] uppercase tracking-[0.18em]">
+                <a href="#" onclick="openLegal('aviso'); return false;" data-i18n="menu_legal_aviso"
+                    class="text-white/60 hover:text-[#C5A059] transition-colors py-0.5">Aviso Legal</a>
+                <span class="text-white/20 select-none text-[9px]">·</span>
+                <a href="#" onclick="openLegal('terminos'); return false;" data-i18n="menu_legal_terminos"
+                    class="text-white/60 hover:text-[#C5A059] transition-colors py-0.5">Términos</a>
+                <span class="text-white/20 select-none text-[9px]">·</span>
+                <a href="#" onclick="openLegal('privacidad'); return false;" data-i18n="menu_legal_privacidad"
+                    class="text-white/60 hover:text-[#C5A059] transition-colors py-0.5">Privacidad</a>
+            </div>
+
+            <!-- Animación Halftone Compacta al pie de la Carta (Bar Luna Llena) -->
+            <div id="menu-halftone-wrapper" class="w-full relative overflow-hidden select-none bg-[#070A14] rounded-t-xl rounded-b-none border-t border-x border-white/10 cursor-crosshair mt-1 mb-0 shadow-lg" style="height: clamp(100px, 14vw, 135px); touch-action: pan-y;" title="Interactúa con el cursor o toca para crear ondas">
+                <canvas id="menu-halftone-canvas" class="absolute inset-0 w-full h-full block" aria-label="Luna llena 🌛"></canvas>
             </div>
         </div>
     </div>
@@ -2673,7 +3183,11 @@
 
         const isDirectMenuRequest = checkIsMenuRoute();
 
-        if (!isDirectMenuRequest && sessionStorage.getItem('return_to_carta') !== 'true') {
+        const isReturnFromLegal = sessionStorage.getItem('return_from_legal') === 'true';
+        const isReturnToCarta = sessionStorage.getItem('return_to_carta') === 'true';
+
+        // Solo reiniciar scroll a 0 si es una carga nueva y no un regreso de carta o legal
+        if (!isDirectMenuRequest && !isReturnToCarta && !isReturnFromLegal) {
             window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
             if (window.location.hash) {
                 history.replaceState(null, null, window.location.pathname + window.location.search);
@@ -2685,17 +3199,20 @@
             const loader = document.getElementById('loader-wrapper');
             const header = document.getElementById('main-header');
 
-            // CASO A: El usuario vuelve hacia atrás desde el visor o navegación previa
-            if (sessionStorage.getItem('return_to_carta') === 'true') {
-                sessionStorage.removeItem('return_to_carta');
+            // CASO A: El usuario vuelve hacia atrás desde legal.html (Footer)
+            if (sessionStorage.getItem('return_from_legal') === 'true') {
+                sessionStorage.removeItem('return_from_legal');
                 if (loader) {
                     loader.style.opacity = '0';
                     loader.style.visibility = 'hidden';
                     loader.style.display = 'none';
                 }
-                const cartaSection = document.getElementById('carta');
-                if (cartaSection) {
-                    cartaSection.scrollIntoView({ behavior: 'instant', block: 'start' });
+                document.documentElement.classList.remove('scroll-locked');
+                document.body.classList.remove('scroll-locked');
+
+                const savedPos = sessionStorage.getItem('last_scroll_pos');
+                if (savedPos !== null) {
+                    window.scrollTo({ top: parseInt(savedPos, 10), behavior: 'instant' });
                 }
                 if (header) {
                     header.classList.remove('header-hidden');
@@ -2704,7 +3221,54 @@
                 return;
             }
 
-            // CASO B: El cliente escaneó el código QR de mesa o entró por /menu, /carta, ?menu...
+            // CASO B: El usuario vuelve hacia atrás desde el visor de carta o desde legal abierto en la carta
+            if (sessionStorage.getItem('return_to_carta') === 'true') {
+                sessionStorage.removeItem('return_to_carta');
+                if (loader) {
+                    loader.style.opacity = '0';
+                    loader.style.visibility = 'hidden';
+                    loader.style.display = 'none';
+                }
+
+                const menuScrollPos = sessionStorage.getItem('menu_scroll_pos');
+                if (menuScrollPos !== null) {
+                    sessionStorage.removeItem('menu_scroll_pos');
+                    const modal = document.getElementById('menu-viewer-modal');
+                    if (modal) {
+                        modal.classList.remove('hidden');
+                        document.documentElement.classList.add('scroll-locked');
+                        document.body.classList.add('scroll-locked');
+                        setTimeout(() => {
+                            modal.scrollTop = parseInt(menuScrollPos, 10);
+                            if (window.menuHalftoneInstance) {
+                                window.menuHalftoneInstance.layout();
+                                window.menuHalftoneInstance.wake();
+                            }
+                        }, 50);
+                    }
+                    return;
+                }
+
+                document.documentElement.classList.remove('scroll-locked');
+                document.body.classList.remove('scroll-locked');
+
+                const cartaPos = sessionStorage.getItem('carta_scroll_pos');
+                if (cartaPos !== null) {
+                    window.scrollTo({ top: parseInt(cartaPos, 10), behavior: 'instant' });
+                } else {
+                    const cartaSection = document.getElementById('carta');
+                    if (cartaSection) {
+                        cartaSection.scrollIntoView({ behavior: 'instant', block: 'start' });
+                    }
+                }
+                if (header) {
+                    header.classList.remove('header-hidden');
+                    header.classList.add('header-scrolled');
+                }
+                return;
+            }
+
+            // CASO C: El cliente escaneó el código QR de mesa o entró por /menu, /carta, ?menu...
             if (isDirectMenuRequest) {
                 if (header) {
                     header.classList.add('header-hidden');
@@ -2726,19 +3290,35 @@
                     if (modal) {
                         modal.classList.remove('hidden');
                         modal.scrollTop = 0;
-                        document.documentElement.style.overflow = 'hidden';
-                        document.body.style.overflow = 'hidden';
+                        document.documentElement.classList.add('scroll-locked');
+                        document.body.classList.add('scroll-locked');
                     }
-                }, 1100); // 1.1s mostrando la marca antes de abrir la carta interactiva en la mesa
+                    setTimeout(() => {
+                        if (window.menuHalftoneInstance) {
+                            window.menuHalftoneInstance.layout();
+                            window.menuHalftoneInstance.wake();
+                        }
+                    }, 50);
+                    setTimeout(() => {
+                        if (window.menuHalftoneInstance) {
+                            window.menuHalftoneInstance.layout();
+                            window.menuHalftoneInstance.wake();
+                        }
+                    }, 350);
+                }, 1100);
                 return;
             }
 
-            // CASO C: Carga o recarga normal de la web -> Hero principal garantizado
+            // CASO D: Carga normal de la web -> Hero principal y desbloqueo de scroll al terminar loader
             window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
             setTimeout(() => {
                 if (loader) {
                     loader.style.opacity = '0';
-                    setTimeout(() => loader.style.visibility = 'hidden', 500);
+                    setTimeout(() => {
+                        loader.style.visibility = 'hidden';
+                        document.documentElement.classList.remove('scroll-locked');
+                        document.body.classList.remove('scroll-locked');
+                    }, 500);
                 }
                 if (header && window.scrollY < 80) {
                     header.classList.remove('header-hidden');
@@ -2749,7 +3329,7 @@
                         logoWrap.classList.add('logo-slide-in');
                     }
                 }
-            }, 1800); // 1.8 segundos: ritmo premium perfecto
+            }, 1800);
         });
 
         // Logo Home Trigger Logic (Header y Footer Logos)
@@ -2795,22 +3375,29 @@
         let menuViewerLang = 'es';
 
         function openMenuViewer(updateHistory = true) {
+            // Guardar posición exacta de scroll antes de abrir para restaurarla al volver
+            sessionStorage.setItem('carta_scroll_pos', window.scrollY);
+            sessionStorage.setItem('return_to_carta', 'true');
+
             // Sincronizar con el idioma global actual de la web
             switchMenuLang(currentLang || 'es');
 
-            // 1. Iniciar mini-loading elegante con la marca Bar Luna Llena
+            // 1. Iniciar mini-loading elegante congelando el fondo de la web
             const loader = document.getElementById('loader-wrapper');
             const header = document.getElementById('main-header');
             if (header) {
                 header.classList.add('header-hidden');
             }
+            document.documentElement.classList.add('scroll-locked');
+            document.body.classList.add('scroll-locked');
+
             if (loader) {
                 loader.style.display = 'flex';
                 loader.style.visibility = 'visible';
                 loader.style.opacity = '1';
             }
 
-            // 2. Loading fluido y elegante
+            // 2. Transición fluida al visor de carta
             setTimeout(() => {
                 if (loader) {
                     loader.style.opacity = '0';
@@ -2820,14 +3407,31 @@
                     }, 300);
                 }
 
-                // 3. Abrir el Visor de Carta a pantalla completa, centrado y adaptado a móvil
+                // 3. Abrir el Visor de Carta a pantalla completa, manteniendo el fondo congelado
                 const modal = document.getElementById('menu-viewer-modal');
                 if (modal) {
                     modal.classList.remove('hidden');
                     modal.scrollTop = 0;
-                    document.documentElement.style.overflow = 'hidden';
-                    document.body.style.overflow = 'hidden';
+                    document.documentElement.classList.add('scroll-locked');
+                    document.body.classList.add('scroll-locked');
                 }
+                if (menuViewerHeaderElem) {
+                    menuViewerHeaderElem.style.transform = 'translateY(0)';
+                    lastMenuScrollPos = 0;
+                }
+
+                setTimeout(() => {
+                    if (window.menuHalftoneInstance) {
+                        window.menuHalftoneInstance.layout();
+                        window.menuHalftoneInstance.wake();
+                    }
+                }, 50);
+                setTimeout(() => {
+                    if (window.menuHalftoneInstance) {
+                        window.menuHalftoneInstance.layout();
+                        window.menuHalftoneInstance.wake();
+                    }
+                }, 350);
 
                 // Actualizar URL en el navegador a /?menu=1 sin recargar
                 if (updateHistory && !window.location.search.includes('menu')) {
@@ -2835,19 +3439,24 @@
                         window.history.pushState({ modal: 'menu' }, '', '/?menu=1');
                     } catch (e) { }
                 }
-            }, 1100);
+            }, 850);
         }
 
         function closeMenuViewer(updateHistory = true) {
             const modal = document.getElementById('menu-viewer-modal');
             if (modal) {
                 modal.classList.add('hidden');
-                document.documentElement.style.overflow = '';
-                document.body.style.overflow = '';
             }
+            // Descongelar el fondo de la web
+            document.documentElement.classList.remove('scroll-locked');
+            document.body.classList.remove('scroll-locked');
+            document.documentElement.style.overflow = '';
+            document.body.style.overflow = '';
+
             const header = document.getElementById('main-header');
             if (header) {
                 header.classList.remove('header-hidden');
+                header.classList.add('header-scrolled');
             }
 
             // Restaurar URL limpia sin parámetros de menú
@@ -2856,15 +3465,46 @@
                     window.history.pushState(null, '', '/');
                 } catch (e) { }
             }
+
+            // RESTAURAR LA POSICIÓN EXACTA: volver a donde estábamos en la carta
+            const cartaPos = sessionStorage.getItem('carta_scroll_pos');
+            if (cartaPos !== null) {
+                window.scrollTo({ top: parseInt(cartaPos, 10), behavior: 'instant' });
+            } else {
+                const cartaSection = document.getElementById('carta');
+                if (cartaSection) {
+                    cartaSection.scrollIntoView({ behavior: 'instant', block: 'start' });
+                }
+            }
+            sessionStorage.removeItem('return_to_carta');
         }
 
-        // Soporte nativo para botón 'Atrás' del móvil (cierra el modal sin salir de la web)
+        // Soporte nativo para botón 'Atrás' del móvil (cierra el modal y regresa a la sección carta)
         window.addEventListener('popstate', (e) => {
             const modal = document.getElementById('menu-viewer-modal');
             if (modal && !modal.classList.contains('hidden')) {
                 closeMenuViewer(false);
             }
         });
+
+        // Auto-Hide Inteligente de la barra superior de la carta al deslizar hacia abajo
+        const menuModalElem = document.getElementById('menu-viewer-modal');
+        const menuViewerHeaderElem = document.getElementById('menu-viewer-header');
+        let lastMenuScrollPos = 0;
+
+        if (menuModalElem && menuViewerHeaderElem) {
+            menuModalElem.addEventListener('scroll', () => {
+                const currentScroll = menuModalElem.scrollTop;
+                // Al deslizar hacia abajo más de 50px se esconde suavemente para lectura 100% limpia
+                if (currentScroll > 50 && currentScroll > lastMenuScrollPos) {
+                    menuViewerHeaderElem.style.transform = 'translateY(-100%)';
+                } else {
+                    // Al deslizar hacia arriba o volver al inicio, reaparece con fluidez
+                    menuViewerHeaderElem.style.transform = 'translateY(0)';
+                }
+                lastMenuScrollPos = currentScroll <= 0 ? 0 : currentScroll;
+            }, { passive: true });
+        }
 
         function switchMenuLang(lang) {
             menuViewerLang = lang;
@@ -2877,19 +3517,19 @@
                 if (p1) p1.src = './assets/menu-en-1.webp';
                 if (p2) p2.src = './assets/menu-en-2.webp';
                 if (btnEn) {
-                    btnEn.className = 'w-8 h-8 rounded-full border border-[#C5A059] bg-[#C5A059] text-black flex items-center justify-center text-sm shadow-md transition-all duration-300 scale-105 active:scale-95 cursor-pointer';
+                    btnEn.className = 'flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold tracking-wider transition-all duration-300 cursor-pointer bg-gradient-to-r from-[#C5A059] to-[#E5C98D] text-[#070A14] shadow-sm';
                 }
                 if (btnEs) {
-                    btnEs.className = 'w-8 h-8 rounded-full border border-white/20 bg-white/10 text-white flex items-center justify-center text-sm transition-all duration-300 active:scale-95 hover:bg-white/20 cursor-pointer';
+                    btnEs.className = 'flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold tracking-wider transition-all duration-300 cursor-pointer text-white/60 hover:text-white';
                 }
             } else {
                 if (p1) p1.src = './assets/menu-es-1.webp';
                 if (p2) p2.src = './assets/menu-es-2.webp';
                 if (btnEs) {
-                    btnEs.className = 'w-8 h-8 rounded-full border border-[#C5A059] bg-[#C5A059] text-black flex items-center justify-center text-sm shadow-md transition-all duration-300 scale-105 active:scale-95 cursor-pointer';
+                    btnEs.className = 'flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold tracking-wider transition-all duration-300 cursor-pointer bg-gradient-to-r from-[#C5A059] to-[#E5C98D] text-[#070A14] shadow-sm';
                 }
                 if (btnEn) {
-                    btnEn.className = 'w-8 h-8 rounded-full border border-white/20 bg-white/10 text-white flex items-center justify-center text-sm transition-all duration-300 active:scale-95 hover:bg-white/20 cursor-pointer';
+                    btnEn.className = 'flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold tracking-wider transition-all duration-300 cursor-pointer text-white/60 hover:text-white';
                 }
             }
 
@@ -2898,7 +3538,7 @@
             }
         }
 
-        // Botones de Ver Carta / PDF activan el nuevo Visor con Mini-Loading de 2s
+        // Botones de Ver Carta / PDF activan el nuevo Visor con Mini-Loading
         document.querySelectorAll('.pdf-link').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -2908,28 +3548,60 @@
 
         // Manejador pageshow (cuando el usuario vuelve con el botón "Atrás" en móviles/Safari/Chrome)
         window.addEventListener('pageshow', (event) => {
-            if (sessionStorage.getItem('return_to_carta') === 'true') {
-                sessionStorage.removeItem('return_to_carta');
+            const isReturnFromLegal = sessionStorage.getItem('return_from_legal') === 'true';
+            const isReturnToCarta = sessionStorage.getItem('return_to_carta') === 'true';
+
+            if (isReturnFromLegal || isReturnToCarta || event.persisted) {
                 const loader = document.getElementById('loader-wrapper');
                 if (loader) {
                     loader.style.opacity = '0';
                     loader.style.visibility = 'hidden';
                     loader.style.display = 'none';
                 }
-                const cartaSection = document.getElementById('carta');
-                if (cartaSection) {
-                    cartaSection.scrollIntoView({ behavior: 'instant', block: 'start' });
+                document.documentElement.classList.remove('scroll-locked');
+                document.body.classList.remove('scroll-locked');
+
+                if (isReturnToCarta) {
+                    sessionStorage.removeItem('return_to_carta');
+                    const menuScrollPos = sessionStorage.getItem('menu_scroll_pos');
+                    if (menuScrollPos !== null) {
+                        sessionStorage.removeItem('menu_scroll_pos');
+                        const modal = document.getElementById('menu-viewer-modal');
+                        if (modal) {
+                            modal.classList.remove('hidden');
+                            document.documentElement.classList.add('scroll-locked');
+                            document.body.classList.add('scroll-locked');
+                            setTimeout(() => {
+                                modal.scrollTop = parseInt(menuScrollPos, 10);
+                                if (window.menuHalftoneInstance) {
+                                    window.menuHalftoneInstance.layout();
+                                    window.menuHalftoneInstance.wake();
+                                }
+                            }, 50);
+                        }
+                        return;
+                    }
+
+                    const cartaPos = sessionStorage.getItem('carta_scroll_pos');
+                    if (cartaPos !== null) {
+                        window.scrollTo({ top: parseInt(cartaPos, 10), behavior: 'instant' });
+                    } else {
+                        const cartaSection = document.getElementById('carta');
+                        if (cartaSection) {
+                            cartaSection.scrollIntoView({ behavior: 'instant', block: 'start' });
+                        }
+                    }
+                } else if (isReturnFromLegal) {
+                    sessionStorage.removeItem('return_from_legal');
+                    const savedPos = sessionStorage.getItem('last_scroll_pos');
+                    if (savedPos !== null) {
+                        window.scrollTo({ top: parseInt(savedPos, 10), behavior: 'instant' });
+                    }
                 }
                 const header = document.getElementById('main-header');
                 if (header) {
                     header.classList.remove('header-hidden');
                     header.classList.add('header-scrolled');
-                }
-            } else if (event.persisted) {
-                const loader = document.getElementById('loader-wrapper');
-                if (loader) {
-                    loader.style.opacity = '0';
-                    loader.style.visibility = 'hidden';
                 }
             }
         });
@@ -3158,7 +3830,8 @@
                 'story_p2': 'Y si hay un rincón especial, es nuestra terraza. Un espacio al aire libre donde empezar el día con un café, compartir unas tapas o disfrutar de una cena mientras se vive el ambiente único de Santa Catalina.',
                 'story_p3': 'Más que un restaurante, queremos ser ese lugar al que siempre apetece volver.',
                 'story_icon_coffee': 'Café',
-                'story_icon_tapas': 'Tapas',
+                'story_icon_pet': 'Pet Friendly',
+                'story_icon_tapas': 'Pet Friendly',
                 'story_icon_terrace': 'Terraza',
                 'menu_eyebrow': 'Gastronomía',
                 'menu_title': 'Carta Digital',
@@ -3178,6 +3851,16 @@
                 'menu_close': 'Cerrar',
                 'menu_back_to_web': 'Volver a la Web',
                 'menu_download_pdf': 'Descargar PDF original',
+                'reviews_badge': '4.8 ★★★★★ · Google Maps',
+                'reviews_title': '¿Y qué opinan sobre nosotros?',
+                'reviews_card1_text': 'Un bar con alma en Santa Catalina. Los desayunos son fantásticos, el café buenísimo y los bocadillos en pan crujiente recién horneado. Además nos atendieron de maravilla con nuestra perrita en la terraza. ¡100% recomendable!',
+                'reviews_card1_sub': 'Local Guide · Reseña en Google Maps',
+                'reviews_card2_text': 'Las mejores hamburguesas caseras de la zona sin duda. La carne es 100% vacuno de verdad, jugosa y en su punto, y las patatas bravas con su salsa secreta son un espectáculo. Trato cercano, rápido y precios honestos.',
+                'reviews_card2_sub': 'Cliente verificado · Google Maps',
+                'reviews_card3_text': 'Descubrimiento total paseando por Carrer de Cotoner. Una terraza súper agradable para disfrutar del ambiente de Santa Catalina. Raciones generosas, tapas de calidad y un equipo que te hace sentir como en casa.',
+                'reviews_card3_sub': 'Reseña en Google Maps',
+                'reviews_cta': 'Ver todas las reseñas en Google Maps',
+                'reviews_write_btn': 'Escribir una reseña',
                 'contact_eyebrow': 'Visítanos & Reservas',
                 'contact_title': 'Dónde estamos / Reservar',
                 'contact_address_title': 'Dirección',
@@ -3186,10 +3869,16 @@
                 'contact_phone_title': 'Teléfono',
                 'contact_reviews_btn': 'Ver reseñas en Google',
                 'footer_slogan': 'El bar del barrio',
+                'footer_col_nav': 'Navegación',
+                'footer_col_legal': 'Legal & Pagos',
                 'footer_legal_aviso': 'Aviso Legal',
                 'footer_legal_terminos': 'Términos y Condiciones',
                 'footer_legal_privacidad': 'Privacidad',
                 'footer_legal_cookies': 'Cookies',
+                'menu_legal_aviso': 'Aviso Legal',
+                'menu_legal_terminos': 'Términos',
+                'menu_legal_privacidad': 'Privacidad',
+                'menu_allergens_notice': 'Si presenta alguna alergia o intolerancia alimentaria, por favor consulte con nuestro personal antes de realizar su pedido.',
                 'footer_cards': 'Aceptamos tarjetas',
                 'footer_tooltip_reviews': 'Reseñas',
                 'footer_tooltip_maintenance': 'Próximamente',
@@ -3244,7 +3933,8 @@
                 'story_p2': 'And if there is a special corner, it is our terrace. An outdoor space to start the day with a coffee, share some tapas or enjoy a dinner while experiencing the unique atmosphere of Santa Catalina.',
                 'story_p3': 'More than a restaurant, we want to be that place you always want to return to.',
                 'story_icon_coffee': 'Coffee',
-                'story_icon_tapas': 'Tapas',
+                'story_icon_pet': 'Pet Friendly',
+                'story_icon_tapas': 'Pet Friendly',
                 'story_icon_terrace': 'Terrace',
                 'menu_eyebrow': 'Gastronomy',
                 'menu_title': 'Digital Menu',
@@ -3264,6 +3954,16 @@
                 'menu_close': 'Close',
                 'menu_back_to_web': 'Back to Website',
                 'menu_download_pdf': 'Download original PDF',
+                'reviews_badge': '4.8 ★★★★★ · Google Maps',
+                'reviews_title': 'What do they say about us?',
+                'reviews_card1_text': 'A bar with true soul in Santa Catalina. The breakfasts are fantastic, great coffee and freshly baked crispy sandwiches. They also welcomed our dog warmly on the terrace. 100% recommended!',
+                'reviews_card1_sub': 'Local Guide · Google Maps Review',
+                'reviews_card2_text': 'The best homemade burgers in the area without a doubt. Real 100% juicy beef cooked to perfection, and the bravas with their secret sauce are incredible. Friendly, fast service and honest prices.',
+                'reviews_card2_sub': 'Verified Customer · Google Maps',
+                'reviews_card3_text': 'A great discovery strolling down Carrer de Cotoner. A lovely terrace to soak in the Santa Catalina vibe. Generous portions, quality tapas and a team that makes you feel right at home.',
+                'reviews_card3_sub': 'Google Maps Review',
+                'reviews_cta': 'View all reviews on Google Maps',
+                'reviews_write_btn': 'Write a review',
                 'contact_eyebrow': 'Visit Us & Bookings',
                 'contact_title': 'Where we are / Book',
                 'contact_address_title': 'Address',
@@ -3272,10 +3972,16 @@
                 'contact_phone_title': 'Phone',
                 'contact_reviews_btn': 'Read Google Reviews',
                 'footer_slogan': 'The neighborhood bar',
+                'footer_col_nav': 'Navigation',
+                'footer_col_legal': 'Legal & Payments',
                 'footer_legal_aviso': 'Legal Notice',
                 'footer_legal_terminos': 'Terms & Conditions',
                 'footer_legal_privacidad': 'Privacy Policy',
                 'footer_legal_cookies': 'Cookies Policy',
+                'menu_legal_aviso': 'Legal Notice',
+                'menu_legal_terminos': 'Terms',
+                'menu_legal_privacidad': 'Privacy',
+                'menu_allergens_notice': 'If you have any food allergy or intolerance, please consult with our staff before placing your order.',
                 'footer_cards': 'We accept cards',
                 'footer_tooltip_reviews': 'Reviews',
                 'footer_tooltip_maintenance': 'Coming soon',
@@ -3314,10 +4020,13 @@
             }
         };
 
-        let currentLang = 'es';
+        let currentLang = localStorage.getItem('bar_luna_lang') || 'es';
 
         function setLanguage(lang) {
             currentLang = lang;
+            try {
+                localStorage.setItem('bar_luna_lang', lang);
+            } catch (e) { }
 
             // Update active class on selector buttons
             document.querySelectorAll('[id^="lang-btn-es"]').forEach(el => {
@@ -3340,16 +4049,16 @@
                 }
             });
 
-            // Update mobile pill buttons (ES / EN)
+            // Update mobile lang buttons (ES / EN estilo minimalista)
             const pillEs = document.getElementById('lang-pill-es-mobile');
             const pillEn = document.getElementById('lang-pill-en-mobile');
             if (pillEs && pillEn) {
                 if (lang === 'es') {
-                    pillEs.className = 'lang-pill-mobile flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] transition-all duration-300 bg-[#C5A059] text-[#0B0F19] font-bold shadow-md scale-105';
-                    pillEn.className = 'lang-pill-mobile flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] transition-all duration-300 bg-white/5 border border-white/15 text-white/70 font-medium hover:bg-white/10';
+                    pillEs.className = 'cursor-pointer transition-all pb-1 border-b-2 border-[#C5A059] text-[#C5A059]';
+                    pillEn.className = 'cursor-pointer transition-all pb-1 border-b-2 border-transparent text-white/40 hover:text-white/80';
                 } else {
-                    pillEs.className = 'lang-pill-mobile flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] transition-all duration-300 bg-white/5 border border-white/15 text-white/70 font-medium hover:bg-white/10';
-                    pillEn.className = 'lang-pill-mobile flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] transition-all duration-300 bg-[#C5A059] text-[#0B0F19] font-bold shadow-md scale-105';
+                    pillEs.className = 'cursor-pointer transition-all pb-1 border-b-2 border-transparent text-white/40 hover:text-white/80';
+                    pillEn.className = 'cursor-pointer transition-all pb-1 border-b-2 border-[#C5A059] text-[#C5A059]';
                 }
             }
 
@@ -3389,6 +4098,15 @@
         }
 
         function openLegal(type) {
+            const menuModal = document.getElementById('menu-viewer-modal');
+            const isMenuOpen = menuModal && !menuModal.classList.contains('hidden');
+            if (isMenuOpen) {
+                sessionStorage.setItem('return_to_carta', 'true');
+                sessionStorage.setItem('menu_scroll_pos', menuModal.scrollTop);
+            } else {
+                sessionStorage.setItem('last_scroll_pos', window.scrollY);
+            }
+            sessionStorage.setItem('return_from_legal', 'true');
             window.location.href = 'legal.html#' + (type || 'aviso');
         }
 
@@ -3592,12 +4310,12 @@
             mobileMenuBtn.addEventListener('click', () => {
                 isMenuOpen = !isMenuOpen;
                 if (isMenuOpen) {
-                    mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+                    mobileMenu.classList.add('menu-active');
                     spans[0].style.transform = 'translateY(8px) rotate(45deg)';
                     spans[1].style.opacity = '0';
                     spans[2].style.transform = 'translateY(-8px) rotate(-45deg)';
-                    document.documentElement.classList.add('overflow-hidden');
-                    document.body.classList.add('overflow-hidden');
+                    document.documentElement.classList.add('scroll-locked', 'overflow-hidden');
+                    document.body.classList.add('scroll-locked', 'overflow-hidden');
                     document.body.style.touchAction = 'none';
                 } else {
                     closeMobileMenu();
@@ -3608,12 +4326,12 @@
         function closeMobileMenu() {
             isMenuOpen = false;
             if (mobileMenu) {
-                mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+                mobileMenu.classList.remove('menu-active');
                 spans[0].style.transform = 'none';
                 spans[1].style.opacity = '1';
                 spans[2].style.transform = 'none';
-                document.documentElement.classList.remove('overflow-hidden');
-                document.body.classList.remove('overflow-hidden');
+                document.documentElement.classList.remove('scroll-locked', 'overflow-hidden');
+                document.body.classList.remove('scroll-locked', 'overflow-hidden');
                 document.body.style.touchAction = '';
             }
         }
@@ -3868,6 +4586,22 @@
                 }
             });
 
+            // IntersectionObserver para activar la entrada escalonada (stagger) de los 3 medallones de Historia
+            const badgesGrid = document.querySelector('.story-badges-grid');
+            if (badgesGrid) {
+                const badgeObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            document.querySelectorAll('.story-badge-item').forEach(item => {
+                                item.classList.add('is-visible');
+                            });
+                            badgeObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+                badgeObserver.observe(badgesGrid);
+            }
+
             // Inicialización del Carrusel Swiper Infinito de Platos Destacados
             if (document.querySelector('.dish-swiper')) {
                 const dishSwiper = new Swiper('.dish-swiper', {
@@ -3887,6 +4621,374 @@
                         1024: {
                             spaceBetween: 28,
                         }
+                    }
+                });
+            }
+
+            // Inicialización de Carrusel Deslizable de Reseñas Reales con Autoplay Suave
+            if (document.querySelector('.reviews-swiper')) {
+                const reviewsSwiper = new Swiper('.reviews-swiper', {
+                    slidesPerView: 1.12,
+                    spaceBetween: 16,
+                    loop: true,
+                    grabCursor: true,
+                    speed: 650,
+                    autoplay: {
+                        delay: 4200,
+                        disableOnInteraction: false,
+                        pauseOnMouseEnter: true,
+                    },
+                    pagination: {
+                        el: '.reviews-swiper-pagination',
+                        clickable: true,
+                    },
+                    breakpoints: {
+                        640: {
+                            slidesPerView: 1.6,
+                            spaceBetween: 20,
+                        },
+                        768: {
+                            slidesPerView: 2.2,
+                            spaceBetween: 24,
+                        },
+                        1024: {
+                            slidesPerView: 3,
+                            spaceBetween: 28,
+                        }
+                    }
+                });
+            }
+
+            // ==========================================================================
+            // HALFTONE WORDMARK INTERACTIVE FOOTER & MENU (21st.dev Vanilla Engine)
+            // ==========================================================================
+            function hwfHex(hex) {
+                const m = /^#?([0-9a-f]{3}|[0-9a-f]{6})$/i.exec((hex || '').trim());
+                if (!m) return null;
+                const h = m[1].length === 3 ? m[1].split('').map(c => c + c).join('') : m[1];
+                return [parseInt(h.slice(0, 2), 16), parseInt(h.slice(2, 4), 16), parseInt(h.slice(4, 6), 16)];
+            }
+
+            function hwfRadius(coverage, gap) {
+                const c = coverage < 0 ? 0 : coverage > 1 ? 1 : coverage;
+                return Math.sqrt(c) * gap * 0.56;
+            }
+
+            function hwfStep(x, y, vx, vy, hx, hy, px, py, r) {
+                const dx = x - px;
+                const dy = y - py;
+                const d2 = dx * dx + dy * dy;
+                if (r > 0 && d2 < r * r) {
+                    const d = Math.sqrt(d2) + 0.001;
+                    const f = (1 - d / r) * 2.6;
+                    vx += (dx / d) * f;
+                    vy += (dy / d) * f;
+                }
+                vx = (vx + (hx - x) * 0.05) * 0.84;
+                vy = (vy + (hy - y) * 0.05) * 0.84;
+                return [x + vx, y + vy, vx, vy];
+            }
+
+            function hwfWarmth(x, y, hx, hy, span) {
+                const d = Math.hypot(x - hx, y - hy);
+                return span > 0 ? Math.min(1, d / span) : 0;
+            }
+
+            function hwfFitSize(measured, width) {
+                return measured > 0 ? (width / measured) * 100 : 0;
+            }
+
+            function createHalftoneInstance(rootId, canvasId, customConfig = {}) {
+                const root = document.getElementById(rootId);
+                const canvas = document.getElementById(canvasId);
+                if (!root || !canvas) return null;
+                const ctx = canvas.getContext('2d');
+                if (!ctx) return null;
+
+                const isSmall = window.innerWidth < 768;
+                const config = Object.assign({
+                    textPart: 'Luna llena ',
+                    moonPart: '🌛',
+                    fontFamily: '"Plus Jakarta Sans", "Outfit", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+                    fontWeight: 800,
+                    dotGap: isSmall ? 5 : 6,
+                    radius: isSmall ? 65 : 85,
+                    crop: 0.16,
+                    grain: 0.35,
+                    colors: {
+                        background: '#070A14',
+                        ink: '#F3EFE6',     // Blanco perla cálido / Crema champán para letras
+                        moon: '#FFCD2D',    // Amarillo oro radiante para la luna invertida 🌛
+                        warm: '#FF851B'     // Ámbar fuego / Oro líquido reactivo
+                    }
+                }, customConfig);
+
+                const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                let w = 0, h = 0, dpr = 1;
+                let px = -1e5, py = -1e5;
+                let raf = 0;
+                let visible = true;
+                let awake = true;
+                let ring = { x: 0, y: 0, t: -1 };
+                let dots = new Float32Array(0);
+                let count = 0;
+                let grainTile = null;
+                const ink = hwfHex(config.colors.ink) || [243, 239, 230];
+                const moonColor = hwfHex(config.colors.moon) || [255, 205, 45];
+                const warm = hwfHex(config.colors.warm) || [255, 133, 27];
+
+                const layout = () => {
+                    const rect = root.getBoundingClientRect();
+                    if (rect.width <= 10 || rect.height <= 10) return;
+                    w = Math.max(1, Math.round(rect.width));
+                    h = Math.max(1, Math.round(rect.height));
+                    dpr = Math.min(window.devicePixelRatio || 1, 2);
+                    canvas.width = Math.round(w * dpr);
+                    canvas.height = Math.round(h * dpr);
+
+                    const mask = document.createElement('canvas');
+                    mask.width = w;
+                    mask.height = h;
+                    const m = mask.getContext('2d', { willReadFrequently: true });
+                    if (!m) return;
+
+                    const emojiFallback = ', "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif';
+                    const face = config.fontWeight + ' 100px ' + config.fontFamily + emojiFallback;
+                    m.font = face;
+
+                    const wText100 = m.measureText(config.textPart).width;
+                    const wMoon100 = m.measureText(config.moonPart).width;
+                    const totalW100 = wText100 + wMoon100;
+                    const fit = hwfFitSize(totalW100, w * 0.94);
+
+                    m.font = config.fontWeight + ' ' + fit + 'px ' + config.fontFamily + emojiFallback;
+                    const wText = m.measureText(config.textPart).width;
+                    const wMoon = m.measureText(config.moonPart).width;
+                    const totalW = wText + wMoon;
+                    const box = m.measureText(config.textPart + config.moonPart);
+                    const cap = box.actualBoundingBoxAscent || fit * 0.72;
+                    const c = Math.max(0, Math.min(0.6, config.crop));
+                    const startX = (w - totalW) / 2;
+                    const moonStartX = startX + wText;
+                    const posY = h + cap * c;
+
+                    m.clearRect(0, 0, w, h);
+                    m.fillStyle = '#000000';
+                    m.textBaseline = 'alphabetic';
+                    m.fillText(config.textPart, startX, posY);
+                    m.fillText(config.moonPart, moonStartX, posY);
+
+                    const img = m.getImageData(0, 0, w, h).data;
+                    const gap = Math.max(3, config.dotGap);
+                    const cols = Math.ceil(w / gap);
+                    const rows = Math.ceil(h / gap);
+                    const tmp = [];
+
+                    for (let gy = 0; gy < rows; gy++) {
+                        for (let gx = 0; gx < cols; gx++) {
+                            let sum = 0;
+                            for (let sy = 0; sy < 3; sy++) {
+                                for (let sx = 0; sx < 3; sx++) {
+                                    const x = Math.min(w - 1, Math.floor(gx * gap + ((sx + 0.5) * gap) / 3));
+                                    const y = Math.min(h - 1, Math.floor(gy * gap + ((sy + 0.5) * gap) / 3));
+                                    sum += img[(y * w + x) * 4 + 3];
+                                }
+                            }
+                            const cov = sum / (9 * 255);
+                            if (cov < 0.06) continue;
+                            const hx = gx * gap + gap / 2;
+                            const hy = gy * gap + gap / 2;
+
+                            const isMoon = hx >= (moonStartX - gap * 0.35);
+                            const baseColor = isMoon ? moonColor : ink;
+
+                            tmp.push(hx, hy, 0, 0, hx, hy, hwfRadius(cov, gap), baseColor[0], baseColor[1], baseColor[2]);
+                        }
+                    }
+                    dots = new Float32Array(tmp);
+                    count = tmp.length / 10;
+
+                    grainTile = document.createElement('canvas');
+                    grainTile.width = 256;
+                    grainTile.height = 256;
+                    const g = grainTile.getContext('2d');
+                    if (g) {
+                        const id = g.createImageData(256, 256);
+                        for (let i = 0; i < id.data.length; i += 4) {
+                            const v = Math.random() * 255;
+                            id.data[i] = id.data[i + 1] = id.data[i + 2] = v;
+                            id.data[i + 3] = Math.random() < 0.5 ? 0 : 255;
+                        }
+                        g.putImageData(id, 0, 0);
+                    }
+                    awake = true;
+                };
+
+                const draw = (now) => {
+                    if (w <= 0 || h <= 0) return;
+                    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                    ctx.fillStyle = config.colors.background;
+                    ctx.fillRect(0, 0, w, h);
+
+                    const r = !reduced ? Math.max(0, config.radius) : 0;
+                    const ringAge = ring.t < 0 ? 1e9 : now - ring.t;
+                    const ringR = ringAge * 0.9;
+                    let moving = false;
+                    for (let i = 0; i < count; i++) {
+                        const j = i * 10;
+                        let x = dots[j];
+                        let y = dots[j + 1];
+                        let vx = dots[j + 2];
+                        let vy = dots[j + 3];
+                        const hx = dots[j + 4];
+                        const hy = dots[j + 5];
+                        const dotR = dots[j + 6];
+                        const baseR = dots[j + 7];
+                        const baseG = dots[j + 8];
+                        const baseB = dots[j + 9];
+
+                        if (!reduced) {
+                            if (ringAge < 900) {
+                                const dx = hx - ring.x;
+                                const dy = hy - ring.y;
+                                const d = Math.sqrt(dx * dx + dy * dy) + 0.001;
+                                const band = 1 - Math.min(1, Math.abs(d - ringR) / 26);
+                                if (band > 0) {
+                                    const f = band * 3.2 * (1 - ringAge / 900);
+                                    vx += (dx / d) * f;
+                                    vy += (dy / d) * f;
+                                }
+                            }
+                            const s = hwfStep(x, y, vx, vy, hx, hy, px, py, r);
+                            x = s[0];
+                            y = s[1];
+                            vx = s[2];
+                            vy = s[3];
+                            if (Math.abs(vx) + Math.abs(vy) > 0.02 || Math.abs(x - hx) + Math.abs(y - hy) > 0.05) moving = true;
+                            else {
+                                x = hx;
+                                y = hy;
+                                vx = 0;
+                                vy = 0;
+                            }
+                            dots[j] = x;
+                            dots[j + 1] = y;
+                            dots[j + 2] = vx;
+                            dots[j + 3] = vy;
+                        }
+
+                        const k = hwfWarmth(x, y, hx, hy, 28);
+                        ctx.fillStyle = k > 0.02
+                            ? 'rgb(' +
+                              Math.round(baseR + (warm[0] - baseR) * k) + ',' +
+                              Math.round(baseG + (warm[1] - baseG) * k) + ',' +
+                              Math.round(baseB + (warm[2] - baseB) * k) + ')'
+                            : 'rgb(' + baseR + ',' + baseG + ',' + baseB + ')';
+
+                        ctx.beginPath();
+                        ctx.arc(x, y, dotR, 0, 6.2832);
+                        ctx.fill();
+                    }
+
+                    if (grainTile && config.grain > 0) {
+                        ctx.globalAlpha = Math.min(1, config.grain) * 0.09;
+                        ctx.globalCompositeOperation = 'overlay';
+                        const pattern = ctx.createPattern(grainTile, 'repeat');
+                        if (pattern) {
+                            ctx.fillStyle = pattern;
+                            ctx.fillRect(0, 0, w, h);
+                        }
+                        ctx.globalAlpha = 1;
+                        ctx.globalCompositeOperation = 'source-over';
+                    }
+
+                    awake = moving || ringAge < 900 || px > -1e4;
+                };
+
+                const loop = (now) => {
+                    raf = 0;
+                    if (!visible) return;
+                    draw(now);
+                    if (awake) raf = requestAnimationFrame(loop);
+                };
+
+                const wake = () => {
+                    awake = true;
+                    if (!raf && visible) raf = requestAnimationFrame(loop);
+                };
+
+                const toLocal = (e) => {
+                    const b = canvas.getBoundingClientRect();
+                    return [e.clientX - b.left, e.clientY - b.top];
+                };
+
+                const onMove = (e) => {
+                    const p = toLocal(e);
+                    px = p[0];
+                    py = p[1];
+                    wake();
+                };
+
+                const onLeave = () => {
+                    px = -1e5;
+                    py = -1e5;
+                    wake();
+                };
+
+                const onDown = (e) => {
+                    if (reduced) return;
+                    const p = toLocal(e);
+                    ring = { x: p[0], y: p[1], t: performance.now() };
+                    wake();
+                };
+
+                layout();
+                draw(performance.now());
+                wake();
+
+                root.addEventListener('pointermove', onMove);
+                root.addEventListener('pointerleave', onLeave);
+                root.addEventListener('pointerdown', onDown);
+
+                const ro = new ResizeObserver(() => {
+                    layout();
+                    wake();
+                });
+                ro.observe(root);
+
+                const io = new IntersectionObserver((entries) => {
+                    visible = entries[0] ? entries[0].isIntersecting : true;
+                    if (visible) wake();
+                });
+                io.observe(root);
+
+                return {
+                    layout: () => { layout(); draw(performance.now()); },
+                    wake,
+                    canvas,
+                    root
+                };
+            }
+
+            // Instancia Footer Principal
+            window.footerHalftoneInstance = createHalftoneInstance('halftone-wordmark-wrapper', 'halftone-wordmark-canvas');
+
+            // Instancia Footer Carta Modal (Compacta, más junta y ajustada al pie)
+            window.menuHalftoneInstance = createHalftoneInstance('menu-halftone-wrapper', 'menu-halftone-canvas', {
+                dotGap: 4,
+                radius: 50,
+                crop: 0.16
+            });
+
+            if (document.fonts && document.fonts.ready) {
+                document.fonts.ready.then(() => {
+                    if (window.footerHalftoneInstance) {
+                        window.footerHalftoneInstance.layout();
+                        window.footerHalftoneInstance.wake();
+                    }
+                    if (window.menuHalftoneInstance) {
+                        window.menuHalftoneInstance.layout();
+                        window.menuHalftoneInstance.wake();
                     }
                 });
             }
