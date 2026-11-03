@@ -11,10 +11,8 @@
 /carta /?menu=1 302
 /carta/ /?menu=1 302
 
-# 3. Rutas directas de información legal
-/legal /legal.html 200
-/legal/ /legal.html 200
-/aviso-legal /legal.html#aviso 302
-/terminos /legal.html#terminos 302
-/privacidad /legal.html#privacidad 302
-/cookies /legal.html#cookies 302
+# 3. Rutas directas de información legal (Cloudflare sirve legal.html en /legal)
+/aviso-legal /legal#aviso 302
+/terminos /legal#terminos 302
+/privacidad /legal#privacidad 302
+/cookies /legal#cookies 302
