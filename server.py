@@ -11,6 +11,12 @@ class CloudflarePagesHandler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=DIRECTORY, **kwargs)
 
+    def translate_path(self, path):
+        clean_path = path.split('?')[0].rstrip('/')
+        if clean_path == '/legal':
+            return super().translate_path('/legal.html')
+        return super().translate_path(path)
+
     def do_GET(self):
         clean_path = self.path.split('?')[0].rstrip('/')
         
