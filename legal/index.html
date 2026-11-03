@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html class="dark scroll-smooth" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Aviso Legal y Políticas | Bar Luna Llena - Palma</title>
+    <meta name="description"
+        content="Información legal, términos y condiciones, política de privacidad y cookies de Bar Luna Llena en Santa Catalina, Palma de Mallorca." />
+    <meta name="robots" content="noindex, follow" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..700;1,400..700&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        background: "#0B0F19",
+                        secondary: "#C5A059",
+                        "surface-dim": "#070A10",
+                        "surface": "#111625"
+                    },
+                    fontFamily: {
+                        serif: ["'Playfair Display'", "serif"],
+                        sans: ["'Outfit'", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #0B0F19;
+            color: #F5F5F3;
+        }
+
+        .font-serif-title {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Pestañas limpias y elegantes */
+        .tab-btn {
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .tab-btn.active {
+            background-color: #C5A059;
+            color: #0B0F19;
+            border-color: #C5A059;
+            box-shadow: 0 4px 16px rgba(197, 160, 89, 0.28);
+        }
+
+        /* Contenido legal limpio, espaciado y tipografía nítida */
+        .legal-section-block {
+            margin-bottom: 2.25rem;
+            padding-bottom: 1.75rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .legal-section-block:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .legal-section-title {
+            font-family: 'Playfair Display', serif;
+            color: #FFFFFF;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.85rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+
+        .legal-section-title .section-num {
+            font-family: 'Outfit', sans-serif;
+            color: #C5A059;
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        .legal-content-body p {
+            margin-bottom: 1.15rem;
+            line-height: 1.85;
+            color: rgba(245, 245, 243, 0.82);
+            font-weight: 300;
+            font-size: 0.98rem;
+        }
+
+        .legal-content-body strong {
+            color: #FFFFFF;
+            font-weight: 600;
+        }
+
+        .legal-content-body ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 1.25rem;
+        }
+
+        .legal-content-body ul li {
+            position: relative;
+            padding-left: 1.35rem;
+            margin-bottom: 0.65rem;
+            line-height: 1.75;
+            color: rgba(245, 245, 243, 0.82);
+            font-weight: 300;
+            font-size: 0.98rem;
+        }
+
+        .legal-content-body ul li::before {
+            content: "•";
+            position: absolute;
+            left: 0.35rem;
+            color: #C5A059;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .legal-content-body a {
+            color: #C5A059;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            transition: opacity 0.2s;
+        }
+
+        .legal-content-body a:hover {
+            opacity: 0.8;
+        }
+
+        /* Footer Social Icons (Mismo diseño y animaciones que index.html) */
+        .wrapper {
+            display: inline-flex;
+            list-style: none;
+            height: auto;
+            width: 100%;
+            padding: 8px 0;
+            margin: 0;
+        }
+
+        .wrapper .icon {
+            position: relative;
+            background: #111625;
+            border-radius: 50%;
+            margin: 6px;
+            width: 44px;
+            height: 44px;
+            font-size: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+            color: #F5F5F3;
+            border: 1px solid rgba(197, 160, 89, 0.25);
+        }
+
+        .wrapper .icon:hover {
+            transform: translateY(-4px) scale(1.06);
+        }
+
+        .wrapper .tooltip {
+            position: absolute;
+            top: 0;
+            font-size: 10px;
+            font-weight: 600;
+            background: #C5A059;
+            color: #0B0F19;
+            padding: 4px 8px;
+            border-radius: 4px;
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.25s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .wrapper .tooltip::before {
+            position: absolute;
+            content: "";
+            height: 6px;
+            width: 6px;
+            background: #C5A059;
+            bottom: -3px;
+            left: 50%;
+            transform: translate(-50%) rotate(45deg);
+        }
+
+        .wrapper .icon:hover .tooltip {
+            top: -38px;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .wrapper .facebook:hover,
+        .wrapper .facebook:hover .tooltip,
+        .wrapper .facebook:hover .tooltip::before {
+            background: #1877f2;
+            color: #fff;
+            border-color: #1877f2;
+        }
+
+        .wrapper .google-maps:hover,
+        .wrapper .google-maps:hover .tooltip,
+        .wrapper .google-maps:hover .tooltip::before {
+            background: #34A853;
+            color: #fff;
+            border-color: #34A853;
+        }
+
+        .wrapper .instagram:hover,
+        .wrapper .instagram:hover .tooltip,
+        .wrapper .instagram:hover .tooltip::before {
+            background: #e4405f;
+            color: #fff;
+            border-color: #e4405f;
+        }
+
+        /* Ocultar barra de scroll en navegadores táctiles manteniendo scroll */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex flex-col bg-[#0B0F19] text-[#F5F5F3] antialiased selection:bg-[#C5A059] selection:text-[#0B0F19]">
+
+    <!-- Cabecera Superior Fija Minimalista -->
+    <header class="sticky top-0 z-50 bg-[#0B0F19]/95 backdrop-blur-md border-b border-white/5 py-3.5 px-5 md:px-12 transition-all">
+        <div class="max-w-5xl mx-auto flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3 group" aria-label="Volver al inicio de Bar Luna Llena">
+                <img src="/assets/NEWLOGO.jpg" alt="Logo Bar Luna Llena" class="w-9 h-9 md:w-10 md:h-10 rounded-full border border-[#C5A059]/40 object-cover shadow-sm group-hover:scale-105 transition-transform" />
+                <div class="flex flex-col">
+                    <span class="font-serif-title font-bold text-base md:text-lg tracking-wider text-white group-hover:text-[#C5A059] transition-colors leading-tight">Bar Luna Llena</span>
+                    <span class="text-[9px] md:text-[10px] tracking-[0.22em] text-[#C5A059]/80 uppercase font-medium">Santa Catalina · Palma</span>
+                </div>
+            </a>
+
+            <div class="flex items-center gap-2.5 sm:gap-4">
+                <!-- Selector de Idioma -->
+                <div class="flex items-center gap-1 bg-white/5 border border-white/10 rounded-full p-0.5 text-xs">
+                    <button onclick="setLanguage('es')" id="lang-btn-es" class="px-2.5 py-1 rounded-full font-bold bg-[#C5A059] text-[#0B0F19] transition-all">ES</button>
+                    <button onclick="setLanguage('en')" id="lang-btn-en" class="px-2.5 py-1 rounded-full text-white/60 hover:text-white transition-all">EN</button>
+                </div>
+
+                <!-- Enlace sutil para volver a la página principal -->
+                <a href="index.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/10 hover:border-[#C5A059]/50 text-white/70 hover:text-[#C5A059] transition-all text-xs font-medium tracking-wider uppercase" aria-label="Volver a la página principal">
+                    <span class="material-symbols-outlined text-[16px]">arrow_back</span>
+                    <span class="hidden sm:inline" id="header-back-text">Inicio</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido Principal: Fluido, Limpio y Sin Cajas -->
+    <main class="flex-1 max-w-4xl w-full mx-auto px-5 sm:px-8 py-10 md:py-16">
+
+        <!-- Encabezado de la página -->
+        <div class="text-center mb-10 md:mb-12">
+            <span class="text-xs uppercase tracking-[0.28em] text-[#C5A059] font-medium block mb-3" id="hero-eyebrow">Transparencia & Cumplimiento Legal</span>
+            <h1 class="font-serif-title text-3xl sm:text-4xl md:text-5xl font-semibold text-white tracking-tight mb-4" id="page-title">
+                Información Legal y Políticas
+            </h1>
+            <p class="text-white/65 text-sm md:text-base max-w-2xl mx-auto font-light leading-relaxed" id="page-subtitle">
+                Consulta los términos oficiales, aviso normativo, política de privacidad y cookies que rigen en Bar-Cafetería Luna Llena.
+            </p>
+            <div class="w-12 h-[2px] bg-[#C5A059]/60 mx-auto mt-6"></div>
+        </div>
+
+        <!-- Selector de Pestañas Horizontal y Minimalista -->
+        <nav class="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto no-scrollbar py-2 mb-10 border-b border-white/10" id="tabs-container" role="tablist" aria-label="Secciones legales">
+            <button onclick="switchTab('aviso')" id="tab-btn-aviso" role="tab" aria-selected="true"
+                class="tab-btn active shrink-0 px-4 py-2 rounded-full border border-transparent text-xs sm:text-sm font-semibold tracking-wider uppercase cursor-pointer">
+                Aviso Legal
+            </button>
+            <button onclick="switchTab('terminos')" id="tab-btn-terminos" role="tab" aria-selected="false"
+                class="tab-btn shrink-0 px-4 py-2 rounded-full border border-white/10 text-white/70 text-xs sm:text-sm font-medium tracking-wider uppercase cursor-pointer hover:border-[#C5A059]/40 hover:text-white">
+                Términos y Condiciones
+            </button>
+            <button onclick="switchTab('privacidad')" id="tab-btn-privacidad" role="tab" aria-selected="false"
+                class="tab-btn shrink-0 px-4 py-2 rounded-full border border-white/10 text-white/70 text-xs sm:text-sm font-medium tracking-wider uppercase cursor-pointer hover:border-[#C5A059]/40 hover:text-white">
+                Privacidad
+            </button>
+            <button onclick="switchTab('cookies')" id="tab-btn-cookies" role="tab" aria-selected="false"
+                class="tab-btn shrink-0 px-4 py-2 rounded-full border border-white/10 text-white/70 text-xs sm:text-sm font-medium tracking-wider uppercase cursor-pointer hover:border-[#C5A059]/40 hover:text-white">
+                Cookies
+            </button>
+        </nav>
+
+        <!-- Bloque de Lectura Editorial: Sin cajas oscuras ni marcos artificiales -->
+        <article class="w-full">
+            <div class="flex items-center gap-3 pb-6 mb-8 border-b border-white/10">
+                <span class="material-symbols-outlined text-[#C5A059] text-2xl md:text-3xl" id="content-icon">gavel</span>
+                <h2 class="font-serif-title text-2xl sm:text-3xl text-white font-medium tracking-tight" id="content-title">Aviso Legal</h2>
+            </div>
+
+            <!-- Cuerpo del texto legal inyectado limpiamente -->
+            <div id="content-body" class="legal-content-body">
+                <!-- Se inyecta dinámicamente -->
+            </div>
+        </article>
+
+    </main>
+
+    <!-- Nuevo Footer Organizado Oficial de Luna Llena -->
+    <footer class="bg-[#070A10] full-width py-14 border-t border-white/5 relative mt-16">
+        <div class="max-w-5xl mx-auto px-5 sm:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left items-start">
+                
+                <!-- Columna 1: Identidad y Redes Sociales -->
+                <div class="flex flex-col items-center md:items-start gap-4">
+                    <a href="index.html#inicio" class="block transition-transform duration-300 hover:scale-105" aria-label="Ir al inicio de Bar Luna Llena">
+                        <img src="/assets/NEWLOGO.jpg" alt="Logo Bar Luna Llena"
+                            class="w-20 h-20 md:w-24 md:h-24 rounded-full border border-[#C5A059]/30 object-cover shadow-lg"
+                            loading="lazy" width="96" height="96">
+                    </a>
+                    <div>
+                        <h3 class="font-serif-title text-lg text-white font-semibold tracking-wide">Bar Luna Llena</h3>
+                        <p class="text-xs text-[#C5A059]/80 tracking-[0.24em] uppercase mt-1 font-medium font-body-md" id="footer-slogan">
+                            El bar del barrio
+                        </p>
+                    </div>
+
+                    <!-- Redes Sociales Oficiales con Tooltips Interactivos -->
+                    <div class="mt-1">
+                        <ul class="wrapper flex flex-wrap justify-center md:justify-start">
+                            <li class="icon google-maps !m-1.5 md:!ml-0 md:!mr-2">
+                                <a href="https://maps.app.goo.gl/Wvg1TphkJxpHRdtUA?g_st=ic" target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="w-full h-full flex items-center justify-center text-inherit no-underline"
+                                    aria-label="Reseñas en Google Maps">
+                                    <span class="tooltip" id="footer-tooltip-maps">Reseñas</span>
+                                    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                        <circle cx="12" cy="10" r="3"></circle>
+                                    </svg>
+                                </a>
+                            </li>
+                            <li class="icon instagram !m-1.5 md:!mx-2">
+                                <a href="#" onclick="return false;"
+                                    class="w-full h-full flex items-center justify-center text-inherit no-underline"
+                                    aria-label="Instagram">
+                                    <span class="tooltip" id="footer-tooltip-ig">En mantenimiento</span>
+                                    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                                    </svg>
+                                </a>
+                            </li>
+                            <li class="icon facebook !m-1.5 md:!ml-2 md:!mr-0">
+                                <a href="#" onclick="return false;"
+                                    class="w-full h-full flex items-center justify-center text-inherit no-underline"
+                                    aria-label="Facebook">
+                                    <span class="tooltip" id="footer-tooltip-fb">En mantenimiento</span>
+                                    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                                    </svg>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Columna 2: Navegación Rápida a la Web Principal -->
+                <div class="flex flex-col items-center md:items-start">
+                    <h4 class="font-serif-title text-xs uppercase tracking-[0.24em] font-semibold text-[#C5A059] mb-5" id="footer-col-nav">
+                        Navegación
+                    </h4>
+                    <nav class="flex flex-col gap-2.5 items-center md:items-start w-full">
+                        <a href="index.html#inicio" id="nav-item-inicio"
+                            class="text-sm text-white/70 hover:text-[#C5A059] uppercase tracking-[0.14em] transition-colors py-1 flex items-center min-h-[32px]">Inicio</a>
+                        <a href="index.html#historia" id="nav-item-historia"
+                            class="text-sm text-white/70 hover:text-[#C5A059] uppercase tracking-[0.14em] transition-colors py-1 flex items-center min-h-[32px]">Historia</a>
+                        <a href="index.html#carta" id="nav-item-carta"
+                            class="text-sm text-white/70 hover:text-[#C5A059] uppercase tracking-[0.14em] transition-colors py-1 flex items-center min-h-[32px]">Carta</a>
+                        <a href="index.html#ubicacion" id="nav-item-ubicacion"
+                            class="text-sm text-white/70 hover:text-[#C5A059] uppercase tracking-[0.14em] transition-colors py-1 flex items-center min-h-[32px]">Dónde estamos</a>
+                        <a href="index.html#ubicacion" id="nav-item-reservar"
+                            class="text-sm text-[#C5A059] hover:text-[#C5A059]/80 uppercase tracking-[0.14em] transition-colors py-1 flex items-center min-h-[32px] font-semibold">Reservar Mesa</a>
+                    </nav>
+                </div>
+
+                <!-- Columna 3: Legal & Pagos -->
+                <div class="flex flex-col items-center md:items-start">
+                    <h4 class="font-serif-title text-xs uppercase tracking-[0.24em] font-semibold text-[#C5A059] mb-5" id="footer-col-legal">
+                        Legal & Pagos
+                    </h4>
+
+                    <div class="flex flex-col gap-2 items-center md:items-start w-full mb-6">
+                        <button onclick="switchTabAndScroll('aviso')" id="footer-link-aviso"
+                            class="text-xs text-white/60 hover:text-[#C5A059] uppercase tracking-[0.16em] transition-colors py-1 flex items-center min-h-[28px] cursor-pointer">
+                            Aviso Legal
+                        </button>
+                        <button onclick="switchTabAndScroll('terminos')" id="footer-link-terminos"
+                            class="text-xs text-white/60 hover:text-[#C5A059] uppercase tracking-[0.16em] transition-colors py-1 flex items-center min-h-[28px] cursor-pointer">
+                            Términos y Condiciones
+                        </button>
+                        <button onclick="switchTabAndScroll('privacidad')" id="footer-link-privacidad"
+                            class="text-xs text-white/60 hover:text-[#C5A059] uppercase tracking-[0.16em] transition-colors py-1 flex items-center min-h-[28px] cursor-pointer">
+                            Privacidad
+                        </button>
+                        <button onclick="switchTabAndScroll('cookies')" id="footer-link-cookies"
+                            class="text-xs text-white/60 hover:text-[#C5A059] uppercase tracking-[0.16em] transition-colors py-1 flex items-center min-h-[28px] cursor-pointer">
+                            Cookies
+                        </button>
+                    </div>
+
+                    <!-- Trust Badges (Tarjetas Aceptadas) -->
+                    <div class="flex items-center gap-3 transition-opacity duration-300 hover:opacity-100 opacity-90">
+                        <!-- Visa Logo -->
+                        <svg width="38" height="24" viewBox="0 0 38 24" fill="none" aria-label="Visa"
+                            class="shadow-md rounded-[4px] overflow-hidden shrink-0">
+                            <rect width="38" height="24" rx="4" fill="#1434CB" />
+                            <text x="19" y="17" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="10"
+                                font-weight="800" fill="#F7B600" letter-spacing="1">VISA</text>
+                        </svg>
+                        <!-- Mastercard Logo -->
+                        <svg width="38" height="24" viewBox="0 0 38 24" fill="none" aria-label="Mastercard"
+                            class="shadow-md rounded-[4px] overflow-hidden shrink-0">
+                            <rect width="38" height="24" rx="4" fill="#FFFFFF" />
+                            <circle cx="15" cy="12" r="7" fill="#EB001B" />
+                            <circle cx="23" cy="12" r="7" fill="#F79E1B" fill-opacity="0.85" />
+                        </svg>
+                        <span class="text-[10px] tracking-[0.18em] text-white/50 uppercase" id="footer-cards-text">
+                            Aceptamos tarjetas
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Fila Inferior: Copyright & MYNEXT -->
+            <div class="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+                <span class="text-[11px] tracking-[0.18em] uppercase font-light text-white/35" id="footer-copyright">
+                    © 2026 Bar Luna Llena. Todos los derechos reservados.
+                </span>
+                <span class="text-[11px] tracking-[0.18em] uppercase font-light text-white/35">
+                    <span id="footer-made-by">Desarrollado por</span> 
+                    <a href="https://mynextbymusa.com" target="_blank" rel="noopener noreferrer"
+                        class="text-[#C5A059] font-medium tracking-[0.24em] hover:opacity-100 opacity-80 transition-opacity">
+                        MYNEXT
+                    </a>
+                </span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Textos Legales Estructurados y Script de Control -->
+    <script>
+        const legalTexts = {
+            'es': {
+                'aviso': {
+                    title: 'Aviso Legal',
+                    icon: 'gavel',
+                    sections: [
+                        {
+                            num: '1',
+                            title: 'Identificación del Titular (LSSI-CE)',
+                            content: '<p>En cumplimiento del artículo 10 de la <strong>Ley 34/2002, de 11 de julio</strong>, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE), se informa a los usuarios de los datos identificativos del establecimiento responsable de este sitio web:</p>' +
+                                     '<ul>' +
+                                     '<li><strong>Denominación Comercial:</strong> Bar Luna Llena (Bar-Cafetería Luna Llena 16)</li>' +
+                                     '<li><strong>Actividad:</strong> Servicios de hostelería, cafetería, desayunos, tapas tradicionales, raciones y restauración.</li>' +
+                                     '<li><strong>Dirección del Establecimiento:</strong> Carrer de Cotoner, 16, 07013 Palma de Mallorca, Illes Balears, España.</li>' +
+                                     '<li><strong>Correo Electrónico:</strong> <a href="mailto:barlunallena16@gmail.com">barlunallena16@gmail.com</a></li>' +
+                                     '<li><strong>Teléfono de Atención y Reservas:</strong> +34 631 122 757</li>' +
+                                     '</ul>'
+                        },
+                        {
+                            num: '2',
+                            title: 'Objeto del Sitio Web',
+                            content: '<p>El presente portal web tiene por finalidad poner a disposición del público información general sobre la carta gastronómica, bebidas, ubicación, horarios de apertura y facilitar un canal de comunicación directo para solicitudes de reservas y pedidos en el establecimiento.</p>'
+                        },
+                        {
+                            num: '3',
+                            title: 'Propiedad Intelectual e Industrial',
+                            content: '<p>Todos los elementos de este sitio web —incluyendo diseño gráfico, código fuente, logotipos, textos, combinaciones cromáticas, fotografías de platos e instalaciones y estructura de navegación— son titularidad exclusiva de <strong>Bar Luna Llena</strong> o de sus legítimos licenciantes, estando amparados por la legislación española e internacional sobre derechos de autor y propiedad industrial.</p><p>Queda expresamente prohibida su reproducción, distribución o comunicación pública sin consentimiento previo y por escrito.</p>'
+                        },
+                        {
+                            num: '4',
+                            title: 'Exclusión de Responsabilidad',
+                            content: '<p>Bar Luna Llena no se responsabiliza de posibles errores de conexión, interrupciones temporales del servicio web ni del contenido de enlaces externos gestionados por terceros (como Google Maps para la geolocalización o WhatsApp para mensajería directa).</p>'
+                        },
+                        {
+                            num: '5',
+                            title: 'Respaldo Tecnológico',
+                            content: '<p>El desarrollo, mantenimiento técnico continuo y optimización de rendimiento de este sitio web están gestionados y respaldados tecnológicamente por <strong>MYNEXT</strong> (<a href="https://mynextbymusa.com" target="_blank" rel="noopener noreferrer">https://mynextbymusa.com</a>).</p>'
+                        },
+                        {
+                            num: '6',
+                            title: 'Legislación y Fuero',
+                            content: '<p>Para la resolución de cualquier controversia o conflicto derivado de la utilización de este sitio web, regirá la legislación española vigente, con sumisión a los Juzgados y Tribunales de Palma de Mallorca.</p>'
+                        }
+                    ]
+                },
+                'terminos': {
+                    title: 'Términos y Condiciones',
+                    icon: 'description',
+                    sections: [
+                        {
+                            num: '1',
+                            title: 'Condiciones de Acceso y Uso',
+                            content: '<p>El acceso a este sitio web es libre y gratuito. La utilización del portal atribuye la condición de usuario e implica la aceptación plena de los presentes Términos y Condiciones, así como de las normativas sanitarias y de convivencia vigentes en el sector de la hostelería.</p>'
+                        },
+                        {
+                            num: '2',
+                            title: 'Carta Gastronómica y Precios',
+                            content: '<p>Todos los precios expuestos en la carta digital y en la web se indican en euros (€) e incluyen el Impuesto sobre el Valor Añadido (IVA) legalmente aplicable. Los platos e ingredientes están sujetos a disponibilidad según mercado y temporada, reservándose el establecimiento el derecho a actualizar la oferta culinaria y sus precios.</p>'
+                        },
+                        {
+                            num: '3',
+                            title: 'Alérgenos e Información Alimentaria',
+                            content: '<p>En estricto cumplimiento del <strong>Reglamento (UE) Nº 1169/2011</strong> sobre la información alimentaria facilitada al consumidor, Bar Luna Llena dispone de información completa sobre los 14 alérgenos de obligada declaración.</p><p>Si padece alguna alergia, intolerancia o necesidad dietética especial, le rogamos que lo indique expresamente en su solicitud de reserva o lo consulte con nuestro personal de sala antes de realizar su consumición.</p>'
+                        },
+                        {
+                            num: '4',
+                            title: 'Solicitud de Reservas y Pedidos',
+                            content: '<p>El envío de peticiones de reserva mediante los canales web constituye una solicitud informativa sujeta a confirmación expresa por parte del equipo de Bar Luna Llena en función del aforo disponible y horario del local.</p>'
+                        },
+                        {
+                            num: '5',
+                            title: 'Pagos en el Establecimiento',
+                            content: '<p>Este sitio web no realiza cobros directos ni transacciones bancarias en línea. El importe de las consumiciones se abonará directamente en el establecimiento físico en Carrer de Cotoner 16 (Palma) mediante tarjeta de crédito/débito (Visa, Mastercard) o en efectivo.</p>'
+                        },
+                        {
+                            num: '6',
+                            title: 'Hojas Oficiales de Reclamación',
+                            content: '<p>De conformidad con la normativa de consumo de la Comunidad Autónoma de las Illes Balears, existen <strong>hojas oficiales de reclamación y denuncia</strong> a disposición de los clientes en nuestro local físico.</p>'
+                        },
+                        {
+                            num: '7',
+                            title: 'Terraza y Normas de Convivencia',
+                            content: '<p>El uso de mesas en terraza e interior está sujeto al aforo autorizado por el Ayuntamiento de Palma y al cumplimiento de las ordenanzas locales de convivencia ciudadana y descanso vecinal.</p>'
+                        }
+                    ]
+                },
+                'privacidad': {
+                    title: 'Política de Privacidad',
+                    icon: 'shield',
+                    sections: [
+                        {
+                            num: '1',
+                            title: 'Responsable del Tratamiento de Datos',
+                            content: '<p>El responsable del tratamiento de los datos recabados en este sitio web es <strong>Bar Luna Llena</strong>, con domicilio en Carrer de Cotoner, 16, 07013 Palma de Mallorca, Illes Balears. Correo de contacto: <a href="mailto:barlunallena16@gmail.com">barlunallena16@gmail.com</a>.</p>'
+                        },
+                        {
+                            num: '2',
+                            title: 'Marco Legal Aplicable',
+                            content: '<p>Los datos se tratan con arreglo al <strong>Reglamento General de Protección de Datos (RGPD UE 2016/679)</strong> y a la <strong>Ley Orgánica 3/2018 (LOPDGDD)</strong> de Protección de Datos Personales y garantía de los derechos digitales.</p>'
+                        },
+                        {
+                            num: '3',
+                            title: 'Finalidad y Datos Tratados',
+                            content: '<p>Los datos recopilados se limitan estrictamente a los fines de atención al cliente:</p>' +
+                                     '<ul>' +
+                                     '<li><strong>Gestión de Reservas y Pedidos:</strong> Solicitamos únicamente datos pertinentes (nombre, teléfono, comensales, fecha y hora) con el exclusivo fin de tramitar y confirmar la reserva de mesa.</li>' +
+                                     '<li><strong>Preferencia de Cookies:</strong> Almacenamiento local de su consentimiento de cookies para no repetir la consulta.</li>' +
+                                     '</ul>' +
+                                     '<p>En ningún caso se elaboran perfiles comerciales automatizados ni se comercializan datos personales con terceros.</p>'
+                        },
+                        {
+                            num: '4',
+                            title: 'Base Jurídica de Legitimación',
+                            content: '<p>La base de legitimación es el <strong>consentimiento voluntario y expreso</strong> del usuario (Art. 6.1.a y 6.1.b del RGPD) al ponerse en contacto para solicitar mesa o información.</p>'
+                        },
+                        {
+                            num: '5',
+                            title: 'Conservación de los Datos',
+                            content: '<p>Los datos facilitados se conservarán durante el tiempo estrictamente necesario para la atención del servicio solicitado o durante los plazos legalmente fijados para el cumplimiento de obligaciones administrativas.</p>'
+                        },
+                        {
+                            num: '6',
+                            title: 'Cesión de Datos a Terceros',
+                            content: '<p>No se comunicarán datos a terceros ajenos salvo obligación legal o cuando resulte imprescindible para la prestación técnica solicitada. La comunicación por WhatsApp se realiza bajo el protocolo cifrado de extremo a extremo de WhatsApp LLC (Meta Platforms).</p>'
+                        },
+                        {
+                            num: '7',
+                            title: 'Derechos de las Personas Usuarias',
+                            content: '<p>Usted tiene derecho a acceder a sus datos personales, solicitar la rectificación de los inexactos, solicitar su supresión cuando ya no sean necesarios, oponerse al tratamiento, limitar el mismo y solicitar su portabilidad.</p><p>Para ejercer estos derechos, puede remitir un correo a <strong>barlunallena16@gmail.com</strong> indicando en el asunto "Protección de Datos". Asimismo, puede presentar una reclamación ante la Agencia Española de Protección de Datos (AEPD) a través de <a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer">www.aepd.es</a>.</p>'
+                        }
+                    ]
+                },
+                'cookies': {
+                    title: 'Política de Cookies',
+                    icon: 'cookie',
+                    sections: [
+                        {
+                            num: '1',
+                            title: '¿Qué es una Cookie?',
+                            content: '<p>Una cookie es un pequeño archivo de texto que se descarga en su dispositivo al visitar determinadas páginas web. Permite a un sitio web, entre otras cosas, funcionar adecuadamente, recordar sus preferencias idiomáticas y optimizar la navegación.</p>'
+                        },
+                        {
+                            num: '2',
+                            title: 'Tipos de Cookies que Utiliza este Portal',
+                            content: '<ul>' +
+                                     '<li><strong>Cookies Técnicas y Estrictamente Necesarias (Exentas de Consentimiento):</strong> Imprescindibles para la operativa básica del sitio, recordar el idioma seleccionado (ES/EN) y almacenar su preferencia de consentimiento. Conforme al art. 22.2 de la LSSI-CE, no requieren consentimiento previo.</li>' +
+                                     '<li><strong>Cookies Analíticas y de Usabilidad (Sujetas a Consentimiento Opcional):</strong> Este portal integra la herramienta <strong>Microsoft Clarity</strong> con la única finalidad de medir de forma agregada, pseudónima y estadística la navegación de los usuarios, ayudándonos a corregir fallos técnicos y mejorar la ergonomía de la web. <strong>Estas cookies se encuentran bloqueadas por defecto y únicamente se activan si usted hace clic expresamente en «Aceptar».</strong></li>' +
+                                     '</ul>'
+                        },
+                        {
+                            num: '3',
+                            title: 'Gestión, Aceptación y Rechazo',
+                            content: '<p>Usted dispone de un panel flotante de cookies que le permite aceptar o rechazar con la misma facilidad y a un solo clic las cookies analíticas. Si pulsa «Rechazar», las analíticas de Clarity permanecerán totalmente desactivadas.</p>'
+                        },
+                        {
+                            num: '4',
+                            title: 'Configuración en su Navegador',
+                            content: '<p>Usted puede en cualquier momento permitir, bloquear o eliminar las cookies instaladas en su equipo mediante las opciones de configuración de su navegador web (Google Chrome, Mozilla Firefox, Apple Safari, Microsoft Edge).</p>'
+                        },
+                        {
+                            num: '5',
+                            title: 'Soporte y Supervisión Técnica',
+                            content: '<p>La implementación y auditoría de la normativa de cookies de la AEPD en este portal web se encuentra respaldada técnicamente por <strong>MYNEXT</strong>.</p>'
+                        }
+                    ]
+                }
+            },
+            'en': {
+                'aviso': {
+                    title: 'Legal Notice',
+                    icon: 'gavel',
+                    sections: [
+                        {
+                            num: '1',
+                            title: 'Identification of the Owner (LSSI-CE)',
+                            content: '<p>In compliance with Article 10 of Spanish Law 34/2002 on Information Society Services and Electronic Commerce (LSSI-CE), the identifying details of the establishment responsible for this website are provided below:</p>' +
+                                     '<ul>' +
+                                     '<li><strong>Trade Name:</strong> Bar Luna Llena (Bar-Cafetería Luna Llena 16)</li>' +
+                                     '<li><strong>Business Activity:</strong> Hospitality services, bar, café, traditional tapas, portions and dining.</li>' +
+                                     '<li><strong>Establishment Address:</strong> Carrer de Cotoner, 16, 07013 Palma de Mallorca, Balearic Islands, Spain.</li>' +
+                                     '<li><strong>Email:</strong> <a href="mailto:barlunallena16@gmail.com">barlunallena16@gmail.com</a></li>' +
+                                     '<li><strong>Customer Service & Booking Phone:</strong> +34 631 122 757</li>' +
+                                     '</ul>'
+                        },
+                        {
+                            num: '2',
+                            title: 'Website Purpose',
+                            content: '<p>This website serves an informative purpose, showcasing our digital menu, drinks, location, opening hours, and providing direct communication channels for table reservation inquiries and orders.</p>'
+                        },
+                        {
+                            num: '3',
+                            title: 'Intellectual and Industrial Property',
+                            content: '<p>All contents of this website —including graphic design, source code, logos, texts, color palettes, dish photographs, premises imagery and navigation structure— are the exclusive property of <strong>Bar Luna Llena</strong> or licensed third parties, protected by Spanish and international copyright and trademark laws.</p><p>Any reproduction, distribution or public communication without prior written consent is strictly prohibited.</p>'
+                        },
+                        {
+                            num: '4',
+                            title: 'Disclaimer of Liability',
+                            content: '<p>Bar Luna Llena is not liable for temporary service interruptions, network failures, or the contents and availability of third-party external services linked on the site (such as Google Maps for geolocation or WhatsApp for direct messaging).</p>'
+                        },
+                        {
+                            num: '5',
+                            title: 'Technological Support',
+                            content: '<p>The website architecture, continuous technical maintenance and performance optimization are developed and backed by <strong>MYNEXT</strong> (<a href="https://mynextbymusa.com" target="_blank" rel="noopener noreferrer">https://mynextbymusa.com</a>).</p>'
+                        },
+                        {
+                            num: '6',
+                            title: 'Applicable Law and Jurisdiction',
+                            content: '<p>Relations between Bar Luna Llena and users of this website shall be governed by current Spanish law, submitting to the Courts and Tribunals of Palma de Mallorca.</p>'
+                        }
+                    ]
+                },
+                'terminos': {
+                    title: 'Terms & Conditions',
+                    icon: 'description',
+                    sections: [
+                        {
+                            num: '1',
+                            title: 'Terms of Access and Use',
+                            content: '<p>Access to this website is free of charge. Browsing the website attributes the status of user and implies full acceptance of these Terms & Conditions, as well as applicable hospitality and health regulations.</p>'
+                        },
+                        {
+                            num: '2',
+                            title: 'Menu Offer and Pricing',
+                            content: '<p>All prices displayed in our digital menu and website are stated in Euros (€) including statutory Value Added Tax (VAT). Dishes and ingredients are subject to market availability and seasonal produce; the establishment reserves the right to update culinary offerings and prices accordingly.</p>'
+                        },
+                        {
+                            num: '3',
+                            title: 'Allergens and Food Safety Information',
+                            content: '<p>In strict compliance with <strong>EU Regulation No. 1169/2011</strong> on food information to consumers, Bar Luna Llena maintains complete records of the 14 mandatory declarable food allergens.</p><p>Guests with food allergies, intolerances, or specific dietary requirements are kindly requested to notify us when requesting a table or consult our staff before placing their order.</p>'
+                        },
+                        {
+                            num: '4',
+                            title: 'Booking and Order Inquiries',
+                            content: '<p>Submission of booking requests through our channels constitutes an inquiry subject to explicit confirmation of table or product availability by the Bar Luna Llena team.</p>'
+                        },
+                        {
+                            num: '5',
+                            title: 'Payment on Premises',
+                            content: '<p>This website does not process electronic payments or online checkout transactions. All food and beverage consumptions are paid directly at our physical premises at Carrer de Cotoner 16 (Palma) via credit/debit card (Visa, Mastercard) or cash in Euros.</p>'
+                        },
+                        {
+                            num: '6',
+                            title: 'Official Complaint Forms',
+                            content: '<p>Pursuant to consumer protection regulations in the Balearic Islands, <strong>official complaint and claim forms</strong> are readily available to customers at our premises.</p>'
+                        },
+                        {
+                            num: '7',
+                            title: 'Terrace and Good Neighbour Policy',
+                            content: '<p>The use of terrace and indoor tables is subject to municipal capacity permits issued by Palma City Council and compliance with local noise ordinances and neighbourhood coexistence standards.</p>'
+                        }
+                    ]
+                },
+                'privacidad': {
+                    title: 'Privacy Policy',
+                    icon: 'shield',
+                    sections: [
+                        {
+                            num: '1',
+                            title: 'Data Controller',
+                            content: '<p>The controller responsible for processing data collected via this website is <strong>Bar Luna Llena</strong>, located at Carrer de Cotoner, 16, 07013 Palma de Mallorca, Balearic Islands, Spain. Contact email: <a href="mailto:barlunallena16@gmail.com">barlunallena16@gmail.com</a>.</p>'
+                        },
+                        {
+                            num: '2',
+                            title: 'Legal Framework',
+                            content: '<p>Data is processed in strict accordance with the <strong>General Data Protection Regulation (EU GDPR 2016/679)</strong> and Spanish Organic Law 3/2018 (LOPDGDD) on the protection of personal data and digital rights.</p>'
+                        },
+                        {
+                            num: '3',
+                            title: 'Purposes and Processed Data',
+                            content: '<p>Data collected is strictly limited to customer service purposes:</p>' +
+                                     '<ul>' +
+                                     '<li><strong>Booking Management:</strong> We collect only strictly necessary data (name, phone number, guest count, date and time) solely to process and confirm your table reservation.</li>' +
+                                     '<li><strong>Cookie Preferences:</strong> Local storage of your consent choice to avoid repeated prompts.</li>' +
+                                     '</ul>' +
+                                     '<p>We never perform automated profiling or engage in the sale or commercialization of personal data.</p>'
+                        },
+                        {
+                            num: '4',
+                            title: 'Lawful Basis',
+                            content: '<p>The lawful basis for processing is the user\'s <strong>explicit consent</strong> (Art. 6.1.a & 6.1.b GDPR) provided upon getting in touch to request a table or information.</p>'
+                        },
+                        {
+                            num: '5',
+                            title: 'Data Retention',
+                            content: '<p>Information provided is retained only for the duration strictly necessary to fulfil the requested service or comply with applicable legal or administrative requirements.</p>'
+                        },
+                        {
+                            num: '6',
+                            title: 'Third-Party Disclosures',
+                            content: '<p>We do not disclose personal data to advertising networks or third parties for marketing purposes. WhatsApp messaging operates under end-to-end encrypted protocols managed by WhatsApp LLC (Meta Platforms).</p>'
+                        },
+                        {
+                            num: '7',
+                            title: 'User Rights',
+                            content: '<p>You have the right to access, rectify, delete, restrict, object to processing, and request portability of your data.</p><p>To exercise these rights, send an email to <strong>barlunallena16@gmail.com</strong> with the subject "Data Protection". You also have the right to lodge a complaint with the Spanish Data Protection Agency (AEPD) at <a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer">www.aepd.es</a>.</p>'
+                        }
+                    ]
+                },
+                'cookies': {
+                    title: 'Cookies Policy',
+                    icon: 'cookie',
+                    sections: [
+                        {
+                            num: '1',
+                            title: 'What Are Cookies?',
+                            content: '<p>A cookie is a small text file downloaded to your device when visiting websites. It enables websites to function properly, remember language choices, and enhance navigation quality.</p>'
+                        },
+                        {
+                            num: '2',
+                            title: 'Cookies Used on This Website',
+                            content: '<ul>' +
+                                     '<li><strong>Technical & Strictly Necessary Cookies (Exempt from Consent):</strong> Essential for basic site features, preserving language selection (ES/EN) and recording your privacy consent choice. Pursuant to Art. 22.2 of Spanish LSSI-CE, these do not require prior consent.</li>' +
+                                     '<li><strong>Analytical & Usability Cookies (Subject to Optional Consent):</strong> This website optionally integrates <strong>Microsoft Clarity</strong> to analyze aggregated, pseudonymous metrics and heatmaps of user interactions, assisting in identifying technical issues and improving interface ergonomics. <strong>These cookies remain blocked by default and are only executed if you explicitly click «Accept».</strong></li>' +
+                                     '</ul>'
+                        },
+                        {
+                            num: '3',
+                            title: 'Consent Management',
+                            content: '<p>You have access to a floating cookie banner allowing you to accept or decline analytical cookies with equal ease and a single click. Clicking «Reject» ensures Clarity analytics remain completely deactivated.</p>'
+                        },
+                        {
+                            num: '4',
+                            title: 'Browser Settings',
+                            content: '<p>You can allow, block, or delete cookies installed on your computer at any time via your browser settings (Google Chrome, Mozilla Firefox, Apple Safari, Microsoft Edge).</p>'
+                        },
+                        {
+                            num: '5',
+                            title: 'Technical Supervision',
+                            content: '<p>Compliance and implementation of AEPD cookie guidelines on this website are technically supported by <strong>MYNEXT</strong>.</p>'
+                        }
+                    ]
+                }
+            }
+        };
+
+        const uiStrings = {
+            'es': {
+                'hero_eyebrow': 'Transparencia & Cumplimiento Legal',
+                'page_title': 'Información Legal y Políticas',
+                'page_subtitle': 'Consulta los términos oficiales, aviso normativo, política de privacidad y cookies que rigen en Bar-Cafetería Luna Llena.',
+                'header_back': 'Inicio',
+                'tab_aviso': 'Aviso Legal',
+                'tab_terminos': 'Términos y Condiciones',
+                'tab_privacidad': 'Privacidad',
+                'tab_cookies': 'Cookies',
+                'footer_slogan': 'El bar del barrio',
+                'footer_col_nav': 'Navegación',
+                'nav_inicio': 'Inicio',
+                'nav_historia': 'Historia',
+                'nav_carta': 'Carta',
+                'nav_ubicacion': 'Dónde estamos',
+                'nav_reservar': 'Reservar Mesa',
+                'footer_col_legal': 'Legal & Pagos',
+                'footer_cards': 'Aceptamos tarjetas',
+                'footer_copyright': '© 2026 Bar Luna Llena. Todos los derechos reservados.',
+                'footer_made_by': 'Desarrollado por',
+                'tooltip_maps': 'Reseñas',
+                'tooltip_ig': 'En mantenimiento',
+                'tooltip_fb': 'En mantenimiento'
+            },
+            'en': {
+                'hero_eyebrow': 'Transparency & Compliance',
+                'page_title': 'Legal Information & Policies',
+                'page_subtitle': 'Read the official terms, regulatory notices, privacy and cookies policy governing Bar-Cafetería Luna Llena.',
+                'header_back': 'Home',
+                'tab_aviso': 'Legal Notice',
+                'tab_terminos': 'Terms & Conditions',
+                'tab_privacidad': 'Privacy',
+                'tab_cookies': 'Cookies',
+                'footer_slogan': 'The neighborhood bar',
+                'footer_col_nav': 'Navigation',
+                'nav_inicio': 'Home',
+                'nav_historia': 'Story',
+                'nav_carta': 'Menu',
+                'nav_ubicacion': 'Find us',
+                'nav_reservar': 'Book a Table',
+                'footer_col_legal': 'Legal & Payments',
+                'footer_cards': 'Cards accepted',
+                'footer_copyright': '© 2026 Bar Luna Llena. All rights reserved.',
+                'footer_made_by': 'Developed by',
+                'tooltip_maps': 'Reviews',
+                'tooltip_ig': 'Under maintenance',
+                'tooltip_fb': 'Under maintenance'
+            }
+        };
+
+        let currentLang = localStorage.getItem('bar_luna_lang') || 'es';
+        let currentTab = 'aviso';
+
+        function renderContent() {
+            const data = legalTexts[currentLang][currentTab];
+            const titleEl = document.getElementById('content-title');
+            const iconEl = document.getElementById('content-icon');
+            const bodyEl = document.getElementById('content-body');
+
+            if (data && titleEl && bodyEl) {
+                titleEl.textContent = data.title;
+                if (iconEl) iconEl.textContent = data.icon || 'gavel';
+
+                let html = '';
+                if (data.sections && data.sections.length > 0) {
+                    data.sections.forEach(sec => {
+                        html += `
+                            <section class="legal-section-block">
+                                <h3 class="legal-section-title">
+                                    <span class="section-num">${sec.num}.</span>
+                                    <span>${sec.title}</span>
+                                </h3>
+                                <div>${sec.content}</div>
+                            </section>
+                        `;
+                    });
+                }
+                bodyEl.innerHTML = html;
+            }
+        }
+
+        function switchTab(tabId) {
+            const validTabs = ['aviso', 'terminos', 'privacidad', 'cookies'];
+            currentTab = validTabs.includes(tabId) ? tabId : 'aviso';
+
+            // Actualizar estado visual de los botones de pestañas
+            validTabs.forEach(t => {
+                const btn = document.getElementById('tab-btn-' + t);
+                if (btn) {
+                    if (t === currentTab) {
+                        btn.className = 'tab-btn active shrink-0 px-4 py-2 rounded-full border border-[#C5A059] bg-[#C5A059] text-[#0B0F19] text-xs sm:text-sm font-semibold tracking-wider uppercase cursor-pointer shadow-[0_4px_16px_rgba(197,160,89,0.28)]';
+                        btn.setAttribute('aria-selected', 'true');
+                    } else {
+                        btn.className = 'tab-btn shrink-0 px-4 py-2 rounded-full border border-white/10 text-white/70 text-xs sm:text-sm font-medium tracking-wider uppercase cursor-pointer hover:border-[#C5A059]/40 hover:text-white';
+                        btn.setAttribute('aria-selected', 'false');
+                    }
+                }
+            });
+
+            renderContent();
+
+            // Sincronizar hash en la URL sin recargar
+            if (history.replaceState) {
+                history.replaceState(null, '', '#' + currentTab);
+            }
+        }
+
+        function switchTabAndScroll(tabId) {
+            switchTab(tabId);
+            const target = document.getElementById('tabs-container');
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('bar_luna_lang', lang);
+
+            const btnEs = document.getElementById('lang-btn-es');
+            const btnEn = document.getElementById('lang-btn-en');
+            if (btnEs && btnEn) {
+                if (lang === 'es') {
+                    btnEs.className = 'px-2.5 py-1 rounded-full font-bold bg-[#C5A059] text-[#0B0F19] transition-all';
+                    btnEn.className = 'px-2.5 py-1 rounded-full text-white/60 hover:text-white transition-all';
+                } else {
+                    btnEn.className = 'px-2.5 py-1 rounded-full font-bold bg-[#C5A059] text-[#0B0F19] transition-all';
+                    btnEs.className = 'px-2.5 py-1 rounded-full text-white/60 hover:text-white transition-all';
+                }
+            }
+
+            // Actualizar todos los textos de la interfaz
+            const ui = uiStrings[lang];
+            if (ui) {
+                document.getElementById('hero-eyebrow').textContent = ui.hero_eyebrow;
+                document.getElementById('page-title').textContent = ui.page_title;
+                document.getElementById('page-subtitle').textContent = ui.page_subtitle;
+                document.getElementById('header-back-text').textContent = ui.header_back;
+                document.getElementById('tab-btn-aviso').textContent = ui.tab_aviso;
+                document.getElementById('tab-btn-terminos').textContent = ui.tab_terminos;
+                document.getElementById('tab-btn-privacidad').textContent = ui.tab_privacidad;
+                document.getElementById('tab-btn-cookies').textContent = ui.tab_cookies;
+                document.getElementById('footer-slogan').textContent = ui.footer_slogan;
+                document.getElementById('footer-col-nav').textContent = ui.footer_col_nav;
+                document.getElementById('nav-item-inicio').textContent = ui.nav_inicio;
+                document.getElementById('nav-item-historia').textContent = ui.nav_historia;
+                document.getElementById('nav-item-carta').textContent = ui.nav_carta;
+                document.getElementById('nav-item-ubicacion').textContent = ui.nav_ubicacion;
+                document.getElementById('nav-item-reservar').textContent = ui.nav_reservar;
+                document.getElementById('footer-col-legal').textContent = ui.footer_col_legal;
+                document.getElementById('footer-link-aviso').textContent = ui.tab_aviso;
+                document.getElementById('footer-link-terminos').textContent = ui.tab_terminos;
+                document.getElementById('footer-link-privacidad').textContent = ui.tab_privacidad;
+                document.getElementById('footer-link-cookies').textContent = ui.tab_cookies;
+                document.getElementById('footer-cards-text').textContent = ui.footer_cards;
+                document.getElementById('footer-copyright').textContent = ui.footer_copyright;
+                document.getElementById('footer-made-by').textContent = ui.footer_made_by;
+                document.getElementById('footer-tooltip-maps').textContent = ui.tooltip_maps;
+                document.getElementById('footer-tooltip-ig').textContent = ui.tooltip_ig;
+                document.getElementById('footer-tooltip-fb').textContent = ui.tooltip_fb;
+            }
+
+            switchTab(currentTab);
+        }
+
+        // Inicializar pestaña a partir del hash (#aviso, #terminos, #privacidad, #cookies)
+        document.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash.replace('#', '').toLowerCase();
+            const valid = ['aviso', 'terminos', 'privacidad', 'cookies'];
+            const initialTab = valid.includes(hash) ? hash : 'aviso';
+            setLanguage(currentLang);
+            switchTab(initialTab);
+        });
+    </script>
+</body>
+
+</html>
