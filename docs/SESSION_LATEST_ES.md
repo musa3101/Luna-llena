@@ -1,27 +1,33 @@
-# Última Sesión - Bar Luna Llena (8 oct 2026)
+# Última Sesión - Bar Luna Llena (3 nov 2026)
 
 ## Qué se ha hecho hoy
-- **Análisis exhaustivo de Código y Tests:** Revisión de cobertura, buenas prácticas (`code-review` y `codebase-design`), estándares y arquitectura del sitio.
-- **Eliminación de código redundante:** Se removió la inclusión duplicada del script `@supabase/supabase-js@2` en `index.html`.
-- **Corrección de URLs de WhatsApp (Encoding Seguro):** Implementado `encodeURIComponent` en `sendReservation` y `sendFabOrder` para prevenir errores de codificación ante caracteres especiales, notas extensas o emojis.
-- **Cabeceras de Seguridad Cloudflare Pages (`_headers`):** Creado archivo de configuración con políticas de protección (`X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy`) y optimización de caché de recursos estáticos.
-- **Saneamiento de CI/CD Keep-Alive:** Se limpiaron los tokens expuestos como fallback en `.gitlab-ci.yml`, `.github/workflows/keep-alive.yml` y `setup.sh` para delegar exclusivamente en secretos protegidos del repositorio.
+- **Rediseño editorial completo de `legal.html`:** Eliminación de la "caja oscura" y del filtro difuso superior. El texto ahora fluye de forma limpia y legible a todo el ancho, con tipografía `Playfair Display` y `Outfit`.
+- **Eliminación del botón gigante en el footer legal:** Se quitó el botón tosco de "Volver hacia atrás" e integró el nuevo Footer Organizado oficial de Luna Llena (3 columnas con logo, redes, enlaces de navegación, sellos de Visa/Mastercard y créditos MYNEXT).
+- **Mejora visual e interacción en Reseñas:** Se eliminó el recuadro gris de las notas y se añadió una micro-interacción dinámica de conteo (1 al 5) en oro ámbar que se activa automáticamente al cambiar de tarjeta en el carrusel de reseñas.
+- **Aviso de Alérgenos en la Carta:** Integrado aviso legal de alérgenos sin iconos ni estridencias en el mini-espacio antes del footer del menú, traducido al español e inglés.
+- **Optimización WebP en Historia:** Conversión y compresión de las fotografías de la historia (`1FOTO`, `3RA_FOTO`, `4TA_FOTO`, `5TAFOTO`) a formato moderno `.webp`, logrando hasta un 68% de reducción de peso.
+- **Auditoría Integral con Playwright CLI y TestSprite:** Verificación automatizada de responsividad (100% libre de desbordamientos), cero errores de consola, cero errores de red y carga en menos de 0,7 segundos.
+- **Merge a `main` y despliegue en Cloudflare Pages:** Creación de `legal/index.html` y corrección de `_redirects` para compatibilidad nativa con Pretty URLs de Cloudflare. Todo desplegado y verificado en vivo con código 200 OK.
 
 ## Archivos modificados
 - `index.html`
-- `_headers` (Nuevo)
-- `.gitlab-ci.yml`
-- `.github/workflows/keep-alive.yml`
-- `setup.sh`
+- `legal.html`
+- `legal/index.html` (Nuevo)
+- `_redirects`
+- `.gitignore`
+- `assets/origen/*.webp` (Nuevas imágenes optimizadas)
+- `server.py`
 - `docs/SESSION_LATEST_ES.md`
 - `docs/ROADMAP.md`
 
 ## Problemas solucionados
-- Carga doble innecesaria de la librería de Supabase en el cliente.
-- Riesgo de rotura en enlaces de WhatsApp ante caracteres especiales (`&`, `#`, saltos de línea).
-- Falta de cabeceras de seguridad HTTP en Cloudflare Pages.
-- Exposición de claves anon como fallback en pipelines CI/CD.
+- Aspecto encajonado, feo y con filtro borroso en la vista de textos legales.
+- Botón enorme y desproporcionado de retorno en el pie de página legal.
+- Recuadros grises toscos en las puntuaciones de las reseñas de Google.
+- Falta de aviso oficial de alérgenos en el visor digital de la carta.
+- Bucle de redirección 308 en Cloudflare Pages al acceder a la ruta `/legal`.
+- Imágenes pesadas en JPG en el carrusel de historia.
 
 ## Qué queda pendiente
-- Configurar las variables secretas `SUPABASE_URL` y `SUPABASE_ANON_KEY` en los ajustes de GitHub Actions / GitLab CI si se desea ejecutar el keep-alive automático.
-
+- Conectar los enlaces finales de Instagram y Facebook en los footers en cuanto el cliente tenga las cuentas oficiales activas.
+- Re-indexación periódica en Google Search Console para reflejar los últimos cambios.

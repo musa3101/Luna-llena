@@ -2,21 +2,21 @@
 
 ## Tareas completadas
 - [x] Web completa en producción (Cloudflare Pages) con carrusel, carta interactiva ES/EN, reservas por WhatsApp, textos legales y Supabase.
-- [x] Optimización de imágenes, animaciones del logo, separadores Bangladesh y navegación suave.
-- [x] Auditoría de seguridad y limpieza del proyecto.
-- [x] QR físico de mesas redirigido a la carta interactiva (`_redirects`), sin reimprimir.
-- [x] Rutas `/menu` y `/carta` + botón "Atrás" del móvil en el visor de carta.
-- [x] Verificación de Google Search Console y `sitemap.xml` actualizado.
-- [x] `manifest.json`, datos estructurados `WebSite` y suite de favicons para que Google muestre "Bar Luna Llena 16".
-- [x] **Auditoría completa de SEO & Geo SEO:** Corrección canónica del sitemap, Geo meta tags (Palma / Santa Catalina), Schema `BarOrPub` enriquecido con menú, reservas y pagos, jerarquía H1 y optimización de OpenGraph.
-- [x] **Auditoría de Tests, Código y Seguridad:** Eliminación de script Supabase duplicado, sanitización y encoding RFC 3986 en WhatsApp URLs, cabeceras HTTP de seguridad (`_headers` para Cloudflare Pages) y saneamiento de secretos en workflows CI/CD.
+- [x] Optimización de imágenes a formato WebP (reducción del 68% en historia y carta).
+- [x] QR físico de mesas redirigido a la carta interactiva (`_redirects`).
+- [x] Verificación de Google Search Console, suite de favicons y `sitemap.xml` optimizado.
+- [x] Auditoría completa de SEO & Geo SEO (Santa Catalina, Palma) y Schema `BarOrPub`.
+- [x] **Rediseño editorial de textos legales (`legal.html` y `/legal`):** Lectura abierta sin cajas oscuras ni filtros, tipografía premium y nuevo footer de 3 columnas de Luna Llena.
+- [x] **Micro-interacción de reseñas:** Conteo animado de 1 a 5 en oro ámbar y eliminación de recuadros toscos.
+- [x] **Aviso de alérgenos:** Integrado en la carta digital en español e inglés sin iconos decorativos.
+- [x] **Auditoría Integral con Playwright CLI:** 100% responsive, cero errores de consola y carga ultrarrápida (< 0.7s).
+- [x] **Compatibilidad nativa con Cloudflare Pages:** Creación de directorio estático `legal/index.html` y corrección de Pretty URLs.
 
 ## Tareas en progreso
-- [ ] Procesamiento en Google de los nuevos datos estructurados, Geo tags y nombre del sitio ("Bar Luna Llena 16").
+- [ ] Conexión de perfiles oficiales de Instagram y Facebook cuando el cliente disponga de ellos.
+- [ ] Monitorización en Google Search Console del rastreo de las nuevas páginas y datos estructurados.
 
 ## Próximas mejoras prioritarias
-1. Solicitar re-indexación en Search Console con el `sitemap.xml` limpio.
-2. Borrar o rotar la API key de Google que se pegó en el chat.
-3. Conectar Search Console de forma automática (Cuenta de Servicio + archivo `.json` + script).
-4. Valorar un dominio propio (ej. `barlunallena.com`) para consolidar la presencia de marca.
-
+1. Vincular los enlaces definitivos de redes sociales en el footer de la web y de la página legal.
+2. Considerar la adquisición de un dominio personalizado (ej. `barlunallena.com` o `.es`).
+3. Compilar el CSS con Tailwind CLI para la versión de producción si se quiere prescindir de la CDN.
