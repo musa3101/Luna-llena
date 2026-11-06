@@ -27,4 +27,4 @@
 - Disparadores y selectores de carrusel huérfanos.
 
 ## Qué queda pendiente
-- Revisar en vivo en `https://barlunallena.pages.dev` una vez desplegado por Cloudflare Pages.
+- Ninguno. Web revisada y confirmada en producción por el usuario.
