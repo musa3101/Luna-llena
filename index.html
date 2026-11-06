@@ -2891,7 +2891,7 @@
                     <nav class="flex flex-col gap-2.5 items-center md:items-start w-full">
                         <a href="#inicio" data-i18n="nav_inicio"
                             class="font-body-md text-sm text-white/70 hover:text-secondary uppercase tracking-[0.14em] transition-colors py-1 flex items-center min-h-[36px]">Inicio</a>
-                        <a href="#historia" data-i18n="nav_historia"
+                        <a href="#origen" data-i18n="nav_historia"
                             class="font-body-md text-sm text-white/70 hover:text-secondary uppercase tracking-[0.14em] transition-colors py-1 flex items-center min-h-[36px]">Historia</a>
                         <a href="#carta" data-i18n="nav_carta"
                             class="font-body-md text-sm text-white/70 hover:text-secondary uppercase tracking-[0.14em] transition-colors py-1 flex items-center min-h-[36px]">Carta</a>
@@ -2961,95 +2961,6 @@
     <!-- Halftone Wordmark Interactive Animation (Bar Luna Llena) -->
     <div id="halftone-wordmark-wrapper" class="w-full relative overflow-hidden select-none bg-[#070A14] border-t border-white/5 cursor-crosshair" style="height: clamp(180px, 26vw, 340px); touch-action: pan-y;" title="Interactúa con el cursor o toca para crear ondas">
         <canvas id="halftone-wordmark-canvas" class="absolute inset-0 w-full h-full block" aria-label="Luna llena 🌛"></canvas>
-    </div>
-
-    <!-- FAB Modal -->
-    <div id="fab-modal"
-        class="fixed inset-0 bg-black/80 backdrop-blur-md z-[110] flex items-end md:items-center justify-center hidden opacity-0 transition-opacity duration-300">
-        <div id="fab-modal-content"
-            class="bg-[#111625] border border-[#C5A059]/25 rounded-t-2xl md:rounded-2xl w-full md:max-w-sm p-7 relative shadow-2xl scale-95 transition-transform duration-300">
-            <button onclick="closeFabModal()"
-                class="absolute top-4 right-4 p-2 text-white/40 hover:text-[#C5A059] transition-colors"
-                aria-label="Cerrar">
-                <span class="material-symbols-outlined text-2xl">close</span>
-            </button>
-            <!-- Paso 1: Selección -->
-            <div id="fab-step-selection">
-                <p class="eyebrow mb-2">Bar Luna Llena</p>
-                <h3 data-i18n="fab_step1_title"
-                    class="font-title-md text-xl md:text-2xl text-white font-semibold mb-6 tracking-tight text-balance">
-                    ¿Qué necesitas?</h3>
-                <div class="flex flex-col gap-3">
-                    <button onclick="selectReservationFromFab()"
-                        class="w-full flex items-center gap-3 bg-white/5 hover:bg-[#C5A059]/10 border border-white/10 hover:border-[#C5A059]/40 rounded-xl px-5 py-4 text-white text-left transition-all duration-200">
-                        <span class="material-symbols-outlined text-[#C5A059] text-xl">event_seat</span>
-                        <div>
-                            <p data-i18n="fab_step1_btn1_title" class="font-semibold text-sm">Reservar Mesa</p>
-                            <p data-i18n="fab_step1_btn1_desc" class="text-white/50 text-xs">Elige fecha, hora y
-                                personas</p>
-                        </div>
-                    </button>
-                    <button onclick="goToOrderStep()"
-                        class="w-full flex items-center gap-3 bg-white/5 hover:bg-[#C5A059]/10 border border-white/10 hover:border-[#C5A059]/40 rounded-xl px-5 py-4 text-white text-left transition-all duration-200">
-                        <span class="material-symbols-outlined text-[#C5A059] text-xl">shopping_bag</span>
-                        <div>
-                            <p data-i18n="fab_step1_btn2_title" class="font-semibold text-sm">Hacer un Pedido</p>
-                            <p data-i18n="fab_step1_btn2_desc" class="text-white/50 text-xs">Pídelo directamente por
-                                WhatsApp</p>
-                        </div>
-                    </button>
-                </div>
-            </div>
-            <!-- Paso 2: Pedido -->
-            <div id="fab-step-order" class="hidden">
-                <button onclick="goToSelectionStep()"
-                    class="flex items-center gap-1 text-white/50 hover:text-white text-xs mb-4 transition-colors">
-                    <span class="material-symbols-outlined text-base">arrow_back</span> <span
-                        data-i18n="fab_step2_back">Volver</span>
-                </button>
-                <h3 data-i18n="fab_step2_title"
-                    class="font-title-md text-xl md:text-2xl text-white font-semibold mb-5 tracking-tight text-balance">
-                    Tu Pedido</h3>
-                <form onsubmit="sendFabOrder(event)" class="space-y-3">
-                    <input id="order-nombre" data-i18n-placeholder="fab_step2_placeholder_name" type="text"
-                        placeholder="Nombre *" required
-                        class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-[#C5A059] transition-colors placeholder:text-white/30">
-                    <input id="order-apellidos" data-i18n-placeholder="fab_step2_placeholder_surname" type="text"
-                        placeholder="Apellidos"
-                        class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-[#C5A059] transition-colors placeholder:text-white/30">
-                    <input id="order-telefono" data-i18n-placeholder="fab_step2_placeholder_phone" type="tel"
-                        placeholder="Teléfono *" required
-                        class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-[#C5A059] transition-colors placeholder:text-white/30">
-                    <div class="bg-white/5 border border-white/10 rounded-lg p-4">
-                        <p data-i18n="fab_step2_checkbox_title"
-                            class="text-[10px] uppercase tracking-widest text-white/40 mb-3">¿Qué te apetece?</p>
-                        <div class="grid grid-cols-2 gap-2">
-                            <label class="flex items-center gap-2 text-xs text-white/80 cursor-pointer"><input
-                                    type="checkbox" name="order-cat" value="Tapas" class="accent-[#C5A059]"> <span
-                                    data-i18n="fab_step2_cat_tapas">Tapas</span></label>
-                            <label class="flex items-center gap-2 text-xs text-white/80 cursor-pointer"><input
-                                    type="checkbox" name="order-cat" value="Hamburguesas" class="accent-[#C5A059]">
-                                <span data-i18n="fab_step2_cat_burgers">Burgers</span></label>
-                            <label class="flex items-center gap-2 text-xs text-white/80 cursor-pointer"><input
-                                    type="checkbox" name="order-cat" value="Raciones" class="accent-[#C5A059]"> <span
-                                    data-i18n="fab_step2_cat_portions">Raciones</span></label>
-                            <label class="flex items-center gap-2 text-xs text-white/80 cursor-pointer"><input
-                                    type="checkbox" name="order-cat" value="Bebidas" class="accent-[#C5A059]"> <span
-                                    data-i18n="fab_step2_cat_drinks">Bebidas</span></label>
-                        </div>
-                    </div>
-                    <textarea id="order-notas" data-i18n-placeholder="fab_step2_placeholder_notes" rows="2"
-                        placeholder="Detalles del pedido..."
-                        class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-[#C5A059] transition-colors resize-none placeholder:text-white/30"></textarea>
-                    <div class="glowing-btn-container theme-gold w-full" style="display:block;">
-                        <button type="submit" class="glowing-btn w-full" style="font-size:12px;">
-                            <span class="material-symbols-outlined text-sm">send</span> <span
-                                data-i18n="fab_step2_submit">Enviar por WhatsApp</span>
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
     </div>
 
     <!-- Modal Visor de Carta Responsive & Multi-idioma (Dark Luxury / Inmersivo y Limpio) -->
@@ -3674,143 +3585,6 @@
                 console.warn('Error registrando rechazo de cookies en Supabase:', e);
             }
         });
-    </script>
-
-    <script>
-        // ---- FAB Modal ----
-        function openFabModal() {
-            const modal = document.getElementById('fab-modal');
-            const content = document.getElementById('fab-modal-content');
-            goToSelectionStep();
-            modal.classList.remove('hidden');
-            setTimeout(() => {
-                modal.classList.remove('opacity-0');
-                content.classList.remove('scale-95');
-                content.classList.add('scale-100');
-            }, 10);
-            document.body.style.overflow = 'hidden';
-        }
-        function closeFabModal() {
-            const modal = document.getElementById('fab-modal');
-            const content = document.getElementById('fab-modal-content');
-            modal.classList.add('opacity-0');
-            content.classList.remove('scale-100');
-            content.classList.add('scale-95');
-            setTimeout(() => { modal.classList.add('hidden'); document.body.style.overflow = 'auto'; }, 300);
-        }
-        function goToSelectionStep() {
-            document.getElementById('fab-step-selection').classList.remove('hidden');
-            document.getElementById('fab-step-order').classList.add('hidden');
-        }
-        function goToOrderStep() {
-            document.getElementById('fab-step-selection').classList.add('hidden');
-            document.getElementById('fab-step-order').classList.remove('hidden');
-        }
-        function selectReservationFromFab() {
-            closeFabModal();
-            setTimeout(() => openReservation(), 350);
-        }
-        function sendFabOrder(e) {
-            e.preventDefault();
-            const nombre = document.getElementById('order-nombre').value;
-            const apellidos = document.getElementById('order-apellidos').value;
-            const telefono = document.getElementById('order-telefono').value;
-            const notas = document.getElementById('order-notas').value;
-            const cats = [...document.querySelectorAll('input[name="order-cat"]:checked')].map(c => c.value);
-            if (cats.length === 0) {
-                alert(currentLang === 'en' ? 'Please select at least one category.' : 'Por favor, selecciona al menos una categoría.');
-                return;
-            }
-
-            // Guardar copia del pedido en Supabase
-            try {
-                const sb = getSupabase();
-                if (sb) {
-                    sb.from('orders').insert({
-                        name: nombre,
-                        surname: apellidos || null,
-                        phone: telefono,
-                        categories: cats,
-                        notes: notas || null
-                    }).then(() => console.log('Pedido registrado en Supabase'));
-                }
-            } catch (err) {
-                console.warn('Error registrando pedido en Supabase:', err);
-            }
-
-            const isEn = (currentLang === 'en');
-            let msg = isEn ? "Hello Bar Luna Llena 🌙! I would like to place an order:\n\n" : "Hola Bar Luna Llena 🌙! Quiero hacer un pedido:\n\n";
-            msg += `${isEn ? '👤 Name:' : '👤 Nombre:'} ${nombre} ${apellidos}\n`;
-            msg += `${isEn ? '📞 Phone:' : '📞 Teléfono:'} ${telefono}\n`;
-            msg += `${isEn ? '🍔 Categories:' : '🍔 Categorías:'} ${cats.join(', ')}\n`;
-            if (notas.trim()) msg += `${isEn ? '📝 Details:' : '📝 Detalles:'} ${notas}\n`;
-            window.open(`https://wa.me/34631122757?text=${encodeURIComponent(msg)}`, '_blank');
-            closeFabModal();
-        }
-        // Cerrar al hacer clic fuera del modal
-        document.getElementById('fab-modal').addEventListener('click', function (e) {
-            if (e.target === this) closeFabModal();
-        });
-    </script>
-
-
-    <!-- Modal Legal -->
-    <div id="legal-modal"
-        class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
-        <div
-            class="bg-[#0B0F19] border border-[#C5A059]/20 rounded-xl p-8 md:p-10 max-w-2xl w-[90%] max-h-[80dvh] overflow-y-auto relative shadow-2xl">
-            <button onclick="closeLegal()"
-                class="absolute top-4 right-4 text-white/50 hover:text-[#C5A059] transition-colors">
-                <span class="material-symbols-outlined text-3xl">close</span>
-            </button>
-            <h3 id="legal-title"
-                class="font-title-md text-2xl md:text-3xl text-[#C5A059] mb-6 tracking-tight font-semibold text-balance">
-            </h3>
-            <div id="legal-content" class="font-body-md text-white/80 text-[15px] space-y-4 leading-relaxed font-light">
-            </div>
-        </div>
-    </div>
-
-    <script>
-        const legalTexts = {
-            'es': {
-                'aviso': {
-                    title: 'Aviso Legal',
-                    text: '<p><strong>1. Identificación del Titular (LSSI-CE):</strong><br>En cumplimiento del artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE), se informa a los usuarios de los datos identificativos del establecimiento responsable de este sitio web:<br>- <strong>Denominación Comercial:</strong> Bar Luna Llena (Bar-Cafetería Luna Llena 16)<br>- <strong>Actividad:</strong> Servicios de hostelería, cafetería, tapas, raciones y restauración.<br>- <strong>Dirección del Establecimiento:</strong> Carrer de Cotoner, 16, 07013 Palma de Mallorca, Illes Balears, España.<br>- <strong>Correo Electrónico:</strong> barlunallena16@gmail.com<br>- <strong>Teléfono de Atención y Reservas:</strong> +34 631 122 757</p><p><strong>2. Objeto del Sitio Web:</strong><br>El presente portal web tiene por finalidad poner a disposición del público información general sobre la carta gastronómica, bebidas, ubicación, horarios de apertura y facilitar un canal de comunicación directo para solicitudes de reservas y pedidos en el establecimiento.</p><p><strong>3. Propiedad Intelectual e Industrial:</strong><br>Todos los elementos de este sitio web —incluyendo diseño gráfico, código fuente, logotipos, textos, combinaciones cromáticas, fotografías de platos e instalaciones y estructura de navegación— son titularidad exclusiva de <strong>Bar Luna Llena</strong> o de sus legítimos licenciantes, estando amparados por la legislación española e internacional sobre derechos de autor y propiedad industrial. Queda expresamente prohibida su reproducción, distribución o comunicación pública sin consentimiento previo y por escrito.</p><p><strong>4. Exclusión de Responsabilidad:</strong><br>Bar Luna Llena no se responsabiliza de los posibles errores de conexión, interrupciones temporales del servicio web ni del contenido de enlaces externos gestionados por terceros (como Google Maps para la geolocalización o WhatsApp para mensajería).</p><p><strong>5. Respaldo Tecnológico:</strong><br>El desarrollo, mantenimiento técnico continuo y optimización de rendimiento de este sitio web están gestionados y respaldados tecnológicamente por <strong>MYNEXT</strong> (https://mynextbymusa.com).</p><p><strong>6. Legislación y Fuero:</strong><br>Para la resolución de cualquier controversia o conflicto derivado de la utilización de este sitio web, regirá la legislación española vigente, con sumisión a los Juzgados y Tribunales de Palma de Mallorca.</p>'
-                },
-                'terminos': {
-                    title: 'Términos y Condiciones',
-                    text: '<p><strong>1. Condiciones de Acceso y Uso:</strong><br>El acceso a este sitio web es libre y gratuito. La utilización del portal atribuye la condición de usuario e implica la aceptación plena de los presentes Términos y Condiciones, así como de las normativas sanitarias y de convivencia vigentes en el sector de la hostelería.</p><p><strong>2. Carta Gastronómica y Precios:</strong><br>Todos los precios expuestos en la carta digital y en la web se indican en euros (€) e incluyen el Impuesto sobre el Valor Añadido (IVA) legalmente aplicable. Los platos e ingredientes están sujetos a disponibilidad según mercado y temporada, reservándose el establecimiento el derecho a actualizar la oferta culinaria y sus precios.</p><p><strong>3. Alérgenos e Información Alimentaria:</strong><br>En estricto cumplimiento del <strong>Reglamento (UE) Nº 1169/2011</strong> sobre la información alimentaria facilitada al consumidor, Bar Luna Llena dispone de información completa sobre los 14 alérgenos de obligada declaración. Si padece alguna alergia, intolerancia o necesidad dietética especial, le rogamos que lo indique expresamente en el formulario de reserva o lo consulte con nuestro personal de sala antes de realizar su consumición.</p><p><strong>4. Solicitud de Reservas y Pedidos:</strong><br>El envío de peticiones de reserva o pedidos mediante los formularios web o botones directos de WhatsApp constituye una solicitud informativa sujeta a confirmación expresa por parte del equipo de Bar Luna Llena en función del aforo disponible y horario del local.</p><p><strong>5. Pagos en el Establecimiento:</strong><br>Este sitio web no realiza cobros directos ni transacciones electrónicas bancarias. El importe de las consumiciones se abonará directamente en el establecimiento físico en Carrer de Cotoner 16 (Palma) mediante tarjeta de crédito/débito (Visa, Mastercard) o en efectivo.</p><p><strong>6. Hojas Oficiales de Reclamación:</strong><br>De conformidad con la normativa de consumo de la Comunidad Autónoma de las Illes Balears, existen <strong>hojas oficiales de reclamación y denuncia</strong> a disposición de los clientes en nuestro local físico.</p><p><strong>7. Terraza y Normas de Convivencia:</strong><br>El uso de mesas en terraza e interior está sujeto al aforo autorizado por el Ayuntamiento de Palma y al cumplimiento de las ordenanzas locales de convivencia ciudadana y descanso vecinal.</p>'
-                },
-                'privacidad': {
-                    title: 'Política de Privacidad',
-                    text: '<p><strong>1. Responsable del Tratamiento de Datos:</strong><br>El responsable del tratamiento de los datos recabados en este sitio web es <strong>Bar Luna Llena</strong>, con domicilio en Carrer de Cotoner, 16, 07013 Palma de Mallorca, Illes Balears. Correo de contacto: barlunallena16@gmail.com.</p><p><strong>2. Marco Legal Aplicable:</strong><br>Los datos se tratan con arreglo al <strong>Reglamento General de Protección de Datos (RGPD UE 2016/679)</strong> y a la <strong>Ley Orgánica 3/2018 (LOPDGDD)</strong> de Protección de Datos Personales y garantía de los derechos digitales.</p><p><strong>3. Finalidad y Datos Tratados:</strong><br>- <strong>Gestión de Reservas y Pedidos:</strong> Se solicitan únicamente datos pertinentes (nombre, apellidos, teléfono, comensales, fecha, hora y posibles alergias alimentarias) con el exclusivo fin de tramitar, gestionar y confirmar la reserva de mesa o el encargo.<br>- <strong>Auditoría de Consentimiento de Cookies:</strong> Almacenamiento anónimo de identificador aleatorio de sesión para recordar sus preferencias legales de cookies.<br>En ningún caso se elaboran perfiles comerciales automatizados ni se comercializan datos personales.</p><p><strong>4. Base Jurídica de Legitimación:</strong><br>La base de legitimación es el <strong>consentimiento voluntario y expreso</strong> del usuario (Art. 6.1.a y 6.1.b del RGPD) al cumplimentar y enviar los formularios de contacto o interactuar con el panel de cookies.</p><p><strong>5. Conservación de los Datos:</strong><br>Los datos facilitados se conservarán durante el tiempo estrictamente necesario para la atención del servicio solicitado o durante los plazos legalmente fijados para el cumplimiento de obligaciones tributarias o administrativas.</p><p><strong>6. Cesión de Datos a Terceros:</strong><br>No se comunicarán datos a terceros ajenos salvo obligación legal o cuando resulte imprescindible para la prestación técnica solicitada. La comunicación por WhatsApp se realiza bajo el protocolo cifrado de extremo a extremo de WhatsApp LLC (Meta Platforms). El almacenamiento técnico de soporte de la web está ubicado en servidores seguros dentro del territorio de la Unión Europea.</p><p><strong>7. Derechos de las Personas Usuarias:</strong><br>Usted tiene derecho a acceder a sus datos personales, solicitar la rectificación de los inexactos, solicitar su supresión cuando ya no sean necesarios, oponerse al tratamiento, limitar el mismo y solicitar su portabilidad. Para ejercer estos derechos, puede remitir un correo a <strong>barlunallena16@gmail.com</strong> indicando en el asunto "Protección de Datos". Asimismo, puede presentar una reclamación ante la Agencia Española de Protección de Datos (AEPD) a través de www.aepd.es.</p>'
-                },
-                'cookies': {
-                    title: 'Política de Cookies',
-                    text: '<p><strong>1. ¿Qué es una Cookie?:</strong><br>Una cookie es un pequeño archivo de texto que se descarga en su dispositivo al visitar determinadas páginas web. Permite a un sitio web, entre otras cosas, funcionar adecuadamente, recordar sus preferencias idiomáticas y optimizar la navegación.</p><p><strong>2. Tipos de Cookies que Utiliza este Portal:</strong><br>- <strong>Cookies Técnicas y Estrictamente Necesarias (Exentas de Consentimiento):</strong> Imprescindibles para la operativa básica del sitio, recordar el idioma seleccionado (ES/EN), el estado del reproductor multimedia y almacenar si ha aceptado o rechazado las cookies (clave <em>cookies_consent</em>). Conforme al art. 22.2 de la LSSI-CE, no requieren consentimiento previo.<br>- <strong>Cookies Analíticas y de Usabilidad (Sujetas a Consentimiento Opcional):</strong> Este portal integra la herramienta <strong>Microsoft Clarity</strong> con la única finalidad de medir de forma agregada, pseudónima y estadística la navegación y mapas de interacción de los usuarios, ayudándonos a corregir fallos técnicos y mejorar la ergonomía de la web. <strong>Estas cookies se encuentran bloqueadas por defecto y únicamente se activan si usted hace clic expresamente en «Aceptar»</strong> en el aviso de privacidad.</p><p><strong>3. Gestión, Aceptación y Rechazo:</strong><br>Usted dispone de un panel flotante de cookies que le permite aceptar o rechazar con la misma facilidad y a un solo clic las cookies analíticas. Si pulsa «Rechazar», las analíticas de Clarity permanecerán totalmente desactivadas.</p><p><strong>4. Configuración en su Navegador:</strong><br>Usted puede en cualquier momento permitir, bloquear o eliminar las cookies instaladas en su equipo mediante las opciones de configuración de su navegador web (Google Chrome, Mozilla Firefox, Apple Safari, Microsoft Edge).</p><p><strong>5. Soporte y Supervisión Técnica:</strong><br>La implementación y auditoría de la normativa de cookies de la AEPD en este portal web se encuentra respaldada técnicamente por <strong>MYNEXT</strong>.</p>'
-                }
-            },
-            'en': {
-                'aviso': {
-                    title: 'Legal Notice',
-                    text: '<p><strong>1. Identification of the Owner (LSSI-CE):</strong><br>In compliance with Article 10 of Spanish Law 34/2002 on Information Society Services and Electronic Commerce (LSSI-CE), the identifying details of the establishment responsible for this website are provided below:<br>- <strong>Trade Name:</strong> Bar Luna Llena (Bar-Cafetería Luna Llena 16)<br>- <strong>Business Activity:</strong> Hospitality services, bar, café, traditional tapas, portions and dining.<br>- <strong>Establishment Address:</strong> Carrer de Cotoner, 16, 07013 Palma de Mallorca, Balearic Islands, Spain.<br>- <strong>Email:</strong> barlunallena16@gmail.com<br>- <strong>Customer Service & Booking Phone:</strong> +34 631 122 757</p><p><strong>2. Website Purpose:</strong><br>This website serves an informative purpose, showcasing our digital menu, drinks, location, opening hours, and providing direct communication channels for table reservation inquiries and orders.</p><p><strong>3. Intellectual and Industrial Property:</strong><br>All contents of this website —including graphic design, source code, logos, texts, color palettes, dish photographs, premises imagery and navigation structure— are the exclusive property of <strong>Bar Luna Llena</strong> or licensed third parties, protected by Spanish and international copyright and trademark laws. Any reproduction, distribution or public communication without prior written consent is strictly prohibited.</p><p><strong>4. Disclaimer of Liability:</strong><br>Bar Luna Llena is not liable for temporary service interruptions, network failures, or the contents and availability of third-party external services linked on the site (such as Google Maps for geolocation or WhatsApp for direct messaging).</p><p><strong>5. Technological Support:</strong><br>The website architecture, continuous technical maintenance and performance optimization are developed and backed by <strong>MYNEXT</strong> (https://mynextbymusa.com).</p><p><strong>6. Applicable Law and Jurisdiction:</strong><br>Relations between Bar Luna Llena and users of this website shall be governed by current Spanish law, submitting to the Courts and Tribunals of Palma de Mallorca.</p>'
-                },
-                'terminos': {
-                    title: 'Terms & Conditions',
-                    text: '<p><strong>1. Terms of Access and Use:</strong><br>Access to this website is free of charge. Browsing the website attributes the status of user and implies full acceptance of these Terms & Conditions, as well as applicable hospitality and health regulations.</p><p><strong>2. Menu Offer and Pricing:</strong><br>All prices displayed in our digital menu and website are stated in Euros (€) including statutory Value Added Tax (VAT). Dishes and ingredients are subject to market availability and seasonal produce; the establishment reserves the right to update culinary offerings and prices accordingly.</p><p><strong>3. Allergens and Food Safety Information:</strong><br>In strict compliance with <strong>EU Regulation No. 1169/2011</strong> on food information to consumers, Bar Luna Llena maintains complete records of the 14 mandatory declarable food allergens. Guests with food allergies, intolerances, or specific dietary requirements are kindly requested to notify us via the booking form or consult our staff before placing their order.</p><p><strong>4. Booking and Order Inquiries:</strong><br>Submission of booking requests or orders through our website forms or direct WhatsApp links constitutes an inquiry subject to explicit confirmation of table or product availability by the Bar Luna Llena team.</p><p><strong>5. Payment on Premises:</strong><br>This website does not process electronic payments or online checkout transactions. All food and beverage consumptions are paid directly at our physical premises at Carrer de Cotoner 16 (Palma) via credit/debit card (Visa, Mastercard) or cash in Euros.</p><p><strong>6. Official Complaint Forms:</strong><br>Pursuant to consumer protection regulations in the Balearic Islands, <strong>official complaint and claim forms</strong> are readily available to customers at our premises.</p><p><strong>7. Terrace and Good Neighbour Policy:</strong><br>The use of terrace and indoor tables is subject to municipal capacity permits issued by Palma City Council and compliance with local noise ordinances and neighbourhood coexistence standards.</p>'
-                },
-                'privacidad': {
-                    title: 'Privacy Policy',
-                    text: '<p><strong>1. Data Controller:</strong><br>The controller responsible for processing data collected via this website is <strong>Bar Luna Llena</strong>, located at Carrer de Cotoner, 16, 07013 Palma de Mallorca, Balearic Islands, Spain. Contact email: barlunallena16@gmail.com.</p><p><strong>2. Legal Framework:</strong><br>Data is processed in strict accordance with the <strong>General Data Protection Regulation (EU GDPR 2016/679)</strong> and Spanish Organic Law 3/2018 (LOPDGDD) on the protection of personal data and digital rights.</p><p><strong>3. Purposes and Processed Data:</strong><br>- <strong>Booking & Order Management:</strong> We collect only strictly necessary data (first name, last name, phone number, guest count, date, time and voluntary food allergy notes) solely to process and confirm your table reservation or order.<br>- <strong>Cookie Consent Audit:</strong> Anonymous technical session identification to remember your cookie privacy choices.<br>We never perform automated profiling or engage in the sale or commercialization of personal data.</p><p><strong>4. Lawful Basis:</strong><br>The lawful basis for processing is the user\'s <strong>explicit consent</strong> (Art. 6.1.a & 6.1.b GDPR) provided upon submitting the booking form or selecting preferences in the cookie banner.</p><p><strong>5. Data Retention:</strong><br>Information provided is retained only for the duration strictly necessary to fulfil the requested service or comply with applicable legal, tax or administrative requirements.</p><p><strong>6. Third-Party Disclosures:</strong><br>We do not disclose personal data to advertising networks or third parties for marketing purposes. WhatsApp messaging operates under end-to-end encrypted protocols managed by WhatsApp LLC (Meta Platforms). Technical infrastructure hosting is located in secure servers within the European Union.</p><p><strong>7. User Rights:</strong><br>You have the right to access, rectify, delete, restrict, object to processing, and request portability of your data. To exercise these rights, send an email to <strong>barlunallena16@gmail.com</strong> with the subject "Data Protection". You also have the right to lodge a complaint with the Spanish Data Protection Agency (AEPD) at www.aepd.es.</p>'
-                },
-                'cookies': {
-                    title: 'Cookies Policy',
-                    text: '<p><strong>1. What Are Cookies?:</strong><br>A cookie is a small text file downloaded to your device when visiting websites. It enables websites to function properly, remember language choices, and enhance navigation quality.</p><p><strong>2. Cookies Used on This Website:</strong><br>- <strong>Technical & Strictly Necessary Cookies (Exempt from Consent):</strong> Essential for basic site features, preserving language selection (ES/EN), multimedia audio state, and recording whether you accepted or declined cookies (key <em>cookies_consent</em>). Pursuant to Art. 22.2 of Spanish LSSI-CE, these do not require prior consent.<br>- <strong>Analytical & Usability Cookies (Subject to Optional Consent):</strong> This website optionally integrates <strong>Microsoft Clarity</strong> to analyze aggregated, pseudonymous metrics and heatmaps of user interactions, assisting in identifying technical issues and improving interface ergonomics. <strong>These cookies remain blocked by default and are only executed if you explicitly click «Accept»</strong> in the cookie banner.</p><p><strong>3. Consent Management:</strong><br>You have access to a floating cookie panel allowing you to accept or decline analytical cookies with equal ease and a single click. Clicking «Reject» ensures Clarity analytics remain completely deactivated.</p><p><strong>4. Browser Settings:</strong><br>You can allow, block, or delete cookies installed on your computer at any time via your browser settings (Google Chrome, Mozilla Firefox, Apple Safari, Microsoft Edge).</p><p><strong>5. Technical Supervision:</strong><br>Compliance and implementation of AEPD cookie guidelines on this website are technically supported by <strong>MYNEXT</strong>.</p>'
-                }
-            }
-        };
-
         const translations = {
             'es': {
                 'nav_inicio': 'Inicio',
@@ -4110,21 +3884,6 @@
             window.location.href = 'legal.html#' + (type || 'aviso');
         }
 
-
-        function closeLegal() {
-            const modal = document.getElementById('legal-modal');
-            modal.classList.add('opacity-0');
-            setTimeout(() => {
-                modal.classList.add('hidden');
-                document.body.style.overflow = 'auto';
-            }, 300);
-        }
-
-        // Cerrar modal legal al hacer clic fuera del contenido
-        document.getElementById('legal-modal')?.addEventListener('click', function (e) {
-            if (e.target === this) closeLegal();
-        });
-
         // Supabase Backend Integration Settings
         const SUPABASE_URL = "https://qjqhsjaydknvntohmmnz.supabase.co";
         const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFqcWhzamF5ZGtudm50b2htbW56Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTEwNDM4NDQsImV4cCI6MjEwNjYxOTg0NH0.ZxznNBdEieNy8IjJtt1CQFFlhQynorQaG_4q7MaI0ew";
@@ -4222,61 +3981,6 @@
             }
         }
     </script>
-    <!-- Modal Reservas -->
-    <div id="reservation-modal"
-        class="fixed inset-0 bg-black/90 backdrop-blur-md z-[100] flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
-        <div
-            class="bg-[#0B0F19] border border-[#C5A059]/30 rounded-2xl p-8 md:p-12 max-w-lg w-[95%] relative shadow-2xl flex flex-col items-center">
-            <button onclick="closeReservation()"
-                class="absolute top-4 right-4 text-white/50 hover:text-[#C5A059] transition-colors">
-                <span class="material-symbols-outlined text-3xl">close</span>
-            </button>
-            <img src="./assets/NEWLOGO.jpg" alt="Bar Luna Llena Logo"
-                class="w-24 h-24 object-contain rounded-full border border-secondary/30 mb-6 shadow-xl" loading="lazy">
-            <h3 data-i18n="res_title"
-                class="font-title-md text-2xl md:text-3xl text-[#C5A059] mb-8 tracking-tight font-semibold text-center text-balance">
-                Haz tu Reserva</h3>
-
-            <form id="reservation-form" class="w-full space-y-5" onsubmit="sendReservation(event)">
-                <div>
-                    <label data-i18n="res_people"
-                        class="block font-body-md text-xs text-white/70 uppercase tracking-[0.2em] font-medium mb-2">Personas</label>
-                    <input type="number" id="res-personas" min="1" max="20" required
-                        class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#C5A059] transition-colors">
-                </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label data-i18n="res_date"
-                            class="block font-body-md text-xs text-white/70 uppercase tracking-[0.2em] font-medium mb-2">Día</label>
-                        <input type="date" id="res-dia" required
-                            class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#C5A059] transition-colors">
-                    </div>
-                    <div>
-                        <label data-i18n="res_time"
-                            class="block font-body-md text-xs text-white/70 uppercase tracking-[0.2em] font-medium mb-2">Hora</label>
-                        <input type="time" id="res-hora" required
-                            class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#C5A059] transition-colors">
-                    </div>
-                </div>
-                <div>
-                    <label data-i18n="res_allergies"
-                        class="block font-body-md text-xs text-white/70 uppercase tracking-[0.2em] font-medium mb-2">¿Alguna
-                        Alergia?</label>
-                    <textarea data-i18n-placeholder="res_allergies_placeholder" id="res-alergias" rows="2"
-                        placeholder="Ej: Sin gluten, intolerancia a la lactosa..."
-                        class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#C5A059] transition-colors resize-none"></textarea>
-                </div>
-
-                <div class="glowing-btn-container theme-gold w-full mt-4" style="display: block;">
-                    <button type="submit"
-                        class="glowing-btn cta-label w-full flex items-center justify-center gap-2 py-3.5 px-6 text-xs uppercase tracking-[0.22em] font-semibold">
-                        <span class="material-symbols-outlined">send</span> <span data-i18n="res_submit_btn">Enviar por
-                            WhatsApp</span>
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
@@ -4384,53 +4088,6 @@
 
         function openReservation() {
             window.open('https://www.bavoli.com/book/bar-luna-llena', '_blank', 'noopener,noreferrer');
-        }
-
-        function closeReservation() {
-            const modal = document.getElementById('reservation-modal');
-            modal.classList.add('opacity-0');
-            setTimeout(() => {
-                modal.classList.add('hidden');
-                document.body.style.overflow = 'auto';
-            }, 300);
-        }
-
-        function sendReservation(e) {
-            e.preventDefault();
-            const personas = document.getElementById('res-personas').value;
-            const dia = document.getElementById('res-dia').value;
-            const hora = document.getElementById('res-hora').value;
-            const alergias = document.getElementById('res-alergias').value;
-
-            // Guardar copia de la reserva en Supabase
-            try {
-                const sb = getSupabase();
-                if (sb) {
-                    sb.from('reservations').insert({
-                        name: 'Cliente Web',
-                        phone: 'Pendiente WhatsApp',
-                        guests: parseInt(personas, 10) || 2,
-                        reservation_date: dia,
-                        reservation_time: hora,
-                        allergies: alergias || null
-                    }).then(() => console.log('Reserva registrada en Supabase'));
-                }
-            } catch (err) {
-                console.warn('Error registrando reserva en Supabase:', err);
-            }
-
-            const isEn = (currentLang === 'en');
-            let mensaje = isEn ? "Hello Bar Luna Llena 🌙! I would like to book a table:\n\n" : "Hola Bar Luna Llena 🌙! Me gustaría hacer una reserva:\n\n";
-            mensaje += `${isEn ? '👥 Guests:' : '👥 Personas:'} ${personas}\n`;
-            mensaje += `${isEn ? '📅 Date:' : '📅 Día:'} ${dia}\n`;
-            mensaje += `${isEn ? '🕒 Time:' : '🕒 Hora:'} ${hora}\n`;
-            if (alergias.trim() !== '') {
-                mensaje += `${isEn ? '⚠️ Allergies:' : '⚠️ Alergias:'} ${alergias}\n`;
-            }
-
-            const whatsappUrl = `https://wa.me/34631122757?text=${encodeURIComponent(mensaje)}`;
-            window.open(whatsappUrl, '_blank');
-            closeReservation();
         }
 
         // Control global de sonido de vídeo en Historia
@@ -4610,10 +4267,6 @@
                     loop: true,
                     grabCursor: true,
                     speed: 450,
-                    navigation: {
-                        prevEl: '#dish-carousel-prev',
-                        nextEl: '#dish-carousel-next',
-                    },
                     breakpoints: {
                         640: {
                             spaceBetween: 20,

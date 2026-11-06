@@ -1,27 +1,30 @@
-# Última Sesión - Bar Luna Llena (8 oct 2026)
+# Última Sesión - Bar Luna Llena (6 nov 2026)
 
 ## Qué se ha hecho hoy
-- **Análisis exhaustivo de Código y Tests:** Revisión de cobertura, buenas prácticas (`code-review` y `codebase-design`), estándares y arquitectura del sitio.
-- **Eliminación de código redundante:** Se removió la inclusión duplicada del script `@supabase/supabase-js@2` en `index.html`.
-- **Corrección de URLs de WhatsApp (Encoding Seguro):** Implementado `encodeURIComponent` en `sendReservation` y `sendFabOrder` para prevenir errores de codificación ante caracteres especiales, notas extensas o emojis.
-- **Cabeceras de Seguridad Cloudflare Pages (`_headers`):** Creado archivo de configuración con políticas de protección (`X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy`) y optimización de caché de recursos estáticos.
-- **Saneamiento de CI/CD Keep-Alive:** Se limpiaron los tokens expuestos como fallback en `.gitlab-ci.yml`, `.github/workflows/keep-alive.yml` y `setup.sh` para delegar exclusivamente en secretos protegidos del repositorio.
+- **Auditoría Técnica y Funcional Completa:** Revisión integral de botones, enlaces, responsividad, fugas de código y código muerto en todo el sitio web.
+- **Corrección de Enlace Roto `#historia` ➔ `#origen`:** Corregido el enlace de navegación en el footer de `index.html` y en `legal.html` / `legal/index.html`. Ahora realiza smooth scroll nativo a la sección real "Nuestro Origen".
+- **Saneamiento de Código Muerto y Reducción de Peso (~38 KB):**
+  - Eliminado el modal `#legal-modal` y su diccionario duplicado de 35 KB (`legalTexts`) en `index.html`, centralizando la información legal en `legal.html`.
+  - Eliminado el formulario antiguo `#reservation-modal` en desuso tras la integración con Bavoli.
+  - Eliminado el modal huérfano `#fab-modal` y sus funciones JavaScript (`openFabModal`, `sendFabOrder`, etc.) según la Opción B aprobada.
+  - Limpiada la propiedad `navigation` con selectores inexistentes (`#dish-carousel-prev/next`) en `dishSwiper`.
+- **Validación al 100%:**
+  - Sintaxis JavaScript verificada con `node --check` en todos los bloques de script.
+  - Cobertura de 63 claves de internacionalización (`data-i18n`) comprobadas en español e inglés.
+  - 15 botones activos auditados y verificados.
+- **Punto de Restauración:** Guardado commit previo `0a433ea` para poder revertir en cualquier momento con un solo comando.
 
 ## Archivos modificados
 - `index.html`
-- `_headers` (Nuevo)
-- `.gitlab-ci.yml`
-- `.github/workflows/keep-alive.yml`
-- `setup.sh`
+- `legal.html`
+- `legal/index.html`
 - `docs/SESSION_LATEST_ES.md`
 - `docs/ROADMAP.md`
 
 ## Problemas solucionados
-- Carga doble innecesaria de la librería de Supabase en el cliente.
-- Riesgo de rotura en enlaces de WhatsApp ante caracteres especiales (`&`, `#`, saltos de línea).
-- Falta de cabeceras de seguridad HTTP en Cloudflare Pages.
-- Exposición de claves anon como fallback en pipelines CI/CD.
+- Enlace "Historia" en footer y página legal que fallaba o no respondía.
+- Carga de ~38 KB de código HTML y JavaScript muerto en la página principal.
+- Disparadores y selectores de carrusel huérfanos.
 
 ## Qué queda pendiente
-- Configurar las variables secretas `SUPABASE_URL` y `SUPABASE_ANON_KEY` en los ajustes de GitHub Actions / GitLab CI si se desea ejecutar el keep-alive automático.
-
+- Revisar en vivo en `https://barlunallena.pages.dev` una vez desplegado por Cloudflare Pages.
