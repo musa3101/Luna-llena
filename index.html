@@ -2494,20 +2494,740 @@
                         </a>
                     </div>
 
-                    <!-- Botón 2: Abrir Carta en Detalle en Pestaña Nueva -->
-                    <a href="./carta.html" target="_blank" rel="noopener noreferrer" id="btn-open-carta-page"
-                        class="group relative inline-flex items-center gap-2.5 px-6 py-3 rounded-full border border-[#C5A059]/40 bg-[#121216]/80 hover:bg-[#C5A059]/15 hover:border-[#C5A059]/80 backdrop-blur-md shadow-lg transition-all duration-300 cursor-pointer active:scale-95 no-underline"
-                        aria-label="Abrir carta completa en nueva pestaña">
-                        <span data-i18n="btn_toggle_carta_open"
+                                        <!-- Botón 2: Desplegar Carta HTML en la misma página -->
+                    <button type="button" id="btn-toggle-carta" onclick="toggleCartaDesplegable()"
+                        class="group relative inline-flex items-center gap-2.5 px-6 py-3 rounded-full border border-[#C5A059]/40 bg-[#121216]/80 hover:bg-[#C5A059]/15 hover:border-[#C5A059]/80 backdrop-blur-md shadow-lg transition-all duration-300 cursor-pointer active:scale-95"
+                        aria-expanded="false" aria-controls="carta-completa">
+                        <span id="btn-toggle-carta-text" data-i18n="btn_toggle_carta_open"
                             class="font-bold text-xs sm:text-[13px] tracking-[0.2em] uppercase text-[#E5C98D] group-hover:text-white transition-colors">VER CARTA EN DETALLE</span>
-                        <svg class="w-3.5 h-3.5 text-[#C5A059] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                            <polyline points="15 3 21 3 21 9"></polyline>
-                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                        <svg id="btn-toggle-carta-chevron" class="w-4 h-4 text-[#C5A059] transition-transform duration-300 group-hover:translate-y-0.5"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <polyline points="6 9 12 15 18 9"></polyline>
                         </svg>
+                    </button>
+                </div>
+
+<!-- ==========================================================================
+                 ESTILOS CARTA CREMA BISTRÓ & LISTA EDITORIAL (2 COLUMNAS)
+                 ========================================================================== -->
+            <style>
+                #carta-completa {
+                    background-color: #FAF7F2 !important;
+                    color: #1A1815 !important;
+                    border: 1px solid rgba(197, 160, 89, 0.45) !important;
+                    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(197, 160, 89, 0.15) !important;
+                }
+                #carta-completa .menu-cream-title {
+                    color: #1A1815 !important;
+                    font-family: 'Clash Display', 'Satoshi', sans-serif !important;
+                }
+                #carta-completa .menu-cream-desc {
+                    color: #5C554B !important;
+                }
+                #carta-completa .menu-cream-eyebrow {
+                    color: #966E20 !important;
+                }
+                #menu-items-grid {
+                    display: grid !important;
+                    grid-template-columns: 1fr !important;
+                    gap: 10px 32px !important;
+                }
+                @media (min-width: 768px) {
+                    #menu-items-grid {
+                        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+                    }
+                }
+                #carta-completa .menu-item-card {
+                    border-bottom: 1px solid #ECE6DC !important;
+                    padding: 8px 4px !important;
+                    transition: background 0.15s ease !important;
+                }
+                #carta-completa .menu-item-card:hover {
+                    background-color: rgba(197, 160, 89, 0.08) !important;
+                    border-radius: 8px !important;
+                }
+                #carta-completa .menu-item-card h4 {
+                    color: #1A1815 !important;
+                    font-family: 'Clash Display', 'Satoshi', sans-serif !important;
+                    font-weight: 600 !important;
+                    font-size: 14.5px !important;
+                    letter-spacing: -0.01em !important;
+                }
+                #carta-completa .menu-item-card p {
+                    color: #615B52 !important;
+                    font-size: 12px !important;
+                    line-height: 1.4 !important;
+                }
+                #carta-completa .menu-item-dots {
+                    border-bottom: 1.5px dotted #C7BFB1 !important;
+                }
+                #carta-completa .menu-item-price {
+                    color: #966E20 !important;
+                    font-family: 'Clash Display', 'Satoshi', sans-serif !important;
+                    font-weight: 700 !important;
+                    font-size: 15px !important;
+                    white-space: nowrap !important;
+                }
+                #carta-completa .menu-cat-pill {
+                    background-color: #ECE7DE !important;
+                    color: #4A443B !important;
+                    border: 1px solid #DCD5C9 !important;
+                }
+                #carta-completa .menu-cat-pill:hover {
+                    background-color: #E2DDD2 !important;
+                    color: #1A1815 !important;
+                }
+                #carta-completa .menu-cat-pill.active {
+                    background-color: #C5A059 !important;
+                    color: #070A14 !important;
+                    border-color: #C5A059 !important;
+                    font-weight: 700 !important;
+                    box-shadow: 0 2px 6px rgba(197, 160, 89, 0.35) !important;
+                }
+                #carta-completa #menu-search-input {
+                    background-color: #FFFFFF !important;
+                    color: #1A1815 !important;
+                    border: 1px solid #D5CEC1 !important;
+                }
+                #carta-completa #menu-search-input::placeholder {
+                    color: #8C8578 !important;
+                }
+            </style>
+
+            <div id="carta-completa" class="hidden mt-14 sm:mt-20 p-6 sm:p-10 lg:p-12 rounded-[28px] sm:rounded-[36px] scroll-mt-24 transition-all duration-500">
+                <div class="text-center mb-10">
+                    <span data-i18n="menu_html_eyebrow" class="eyebrow menu-cream-eyebrow block mb-2 font-semibold tracking-[0.2em] uppercase text-xs">Gastronomía & Precios Transparentes</span>
+                    <h3 data-i18n="menu_html_title" class="font-title-md menu-cream-title text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-balance">
+                        Toda Nuestra Carta en Santa Catalina
+                    </h3>
+                    <p data-i18n="menu_html_desc" class="menu-cream-desc text-xs sm:text-sm max-w-xl mx-auto mt-2 leading-relaxed">
+                        28 especialidades caseras preparadas al momento con ingredientes frescos de primera calidad.
+                    </p>
+                    <div class="w-12 h-[2px] bg-gradient-to-r from-transparent via-[#9E782F] to-transparent mx-auto mt-3"></div>
+                </div>
+
+                <!-- Barra de Filtros y Búsqueda Interactiva -->
+                <div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 mb-8 w-full max-w-full min-w-0">
+                    <!-- Pills de Filtro de Categoría -->
+                    <div class="flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-2 md:pb-0 no-scrollbar justify-start w-full max-w-full min-w-0">
+                        <button type="button" onclick="filterMenuCategory('all', this)" class="menu-cat-pill active px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all duration-300 bg-[#9E782F] text-white border border-[#9E782F] shadow-sm cursor-pointer shrink-0">
+                            <span data-i18n="cat_all">Todos</span> <span class="text-[10px] opacity-80">(28)</span>
+                        </button>
+                        <button type="button" onclick="filterMenuCategory('picar', this)" class="menu-cat-pill px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all duration-300 bg-[#EFE9DF] hover:bg-[#E5DDCF] text-[#554E44] border border-[#D5CEC2] cursor-pointer shrink-0">
+                            <span data-i18n="cat_picar">Para Picar & Tapas</span> <span class="text-[10px] text-[#9E782F] font-bold">(14)</span>
+                        </button>
+                        <button type="button" onclick="filterMenuCategory('desayunos', this)" class="menu-cat-pill px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all duration-300 bg-[#EFE9DF] hover:bg-[#E5DDCF] text-[#554E44] border border-[#D5CEC2] cursor-pointer shrink-0">
+                            <span data-i18n="cat_desayunos">Desayunos</span> <span class="text-[10px] text-[#9E782F] font-bold">(3)</span>
+                        </button>
+                        <button type="button" onclick="filterMenuCategory('cafes', this)" class="menu-cat-pill px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all duration-300 bg-[#EFE9DF] hover:bg-[#E5DDCF] text-[#554E44] border border-[#D5CEC2] cursor-pointer shrink-0">
+                            <span data-i18n="cat_cafes">Cafés</span> <span class="text-[10px] text-[#9E782F] font-bold">(4)</span>
+                        </button>
+                        <button type="button" onclick="filterMenuCategory('menus', this)" class="menu-cat-pill px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all duration-300 bg-[#EFE9DF] hover:bg-[#E5DDCF] text-[#554E44] border border-[#D5CEC2] cursor-pointer shrink-0">
+                            <span data-i18n="cat_menus">Menús con Bebida</span> <span class="text-[10px] text-[#9E782F] font-bold">(4)</span>
+                        </button>
+                        <button type="button" onclick="filterMenuCategory('combinados', this)" class="menu-cat-pill px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all duration-300 bg-[#EFE9DF] hover:bg-[#E5DDCF] text-[#554E44] border border-[#D5CEC2] cursor-pointer shrink-0">
+                            <span data-i18n="cat_combinados">Platos Combinados</span> <span class="text-[10px] text-[#9E782F] font-bold">(3)</span>
+                        </button>
+                    </div>
+
+                    <!-- Buscador en Vivo -->
+                    <div class="relative w-full md:w-64 shrink-0">
+                        <input type="text" id="menu-search-input" oninput="handleMenuSearch(this.value)" placeholder="Buscar plato..." aria-label="Buscar plato en la carta" class="w-full pl-9 pr-8 py-2 rounded-full bg-white border border-[#D5CEC2] focus:border-[#9E782F] focus:ring-1 focus:ring-[#9E782F]/30 focus:outline-none text-xs text-[#1E1B18] placeholder-[#8C857B] transition-all shadow-sm" />
+                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#8C857B] text-base pointer-events-none" aria-hidden="true">restaurant</span>
+                        <button type="button" id="menu-search-clear" onclick="clearMenuSearch()" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-[#8C857B] hover:text-[#1E1B18] text-xs cursor-pointer" aria-label="Limpiar búsqueda">✕</button>
+                    </div>
+                </div>
+
+                <!-- Grid de Platos (Lista Limpia 2 columnas en desktop, 1 columna en móvil) -->
+                <div id="menu-items-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-x-10 gap-y-3">
+                    <!-- Plato 01 -->
+                    <article class="menu-item-card group py-2.5 border-b border-[#EAE3D6] transition-colors"
+                        data-category="picar" data-keywords="ración patatas fritas french fries patatas fritas crujientes doradas al momento."
+                        itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="flex items-baseline justify-between gap-3">
+                            <div class="flex items-baseline gap-2 min-w-0 flex-1">
+                                <h4 data-i18n="dish_1_name" itemprop="name" class="font-title-md font-bold text-[#1E1B18] text-sm sm:text-base tracking-tight group-hover:text-[#9E782F] transition-colors">
+                                    Ración patatas fritas
+                                </h4>
+                                <div class="flex-1 border-b border-dotted border-[#D5CEC2] min-w-[12px] mb-1"></div>
+                            </div>
+                            <div class="shrink-0" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="font-bold text-sm sm:text-base text-[#9E782F] tracking-wide" itemprop="price">4.00 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p data-i18n="dish_1_desc" itemprop="description" class="font-body-md text-[#6A6358] text-xs sm:text-[13px] leading-relaxed mt-0.5">
+                            Patatas fritas crujientes doradas al momento.
+                        </p>
+                    </article>
+                    <!-- Plato 02 -->
+                    <article class="menu-item-card group py-2.5 border-b border-[#EAE3D6] transition-colors"
+                        data-category="picar" data-keywords="ración patatas bravas spicy potatoes (bravas) patatas caseras cortadas a mano con salsa brava y alioli suave."
+                        itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="flex items-baseline justify-between gap-3">
+                            <div class="flex items-baseline gap-2 min-w-0 flex-1">
+                                <h4 data-i18n="dish_2_name" itemprop="name" class="font-title-md font-bold text-[#1E1B18] text-sm sm:text-base tracking-tight group-hover:text-[#9E782F] transition-colors">
+                                    Ración patatas bravas
+                                </h4>
+                                <div class="flex-1 border-b border-dotted border-[#D5CEC2] min-w-[12px] mb-1"></div>
+                            </div>
+                            <div class="shrink-0" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="font-bold text-sm sm:text-base text-[#9E782F] tracking-wide" itemprop="price">4.50 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p data-i18n="dish_2_desc" itemprop="description" class="font-body-md text-[#6A6358] text-xs sm:text-[13px] leading-relaxed mt-0.5">
+                            Patatas caseras cortadas a mano con salsa brava y alioli suave.
+                        </p>
+                    </article>
+                    <!-- Plato 03 -->
+                    <article class="menu-item-card group py-2.5 border-b border-[#EAE3D6] transition-colors"
+                        data-category="picar" data-keywords="sandwitch mixto mixed sandwich sandwich tostado de jamón cocido y queso fundido."
+                        itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="flex items-baseline justify-between gap-3">
+                            <div class="flex items-baseline gap-2 min-w-0 flex-1">
+                                <h4 data-i18n="dish_3_name" itemprop="name" class="font-title-md font-bold text-[#1E1B18] text-sm sm:text-base tracking-tight group-hover:text-[#9E782F] transition-colors">
+                                    Sandwitch mixto
+                                </h4>
+                                <div class="flex-1 border-b border-dotted border-[#D5CEC2] min-w-[12px] mb-1"></div>
+                            </div>
+                            <div class="shrink-0" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="font-bold text-sm sm:text-base text-[#9E782F] tracking-wide" itemprop="price">4.00 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p data-i18n="dish_3_desc" itemprop="description" class="font-body-md text-[#6A6358] text-xs sm:text-[13px] leading-relaxed mt-0.5">
+                            Sandwich tostado de jamón cocido y queso fundido.
+                        </p>
+                    </article>
+                    <!-- Plato 04 -->
+                    <article class="menu-item-card group py-2.5 border-b border-[#EAE3D6] transition-colors"
+                        data-category="picar" data-keywords="sandwitch pollo chicken sandwich sandwich caliente con pechuga de pollo tierna."
+                        itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="flex items-baseline justify-between gap-3">
+                            <div class="flex items-baseline gap-2 min-w-0 flex-1">
+                                <h4 data-i18n="dish_4_name" itemprop="name" class="font-title-md font-bold text-[#1E1B18] text-sm sm:text-base tracking-tight group-hover:text-[#9E782F] transition-colors">
+                                    Sandwitch pollo
+                                </h4>
+                                <div class="flex-1 border-b border-dotted border-[#D5CEC2] min-w-[12px] mb-1"></div>
+                            </div>
+                            <div class="shrink-0" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="font-bold text-sm sm:text-base text-[#9E782F] tracking-wide" itemprop="price">4.80 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p data-i18n="dish_4_desc" itemprop="description" class="font-body-md text-[#6A6358] text-xs sm:text-[13px] leading-relaxed mt-0.5">
+                            Sandwich caliente con pechuga de pollo tierna.
+                        </p>
+                    </article>
+                    <!-- Plato 05 -->
+                    <article class="menu-item-card group py-2.5 border-b border-[#EAE3D6] transition-colors"
+                        data-category="picar" data-keywords="sandwitch tortilla francesa french omelette sandwich sandwich tostado con tortilla francesa recién hecha."
+                        itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="flex items-baseline justify-between gap-3">
+                            <div class="flex items-baseline gap-2 min-w-0 flex-1">
+                                <h4 data-i18n="dish_5_name" itemprop="name" class="font-title-md font-bold text-[#1E1B18] text-sm sm:text-base tracking-tight group-hover:text-[#9E782F] transition-colors">
+                                    Sandwitch tortilla francesa
+                                </h4>
+                                <div class="flex-1 border-b border-dotted border-[#D5CEC2] min-w-[12px] mb-1"></div>
+                            </div>
+                            <div class="shrink-0" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="font-bold text-sm sm:text-base text-[#9E782F] tracking-wide" itemprop="price">4.80 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p data-i18n="dish_5_desc" itemprop="description" class="font-body-md text-[#6A6358] text-xs sm:text-[13px] leading-relaxed mt-0.5">
+                            Sandwich tostado con tortilla francesa recién hecha.
+                        </p>
+                    </article>
+                    <!-- Plato 06 -->
+                    <article class="menu-item-card group py-2.5 border-b border-[#EAE3D6] transition-colors"
+                        data-category="picar" data-keywords="bocadillo tortilla francesa french omelette baguette pan rústico crujiente con tortilla francesa casera."
+                        itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="flex items-baseline justify-between gap-3">
+                            <div class="flex items-baseline gap-2 min-w-0 flex-1">
+                                <h4 data-i18n="dish_6_name" itemprop="name" class="font-title-md font-bold text-[#1E1B18] text-sm sm:text-base tracking-tight group-hover:text-[#9E782F] transition-colors">
+                                    Bocadillo tortilla francesa
+                                </h4>
+                                <div class="flex-1 border-b border-dotted border-[#D5CEC2] min-w-[12px] mb-1"></div>
+                            </div>
+                            <div class="shrink-0" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="font-bold text-sm sm:text-base text-[#9E782F] tracking-wide" itemprop="price">4.50 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p data-i18n="dish_6_desc" itemprop="description" class="font-body-md text-[#6A6358] text-xs sm:text-[13px] leading-relaxed mt-0.5">
+                            Pan rústico crujiente con tortilla francesa casera.
+                        </p>
+                    </article>
+                    <!-- Plato 07 -->
+                    <article class="menu-item-card group py-2.5 border-b border-[#EAE3D6] transition-colors"
+                        data-category="picar" data-keywords="pepito de lomo pork loin baguette (pepito) lomo tierno a la plancha con pimientos y queso en pan artesanal."
+                        itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="flex items-baseline justify-between gap-3">
+                            <div class="flex items-baseline gap-2 min-w-0 flex-1">
+                                <h4 data-i18n="dish_7_name" itemprop="name" class="font-title-md font-bold text-[#1E1B18] text-sm sm:text-base tracking-tight group-hover:text-[#9E782F] transition-colors">
+                                    Pepito de lomo
+                                </h4>
+                                <div class="flex-1 border-b border-dotted border-[#D5CEC2] min-w-[12px] mb-1"></div>
+                            </div>
+                            <div class="shrink-0" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="font-bold text-sm sm:text-base text-[#9E782F] tracking-wide" itemprop="price">4.50 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p data-i18n="dish_7_desc" itemprop="description" class="font-body-md text-[#6A6358] text-xs sm:text-[13px] leading-relaxed mt-0.5">
+                            Lomo tierno a la plancha con pimientos y queso en pan artesanal.
+                        </p>
+                    </article>
+                    <!-- Plato 08 -->
+                    <article class="menu-item-card group py-2.5 border-b border-[#EAE3D6] transition-colors"
+                        data-category="picar" data-keywords="nuggets pollo chicken nuggets bocaditos de pollo crujientes con salsa de la casa."
+                        itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="flex items-baseline justify-between gap-3">
+                            <div class="flex items-baseline gap-2 min-w-0 flex-1">
+                                <h4 data-i18n="dish_8_name" itemprop="name" class="font-title-md font-bold text-[#1E1B18] text-sm sm:text-base tracking-tight group-hover:text-[#9E782F] transition-colors">
+                                    Nuggets pollo
+                                </h4>
+                                <div class="flex-1 border-b border-dotted border-[#D5CEC2] min-w-[12px] mb-1"></div>
+                            </div>
+                            <div class="shrink-0" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="font-bold text-sm sm:text-base text-[#9E782F] tracking-wide" itemprop="price">4.50 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p data-i18n="dish_8_desc" itemprop="description" class="font-body-md text-[#6A6358] text-xs sm:text-[13px] leading-relaxed mt-0.5">
+                            Bocaditos de pollo crujientes con salsa de la casa.
+                        </p>
+                    </article>
+                    <!-- Plato 09 -->
+                    <article class="menu-item-card group py-2.5 border-b border-[#EAE3D6] transition-colors"
+                        data-category="picar" data-keywords="croquetas de pollo chicken croquettes croquetas caseras cremosas de pollo crujientes."
+                        itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="flex items-baseline justify-between gap-3">
+                            <div class="flex items-baseline gap-2 min-w-0 flex-1">
+                                <h4 data-i18n="dish_9_name" itemprop="name" class="font-title-md font-bold text-[#1E1B18] text-sm sm:text-base tracking-tight group-hover:text-[#9E782F] transition-colors">
+                                    Croquetas de pollo
+                                </h4>
+                                <div class="flex-1 border-b border-dotted border-[#D5CEC2] min-w-[12px] mb-1"></div>
+                            </div>
+                            <div class="shrink-0" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="font-bold text-sm sm:text-base text-[#9E782F] tracking-wide" itemprop="price">5.50 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p data-i18n="dish_9_desc" itemprop="description" class="font-body-md text-[#6A6358] text-xs sm:text-[13px] leading-relaxed mt-0.5">
+                            Croquetas caseras cremosas de pollo crujientes.
+                        </p>
+                    </article>
+                    <!-- Plato 10 -->
+                    <article class="menu-item-card group py-2.5 border-b border-[#EAE3D6] transition-colors"
+                        data-category="picar" data-keywords="alitas de pollo chicken wings alitas de pollo marinadas y doradas al punto."
+                        itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="flex items-baseline justify-between gap-3">
+                            <div class="flex items-baseline gap-2 min-w-0 flex-1">
+                                <h4 data-i18n="dish_10_name" itemprop="name" class="font-title-md font-bold text-[#1E1B18] text-sm sm:text-base tracking-tight group-hover:text-[#9E782F] transition-colors">
+                                    Alitas de pollo
+                                </h4>
+                                <div class="flex-1 border-b border-dotted border-[#D5CEC2] min-w-[12px] mb-1"></div>
+                            </div>
+                            <div class="shrink-0" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="font-bold text-sm sm:text-base text-[#9E782F] tracking-wide" itemprop="price">6.00 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p data-i18n="dish_10_desc" itemprop="description" class="font-body-md text-[#6A6358] text-xs sm:text-[13px] leading-relaxed mt-0.5">
+                            Alitas de pollo marinadas y doradas al punto.
+                        </p>
+                    </article>
+                    <!-- Plato 11 -->
+                    <article class="menu-item-card group py-2.5 border-b border-[#EAE3D6] transition-colors"
+                        data-category="picar" data-keywords="calamares a la romana fried calamari aros tiernos de calamar rebozados y crujientes con limón."
+                        itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="flex items-baseline justify-between gap-3">
+                            <div class="flex items-baseline gap-2 min-w-0 flex-1">
+                                <h4 data-i18n="dish_11_name" itemprop="name" class="font-title-md font-bold text-[#1E1B18] text-sm sm:text-base tracking-tight group-hover:text-[#9E782F] transition-colors">
+                                    Calamares a la romana
+                                </h4>
+                                <div class="flex-1 border-b border-dotted border-[#D5CEC2] min-w-[12px] mb-1"></div>
+                            </div>
+                            <div class="shrink-0" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="font-bold text-sm sm:text-base text-[#9E782F] tracking-wide" itemprop="price">6.80 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p data-i18n="dish_11_desc" itemprop="description" class="font-body-md text-[#6A6358] text-xs sm:text-[13px] leading-relaxed mt-0.5">
+                            Aros tiernos de calamar rebozados y crujientes con limón.
+                        </p>
+                    </article>
+                    <!-- Plato 12 -->
+                    <article class="menu-item-card group py-2.5 border-b border-[#EAE3D6] transition-colors"
+                        data-category="picar" data-keywords="falafel con ensalada falafel with salad falafel casero especiado acompañado de ensalada fresca."
+                        itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="flex items-baseline justify-between gap-3">
+                            <div class="flex items-baseline gap-2 min-w-0 flex-1">
+                                <h4 data-i18n="dish_12_name" itemprop="name" class="font-title-md font-bold text-[#1E1B18] text-sm sm:text-base tracking-tight group-hover:text-[#9E782F] transition-colors">
+                                    Falafel con ensalada
+                                </h4>
+                                <div class="flex-1 border-b border-dotted border-[#D5CEC2] min-w-[12px] mb-1"></div>
+                            </div>
+                            <div class="shrink-0" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="font-bold text-sm sm:text-base text-[#9E782F] tracking-wide" itemprop="price">7.50 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p data-i18n="dish_12_desc" itemprop="description" class="font-body-md text-[#6A6358] text-xs sm:text-[13px] leading-relaxed mt-0.5">
+                            Falafel casero especiado acompañado de ensalada fresca.
+                        </p>
+                    </article>
+                    <!-- Plato 13 -->
+                    <article class="menu-item-card group py-2.5 border-b border-[#EAE3D6] transition-colors"
+                        data-category="picar" data-keywords="ensalada de la casa house salad ensalada fresca de temporada con verduras seleccionadas."
+                        itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="flex items-baseline justify-between gap-3">
+                            <div class="flex items-baseline gap-2 min-w-0 flex-1">
+                                <h4 data-i18n="dish_13_name" itemprop="name" class="font-title-md font-bold text-[#1E1B18] text-sm sm:text-base tracking-tight group-hover:text-[#9E782F] transition-colors">
+                                    Ensalada de la casa
+                                </h4>
+                                <div class="flex-1 border-b border-dotted border-[#D5CEC2] min-w-[12px] mb-1"></div>
+                            </div>
+                            <div class="shrink-0" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="font-bold text-sm sm:text-base text-[#9E782F] tracking-wide" itemprop="price">5.50 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p data-i18n="dish_13_desc" itemprop="description" class="font-body-md text-[#6A6358] text-xs sm:text-[13px] leading-relaxed mt-0.5">
+                            Ensalada fresca de temporada con verduras seleccionadas.
+                        </p>
+                    </article>
+                    <!-- Plato 14 -->
+                    <article class="menu-item-card group py-2.5 border-b border-[#EAE3D6] transition-colors"
+                        data-category="picar" data-keywords="hamburguesa con patata o ensalada burger with fries or salad hamburguesa 100% vacuno con lechuga, tomate y guarnición."
+                        itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="flex items-baseline justify-between gap-3">
+                            <div class="flex items-baseline gap-2 min-w-0 flex-1">
+                                <h4 data-i18n="dish_14_name" itemprop="name" class="font-title-md font-bold text-[#1E1B18] text-sm sm:text-base tracking-tight group-hover:text-[#9E782F] transition-colors">
+                                    Hamburguesa con Patata o ensalada
+                                </h4>
+                                <div class="flex-1 border-b border-dotted border-[#D5CEC2] min-w-[12px] mb-1"></div>
+                            </div>
+                            <div class="shrink-0" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="font-bold text-sm sm:text-base text-[#9E782F] tracking-wide" itemprop="price">8.50 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p data-i18n="dish_14_desc" itemprop="description" class="font-body-md text-[#6A6358] text-xs sm:text-[13px] leading-relaxed mt-0.5">
+                            Hamburguesa 100% vacuno con lechuga, tomate y guarnición.
+                        </p>
+                    </article>
+                    <!-- Plato 15 -->
+                    <article class="menu-item-card group py-2.5 border-b border-[#EAE3D6] transition-colors"
+                        data-category="desayunos" data-keywords="café + tostada tomate o croassán coffee + tomato toast or croissant café a elegir con tostada de tomate o croissant horneado."
+                        itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="flex items-baseline justify-between gap-3">
+                            <div class="flex items-baseline gap-2 min-w-0 flex-1">
+                                <h4 data-i18n="dish_15_name" itemprop="name" class="font-title-md font-bold text-[#1E1B18] text-sm sm:text-base tracking-tight group-hover:text-[#9E782F] transition-colors">
+                                    Café + tostada tomate o croassán
+                                </h4>
+                                <div class="flex-1 border-b border-dotted border-[#D5CEC2] min-w-[12px] mb-1"></div>
+                            </div>
+                            <div class="shrink-0" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="font-bold text-sm sm:text-base text-[#9E782F] tracking-wide" itemprop="price">4.50 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p data-i18n="dish_15_desc" itemprop="description" class="font-body-md text-[#6A6358] text-xs sm:text-[13px] leading-relaxed mt-0.5">
+                            Café a elegir con tostada de tomate o croissant horneado.
+                        </p>
+                    </article>
+                    <!-- Plato 16 -->
+                    <article class="menu-item-card group py-2.5 border-b border-[#EAE3D6] transition-colors"
+                        data-category="desayunos" data-keywords="café + tostada huevo revuelto coffee + scrambled egg toast café a elegir con tostada recién preparada con huevos revueltos."
+                        itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="flex items-baseline justify-between gap-3">
+                            <div class="flex items-baseline gap-2 min-w-0 flex-1">
+                                <h4 data-i18n="dish_16_name" itemprop="name" class="font-title-md font-bold text-[#1E1B18] text-sm sm:text-base tracking-tight group-hover:text-[#9E782F] transition-colors">
+                                    Café + tostada huevo revuelto
+                                </h4>
+                                <div class="flex-1 border-b border-dotted border-[#D5CEC2] min-w-[12px] mb-1"></div>
+                            </div>
+                            <div class="shrink-0" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="font-bold text-sm sm:text-base text-[#9E782F] tracking-wide" itemprop="price">5.50 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p data-i18n="dish_16_desc" itemprop="description" class="font-body-md text-[#6A6358] text-xs sm:text-[13px] leading-relaxed mt-0.5">
+                            Café a elegir con tostada recién preparada con huevos revueltos.
+                        </p>
+                    </article>
+                    <!-- Plato 17 -->
+                    <article class="menu-item-card group py-2.5 border-b border-[#EAE3D6] transition-colors"
+                        data-category="desayunos" data-keywords="zumo/lacao + sandwitch jamón y queso juice/colacao + ham & cheese sandwich zumo natural o colacao con sandwich caliente mixto."
+                        itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="flex items-baseline justify-between gap-3">
+                            <div class="flex items-baseline gap-2 min-w-0 flex-1">
+                                <h4 data-i18n="dish_17_name" itemprop="name" class="font-title-md font-bold text-[#1E1B18] text-sm sm:text-base tracking-tight group-hover:text-[#9E782F] transition-colors">
+                                    Zumo/Lacao + sandwitch jamón y queso
+                                </h4>
+                                <div class="flex-1 border-b border-dotted border-[#D5CEC2] min-w-[12px] mb-1"></div>
+                            </div>
+                            <div class="shrink-0" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="font-bold text-sm sm:text-base text-[#9E782F] tracking-wide" itemprop="price">5.00 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p data-i18n="dish_17_desc" itemprop="description" class="font-body-md text-[#6A6358] text-xs sm:text-[13px] leading-relaxed mt-0.5">
+                            Zumo natural o ColaCao con sandwich caliente mixto.
+                        </p>
+                    </article>
+                    <!-- Plato 18 -->
+                    <article class="menu-item-card group py-2.5 border-b border-[#EAE3D6] transition-colors"
+                        data-category="cafes" data-keywords="café solo espresso café espresso aromático de grano seleccionado recién molido."
+                        itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="flex items-baseline justify-between gap-3">
+                            <div class="flex items-baseline gap-2 min-w-0 flex-1">
+                                <h4 data-i18n="dish_18_name" itemprop="name" class="font-title-md font-bold text-[#1E1B18] text-sm sm:text-base tracking-tight group-hover:text-[#9E782F] transition-colors">
+                                    Café solo
+                                </h4>
+                                <div class="flex-1 border-b border-dotted border-[#D5CEC2] min-w-[12px] mb-1"></div>
+                            </div>
+                            <div class="shrink-0" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="font-bold text-sm sm:text-base text-[#9E782F] tracking-wide" itemprop="price">1.50 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p data-i18n="dish_18_desc" itemprop="description" class="font-body-md text-[#6A6358] text-xs sm:text-[13px] leading-relaxed mt-0.5">
+                            Café espresso aromático de grano seleccionado recién molido.
+                        </p>
+                    </article>
+                    <!-- Plato 19 -->
+                    <article class="menu-item-card group py-2.5 border-b border-[#EAE3D6] transition-colors"
+                        data-category="cafes" data-keywords="café cortado cortado café espresso con una nube suave de leche."
+                        itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="flex items-baseline justify-between gap-3">
+                            <div class="flex items-baseline gap-2 min-w-0 flex-1">
+                                <h4 data-i18n="dish_19_name" itemprop="name" class="font-title-md font-bold text-[#1E1B18] text-sm sm:text-base tracking-tight group-hover:text-[#9E782F] transition-colors">
+                                    Café cortado
+                                </h4>
+                                <div class="flex-1 border-b border-dotted border-[#D5CEC2] min-w-[12px] mb-1"></div>
+                            </div>
+                            <div class="shrink-0" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="font-bold text-sm sm:text-base text-[#9E782F] tracking-wide" itemprop="price">1.60 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p data-i18n="dish_19_desc" itemprop="description" class="font-body-md text-[#6A6358] text-xs sm:text-[13px] leading-relaxed mt-0.5">
+                            Café espresso con una nube suave de leche.
+                        </p>
+                    </article>
+                    <!-- Plato 20 -->
+                    <article class="menu-item-card group py-2.5 border-b border-[#EAE3D6] transition-colors"
+                        data-category="cafes" data-keywords="café con leche latte / coffee with milk café equilibrado con leche cremosa vaporizada."
+                        itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="flex items-baseline justify-between gap-3">
+                            <div class="flex items-baseline gap-2 min-w-0 flex-1">
+                                <h4 data-i18n="dish_20_name" itemprop="name" class="font-title-md font-bold text-[#1E1B18] text-sm sm:text-base tracking-tight group-hover:text-[#9E782F] transition-colors">
+                                    Café con leche
+                                </h4>
+                                <div class="flex-1 border-b border-dotted border-[#D5CEC2] min-w-[12px] mb-1"></div>
+                            </div>
+                            <div class="shrink-0" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="font-bold text-sm sm:text-base text-[#9E782F] tracking-wide" itemprop="price">2.00 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p data-i18n="dish_20_desc" itemprop="description" class="font-body-md text-[#6A6358] text-xs sm:text-[13px] leading-relaxed mt-0.5">
+                            Café equilibrado con leche cremosa vaporizada.
+                        </p>
+                    </article>
+                    <!-- Plato 21 -->
+                    <article class="menu-item-card group py-2.5 border-b border-[#EAE3D6] transition-colors"
+                        data-category="cafes" data-keywords="carajillo whisky whisky carajillo café espresso tradicional con toque de whisky selecto."
+                        itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="flex items-baseline justify-between gap-3">
+                            <div class="flex items-baseline gap-2 min-w-0 flex-1">
+                                <h4 data-i18n="dish_21_name" itemprop="name" class="font-title-md font-bold text-[#1E1B18] text-sm sm:text-base tracking-tight group-hover:text-[#9E782F] transition-colors">
+                                    Carajillo whisky
+                                </h4>
+                                <div class="flex-1 border-b border-dotted border-[#D5CEC2] min-w-[12px] mb-1"></div>
+                            </div>
+                            <div class="shrink-0" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="font-bold text-sm sm:text-base text-[#9E782F] tracking-wide" itemprop="price">2.50 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p data-i18n="dish_21_desc" itemprop="description" class="font-body-md text-[#6A6358] text-xs sm:text-[13px] leading-relaxed mt-0.5">
+                            Café espresso tradicional con toque de whisky selecto.
+                        </p>
+                    </article>
+                    <!-- Plato 22 -->
+                    <article class="menu-item-card group py-2.5 border-b border-[#EAE3D6] transition-colors"
+                        data-category="menus" data-keywords="menú nuggets + patatas + bebida nuggets menu + fries + drink nuggets de pollo crujientes con patatas fritas y bebida."
+                        itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="flex items-baseline justify-between gap-3">
+                            <div class="flex items-baseline gap-2 min-w-0 flex-1">
+                                <h4 data-i18n="dish_22_name" itemprop="name" class="font-title-md font-bold text-[#1E1B18] text-sm sm:text-base tracking-tight group-hover:text-[#9E782F] transition-colors">
+                                    Menú Nuggets + patatas + bebida
+                                </h4>
+                                <div class="flex-1 border-b border-dotted border-[#D5CEC2] min-w-[12px] mb-1"></div>
+                            </div>
+                            <div class="shrink-0" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="font-bold text-sm sm:text-base text-[#9E782F] tracking-wide" itemprop="price">7.80 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p data-i18n="dish_22_desc" itemprop="description" class="font-body-md text-[#6A6358] text-xs sm:text-[13px] leading-relaxed mt-0.5">
+                            Nuggets de pollo crujientes con patatas fritas y bebida.
+                        </p>
+                    </article>
+                    <!-- Plato 23 -->
+                    <article class="menu-item-card group py-2.5 border-b border-[#EAE3D6] transition-colors"
+                        data-category="menus" data-keywords="menú croquetas vegetales + patatas + bebida veggie croquettes menu + fries + drink croquetas vegetales suaves con patatas y bebida incluida."
+                        itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="flex items-baseline justify-between gap-3">
+                            <div class="flex items-baseline gap-2 min-w-0 flex-1">
+                                <h4 data-i18n="dish_23_name" itemprop="name" class="font-title-md font-bold text-[#1E1B18] text-sm sm:text-base tracking-tight group-hover:text-[#9E782F] transition-colors">
+                                    Menú Croquetas vegetales + patatas + bebida
+                                </h4>
+                                <div class="flex-1 border-b border-dotted border-[#D5CEC2] min-w-[12px] mb-1"></div>
+                            </div>
+                            <div class="shrink-0" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="font-bold text-sm sm:text-base text-[#9E782F] tracking-wide" itemprop="price">8.50 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p data-i18n="dish_23_desc" itemprop="description" class="font-body-md text-[#6A6358] text-xs sm:text-[13px] leading-relaxed mt-0.5">
+                            Croquetas vegetales suaves con patatas y bebida incluida.
+                        </p>
+                    </article>
+                    <!-- Plato 24 -->
+                    <article class="menu-item-card group py-2.5 border-b border-[#EAE3D6] transition-colors"
+                        data-category="menus" data-keywords="menú alitas de pollo + patatas + bebida chicken wings menu + fries + drink alitas de pollo doradas acompañadas de patatas y bebida."
+                        itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="flex items-baseline justify-between gap-3">
+                            <div class="flex items-baseline gap-2 min-w-0 flex-1">
+                                <h4 data-i18n="dish_24_name" itemprop="name" class="font-title-md font-bold text-[#1E1B18] text-sm sm:text-base tracking-tight group-hover:text-[#9E782F] transition-colors">
+                                    Menú Alitas de pollo + patatas + bebida
+                                </h4>
+                                <div class="flex-1 border-b border-dotted border-[#D5CEC2] min-w-[12px] mb-1"></div>
+                            </div>
+                            <div class="shrink-0" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="font-bold text-sm sm:text-base text-[#9E782F] tracking-wide" itemprop="price">9.50 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p data-i18n="dish_24_desc" itemprop="description" class="font-body-md text-[#6A6358] text-xs sm:text-[13px] leading-relaxed mt-0.5">
+                            Alitas de pollo doradas acompañadas de patatas y bebida.
+                        </p>
+                    </article>
+                    <!-- Plato 25 -->
+                    <article class="menu-item-card group py-2.5 border-b border-[#EAE3D6] transition-colors"
+                        data-category="menus" data-keywords="menú hamburguesa + patatas + bebida burger menu + fries + drink hamburguesa casera completa con patatas fritas y bebida."
+                        itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="flex items-baseline justify-between gap-3">
+                            <div class="flex items-baseline gap-2 min-w-0 flex-1">
+                                <h4 data-i18n="dish_25_name" itemprop="name" class="font-title-md font-bold text-[#1E1B18] text-sm sm:text-base tracking-tight group-hover:text-[#9E782F] transition-colors">
+                                    Menú Hamburguesa + patatas + bebida
+                                </h4>
+                                <div class="flex-1 border-b border-dotted border-[#D5CEC2] min-w-[12px] mb-1"></div>
+                            </div>
+                            <div class="shrink-0" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="font-bold text-sm sm:text-base text-[#9E782F] tracking-wide" itemprop="price">9.80 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p data-i18n="dish_25_desc" itemprop="description" class="font-body-md text-[#6A6358] text-xs sm:text-[13px] leading-relaxed mt-0.5">
+                            Hamburguesa casera completa con patatas fritas y bebida.
+                        </p>
+                    </article>
+                    <!-- Plato 26 -->
+                    <article class="menu-item-card group py-2.5 border-b border-[#EAE3D6] transition-colors"
+                        data-category="combinados" data-keywords="huevos fritos con salchichas y ensalada fried eggs with sausages and salad dos huevos fritos camperos con salchichas y ensalada mixta."
+                        itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="flex items-baseline justify-between gap-3">
+                            <div class="flex items-baseline gap-2 min-w-0 flex-1">
+                                <h4 data-i18n="dish_26_name" itemprop="name" class="font-title-md font-bold text-[#1E1B18] text-sm sm:text-base tracking-tight group-hover:text-[#9E782F] transition-colors">
+                                    Huevos fritos con salchichas y ensalada
+                                </h4>
+                                <div class="flex-1 border-b border-dotted border-[#D5CEC2] min-w-[12px] mb-1"></div>
+                            </div>
+                            <div class="shrink-0" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="font-bold text-sm sm:text-base text-[#9E782F] tracking-wide" itemprop="price">8.20 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p data-i18n="dish_26_desc" itemprop="description" class="font-body-md text-[#6A6358] text-xs sm:text-[13px] leading-relaxed mt-0.5">
+                            Dos huevos fritos camperos con salchichas y ensalada mixta.
+                        </p>
+                    </article>
+                    <!-- Plato 27 -->
+                    <article class="menu-item-card group py-2.5 border-b border-[#EAE3D6] transition-colors"
+                        data-category="combinados" data-keywords="pechuga de pollo con ensalada y patatas chicken breast with salad and fries pechuga tierna a la plancha con patatas fritas y ensalada."
+                        itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="flex items-baseline justify-between gap-3">
+                            <div class="flex items-baseline gap-2 min-w-0 flex-1">
+                                <h4 data-i18n="dish_27_name" itemprop="name" class="font-title-md font-bold text-[#1E1B18] text-sm sm:text-base tracking-tight group-hover:text-[#9E782F] transition-colors">
+                                    Pechuga de pollo con ensalada y patatas
+                                </h4>
+                                <div class="flex-1 border-b border-dotted border-[#D5CEC2] min-w-[12px] mb-1"></div>
+                            </div>
+                            <div class="shrink-0" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="font-bold text-sm sm:text-base text-[#9E782F] tracking-wide" itemprop="price">9.50 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p data-i18n="dish_27_desc" itemprop="description" class="font-body-md text-[#6A6358] text-xs sm:text-[13px] leading-relaxed mt-0.5">
+                            Pechuga tierna a la plancha con patatas fritas y ensalada.
+                        </p>
+                    </article>
+                    <!-- Plato 28 -->
+                    <article class="menu-item-card group py-2.5 border-b border-[#EAE3D6] transition-colors"
+                        data-category="combinados" data-keywords="lomo con patatas y ensalada pork loin with fries and salad lomo a la plancha con patatas fritas y ensalada de temporada."
+                        itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="flex items-baseline justify-between gap-3">
+                            <div class="flex items-baseline gap-2 min-w-0 flex-1">
+                                <h4 data-i18n="dish_28_name" itemprop="name" class="font-title-md font-bold text-[#1E1B18] text-sm sm:text-base tracking-tight group-hover:text-[#9E782F] transition-colors">
+                                    Lomo con patatas y ensalada
+                                </h4>
+                                <div class="flex-1 border-b border-dotted border-[#D5CEC2] min-w-[12px] mb-1"></div>
+                            </div>
+                            <div class="shrink-0" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="font-bold text-sm sm:text-base text-[#9E782F] tracking-wide" itemprop="price">9.50 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p data-i18n="dish_28_desc" itemprop="description" class="font-body-md text-[#6A6358] text-xs sm:text-[13px] leading-relaxed mt-0.5">
+                            Lomo a la plancha con patatas fritas y ensalada de temporada.
+                        </p>
+                    </article>
+                </div>
+
+                <!-- Mensaje de no resultados en búsqueda -->
+                <div id="menu-no-results" class="hidden text-center py-10 px-4 rounded-2xl bg-white border border-[#D5CEC2] mt-4 shadow-sm">
+                    <span class="material-symbols-outlined text-[#9E782F] text-3xl mb-2" aria-hidden="true">search_off</span>
+                    <p class="text-[#1E1B18] text-sm font-semibold mb-1" data-i18n="menu_search_empty_title">No encontramos ningún plato con ese término</p>
+                    <p class="text-[#6A6358] text-xs" data-i18n="menu_search_empty_desc">Intenta buscar por "bravas", "café", "pepito", "menú" o "ensalada".</p>
+                    <button type="button" onclick="clearMenuSearch()" class="mt-3 px-4 py-1.5 rounded-full bg-[#9E782F]/15 hover:bg-[#9E782F]/25 text-[#9E782F] text-xs font-semibold transition-colors cursor-pointer" data-i18n="menu_search_reset">Ver toda la carta</button>
+                </div>
+
+                <!-- Dos botones sencillos y chiquititos solicitados por el usuario -->
+                <div class="mt-8 pt-6 border-t border-[#D5CEC2]/60 flex items-center justify-center gap-3">
+                    <button type="button" onclick="toggleCartaDesplegable(false)"
+                        style="background-color: #ECE7DF !important; color: #1E1B18 !important; border: 1px solid #D5CEC2 !important;"
+                        class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold tracking-[0.16em] uppercase transition-all duration-200 shadow-sm cursor-pointer active:scale-95 hover:bg-[#E2DDD3]">
+                        <svg class="w-3.5 h-3.5 text-[#9E782F]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <polyline points="18 15 12 9 6 15"></polyline>
+                        </svg>
+                        <span data-i18n="menu_btn_close">Cerrar Carta</span>
+                    </button>
+                    <a href="https://www.bavoli.com/book/bar-luna-llena" target="_blank" rel="noopener noreferrer"
+                        style="background: #C5A059 !important; color: #070A14 !important; border: 1px solid #B8924B !important; box-shadow: 0 4px 14px rgba(197, 160, 89, 0.4) !important;"
+                        class="inline-flex items-center gap-1.5 px-5 py-2 rounded-full text-xs font-bold tracking-[0.16em] uppercase transition-all duration-200 cursor-pointer active:scale-95 no-underline hover:brightness-105">
+                        <span class="material-symbols-outlined text-sm text-[#070A14]" aria-hidden="true">calendar_month</span>
+                        <span data-i18n="menu_btn_book">Reservar Mesa</span>
                     </a>
                 </div>
+            </div>
 
 
 
@@ -5426,7 +6146,126 @@
                 setTimeout(loadSupabaseContent, 1200);
             }
         });
-    </script>
+    
+        // Función para Desplegar / Ocultar la Carta HTML con animación y scroll suave
+        function toggleCartaDesplegable(forceState) {
+            const carta = document.getElementById('carta-completa');
+            const btn = document.getElementById('btn-toggle-carta');
+            const textEl = document.getElementById('btn-toggle-carta-text');
+            const chevron = document.getElementById('btn-toggle-carta-chevron');
+            if (!carta) return;
+
+            const isCurrentlyHidden = carta.classList.contains('hidden');
+            const shouldOpen = (typeof forceState === 'boolean') ? forceState : isCurrentlyHidden;
+
+            const lang = (typeof currentLang !== 'undefined' && currentLang) ? currentLang : (localStorage.getItem('bar_luna_lang') || 'es');
+            const openKey = 'btn_toggle_carta_open';
+            const closeKey = 'btn_toggle_carta_close';
+
+            if (shouldOpen) {
+                carta.classList.remove('hidden');
+                if (btn) btn.setAttribute('aria-expanded', 'true');
+                if (textEl) {
+                    textEl.setAttribute('data-i18n', closeKey);
+                    if (typeof translations !== 'undefined' && translations[lang] && translations[lang][closeKey]) {
+                        textEl.textContent = translations[lang][closeKey];
+                    } else {
+                        textEl.textContent = (lang === 'en') ? 'HIDE DETAILED MENU' : 'OCULTAR CARTA EN DETALLE';
+                    }
+                }
+                if (chevron) {
+                    chevron.classList.add('rotate-180');
+                }
+                // Scroll suave a la carta abierta
+                setTimeout(() => {
+                    carta.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+            } else {
+                carta.classList.add('hidden');
+                if (btn) btn.setAttribute('aria-expanded', 'false');
+                if (textEl) {
+                    textEl.setAttribute('data-i18n', openKey);
+                    if (typeof translations !== 'undefined' && translations[lang] && translations[lang][openKey]) {
+                        textEl.textContent = translations[lang][openKey];
+                    } else {
+                        textEl.textContent = (lang === 'en') ? 'VIEW DETAILED MENU' : 'VER CARTA EN DETALLE';
+                    }
+                }
+                if (chevron) {
+                    chevron.classList.remove('rotate-180');
+                }
+                // Scroll suave de vuelta al botón
+                if (btn) {
+                    btn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+        }
+
+        // Funciones interactivas de la Carta HTML (Filtros, Búsqueda y Modal)
+        function filterMenuCategory(category, buttonEl) {
+            document.querySelectorAll('.menu-cat-pill').forEach(btn => {
+                btn.classList.remove('active', 'bg-[#9E782F]', 'text-white', 'border-[#9E782F]', 'shadow-sm');
+                btn.classList.add('bg-[#EFE9DF]', 'text-[#554E44]', 'border-[#D5CEC2]');
+            });
+            if (buttonEl) {
+                buttonEl.classList.remove('bg-[#EFE9DF]', 'text-[#554E44]', 'border-[#D5CEC2]');
+                buttonEl.classList.add('active', 'bg-[#9E782F]', 'text-white', 'border-[#9E782F]', 'shadow-sm');
+            }
+
+            const cards = document.querySelectorAll('.menu-item-card');
+            let visibleCount = 0;
+            cards.forEach(card => {
+                const cardCat = card.getAttribute('data-category');
+                if (category === 'all' || cardCat === category) {
+                    card.style.display = '';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            const noResults = document.getElementById('menu-no-results');
+            if (noResults) {
+                noResults.classList.toggle('hidden', visibleCount > 0);
+            }
+        }
+
+        function handleMenuSearch(query) {
+            const term = (query || '').trim().toLowerCase();
+            const clearBtn = document.getElementById('menu-search-clear');
+            if (clearBtn) {
+                clearBtn.classList.toggle('hidden', term.length === 0);
+            }
+
+            const cards = document.querySelectorAll('.menu-item-card');
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const keywords = (card.getAttribute('data-keywords') || '').toLowerCase();
+                const cardText = card.textContent.toLowerCase();
+                if (term === '' || keywords.includes(term) || cardText.includes(term)) {
+                    card.style.display = '';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            const noResults = document.getElementById('menu-no-results');
+            if (noResults) {
+                noResults.classList.toggle('hidden', visibleCount > 0);
+            }
+        }
+
+        function clearMenuSearch() {
+            const input = document.getElementById('menu-search-input');
+            if (input) input.value = '';
+            const clearBtn = document.getElementById('menu-search-clear');
+            if (clearBtn) clearBtn.classList.add('hidden');
+            const allBtn = document.querySelector('.menu-cat-pill[data-category="all"]') || document.querySelector('.menu-cat-pill');
+            filterMenuCategory('all', allBtn);
+        }
+</script>
 </body>
 
 </html>

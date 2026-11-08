@@ -8,8 +8,8 @@
 # 2. Rutas directas para compartir o entrar al Menú
 /menu /?menu=1 302
 /menu/ /?menu=1 302
-/carta /?menu=1 302
-/carta/ /?menu=1 302
+/carta /carta.html 302
+/carta/ /carta.html 302
 
 # 3. Rutas directas de información legal (Cloudflare sirve legal.html en /legal)
 /aviso-legal /legal#aviso 302
