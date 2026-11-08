@@ -17,6 +17,7 @@
 - [x] **Mini Auditoría Automatizada con Playwright CLI:** Validación de 6 viewports (0 px de desbordamiento horizontal), 52 botones e interactividad 100% operativos y 0 errores JS en tiempo de ejecución.
 - [x] **Sistema Tipográfico de Autor Fontshare:** Fusión armónica de **Clash Display** (H1 y H2), **Boska** (cita editorial de historia) y **Satoshi** (cuerpo, menús y legal), sustituyendo la antigua tipografía pesada en cursiva.
 - [x] **Seguridad CSP Reforzada:** Autorización expresa en `_headers` de Cloudflare para Fontshare y Cloudflare Insights con 0 advertencias de seguridad en consola.
+- [x] **Restauración de Carta HTML Desplegable en Producción:** Panel desplegable `#carta-completa` 100% activo al pulsar "VER CARTA EN DETALLE" (28 platos, filtros y buscador), conviviendo en armonía con el botón del QR de las mesas.
 
 ## Tareas en progreso
 - [ ] Procesamiento en Google y motores de IA de la nueva Carta semántica HTML y Schemas de Santa Catalina.
