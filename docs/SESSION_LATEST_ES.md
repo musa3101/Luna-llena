@@ -42,9 +42,9 @@
 ---
 
 ## Estado de Git & Fusiones
-- Rama `dev`: Commit `88655ca` realizado con todos los cambios y assets optimizados.
-- Rama `main`: Fusión completada con éxito (`fde2a7a`) mediante `mini-merge.sh`.
-- Listo para sincronizar con remoto GitHub / Cloudflare Pages.
+- Rama `dev`: Commit `88655ca` realizado, sincronizado con remoto y subido con éxito (`c27c5f2`).
+- Rama `main`: Fusión completada y subida a GitHub (`1bfaaa2`).
+- Despliegue en Cloudflare Pages (`https://barlunallena.pages.dev/`): 100% verificado y activo en producción (HTTP/2 200 OK).
 
 ## Archivos modificados
 - `index.html`
