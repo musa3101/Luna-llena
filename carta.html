@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Carta Gastronómica Oficial | Bar Luna Llena 16 - Santa Catalina, Palma</title>
+    <meta name="description" content="Carta completa y precios transparentes de Bar Luna Llena 16 en Santa Catalina, Palma de Mallorca. Tapas caseras, desayunos, cafés, menús con bebida y platos combinados.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://barlunallena.pages.dev/carta.html">
+    <link rel="icon" type="image/png" href="./assets/favicon-512x512.png">
+
+    <!-- Tipografías Oficiales Fontshare: Clash Display + Boska + Satoshi -->
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&amp;f[]=boska@400,500,600,700&amp;f[]=satoshi@300,400,500,600,700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/tailwind.min.css">
+
+    <style>
+        :root {
+            --bg-dark: #070A14;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --gold-primary: #C5A059;
+            --gold-light: #E5C98D;
+            --gold-border: rgba(197, 160, 89, 0.25);
+            --border-subtle: rgba(255, 255, 255, 0.07);
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: #FFFFFF;
+            font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        
+        /* Selector Trilingüe en Header Carta */
+        .carta-lang-switch {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 3px 8px;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            backdrop-filter: blur(8px);
+        }
+        .carta-lang-btn {
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.55);
+            cursor: pointer;
+            padding: 2px 4px;
+            font-size: 11px;
+            font-family: inherit;
+            font-weight: 500;
+            border-radius: 4px;
+            transition: color 0.2s ease, font-weight 0.2s ease;
+        }
+        .carta-lang-btn:hover {
+            color: #E5C98D;
+        }
+        .carta-lang-btn.active {
+            color: #E5C98D;
+            font-weight: 800;
+        }
+        .carta-lang-sep {
+            color: rgba(255, 255, 255, 0.25);
+            font-size: 10px;
+            user-select: none;
+        }
+        @media (max-width: 639px) {
+            .carta-top-header {
+                padding: 10px 12px !important;
+                gap: 6px !important;
+            }
+            .header-logo {
+                width: 82px !important;
+                height: auto !important;
+            }
+            .btn-header-back {
+                padding: 6px 10px !important;
+                font-size: 11px !important;
+            }
+            .btn-header-book {
+                padding: 6px 12px !important;
+                font-size: 11px !important;
+            }
+            .carta-lang-switch {
+                padding: 2px 6px !important;
+                gap: 2px !important;
+            }
+            .carta-lang-btn {
+                padding: 1px 3px !important;
+                font-size: 10px !important;
+            }
+        }
+
+        /* Top Header Sticky */
+        .carta-top-header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(7, 10, 20, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--gold-border);
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8);
+        }
+
+        .header-logo {
+            height: 28px;
+            width: auto;
+            object-contain: contain;
+            display: block;
+        }
+
+        .btn-header-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-header-back:hover {
+            background: rgba(255, 255, 255, 0.12);
+            color: #FFFFFF;
+        }
+
+        .btn-header-book {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 16px;
+            border-radius: 9999px;
+            background: linear-gradient(135deg, #C5A059 0%, #E5C98D 100%);
+            color: #070A14;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            text-decoration: none;
+            box-shadow: 0 4px 14px rgba(197, 160, 89, 0.35);
+            transition: all 0.2s ease;
+        }
+
+        .btn-header-book:hover {
+            filter: brightness(1.1);
+            transform: translateY(-1px);
+        }
+
+        /* Container & Hero */
+        .carta-container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 32px 18px 60px 18px;
+        }
+
+        @media (min-width: 640px) {
+            .carta-container {
+                padding: 48px 24px 80px 24px;
+            }
+        }
+
+        .carta-hero {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        @media (min-width: 640px) {
+            .carta-hero {
+                margin-bottom: 56px;
+            }
+        }
+
+        .carta-eyebrow {
+            color: var(--gold-primary);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .carta-main-title {
+            font-family: 'Clash Display', 'Satoshi', sans-serif;
+            font-size: 28px;
+            font-style: normal;
+            font-weight: 600;
+            color: #FFFFFF;
+            letter-spacing: -0.02em;
+            margin: 0 0 10px 0;
+            line-height: 1.25;
+        }
+
+        @media (min-width: 640px) {
+            .carta-main-title {
+                font-size: 40px;
+            }
+        }
+
+        .carta-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 13px;
+            max-width: 520px;
+            margin: 0 auto;
+            line-height: 1.55;
+        }
+
+        .gold-line {
+            width: 48px;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--gold-primary), transparent);
+            margin: 14px auto 0 auto;
+        }
+
+        /* Secciones */
+        .menu-section {
+            margin-bottom: 36px;
+        }
+
+        @media (min-width: 640px) {
+            .menu-section {
+                margin-bottom: 48px;
+            }
+        }
+
+        .menu-section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--gold-border);
+            padding-bottom: 8px;
+            margin-bottom: 16px;
+        }
+
+        .section-title-wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .gold-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: var(--gold-primary);
+        }
+
+        .section-title {
+            font-family: 'Clash Display', 'Satoshi', sans-serif;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 600;
+            color: var(--gold-light);
+            margin: 0;
+            letter-spacing: -0.01em;
+        }
+
+        @media (min-width: 640px) {
+            .section-title {
+                font-size: 24px;
+            }
+        }
+
+        .section-badge {
+            color: var(--gold-primary);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            background: rgba(197, 160, 89, 0.12);
+            padding: 2px 10px;
+            border-radius: 9999px;
+            border: 1px solid rgba(197, 160, 89, 0.25);
+        }
+
+        /* Grid & Cards */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        @media (min-width: 768px) {
+            .menu-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 12px 18px;
+            }
+        }
+
+        .menu-item-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            padding: 12px 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease, border-color 0.2s ease;
+        }
+
+        .menu-item-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(197, 160, 89, 0.35);
+            transform: translateY(-1px);
+        }
+
+        .dish-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .dish-title {
+            color: #FFFFFF;
+            font-family: 'Clash Display', 'Satoshi', sans-serif;
+            font-weight: 600;
+            font-size: 14.5px;
+            letter-spacing: -0.01em;
+            margin: 0;
+            transition: color 0.15s ease;
+        }
+
+        .menu-item-card:hover .dish-title {
+            color: var(--gold-light);
+        }
+
+        .dish-price-wrap {
+            flex-shrink: 0;
+        }
+
+        .dish-price {
+            color: var(--gold-light);
+            background: rgba(197, 160, 89, 0.12);
+            border: 1px solid rgba(197, 160, 89, 0.25);
+            border-radius: 9999px;
+            padding: 2px 10px;
+            font-family: 'Clash Display', sans-serif;
+            font-weight: 600;
+            font-size: 13px;
+            white-space: nowrap;
+            letter-spacing: 0.02em;
+            display: inline-block;
+        }
+
+        .dish-desc {
+            color: rgba(255, 255, 255, 0.65);
+            font-size: 12px;
+            line-height: 1.45;
+            margin: 4px 0 0 0;
+        }
+
+        /* Footer Idéntico al Visor (Captura 2) */
+        .carta-footer-wrap {
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            text-align: center;
+        }
+
+        .allergens-notice {
+            font-size: 11.5px;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 300;
+            line-height: 1.6;
+            letter-spacing: 0.02em;
+            max-width: 520px;
+            margin: 0 auto 20px auto;
+        }
+
+        .legal-links-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            font-size: 10px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .legal-links-row a {
+            color: rgba(255, 255, 255, 0.55);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .legal-links-row a:hover {
+            color: var(--gold-primary);
+        }
+
+        .legal-dot {
+            color: rgba(255, 255, 255, 0.2);
+            user-select: none;
+        }
+
+        /* Halftone canvas */
+        .carta-halftone-box {
+            width: 100%;
+            height: clamp(110px, 16vw, 150px);
+            position: relative;
+            overflow: hidden;
+            background: #070A14;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            border-left: 1px solid rgba(255, 255, 255, 0.08);
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+            border-top-left-radius: 18px;
+            border-top-right-radius: 18px;
+            cursor: crosshair;
+            touch-action: pan-y;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .carta-halftone-box canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sticky Top Header -->
+    <header class="carta-top-header">
+        <a href="./" class="btn-header-back" title="Volver a Bar Luna Llena">
+            <span>←</span>
+            <span data-i18n="carta_nav_back">Inicio</span>
+        </a>
+
+        <a href="./" title="Bar Luna Llena 16">
+            <img src="./assets/logo-luna-llena.webp" alt="Bar Luna Llena" class="header-logo" width="106" height="28">
+        </a>
+
+        <!-- Selector Trilingüe en Carta -->
+        <div class="carta-lang-switch" role="group" aria-label="Selector de idioma">
+            <button type="button" onclick="setCartaLanguage('es')" id="carta-lang-es" class="carta-lang-btn active">ES</button>
+            <span class="carta-lang-sep">/</span>
+            <button type="button" onclick="setCartaLanguage('en')" id="carta-lang-en" class="carta-lang-btn">EN</button>
+            <span class="carta-lang-sep">/</span>
+            <button type="button" onclick="setCartaLanguage('de')" id="carta-lang-de" class="carta-lang-btn">DE</button>
+        </div>
+
+        <a href="https://www.bavoli.com/book/bar-luna-llena" target="_blank" rel="noopener noreferrer" class="btn-header-book">
+            <span data-i18n="carta_nav_book">Reservar</span>
+        </a>
+    </header>
+
+    <!-- Main Container -->
+    <main class="carta-container" itemscope itemtype="https://schema.org/Menu">
+        
+        <!-- Hero Header -->
+        <div class="carta-hero">
+            <span class="carta-eyebrow" data-i18n="menu_html_eyebrow">Gastronomía & Precios Transparentes</span>
+            <h1 class="carta-main-title" itemprop="name" data-i18n="menu_html_title">Toda Nuestra Carta en Santa Catalina</h1>
+            <p class="carta-subtitle" itemprop="description" data-i18n="menu_html_desc">
+                28 especialidades caseras preparadas al momento con ingredientes frescos de primera calidad.
+            </p>
+            <div class="gold-line" aria-hidden="true"></div>
+        </div>
+
+            <!-- Sección: Para Picar & Tapas -->
+            <section class="menu-section">
+                <div class="menu-section-header">
+                    <div class="section-title-wrap">
+                        <span class="gold-dot" aria-hidden="true"></span>
+                        <h2 class="section-title" data-i18n="cat_picar">Para Picar & Tapas</h2>
+                    </div>
+                    <span class="section-badge" data-i18n="badge_14_platos">14 platos</span>
+                </div>
+                <div class="menu-grid">
+                    <article class="menu-item-card group" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="dish-header">
+                            <h4 class="dish-title" itemprop="name" data-i18n="dish_1_name">Ración patatas fritas</h4>
+                            <div class="dish-price-wrap" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="dish-price" itemprop="price">4.00 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p class="dish-desc" itemprop="description" data-i18n="dish_1_desc">Patatas fritas crujientes doradas al momento.</p>
+                    </article>
+                    <article class="menu-item-card group" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="dish-header">
+                            <h4 class="dish-title" itemprop="name" data-i18n="dish_2_name">Ración patatas bravas</h4>
+                            <div class="dish-price-wrap" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="dish-price" itemprop="price">4.50 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p class="dish-desc" itemprop="description" data-i18n="dish_2_desc">Patatas caseras cortadas a mano con salsa brava y alioli suave.</p>
+                    </article>
+                    <article class="menu-item-card group" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="dish-header">
+                            <h4 class="dish-title" itemprop="name" data-i18n="dish_3_name">Sandwitch mixto</h4>
+                            <div class="dish-price-wrap" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="dish-price" itemprop="price">4.00 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p class="dish-desc" itemprop="description" data-i18n="dish_3_desc">Sandwich tostado de jamón cocido y queso fundido.</p>
+                    </article>
+                    <article class="menu-item-card group" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="dish-header">
+                            <h4 class="dish-title" itemprop="name" data-i18n="dish_4_name">Sandwitch pollo</h4>
+                            <div class="dish-price-wrap" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="dish-price" itemprop="price">4.80 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p class="dish-desc" itemprop="description" data-i18n="dish_4_desc">Sandwich caliente con pechuga de pollo tierna.</p>
+                    </article>
+                    <article class="menu-item-card group" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="dish-header">
+                            <h4 class="dish-title" itemprop="name" data-i18n="dish_5_name">Sandwitch tortilla francesa</h4>
+                            <div class="dish-price-wrap" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="dish-price" itemprop="price">4.80 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p class="dish-desc" itemprop="description" data-i18n="dish_5_desc">Sandwich tostado con tortilla francesa recién hecha.</p>
+                    </article>
+                    <article class="menu-item-card group" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="dish-header">
+                            <h4 class="dish-title" itemprop="name" data-i18n="dish_6_name">Bocadillo tortilla francesa</h4>
+                            <div class="dish-price-wrap" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="dish-price" itemprop="price">4.50 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p class="dish-desc" itemprop="description" data-i18n="dish_6_desc">Pan rústico crujiente con tortilla francesa casera.</p>
+                    </article>
+                    <article class="menu-item-card group" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="dish-header">
+                            <h4 class="dish-title" itemprop="name" data-i18n="dish_7_name">Pepito de lomo</h4>
+                            <div class="dish-price-wrap" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="dish-price" itemprop="price">4.50 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p class="dish-desc" itemprop="description" data-i18n="dish_7_desc">Lomo tierno a la plancha con pimientos y queso en pan artesanal.</p>
+                    </article>
+                    <article class="menu-item-card group" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="dish-header">
+                            <h4 class="dish-title" itemprop="name" data-i18n="dish_8_name">Nuggets pollo</h4>
+                            <div class="dish-price-wrap" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="dish-price" itemprop="price">4.50 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p class="dish-desc" itemprop="description" data-i18n="dish_8_desc">Bocaditos de pollo crujientes con salsa de la casa.</p>
+                    </article>
+                    <article class="menu-item-card group" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="dish-header">
+                            <h4 class="dish-title" itemprop="name" data-i18n="dish_9_name">Croquetas de pollo</h4>
+                            <div class="dish-price-wrap" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="dish-price" itemprop="price">5.50 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p class="dish-desc" itemprop="description" data-i18n="dish_9_desc">Croquetas caseras cremosas de pollo crujientes.</p>
+                    </article>
+                    <article class="menu-item-card group" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="dish-header">
+                            <h4 class="dish-title" itemprop="name" data-i18n="dish_10_name">Alitas de pollo</h4>
+                            <div class="dish-price-wrap" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="dish-price" itemprop="price">6.00 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p class="dish-desc" itemprop="description" data-i18n="dish_10_desc">Alitas de pollo marinadas y doradas al punto.</p>
+                    </article>
+                    <article class="menu-item-card group" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="dish-header">
+                            <h4 class="dish-title" itemprop="name" data-i18n="dish_11_name">Calamares a la romana</h4>
+                            <div class="dish-price-wrap" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="dish-price" itemprop="price">6.80 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p class="dish-desc" itemprop="description" data-i18n="dish_11_desc">Aros tiernos de calamar rebozados y crujientes con limón.</p>
+                    </article>
+                    <article class="menu-item-card group" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="dish-header">
+                            <h4 class="dish-title" itemprop="name" data-i18n="dish_12_name">Falafel con ensalada</h4>
+                            <div class="dish-price-wrap" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="dish-price" itemprop="price">7.50 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p class="dish-desc" itemprop="description" data-i18n="dish_12_desc">Falafel casero especiado acompañado de ensalada fresca.</p>
+                    </article>
+                    <article class="menu-item-card group" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="dish-header">
+                            <h4 class="dish-title" itemprop="name" data-i18n="dish_13_name">Ensalada de la casa</h4>
+                            <div class="dish-price-wrap" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="dish-price" itemprop="price">5.50 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p class="dish-desc" itemprop="description" data-i18n="dish_13_desc">Ensalada fresca de temporada con verduras seleccionadas.</p>
+                    </article>
+                    <article class="menu-item-card group" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="dish-header">
+                            <h4 class="dish-title" itemprop="name" data-i18n="dish_14_name">Hamburguesa con Patata o ensalada</h4>
+                            <div class="dish-price-wrap" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="dish-price" itemprop="price">8.50 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p class="dish-desc" itemprop="description" data-i18n="dish_14_desc">Hamburguesa 100% vacuno con lechuga, tomate y guarnición.</p>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Sección: Desayunos -->
+            <section class="menu-section">
+                <div class="menu-section-header">
+                    <div class="section-title-wrap">
+                        <span class="gold-dot" aria-hidden="true"></span>
+                        <h2 class="section-title" data-i18n="cat_desayunos">Desayunos</h2>
+                    </div>
+                    <span class="section-badge" data-i18n="badge_3_opciones">3 opciones</span>
+                </div>
+                <div class="menu-grid">
+                    <article class="menu-item-card group" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="dish-header">
+                            <h4 class="dish-title" itemprop="name" data-i18n="dish_15_name">Café + tostada tomate o croassán</h4>
+                            <div class="dish-price-wrap" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="dish-price" itemprop="price">4.50 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p class="dish-desc" itemprop="description" data-i18n="dish_15_desc">Café a elegir con tostada de tomate o croissant horneado.</p>
+                    </article>
+                    <article class="menu-item-card group" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="dish-header">
+                            <h4 class="dish-title" itemprop="name" data-i18n="dish_16_name">Café + tostada huevo revuelto</h4>
+                            <div class="dish-price-wrap" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="dish-price" itemprop="price">5.50 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p class="dish-desc" itemprop="description" data-i18n="dish_16_desc">Café a elegir con tostada recién preparada con huevos revueltos.</p>
+                    </article>
+                    <article class="menu-item-card group" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="dish-header">
+                            <h4 class="dish-title" itemprop="name" data-i18n="dish_17_name">Zumo/Lacao + sandwitch jamón y queso</h4>
+                            <div class="dish-price-wrap" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="dish-price" itemprop="price">5.00 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p class="dish-desc" itemprop="description" data-i18n="dish_17_desc">Zumo natural o ColaCao con sandwich caliente mixto.</p>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Sección: Cafés -->
+            <section class="menu-section">
+                <div class="menu-section-header">
+                    <div class="section-title-wrap">
+                        <span class="gold-dot" aria-hidden="true"></span>
+                        <h2 class="section-title" data-i18n="cat_cafes">Cafés</h2>
+                    </div>
+                    <span class="section-badge" data-i18n="badge_4_opciones">4 opciones</span>
+                </div>
+                <div class="menu-grid">
+                    <article class="menu-item-card group" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="dish-header">
+                            <h4 class="dish-title" itemprop="name" data-i18n="dish_18_name">Café solo</h4>
+                            <div class="dish-price-wrap" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="dish-price" itemprop="price">1.50 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p class="dish-desc" itemprop="description" data-i18n="dish_18_desc">Café espresso aromático de grano seleccionado recién molido.</p>
+                    </article>
+                    <article class="menu-item-card group" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="dish-header">
+                            <h4 class="dish-title" itemprop="name" data-i18n="dish_19_name">Café cortado</h4>
+                            <div class="dish-price-wrap" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="dish-price" itemprop="price">1.60 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p class="dish-desc" itemprop="description" data-i18n="dish_19_desc">Café espresso con una nube suave de leche.</p>
+                    </article>
+                    <article class="menu-item-card group" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="dish-header">
+                            <h4 class="dish-title" itemprop="name" data-i18n="dish_20_name">Café con leche</h4>
+                            <div class="dish-price-wrap" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="dish-price" itemprop="price">2.00 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p class="dish-desc" itemprop="description" data-i18n="dish_20_desc">Café equilibrado con leche cremosa vaporizada.</p>
+                    </article>
+                    <article class="menu-item-card group" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="dish-header">
+                            <h4 class="dish-title" itemprop="name" data-i18n="dish_21_name">Carajillo whisky</h4>
+                            <div class="dish-price-wrap" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="dish-price" itemprop="price">2.50 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p class="dish-desc" itemprop="description" data-i18n="dish_21_desc">Café espresso tradicional con toque de whisky selecto.</p>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Sección: Menús con Bebida -->
+            <section class="menu-section">
+                <div class="menu-section-header">
+                    <div class="section-title-wrap">
+                        <span class="gold-dot" aria-hidden="true"></span>
+                        <h2 class="section-title" data-i18n="cat_menus">Menús con Bebida</h2>
+                    </div>
+                    <span class="section-badge" data-i18n="badge_4_menus_completos">4 menús completos</span>
+                </div>
+                <div class="menu-grid">
+                    <article class="menu-item-card group" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="dish-header">
+                            <h4 class="dish-title" itemprop="name" data-i18n="dish_22_name">Menú Nuggets + patatas + bebida</h4>
+                            <div class="dish-price-wrap" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="dish-price" itemprop="price">7.80 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p class="dish-desc" itemprop="description" data-i18n="dish_22_desc">Nuggets de pollo crujientes con patatas fritas y bebida.</p>
+                    </article>
+                    <article class="menu-item-card group" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="dish-header">
+                            <h4 class="dish-title" itemprop="name" data-i18n="dish_23_name">Menú Croquetas vegetales + patatas + bebida</h4>
+                            <div class="dish-price-wrap" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="dish-price" itemprop="price">8.50 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p class="dish-desc" itemprop="description" data-i18n="dish_23_desc">Croquetas vegetales suaves con patatas y bebida incluida.</p>
+                    </article>
+                    <article class="menu-item-card group" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="dish-header">
+                            <h4 class="dish-title" itemprop="name" data-i18n="dish_24_name">Menú Alitas de pollo + patatas + bebida</h4>
+                            <div class="dish-price-wrap" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="dish-price" itemprop="price">9.50 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p class="dish-desc" itemprop="description" data-i18n="dish_24_desc">Alitas de pollo doradas acompañadas de patatas y bebida.</p>
+                    </article>
+                    <article class="menu-item-card group" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="dish-header">
+                            <h4 class="dish-title" itemprop="name" data-i18n="dish_25_name">Menú Hamburguesa + patatas + bebida</h4>
+                            <div class="dish-price-wrap" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="dish-price" itemprop="price">9.80 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p class="dish-desc" itemprop="description" data-i18n="dish_25_desc">Hamburguesa casera completa con patatas fritas y bebida.</p>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Sección: Platos Combinados -->
+            <section class="menu-section">
+                <div class="menu-section-header">
+                    <div class="section-title-wrap">
+                        <span class="gold-dot" aria-hidden="true"></span>
+                        <h2 class="section-title" data-i18n="cat_combinados">Platos Combinados</h2>
+                    </div>
+                    <span class="section-badge" data-i18n="badge_3_platos">3 platos</span>
+                </div>
+                <div class="menu-grid">
+                    <article class="menu-item-card group" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="dish-header">
+                            <h4 class="dish-title" itemprop="name" data-i18n="dish_26_name">Huevos fritos con salchichas y ensalada</h4>
+                            <div class="dish-price-wrap" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="dish-price" itemprop="price">8.20 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p class="dish-desc" itemprop="description" data-i18n="dish_26_desc">Dos huevos fritos camperos con salchichas y ensalada mixta.</p>
+                    </article>
+                    <article class="menu-item-card group" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="dish-header">
+                            <h4 class="dish-title" itemprop="name" data-i18n="dish_27_name">Pechuga de pollo con ensalada y patatas</h4>
+                            <div class="dish-price-wrap" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="dish-price" itemprop="price">9.50 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p class="dish-desc" itemprop="description" data-i18n="dish_27_desc">Pechuga tierna a la plancha con patatas fritas y ensalada.</p>
+                    </article>
+                    <article class="menu-item-card group" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                        <div class="dish-header">
+                            <h4 class="dish-title" itemprop="name" data-i18n="dish_28_name">Lomo con patatas y ensalada</h4>
+                            <div class="dish-price-wrap" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="dish-price" itemprop="price">9.50 €</span>
+                                <meta itemprop="priceCurrency" content="EUR" />
+                            </div>
+                        </div>
+                        <p class="dish-desc" itemprop="description" data-i18n="dish_28_desc">Lomo a la plancha con patatas fritas y ensalada de temporada.</p>
+                    </article>
+                </div>
+            </section>
+
+        <!-- Footer Oficial (Idéntico a Captura 2) -->
+        <footer class="carta-footer-wrap">
+            <p class="allergens-notice" data-i18n="menu_allergens_notice">
+                Si presenta alguna alergia o intolerancia alimentaria, por favor consulte con nuestro personal antes de realizar su pedido.
+            </p>
+
+            <div class="legal-links-row">
+                <a href="./legal.html#aviso" data-i18n="menu_legal_aviso">Aviso Legal</a>
+                <span class="legal-dot">·</span>
+                <a href="./legal.html#terminos" data-i18n="menu_legal_terminos">Términos</a>
+                <span class="legal-dot">·</span>
+                <a href="./legal.html#privacidad" data-i18n="menu_legal_privacidad">Privacidad</a>
+            </div>
+
+            <!-- Animación Halftone Compacta (Luna Llena 🌛) -->
+            <div id="carta-halftone-wrapper" class="carta-halftone-box" title="Toca o interactúa para crear ondas">
+                <canvas id="carta-halftone-canvas" aria-label="Luna llena 🌛"></canvas>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- Script Halftone Wordmark Interactivo -->
+    <script>
+        (function() {
+            function hwfHex(hex) {
+                if (!hex || hex.length < 7) return null;
+                return [
+                    parseInt(hex.slice(1, 3), 16),
+                    parseInt(hex.slice(3, 5), 16),
+                    parseInt(hex.slice(5, 7), 16)
+                ];
+            }
+
+            function hwfRadius(cov, gap) {
+                return (gap / 2) * Math.sqrt(Math.max(0, Math.min(1, cov)));
+            }
+
+            function hwfStep(x, y, vx, vy, hx, hy, px, py, r) {
+                const dx = x - px;
+                const dy = y - py;
+                const d2 = dx * dx + dy * dy;
+                if (r > 0 && d2 < r * r) {
+                    const d = Math.sqrt(d2) + 0.001;
+                    const f = (1 - d / r) * 2.6;
+                    vx += (dx / d) * f;
+                    vy += (dy / d) * f;
+                }
+                vx = (vx + (hx - x) * 0.05) * 0.84;
+                vy = (vy + (hy - y) * 0.05) * 0.84;
+                return [x + vx, y + vy, vx, vy];
+            }
+
+            function hwfWarmth(x, y, hx, hy, span) {
+                const d = Math.hypot(x - hx, y - hy);
+                return span > 0 ? Math.min(1, d / span) : 0;
+            }
+
+            function hwfFitSize(measured, width) {
+                return measured > 0 ? (width / measured) * 100 : 0;
+            }
+
+            function initHalftone(rootId, canvasId) {
+                const root = document.getElementById(rootId);
+                const canvas = document.getElementById(canvasId);
+                if (!root || !canvas) return;
+                const ctx = canvas.getContext('2d');
+                if (!ctx) return;
+
+                const isSmall = window.innerWidth < 768;
+                const config = {
+                    textPart: 'Luna llena ',
+                    moonPart: '🌛',
+                    fontFamily: '"Plus Jakarta Sans", "Outfit", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+                    fontWeight: 800,
+                    dotGap: isSmall ? 4 : 5,
+                    radius: isSmall ? 55 : 75,
+                    crop: 0.16,
+                    grain: 0.35,
+                    colors: {
+                        background: '#070A14',
+                        ink: '#F3EFE6',
+                        moon: '#FFCD2D',
+                        warm: '#FF851B'
+                    }
+                };
+
+                const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                let w = 0, h = 0, dpr = 1;
+                let px = -1e5, py = -1e5;
+                let raf = 0;
+                let visible = true;
+                let awake = true;
+                let ring = { x: 0, y: 0, t: -1 };
+                let dots = new Float32Array(0);
+                let count = 0;
+                let grainTile = null;
+                const ink = hwfHex(config.colors.ink) || [243, 239, 230];
+                const moonColor = hwfHex(config.colors.moon) || [255, 205, 45];
+                const warm = hwfHex(config.colors.warm) || [255, 133, 27];
+
+                const layout = () => {
+                    const rect = root.getBoundingClientRect();
+                    if (rect.width <= 10 || rect.height <= 10) return;
+                    w = Math.max(1, Math.round(rect.width));
+                    h = Math.max(1, Math.round(rect.height));
+                    dpr = Math.min(window.devicePixelRatio || 1, 2);
+                    canvas.width = Math.round(w * dpr);
+                    canvas.height = Math.round(h * dpr);
+
+                    const mask = document.createElement('canvas');
+                    mask.width = w;
+                    mask.height = h;
+                    const m = mask.getContext('2d', { willReadFrequently: true });
+                    if (!m) return;
+
+                    const emojiFallback = ', "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif';
+                    m.font = config.fontWeight + ' 100px ' + config.fontFamily + emojiFallback;
+
+                    const wText100 = m.measureText(config.textPart).width;
+                    const wMoon100 = m.measureText(config.moonPart).width;
+                    const totalW100 = wText100 + wMoon100;
+                    const fit = hwfFitSize(totalW100, w * 0.94);
+
+                    m.font = config.fontWeight + ' ' + fit + 'px ' + config.fontFamily + emojiFallback;
+                    const wText = m.measureText(config.textPart).width;
+                    const wMoon = m.measureText(config.moonPart).width;
+                    const totalW = wText + wMoon;
+                    const box = m.measureText(config.textPart + config.moonPart);
+                    const cap = box.actualBoundingBoxAscent || fit * 0.72;
+                    const c = Math.max(0, Math.min(0.6, config.crop));
+                    const startX = (w - totalW) / 2;
+                    const moonStartX = startX + wText;
+                    const posY = h + cap * c;
+
+                    m.clearRect(0, 0, w, h);
+                    m.fillStyle = '#000000';
+                    m.textBaseline = 'alphabetic';
+                    m.fillText(config.textPart, startX, posY);
+                    m.fillText(config.moonPart, moonStartX, posY);
+
+                    const img = m.getImageData(0, 0, w, h).data;
+                    const gap = Math.max(3, config.dotGap);
+                    const cols = Math.ceil(w / gap);
+                    const rows = Math.ceil(h / gap);
+                    const tmp = [];
+
+                    for (let gy = 0; gy < rows; gy++) {
+                        for (let gx = 0; gx < cols; gx++) {
+                            let sum = 0;
+                            for (let sy = 0; sy < 3; sy++) {
+                                for (let sx = 0; sx < 3; sx++) {
+                                    const x = Math.min(w - 1, Math.floor(gx * gap + ((sx + 0.5) * gap) / 3));
+                                    const y = Math.min(h - 1, Math.floor(gy * gap + ((sy + 0.5) * gap) / 3));
+                                    sum += img[(y * w + x) * 4 + 3];
+                                }
+                            }
+                            const cov = sum / (9 * 255);
+                            if (cov < 0.06) continue;
+                            const hx = gx * gap + gap / 2;
+                            const hy = gy * gap + gap / 2;
+                            const isMoon = hx >= (moonStartX - gap * 0.35);
+                            const baseColor = isMoon ? moonColor : ink;
+                            tmp.push(hx, hy, 0, 0, hx, hy, hwfRadius(cov, gap), baseColor[0], baseColor[1], baseColor[2]);
+                        }
+                    }
+                    dots = new Float32Array(tmp);
+                    count = tmp.length / 10;
+                    awake = true;
+                };
+
+                const draw = (now) => {
+                    if (w <= 0 || h <= 0) return;
+                    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                    ctx.fillStyle = config.colors.background;
+                    ctx.fillRect(0, 0, w, h);
+
+                    const r = !reduced ? Math.max(0, config.radius) : 0;
+                    const ringAge = ring.t < 0 ? 1e9 : now - ring.t;
+                    const ringR = ringAge * 0.9;
+                    let moving = false;
+
+                    for (let i = 0; i < count; i++) {
+                        const j = i * 10;
+                        let x = dots[j];
+                        let y = dots[j + 1];
+                        let vx = dots[j + 2];
+                        let vy = dots[j + 3];
+                        const hx = dots[j + 4];
+                        const hy = dots[j + 5];
+                        const dotR = dots[j + 6];
+                        const baseR = dots[j + 7];
+                        const baseG = dots[j + 8];
+                        const baseB = dots[j + 9];
+
+                        if (!reduced) {
+                            if (ringAge < 900) {
+                                const dx = hx - ring.x;
+                                const dy = hy - ring.y;
+                                const d = Math.sqrt(dx * dx + dy * dy) + 0.001;
+                                const band = 1 - Math.min(1, Math.abs(d - ringR) / 26);
+                                if (band > 0) {
+                                    const f = band * 3.2 * (1 - ringAge / 900);
+                                    vx += (dx / d) * f;
+                                    vy += (dy / d) * f;
+                                }
+                            }
+                            const s = hwfStep(x, y, vx, vy, hx, hy, px, py, r);
+                            x = s[0];
+                            y = s[1];
+                            vx = s[2];
+                            vy = s[3];
+                            if (Math.abs(vx) + Math.abs(vy) > 0.02 || Math.abs(x - hx) + Math.abs(y - hy) > 0.05) moving = true;
+                        }
+
+                        const k = hwfWarmth(x, y, hx, hy, 28);
+                        ctx.fillStyle = k > 0.02
+                            ? 'rgb(' + Math.round(baseR + (warm[0] - baseR) * k) + ',' + Math.round(baseG + (warm[1] - baseG) * k) + ',' + Math.round(baseB + (warm[2] - baseB) * k) + ')'
+                            : 'rgb(' + baseR + ',' + baseG + ',' + baseB + ')';
+
+                        ctx.beginPath();
+                        ctx.arc(x, y, dotR, 0, 6.2832);
+                        ctx.fill();
+                    }
+
+                    awake = moving || ringAge < 900 || px > -1e4;
+                };
+
+                const loop = (now) => {
+                    raf = 0;
+                    if (!visible) return;
+                    draw(now);
+                    if (awake) raf = requestAnimationFrame(loop);
+                };
+
+                const wake = () => {
+                    awake = true;
+                    if (!raf && visible) raf = requestAnimationFrame(loop);
+                };
+
+                const toLocal = (e) => {
+                    const b = canvas.getBoundingClientRect();
+                    return [e.clientX - b.left, e.clientY - b.top];
+                };
+
+                root.addEventListener('pointermove', (e) => {
+                    const p = toLocal(e);
+                    px = p[0];
+                    py = p[1];
+                    wake();
+                });
+                root.addEventListener('pointerleave', () => {
+                    px = -1e5;
+                    py = -1e5;
+                    wake();
+                });
+                root.addEventListener('pointerdown', (e) => {
+                    if (reduced) return;
+                    const p = toLocal(e);
+                    ring = { x: p[0], y: p[1], t: performance.now() };
+                    wake();
+                });
+
+                layout();
+                draw(performance.now());
+                window.addEventListener('resize', () => { layout(); wake(); });
+                if (document.fonts && document.fonts.ready) {
+                    document.fonts.ready.then(() => { layout(); wake(); });
+                }
+            }
+
+            document.addEventListener('DOMContentLoaded', () => {
+                initHalftone('carta-halftone-wrapper', 'carta-halftone-canvas');
+            });
+        })();
+    </script>
+
+    <!-- Script de Internacionalización Trilingüe (ES / EN / DE) -->
+    <script>
+        const cartaTranslations = {"es": {"nav_inicio": "Inicio", "nav_historia": "Historia", "nav_carta": "Carta", "nav_ubicacion": "Dónde estamos", "btn_reservar": "Reservar", "btn_reservar_mesa": "Reservar Mesa", "hero_tagline": "Tradición, calidad y un ambiente único en el corazón de <span class=\"text-[#C5A059] font-normal\">Santa Catalina</span>.", "hero_tagline_mobile": "Tradición, calidad y un ambiente único en el corazón de Santa Catalina.", "hero_tagline_desktop": "Tradición, calidad y un ambiente auténtico en el corazón de Santa Catalina.", "hero_btn": "Ver la carta", "story_eyebrow": "Sobre Nosotros", "story_title": "Nuestra Historia", "story_quote": "En el corazón de Santa Catalina, Bar Luna Llena lleva más de una década siendo un punto de encuentro para vecinos, visitantes y amantes de la buena gastronomía.", "story_p1": "Nuestra esencia siempre ha sido la misma: ofrecer un ambiente cercano, buena comida y un lugar donde disfrutar sin prisas.", "story_p2": "Y si hay un rincón especial, es nuestra terraza. Un espacio al aire libre donde empezar el día con un café, compartir unas tapas o disfrutar de una cena mientras se vive el ambiente único de Santa Catalina.", "story_p3": "Más que un restaurante, queremos ser ese lugar al que siempre apetece volver.", "story_icon_coffee": "Café", "story_icon_pet": "Pet Friendly", "story_icon_tapas": "Pet Friendly", "story_icon_terrace": "Terraza", "menu_eyebrow": "Gastronomía", "menu_title": "Carta Digital", "menu_subtitle": "Favoritos de la Casa", "dish_burger_cat": "Burger 100% Vacuno", "dish_burger_title": "Burger Luna Llena", "dish_hint_front": "Ver detalles", "dish_hint_back": "Volver", "dish_burger_desc": "Jugosa carne doble seleccionada 100% vacuno con queso fundido, lechuga y tomate en pan artesanal. Acompañada de patatas fritas.", "dish_bravas_cat": "Tapas Caseras", "dish_bravas_title": "Bravas Caseras", "dish_bravas_desc": "Auténticas patatas cortadas a mano, fritas al momento y bañadas en nuestra salsa brava casera secreta con un toque suave de alioli premium.", "dish_pepito_cat": "Especialidad Tradicional", "dish_pepito_title": "Pepito Clásico", "dish_pepito_desc": "Lomo tierno a la plancha con pimientos asados seleccionados y queso fundido, servido en pan rústico crujiente recién horneado. El clásico de siempre.", "menu_pdf_btn": "VER CARTA COMPLETA", "menu_close": "Cerrar", "menu_back_to_web": "Volver a la Web", "menu_download_pdf": "Descargar PDF original", "reviews_badge": "4.8 ★★★★★ · Google Maps", "reviews_title": "¿Y qué opinan sobre nosotros?", "reviews_pending": "Destacada", "reviews_label_food": "Comida", "reviews_label_service": "Servicio", "reviews_label_ambience": "Ambiente", "reviews_q1": "\"Muy buena experiencia y Miah es un chico muy amable que nos atendió! La comida es espectacular y la terraza que lo acompaña en el corazón de Santa Catalina esta super bien!!\"", "reviews_sub1": "2 reseñas · Tamaño del grupo: 3-4 personas", "reviews_date2": "Hace 3 meses", "reviews_q2": "\"Un servicio inmejorable. El dueño super atento, servicial y simpático. Buena comida y céntrico, al lado de Santa Catalina. Un 10!\"", "reviews_sub2": "2 reseñas · Cena (1-10 €)", "reviews_date3": "Hace 2 años", "reviews_q3": "\"Paramos para comer algo después de visitar el castillo de Bellver. Teníamos poco tiempo para coger un avión... Nos prepararon unos bocadillos super buenos en tiempo récord y a precio ajustado. Agradecemos la eficiencia, amabilidad y simpatía. 🙂\"", "reviews_sub3": "Local Guide · 34 reseñas · 28 fotos", "reviews_date4": "Hace 2 años", "reviews_q4": "\"Teníamos prisa: 5 hamburguesas con patatas y un bocadillo de tortilla a media tarde. Un hombre amable aceptó el reto y en 15 minutos nos tuvo todo preparado. La comida más que correcta y el precio inferior a 10€. ¡Muchas gracias!\"", "reviews_sub4": "Local Guide · 51 reseñas · 5 fotos", "reviews_sub5_a": "Local Guide · Hace 4 meses", "reviews_sub5_b": "5 reseñas · Hace 1 año", "reviews_sub5_footer": "Reseñas 5 estrellas verificadas en Google Maps", "reviews_cta": "Ver todas las reseñas en Google Maps", "reviews_write_btn": "Escribir una reseña", "contact_eyebrow": "Visítanos & Reservas", "contact_title": "Dónde estamos / Reservar", "contact_address_title": "Dirección", "contact_hours_title": "Horario", "contact_hours_value": "<span class=\"text-white/90\">Lunes a Sábado:</span> 08:00h - 23:00h<br/><span class=\"text-white/90\">Domingo:</span> Cerrado", "contact_phone_title": "Teléfono", "contact_reviews_btn": "Ver reseñas en Google", "footer_slogan": "El bar del barrio", "footer_col_nav": "Navegación", "footer_col_legal": "Legal & Pagos", "footer_legal_aviso": "Aviso Legal", "footer_legal_terminos": "Términos y Condiciones", "footer_legal_privacidad": "Privacidad", "footer_legal_cookies": "Cookies", "menu_legal_aviso": "Aviso Legal", "menu_legal_terminos": "Términos", "menu_legal_privacidad": "Privacidad", "menu_allergens_notice": "Si presenta alguna alergia o intolerancia alimentaria, por favor consulte con nuestro personal antes de realizar su pedido.", "footer_cards": "Aceptamos tarjetas", "footer_tooltip_reviews": "Reseñas", "footer_tooltip_maintenance": "Próximamente", "footer_copyright": "© 2026 Bar Luna Llena. Todos los derechos reservados.", "footer_made_by": "Desarrollado por", "cookies_title": "Tu privacidad es importante", "cookies_desc": "Utilizamos cookies para mejorar tu experiencia, analizar el tráfico y personalizar el contenido.", "cookies_link": "Política de Privacidad", "cookies_btn_options": "Más Opciones", "cookies_btn_reject": "Rechazar", "cookies_btn_accept": "Aceptar", "menu_html_eyebrow": "Gastronomía & Precios Transparentes", "menu_html_title": "Toda Nuestra Carta en Santa Catalina", "menu_html_desc": "28 especialidades caseras preparadas al momento con ingredientes frescos de primera calidad.", "cat_all": "Todos", "cat_picar": "Para Picar & Tapas", "cat_desayunos": "Desayunos", "cat_cafes": "Cafés", "cat_menus": "Menús con Bebida", "cat_combinados": "Platos Combinados", "menu_search_empty_title": "No encontramos ningún plato con ese término", "menu_search_empty_desc": "Intenta buscar por \"bravas\", \"café\", \"pepito\", \"menú\" o \"ensalada\".", "menu_search_reset": "Ver toda la carta", "btn_toggle_carta_open": "VER CARTA EN DETALLE", "btn_toggle_carta_close": "OCULTAR CARTA EN DETALLE", "menu_btn_close": "Cerrar Carta", "menu_btn_book": "Reservar Mesa", "menu_switch_hint": "¿Prefieres ver el diseño visual en folleto?", "menu_switch_sub": "Disponible en alta resolución para móvil y mesa", "menu_open_graphic_btn": "Ver Folleto Original", "modal_view_img": "🖼️ Folleto Ilustrado", "modal_view_html": "📋 Carta en Texto HTML", "faq_eyebrow": "Preguntas Frecuentes", "faq_title": "Todo sobre Bar Luna Llena 16", "faq_subtitle": "Información verificada sobre nuestra carta en Santa Catalina, desayunos, menús y ubicación", "faq_1_q": "¿Dónde está ubicado Bar Luna Llena 16 en Santa Catalina y cómo llegar?", "faq_1_a": "Bar Luna Llena se encuentra en el Carrer de Cotoner, 16, en pleno corazón de Santa Catalina (07013 Palma de Mallorca). Está situado a menos de 3 minutos a pie del Mercado de Santa Catalina y a 5 minutos del Paseo Marítimo, con fácil acceso peatonal y paradas de autobús cercanas en Avenida Argentina y Comte de Barcelona.", "faq_2_q": "¿Se puede consultar la carta completa y precios actualizados de Bar Luna Llena?", "faq_2_a": "Sí, en nuestra web puedes consultar la carta oficial completa con sus 28 especialidades caseras, raciones y bebidas con precios transparentes y actualizados en euros (€). Encontrarás desde tapas tradicionales como bravas desde 4.00€ o calamares hasta desayunos completos desde 4.50€, cafés desde 1.50€ y menús con patatas y bebida desde 7.80€, disponibles tanto en el visor detallado interactivo como en folleto ilustrado.", "faq_bavoli_q": "¿Cómo reservar mesa en Bar Luna Llena y cuál es la política de cancelación?", "faq_bavoli_a": "Puedes reservar tu mesa cómodamente online a través de nuestro sistema oficial integrado con Bavoli, seleccionando fecha, hora y comensales con confirmación inmediata por SMS y correo. Si necesitas modificar o cancelar tu reserva, es 100% gratuito y flexible: puedes gestionarlo con un solo clic desde el enlace de tu confirmación hasta unas horas antes de tu visita o avisándonos por teléfono si surge cualquier imprevisto.", "faq_3_q": "¿Qué opciones de desayuno y café ofrecen por la mañana en Palma?", "faq_3_a": "Abrimos de lunes a sábado desde las 08:00 de la mañana. Servimos café espresso aromático, café con leche, cortados y carajillos, acompañados de tostadas clásicas con tomate o croissant (4.50€), tostadas con huevos revueltos al momento (5.50€) y zumos o ColaCao con sandwiches mixtos calientes (5.00€).", "faq_4_q": "¿Tienen menús económicos con bebida incluida y platos combinados?", "faq_4_a": "Sí, disponemos de 4 menús completos que incluyen ración de patatas fritas y bebida: Menú Nuggets (7.80€), Menú Croquetas vegetales (8.50€), Menú Alitas de pollo (9.50€) y Menú Hamburguesa casera (9.80€). Además ofrecemos platos combinados tradicionales con huevos camperos, salchichas, pechuga de pollo o lomo con patatas y ensalada.", "faq_5_q": "¿El Bar Luna Llena es Pet Friendly y dispone de servicio para llevar (Take Away)?", "faq_5_a": "¡Por supuesto! Somos un local 100% Pet Friendly donde tu mascota siempre es bien recibida tanto en el interior climatizado como en nuestra agradable terraza de Santa Catalina. Además preparamos todos nuestros platos, bocadillos y tapas para llevar (take away).", "dish_1_name": "Ración patatas fritas", "dish_1_desc": "Patatas fritas crujientes doradas al momento.", "dish_2_name": "Ración patatas bravas", "dish_2_desc": "Patatas caseras cortadas a mano con salsa brava y alioli suave.", "dish_3_name": "Sandwitch mixto", "dish_3_desc": "Sandwich tostado de jamón cocido y queso fundido.", "dish_4_name": "Sandwitch pollo", "dish_4_desc": "Sandwich caliente con pechuga de pollo tierna.", "dish_5_name": "Sandwitch tortilla francesa", "dish_5_desc": "Sandwich tostado con tortilla francesa recién hecha.", "dish_6_name": "Bocadillo tortilla francesa", "dish_6_desc": "Pan rústico crujiente con tortilla francesa casera.", "dish_7_name": "Pepito de lomo", "dish_7_desc": "Lomo tierno a la plancha con pimientos y queso en pan artesanal.", "dish_8_name": "Nuggets pollo", "dish_8_desc": "Bocaditos de pollo crujientes con salsa de la casa.", "dish_9_name": "Croquetas de pollo", "dish_9_desc": "Croquetas caseras cremosas de pollo crujientes.", "dish_10_name": "Alitas de pollo", "dish_10_desc": "Alitas de pollo marinadas y doradas al punto.", "dish_11_name": "Calamares a la romana", "dish_11_desc": "Aros tiernos de calamar rebozados y crujientes con limón.", "dish_12_name": "Falafel con ensalada", "dish_12_desc": "Falafel casero especiado acompañado de ensalada fresca.", "dish_13_name": "Ensalada de la casa", "dish_13_desc": "Ensalada fresca de temporada con verduras seleccionadas.", "dish_14_name": "Hamburguesa con Patata o ensalada", "dish_14_desc": "Hamburguesa 100% vacuno con lechuga, tomate y guarnición.", "dish_15_name": "Café + tostada tomate o croassán", "dish_15_desc": "Café a elegir con tostada de tomate o croissant horneado.", "dish_16_name": "Café + tostada huevo revuelto", "dish_16_desc": "Café a elegir con tostada recién preparada con huevos revueltos.", "dish_17_name": "Zumo/Lacao + sandwitch jamón y queso", "dish_17_desc": "Zumo natural o ColaCao con sandwich caliente mixto.", "dish_18_name": "Café solo", "dish_18_desc": "Café espresso aromático de grano seleccionado recién molido.", "dish_19_name": "Café cortado", "dish_19_desc": "Café espresso con una nube suave de leche.", "dish_20_name": "Café con leche", "dish_20_desc": "Café equilibrado con leche cremosa vaporizada.", "dish_21_name": "Carajillo whisky", "dish_21_desc": "Café espresso tradicional con toque de whisky selecto.", "dish_22_name": "Menú Nuggets + patatas + bebida", "dish_22_desc": "Nuggets de pollo crujientes con patatas fritas y bebida.", "dish_23_name": "Menú Croquetas vegetales + patatas + bebida", "dish_23_desc": "Croquetas vegetales suaves con patatas y bebida incluida.", "dish_24_name": "Menú Alitas de pollo + patatas + bebida", "dish_24_desc": "Alitas de pollo doradas acompañadas de patatas y bebida.", "dish_25_name": "Menú Hamburguesa + patatas + bebida", "dish_25_desc": "Hamburguesa casera completa con patatas fritas y bebida.", "dish_26_name": "Huevos fritos con salchichas y ensalada", "dish_26_desc": "Dos huevos fritos camperos con salchichas y ensalada mixta.", "dish_27_name": "Pechuga de pollo con ensalada y patatas", "dish_27_desc": "Pechuga tierna a la plancha con patatas fritas y ensalada.", "dish_28_name": "Lomo con patatas y ensalada", "dish_28_desc": "Lomo a la plancha con patatas fritas y ensalada de temporada.", "carta_nav_back": "Inicio", "carta_nav_book": "Reservar", "badge_14_platos": "14 platos", "badge_3_platos": "3 platos", "badge_4_opciones": "4 opciones", "badge_4_menus": "4 menús", "video_sound_on": "Sonido ON", "video_sound_off": "Sonido", "badge_3_opciones": "3 opciones", "badge_4_menus_completos": "4 menús completos"}, "en": {"nav_inicio": "Home", "nav_historia": "Our Story", "nav_carta": "Menu", "nav_ubicacion": "Location", "btn_reservar": "Book a Table", "btn_reservar_mesa": "Book a Table", "hero_tagline": "Tradition, quality and a unique atmosphere in the heart of <span class=\"text-[#C5A059] font-normal\">Santa Catalina</span>.", "hero_tagline_mobile": "Tradition, quality and a unique atmosphere in the heart of Santa Catalina.", "hero_tagline_desktop": "Tradition, quality and an authentic atmosphere in the heart of Santa Catalina.", "hero_btn": "View Menu", "story_eyebrow": "About Us", "story_title": "Our Story", "story_quote": "In the heart of Santa Catalina, Bar Luna Llena has been a meeting place for locals, visitors, and good food lovers for over a decade.", "story_p1": "Our essence has always been the same: to offer a warm and welcoming atmosphere, delicious food, and a place to relax and enjoy without rushing.", "story_p2": "And if there is a truly special spot, it’s our terrace: an outdoor space to start your day with fresh coffee, share tapas with friends, or enjoy dinner while taking in the vibrant atmosphere of Santa Catalina.", "story_p3": "More than just a restaurant, we strive to be that place you always look forward to returning to.", "story_icon_coffee": "Coffee", "story_icon_pet": "Pet Friendly", "story_icon_tapas": "Homemade Tapas", "story_icon_terrace": "Terrace", "menu_eyebrow": "Gastronomy", "menu_title": "Digital Menu", "menu_subtitle": "House Favourites", "dish_burger_cat": "100% Beef Burger", "dish_burger_title": "Luna Llena Burger", "dish_hint_front": "View details", "dish_hint_back": "Flip back", "dish_burger_desc": "Juicy double 100% prime beef patties with melted cheese, crisp lettuce and ripe tomato in an artisan brioche bun. Served with golden fries.", "dish_bravas_cat": "Homemade Tapas", "dish_bravas_title": "Homemade Patatas Bravas", "dish_bravas_desc": "Authentic hand-cut potatoes, freshly fried to order and coated in our secret homemade brava sauce with a smooth hint of premium aioli.", "dish_pepito_cat": "Traditional Specialty", "dish_pepito_title": "Classic Pepito", "dish_pepito_desc": "Tender grilled pork loin with roasted peppers and melted cheese, served in warm, crispy freshly baked rustic bread. A timeless Spanish classic.", "menu_pdf_btn": "VIEW FULL MENU", "menu_close": "Close", "menu_back_to_web": "Back to Website", "menu_download_pdf": "Download original PDF", "reviews_badge": "4.8 ★★★★★ · Google Maps", "reviews_title": "What Our Guests Say About Us", "reviews_pending": "Featured", "reviews_label_food": "Food", "reviews_label_service": "Service", "reviews_label_ambience": "Atmosphere", "reviews_q1": "\"A wonderful experience and Miah was so warm and friendly taking care of us! The food is spectacular and the terrace right in the heart of Santa Catalina is fantastic!!\"", "reviews_sub1": "2 reviews · Group size: 3–4 people", "reviews_date2": "3 months ago", "reviews_q2": "\"Unbeatable service. The owner is super attentive, welcoming and helpful. Great food and a central location, right by Santa Catalina. A 10/10!\"", "reviews_sub2": "2 reviews · Dinner (€1–10)", "reviews_date3": "2 years ago", "reviews_q3": "\"We stopped for a quick bite after visiting Bellver Castle with little time before catching our flight... They made us delicious sandwiches in record time at a very fair price. We truly appreciated their efficiency, kindness and friendliness! 🙂\"", "reviews_sub3": "Local Guide · 34 reviews · 28 photos", "reviews_date4": "2 years ago", "reviews_q4": "\"We were in a rush: 5 burgers with fries and a Spanish tortilla baguette mid-afternoon. A kind gentleman accepted the challenge and had everything ready in 15 minutes for under €10. Delicious food and great value. Thank you so much!\"", "reviews_sub4": "Local Guide · 51 reviews · 5 photos", "reviews_sub5_a": "Local Guide · 4 months ago", "reviews_sub5_b": "5 reviews · 1 year ago", "reviews_sub5_footer": "Verified 5-star reviews on Google Maps", "reviews_cta": "View all reviews on Google Maps", "reviews_write_btn": "Write a review", "contact_eyebrow": "Visit Us & Bookings", "contact_title": "Where We Are / Reservations", "contact_address_title": "Address", "contact_hours_title": "Opening Hours", "contact_hours_value": "<span class=\"text-white/90\">Monday to Saturday:</span> 08:00 - 23:00<br/><span class=\"text-white/90\">Sunday:</span> Closed", "contact_phone_title": "Phone", "contact_reviews_btn": "Read Google Reviews", "footer_slogan": "Your neighbourhood bar", "footer_col_nav": "Navigation", "footer_col_legal": "Legal & Payment", "footer_legal_aviso": "Legal Notice", "footer_legal_terminos": "Terms & Conditions", "footer_legal_privacidad": "Privacy Policy", "footer_legal_cookies": "Cookies Policy", "menu_legal_aviso": "Legal Notice", "menu_legal_terminos": "Terms", "menu_legal_privacidad": "Privacy", "menu_allergens_notice": "If you have any food allergies or intolerances, please speak with our staff before placing your order.", "footer_cards": "Card payments accepted", "footer_tooltip_reviews": "Reviews", "footer_tooltip_maintenance": "Coming soon", "footer_copyright": "© 2026 Bar Luna Llena. All rights reserved.", "footer_made_by": "Developed by", "cookies_title": "Your privacy matters", "cookies_desc": "We use cookies to improve your browsing experience, analyze site traffic and personalize content.", "cookies_link": "Privacy Policy", "cookies_btn_options": "More Options", "cookies_btn_reject": "Reject", "cookies_btn_accept": "Accept", "menu_html_eyebrow": "Gastronomy & Transparent Prices", "menu_html_title": "Our Full Menu in Santa Catalina", "menu_html_desc": "28 homemade specialties freshly cooked to order with high-quality ingredients.", "cat_all": "All", "cat_picar": "Tapas & Bites", "cat_desayunos": "Breakfast", "cat_cafes": "Coffees", "cat_menus": "Set Menus with Drink", "cat_combinados": "Combo Plates", "menu_search_empty_title": "No dishes match your search", "menu_search_empty_desc": "Try searching for \"bravas\", \"coffee\", \"pepito\", \"burger\" or \"salad\".", "menu_search_reset": "View full menu", "btn_toggle_carta_open": "VIEW DETAILED MENU", "btn_toggle_carta_close": "HIDE DETAILED MENU", "menu_btn_close": "Close Menu", "menu_btn_book": "Book a Table", "menu_switch_hint": "Prefer browsing the illustrated menu?", "menu_switch_sub": "Available in high definition for mobile and tablet", "menu_open_graphic_btn": "View Illustrated Menu", "modal_view_img": "🖼️ Illustrated Menu", "modal_view_html": "📋 Detailed Menu", "faq_eyebrow": "Got Questions?", "faq_title": "Frequently Asked Questions", "faq_subtitle": "Everything you need to know to make the most of your visit to Bar Luna Llena in Santa Catalina, Palma de Mallorca.", "faq_1_q": "Where is Bar Luna Llena 16 located in Santa Catalina and how do I get there?", "faq_1_a": "Bar Luna Llena is located at Carrer de Cotoner, 16, in the heart of Santa Catalina (07013 Palma de Mallorca). We are situated less than a 3-minute walk from Santa Catalina Market and 5 minutes from Paseo Marítimo, with easy pedestrian access and nearby bus stops on Avenida Argentina and Comte de Barcelona.", "faq_2_q": "Can I check the full menu and up-to-date prices of Bar Luna Llena online?", "faq_2_a": "Yes! You can view our complete official menu right here on our website, featuring all 28 homemade specialties, tapas, and drinks with clear, transparent prices in euros (€). Explore traditional tapas like homemade bravas from €4.00 or crispy calamari, hearty breakfasts from €4.50, espresso coffees from €1.50, and set meals with fries and a drink from €7.80—all available via our interactive viewer or illustrated digital booklet.", "faq_bavoli_q": "How do I book a table online at Bar Luna Llena and what is your cancellation policy?", "faq_bavoli_a": "You can easily reserve your table online through our official integrated Bavoli booking system, selecting your date, time, and party size with instant confirmation via SMS and email. Modifying or cancelling your reservation is 100% free and flexible: you can manage it with a single click from your confirmation link up to a few hours before your visit, or by giving us a call if your plans change.", "faq_3_q": "What breakfast and coffee options are served in the morning in Palma?", "faq_3_a": "We are open Monday to Saturday from 08:00 AM. We serve rich aromatic espresso, café con leche, cortados, and traditional carajillos, alongside classic Mediterranean tomato toast or buttery croissants (€4.50), freshly prepared scrambled eggs on toast (€5.50), and natural juice or Spanish ColaCao with warm toasted ham and cheese sandwiches (€5.00).", "faq_4_q": "Do you offer value set meals with a drink included and combo platters?", "faq_4_a": "Yes! We offer 4 complete value meals that include a portion of golden fries and a cold drink: Chicken Nuggets meal (€7.80), Veggie Croquettes meal (€8.50), Crispy Chicken Wings meal (€9.50), and Homemade Beef Burger meal (€9.80). We also serve traditional Spanish combo plates with free-range fried eggs, sausages, grilled chicken breast, or pork loin served with fries and fresh salad.", "faq_5_q": "Is Bar Luna Llena pet-friendly and do you offer takeaway food?", "faq_5_a": "Absolutely! We are 100% pet-friendly—your four-legged companions are always warmly welcome both in our air-conditioned interior and on our sunny Santa Catalina terrace. Furthermore, all our dishes, bocadillos, and tapas are freshly packed and available for takeaway.", "dish_1_name": "French fries", "dish_1_desc": "Crispy golden french fries, freshly fried to order.", "dish_2_name": "Patatas bravas", "dish_2_desc": "Freshly fried hand-cut potatoes served with our homemade spicy brava sauce and garlic aioli.", "dish_3_name": "Serrano ham baguette", "dish_3_desc": "Selected Spanish Serrano ham in crusty rustic baguette with freshly grated tomato and extra virgin olive oil.", "dish_4_name": "Serrano ham & cheese baguette", "dish_4_desc": "Spanish Serrano ham and semi-cured cheese in warm, freshly prepared crusty rustic bread.", "dish_5_name": "Spanish potato omelette baguette", "dish_5_desc": "Authentic homemade Spanish potato omelette (tortilla española) served in a crusty rustic baguette.", "dish_6_name": "French omelette baguette", "dish_6_desc": "Fluffy homemade French-style omelette served in a crispy rustic baguette.", "dish_7_name": "Pork loin baguette (Pepito)", "dish_7_desc": "Tender grilled pork loin with roasted sweet peppers and melted cheese in artisan rustic bread.", "dish_8_name": "Chicken nuggets", "dish_8_desc": "Crispy golden chicken nuggets served with our signature house dip.", "dish_9_name": "Chicken croquettes", "dish_9_desc": "Traditional creamy homemade chicken croquettes with a crisp golden coating.", "dish_10_name": "Chicken wings", "dish_10_desc": "Succulent marinated chicken wings cooked to golden, crispy perfection.", "dish_11_name": "Fried calamari", "dish_11_desc": "Tender calamari rings in a light, crispy batter served with fresh lemon.", "dish_12_name": "Falafel with salad", "dish_12_desc": "Spiced homemade falafels accompanied by a crisp, refreshing garden salad.", "dish_13_name": "House salad", "dish_13_desc": "Fresh seasonal mixed salad with selected garden vegetables and vinaigrette.", "dish_14_name": "Burger with fries or salad", "dish_14_desc": "100% prime beef burger with crisp lettuce, ripe tomato and your choice of golden fries or salad.", "dish_15_name": "Coffee + tomato toast or croissant", "dish_15_desc": "Your choice of coffee with traditional tomato toast or a freshly baked croissant.", "dish_16_name": "Coffee + scrambled egg toast", "dish_16_desc": "Your choice of coffee served with freshly scrambled eggs on toasted rustic bread.", "dish_17_name": "Juice/ColaCao + ham & cheese sandwich", "dish_17_desc": "Natural juice or Spanish ColaCao with a warm toasted ham and cheese sandwich.", "dish_18_name": "Espresso", "dish_18_desc": "Aromatic espresso brewed from freshly ground, selected coffee beans.", "dish_19_name": "Cortado", "dish_19_desc": "Rich espresso cut with a smooth touch of warm steamed milk.", "dish_20_name": "Latte / Coffee with milk", "dish_20_desc": "Balanced espresso with smooth, velvety steamed milk.", "dish_21_name": "Whisky carajillo", "dish_21_desc": "Traditional Spanish espresso coffee infused with a shot of selected whisky.", "dish_22_name": "Nuggets meal + fries + drink", "dish_22_desc": "Crispy chicken nuggets served with golden french fries and a cold drink of your choice.", "dish_23_name": "Veggie croquettes meal + fries + drink", "dish_23_desc": "Creamy vegetable croquettes served with golden fries and a refreshing beverage.", "dish_24_name": "Chicken wings meal + fries + drink", "dish_24_desc": "Golden marinated chicken wings served with crispy fries and a cold drink.", "dish_25_name": "Burger meal + fries + drink", "dish_25_desc": "Juicy homemade burger served with crispy french fries and a refreshing drink.", "dish_26_name": "Fried eggs with sausages and salad", "dish_26_desc": "Two free-range fried eggs with savoury sausages, french fries and mixed salad.", "dish_27_name": "Chicken breast with salad and fries", "dish_27_desc": "Tender grilled chicken breast served with golden french fries and seasonal salad.", "dish_28_name": "Pork loin with fries and salad", "dish_28_desc": "Grilled pork loin steak served with golden french fries and fresh garden salad.", "carta_nav_back": "Home", "carta_nav_book": "Book", "badge_14_platos": "14 dishes", "badge_3_platos": "3 dishes", "badge_4_opciones": "4 options", "badge_4_menus": "4 set meals", "video_sound_on": "Sound ON", "video_sound_off": "Sound", "badge_3_opciones": "3 options", "badge_4_menus_completos": "4 complete set meals"}, "de": {"nav_inicio": "Start", "nav_historia": "Über uns", "nav_carta": "Speisekarte", "nav_ubicacion": "Standort", "btn_reservar": "Reservieren", "btn_reservar_mesa": "Tisch reservieren", "hero_tagline": "Tradition, Qualität und authentisches Flair im Herzen von <span class=\"text-[#C5A059] font-normal\">Santa Catalina</span>.", "hero_tagline_mobile": "Tradition, Qualität und authentisches Flair im Herzen von Santa Catalina.", "hero_tagline_desktop": "Tradition, Qualität und authentisches Flair im Herzen von Santa Catalina.", "hero_btn": "Speisekarte ansehen", "story_eyebrow": "Über Uns", "story_title": "Unsere Geschichte", "story_quote": "Im Herzen von Santa Catalina ist die Bar Luna Llena seit über einem Jahrzehnt ein beliebter Treffpunkt für Nachbarn, Entdecker und Liebhaber authentischer Gastronomie.", "story_p1": "Unsere Philosophie war schon immer dieselbe: herzliche Gastfreundschaft, ehrliches Essen und ein gemütlicher Ort zum Verweilen ohne Eile.", "story_p2": "Unser ganz besonderer Ort ist die sonnige Terrasse: perfekt, um mit einem aromatischen Kaffee in den Tag zu starten, Tapas zu teilen oder das lebendige Treiben von Santa Catalina bei einem Abendessen zu genießen.", "story_p3": "Mehr als nur eine Bar – wir möchten der Ort sein, an den man immer wieder gerne zurückkehrt.", "story_icon_coffee": "Kaffee", "story_icon_pet": "Hunde willkommen", "story_icon_tapas": "Tapas & Snacks", "story_icon_terrace": "Terrasse", "menu_eyebrow": "Gastronomie", "menu_title": "Digitale Speisekarte", "menu_subtitle": "Favoriten des Hauses", "dish_burger_cat": "100% Rindfleisch", "dish_burger_title": "Burger Luna Llena", "dish_hint_front": "Details ansehen", "dish_hint_back": "Zurück", "dish_burger_desc": "Saftiges Doppel-Patty aus 100% Rindfleisch mit geschmolzenem Käse, frischem Salat und Tomate im handwerklichen Brötchen. Serviert mit knusprigen Pommes.", "dish_bravas_cat": "Hausgemachte Tapas", "dish_bravas_title": "Hausgemachte Bravas", "dish_bravas_desc": "Echte handgeschnittene Kartoffeln, frisch frittiert mit unserer geheimen hausgemachten Salsa Brava und samtigem Premium-Aioli.", "dish_pepito_cat": "Traditionelle Spezialität", "dish_pepito_title": "Pepito Clásico", "dish_pepito_desc": "Zartes Schweinefilet vom Grill mit gerösteter Paprika und geschmolzenem Käse im knusprigen Landbrot. Der mallorquinische Klassiker.", "menu_pdf_btn": "KOMPLETTE KARTE ANSEHEN", "menu_close": "Schließen", "menu_back_to_web": "Zurück zur Website", "menu_download_pdf": "Original-PDF herunterladen", "reviews_badge": "4.8 ★★★★★ · Google Maps", "reviews_title": "Was unsere Gäste über uns sagen", "reviews_pending": "Empfohlen", "reviews_label_food": "Essen", "reviews_label_service": "Service", "reviews_label_ambience": "Ambiente", "reviews_q1": "\"Eine wunderbare Erfahrung und Miah hat uns super freundlich bedient! Das Essen ist fantastisch und die Terrasse mitten im Herzen von Santa Catalina einfach herrlich!!\"", "reviews_sub1": "2 Rezensionen · Gruppe: 3–4 Personen", "reviews_date2": "Vor 3 Monaten", "reviews_q2": "\"Unübertrefflicher Service. Der Inhaber ist extrem aufmerksam, hilfsbereit und herzlich. Gutes Essen und zentrale Lage direkt bei Santa Catalina. Eine glatte 10!\"", "reviews_sub2": "2 Rezensionen · Abendessen (1–10 €)", "reviews_date3": "Vor 2 Jahren", "reviews_q3": "\"Nach unserem Besuch der Burg Bellver kehrten wir vor unserem Abflug noch kurz ein... Sie bereiteten uns in Rekordzeit fantastische Bocadillos zu einem fairen Preis zu. Vielen Dank für die Schnelligkeit und Herzlichkeit! 🙂\"", "reviews_sub3": "Local Guide · 34 Rezensionen · 28 Fotos", "reviews_date4": "Vor 2 Jahren", "reviews_q4": "\"Wir hatten es eilig: 5 Burger mit Pommes und ein Tortilla-Bocadillo am Nachmittag. Der freundliche Wirt nahm die Herausforderung an und hatte in 15 Minuten alles fertig. Sehr lecker und unter 10 €. Vielen Dank!\"", "reviews_sub4": "Local Guide · 51 Rezensionen · 5 Fotos", "reviews_sub5_a": "Local Guide · Vor 4 Monaten", "reviews_sub5_b": "5 Rezensionen · Vor 1 Jahr", "reviews_sub5_footer": "Verifizierte 5-Sterne-Bewertungen auf Google Maps", "reviews_cta": "Alle Bewertungen auf Google Maps ansehen", "reviews_write_btn": "Bewertung schreiben", "contact_eyebrow": "Besuch & Reservierung", "contact_title": "Standort & Reservierung", "contact_address_title": "Adresse", "contact_hours_title": "Öffnungszeiten", "contact_hours_value": "<span class=\"text-white/90\">Montag bis Samstag:</span> 08:00 – 23:00 Uhr<br/><span class=\"text-white/90\">Sonntag:</span> Geschlossen", "contact_phone_title": "Telefon", "contact_reviews_btn": "Google-Bewertungen ansehen", "footer_slogan": "Die Bar des Viertels", "footer_col_nav": "Navigation", "footer_col_legal": "Rechtliches & Zahlung", "footer_legal_aviso": "Impressum", "footer_legal_terminos": "AGB", "footer_legal_privacidad": "Datenschutz", "footer_legal_cookies": "Cookies", "menu_legal_aviso": "Impressum", "menu_legal_terminos": "AGB", "menu_legal_privacidad": "Datenschutz", "menu_allergens_notice": "Bei Lebensmittelallergien oder Unverträglichkeiten wenden Sie sich bitte vor Ihrer Bestellung an unser Personal.", "footer_cards": "Kartenzahlung akzeptiert", "footer_tooltip_reviews": "Bewertungen", "footer_tooltip_maintenance": "Demnächst", "footer_copyright": "© 2026 Bar Luna Llena. Alle Rechte vorbehalten.", "footer_made_by": "Entwickelt von", "cookies_title": "Ihre Privatsphäre ist uns wichtig", "cookies_desc": "Wir nutzen Cookies, um Ihr Erlebnis zu optimieren, Besucherströme zu analysieren und Inhalte zu personalisieren.", "cookies_link": "Datenschutzerklärung", "cookies_btn_options": "Optionen", "cookies_btn_reject": "Ablehnen", "cookies_btn_accept": "Akzeptieren", "menu_html_eyebrow": "Gastronomie & Transparente Preise", "menu_html_title": "Unsere Speisekarte in Santa Catalina", "menu_html_desc": "28 hausgemachte Spezialitäten, frisch zubereitet mit ausgewählten Zutaten höchster Qualität.", "cat_all": "Alle", "cat_picar": "Tapas & Snacks", "cat_desayunos": "Frühstück", "cat_cafes": "Kaffee & Heißgetränke", "cat_menus": "Menüs mit Getränk", "cat_combinados": "Kombinationsteller", "menu_search_empty_title": "Kein Gericht zu diesem Suchbegriff gefunden", "menu_search_empty_desc": "Suchen Sie nach „bravas“, „kaffee“, „pepito“, „menü“ oder „salat“.", "menu_search_reset": "Ganze Karte anzeigen", "btn_toggle_carta_open": "SPEISEKARTE ÖFFNEN", "btn_toggle_carta_close": "SPEISEKARTE SCHLIESSEN", "menu_btn_close": "Karte schließen", "menu_btn_book": "Tisch reservieren", "menu_switch_hint": "Möchten Sie lieber das bebilderte Original-Menü sehen?", "menu_switch_sub": "In hoher Auflösung für Smartphone und Tisch verfügbar", "menu_open_graphic_btn": "Originalkarte ansehen", "modal_view_img": "🖼️ Bebilderte Karte", "modal_view_html": "📋 HTML-Speisekarte", "faq_eyebrow": "Häufige Fragen", "faq_title": "Alles über die Bar Luna Llena 16", "faq_subtitle": "Verifizierte Informationen zu Speisen, Frühstück, Menüs und Lage in Santa Catalina", "faq_1_q": "Wo befindet sich die Bar Luna Llena 16 in Santa Catalina und wie komme ich hin?", "faq_1_a": "Die Bar Luna Llena befindet sich in der Carrer de Cotoner 16 im Herzen von Santa Catalina (07013 Palma de Mallorca). Sie liegt weniger als 3 Gehminuten vom Mercat de Santa Catalina und 5 Minuten vom Paseo Marítimo entfernt, ideal zu Fuß erreichbar mit nahegelegenen Bushaltestellen an der Avenida Argentina und Comte de Barcelona.", "faq_2_q": "Kann man die komplette Speisekarte und aktuelle Preise online einsehen?", "faq_2_a": "Ja! Auf unserer Website finden Sie die vollständige offizielle Karte mit 28 hausgemachten Spezialitäten, Tapas und Getränken mit transparenten Preisen in Euro (€). Von traditionellen Tapas wie hausgemachten Patatas Bravas ab 4,00 € über Calamares bis hin zu kompletten Frühstücken ab 4,50 €, Kaffee ab 1,50 € und Menüs mit Pommes und Getränk ab 7,80 € – sowohl in der interaktiven Detailansicht als auch als bebildertes Menü.", "faq_bavoli_q": "Wie kann ich einen Tisch reservieren und wie sind die Stornierungsbedingungen?", "faq_bavoli_a": "Sie können Ihren Tisch bequem online über unser offizielles Bavoli-Reservierungssystem buchen. Wählen Sie Datum, Uhrzeit und Personenanzahl mit sofortiger Bestätigung per SMS und E-Mail. Sollten sich Ihre Pläne ändern, ist die Änderung oder Stornierung zu 100 % kostenlos und flexibel: Mit einem Klick über Ihren Bestätigungslink oder telefonisch bei uns.", "faq_3_q": "Welche Frühstücks- und Kaffee-Optionen gibt es morgens in Palma?", "faq_3_a": "Wir öffnen von Montag bis Samstag ab 08:00 Uhr morgens. Wir servieren aromatischen Espresso, Café con Leche, Cortados und feine Carajillos – begleitet von geröstetem Tomatenbrot oder ofenfrischem Croissant (4,50 €), Toast mit frischem Rührei (5,50 €) sowie Säften oder ColaCao mit warm getoasteten Sandwiches (5,00 €).", "faq_4_q": "Gibt es günstige Menüs inklusive Getränk sowie Kombinationsteller?", "faq_4_a": "Ja, wir bieten 4 vollwertige Menüs inklusive Pommes frites und Getränk: Menü Nuggets (7,80 €), Menü Gemüsekroketten (8,50 €), Menü Chicken Wings (9,50 €) und Menü Hausgemachter Burger (9,80 €). Zudem servieren wir herzhafte Kombinationsteller mit Landeiern, Würstchen, Hähnchenbrust oder Schweinefilet mit Pommes und frischem Salat.", "faq_5_q": "Ist die Bar Luna Llena hundefreundlich und gibt es Speisen zum Mitnehmen (Take Away)?", "faq_5_a": "Selbstverständlich! Wir sind zu 100 % haustierfreundlich (Hunde herzlich willkommen) – sowohl im klimatisierten Innenbereich als auch auf unserer sonnigen Terrasse in Santa Catalina. Alle unsere Gerichte, Baguettes und Tapas bereiten wir auch gerne zum Mitnehmen (Take Away) zu.", "dish_1_name": "Portion Pommes frites", "dish_1_desc": "Knusprig goldgelb frittierte Kartoffelstäbchen.", "dish_2_name": "Patatas Bravas", "dish_2_desc": "Würzige Kartoffelecken mit hausgemachter Salsa Brava und Aioli.", "dish_3_name": "Sandwich Mixto", "dish_3_desc": "Getoastetes Sandwich mit saftigem Schinken und geschmolzenem Käse.", "dish_4_name": "Hähnchen-Sandwich", "dish_4_desc": "Warmes Sandwich mit zarter, saftig gegrillter Hähnchenbrust.", "dish_5_name": "Omelette-Sandwich", "dish_5_desc": "Getoastetes Sandwich mit frisch zubereitetem Kräuter-Omelette.", "dish_6_name": "Tortilla-Baguette", "dish_6_desc": "Knuspriges rustikales Baguette mit hausgemachter spanischer Tortilla.", "dish_7_name": "Pepito de Lomo", "dish_7_desc": "Zartes Schweinefilet-Baguette mit Paprika und Käse im rustikalen Knusperbrot.", "dish_8_name": "Chicken Nuggets", "dish_8_desc": "Knusprige Hähnchenbällchen mit pikanter Haussauce.", "dish_9_name": "Hähnchen-Kroketten", "dish_9_desc": "Cremige hausgemachte Hähnchenkroketten in krosser Panade.", "dish_10_name": "Chicken Wings", "dish_10_desc": "Fein marinierte Hähnchenflügel, kross und saftig gebacken.", "dish_11_name": "Calamares a la Romana", "dish_11_desc": "Zarte Tintenfischringe in goldener Knusperpanade mit frischer Zitrone.", "dish_12_name": "Falafel mit buntem Salat", "dish_12_desc": "Würzige hausgemachte Falafel serviert mit knackig-frischem Salat.", "dish_13_name": "Salat des Hauses", "dish_13_desc": "Frischer Marktsalat mit knackigem Saisongemüse der Region.", "dish_14_name": "Burger mit Pommes oder Salat", "dish_14_desc": "100% Rindfleisch-Burger mit Salat, Tomate und Beilage nach Wahl.", "dish_15_name": "Kaffee + Tomatentoast oder Croissant", "dish_15_desc": "Kaffee nach Wahl mit Tomatentoast oder ofenfrischem Croissant.", "dish_16_name": "Kaffee + Rührei-Toast", "dish_16_desc": "Kaffee nach Wahl mit ofenfrischem Toast und feinem Rührei.", "dish_17_name": "Saft/ColaCao + Schinken-Käse-Sandwich", "dish_17_desc": "Fruchtiger Saft oder ColaCao mit warmem Schinken-Käse-Sandwich.", "dish_18_name": "Café Solo (Espresso)", "dish_18_desc": "Aromatischer Espresso aus frisch gemahlenen Spitzenbohnen.", "dish_19_name": "Café Cortado", "dish_19_desc": "Espresso mit einem Schuss warmer Milch.", "dish_20_name": "Café con Leche", "dish_20_desc": "Ausgewogener Milchkaffee mit samtig aufgeschäumter Milch.", "dish_21_name": "Carajillo", "dish_21_desc": "Traditioneller spanischer Espresso mit feinem Schuss Whisky.", "dish_22_name": "Menü Nuggets + Pommes + Getränk", "dish_22_desc": "Knusprige Hähnchen-Nuggets mit Pommes frites und Kaltgetränk.", "dish_23_name": "Menü Gemüsekroketten + Pommes + Getränk", "dish_23_desc": "Feine vegetarische Kroketten mit Pommes frites und Getränk inklusive.", "dish_24_name": "Menü Chicken Wings + Pommes + Getränk", "dish_24_desc": "Krosse Hähnchenflügel serviert mit Pommes frites und Kaltgetränk.", "dish_25_name": "Menü Burger + Pommes + Getränk", "dish_25_desc": "Hausgemachter Burger komplett mit knusprigen Pommes und Erfrischungsgetränk.", "dish_26_name": "Spiegeleier mit Würstchen und Salat", "dish_26_desc": "Zwei gebratene Freilandeier mit Würstchen und buntem Salat.", "dish_27_name": "Hähnchenbrust mit Pommes und Salat", "dish_27_desc": "Zartes Hähnchenbrustfilet vom Grill mit knusprigen Pommes und frischem Salat.", "dish_28_name": "Schweinerücken mit Pommes und Salat", "dish_28_desc": "Zartes Schweinefilet vom Grill mit goldenen Pommes und Salat.", "carta_nav_back": "Start", "carta_nav_book": "Reservieren", "badge_14_platos": "14 Gerichte", "badge_3_platos": "3 Gerichte", "badge_4_opciones": "4 Optionen", "badge_4_menus": "4 Menüs", "video_sound_on": "Ton AN", "video_sound_off": "Ton", "badge_3_opciones": "3 Optionen", "badge_4_menus_completos": "4 Menüs mit Getränk"}};
+        let currentCartaLang = 'es';
+
+        function setCartaLanguage(lang) {
+            currentCartaLang = lang || 'es';
+            try {
+                localStorage.setItem('bar_luna_lang', currentCartaLang);
+            } catch(e) {}
+
+            document.documentElement.lang = currentCartaLang;
+
+            // Actualizar botones de idioma en header
+            ['es', 'en', 'de'].forEach(function(l) {
+                var btn = document.getElementById('carta-lang-' + l);
+                if (btn) {
+                    if (l === currentCartaLang) {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+                }
+            });
+
+            // Traducir todos los elementos data-i18n
+            document.querySelectorAll('[data-i18n]').forEach(function(el) {
+                var key = el.getAttribute('data-i18n');
+                if (cartaTranslations[currentCartaLang] && cartaTranslations[currentCartaLang][key]) {
+                    el.textContent = cartaTranslations[currentCartaLang][key];
+                }
+            });
+        }
+
+        // Inicializar según preferencia guardada o navegador
+        document.addEventListener('DOMContentLoaded', function() {
+            var saved = 'es';
+            try {
+                saved = localStorage.getItem('bar_luna_lang');
+            } catch(e) {}
+
+            if (!saved) {
+                var nav = (navigator.language || '').toLowerCase();
+                if (nav.startsWith('de')) saved = 'de';
+                else if (nav.startsWith('en')) saved = 'en';
+                else saved = 'es';
+            }
+            setCartaLanguage(saved);
+        });
+    </script>
+
+</body>
+</html>
