@@ -1,64 +1,66 @@
-# Última Sesión - Bar Luna Llena (8 nov 2026)
+# Última Sesión - Bar Luna Llena 16 (8 nov 2026)
 
 ## Qué se ha hecho en esta sesión
 
-### 1. Auditoría de Rendimiento & Optimización Extrema (Lighthouse / Core Web Vitals)
-- **Compresión y Conversión de Recursos**:
-  - Imágenes convertidas a formato WebP moderno (`nuevo-hero.webp`, `logo-luna-llena.webp`, platos y fotos de origen).
-  - Optimización de favicon PNG (`512x512`) y eliminación de assets pesados en desuso (`.jpg`, `.jpeg`, `.pdf` antiguo).
-  - Descarga e integración local de `swiper-bundle.min.js` y `swiper-bundle.min.css` eliminando dependencias y bloqueos externos de CDN.
-  - Reglas de cabecera de caché HTTP y seguridad reforzada en `_headers`.
-- **Puntuaciones Lighthouse Verificadas**:
-  - **Móvil**: Rendimiento **94**, Accesibilidad **100**, Buenas Prácticas **96**, SEO **100** (TBT: 0 ms, CLS: 0.001).
-  - **Desktop**: Rendimiento **98**, Accesibilidad **100**, Buenas Prácticas **96**, SEO **100** (FCP: 0.5s, LCP: 1.0s, TBT: 0 ms).
+### 1. Rediseño Minimalista del Acordeón FAQ (Estilo 21st.dev / shadcn)
+- **Eliminación de tarjetas cuadradas pesadas**: Se retiraron los contenedores con bordes gruesos y fondos pesados.
+- **Estructura divisoria limpia**: Implementado un listado minimalista delimitado por líneas sutiles (`border-b border-white/10`).
+- **Chevron vectorial nativo sin wrapper**: Icono SVG de 16×16 px con rotación suave de 180° y transición en color dorado `#C5A059`.
+- **Plegado automático single-collapsible**: Uso del atributo estándar HTML5 `name="faq-accordion"` para que al abrir una pregunta se plieguen las demás automáticamente.
+- **Microdatos Schema.org intactos**: 100% de retención de `FAQPage`, `Question` y `Answer` para ChatGPT Search, Perplexity y Google.
 
-### 2. Posicionamiento SEO & GEO Local en Santa Catalina para Google y Motores de IA
-- **Robots.txt & Sitemap.xml**: Habilitado rastreo prioritario para `OAI-SearchBot`, `GPTBot`, `PerplexityBot`, `Google-Extended`, `ClaudeBot` y `Applebot-Extended`.
-- **Estructura Semántica Schema.org**:
-  - Enriquecido `BarOrPub` con geolocalización precisa de Santa Catalina, Palma de Mallorca (Wikidata `Q11947493`).
-  - Implementado Schema.org `Menu` oficial con 5 secciones y los 28 platos con precios en euros (€).
-  - Implementado Schema.org `FAQPage` sincronizado con las preguntas clave de búsqueda.
+### 2. Mini Auditoría Técnica Integral con Playwright CLI
+- **Responsive verificado en 6 viewports**: 320px, 375px, 414px, 768px, 1024px y 1440px con **0 px de desbordamiento horizontal** (`scrollWidth === innerWidth`).
+- **Velocidad de carga**: Carga local en 81 ms (DCL: 54 ms) y respuesta en Cloudflare Pages en ~240 ms.
+- **Interactividad & Botones**: 52 elementos interactivos auditados (menú hamburguesa móvil, selector de idiomas ES/EN, reservas con Bavoli, enlaces Google Maps, teléfono click-to-call, modales legales y cookies) con **0 errores JavaScript** en tiempo de ejecución.
 
-### 3. Rediseño de Carta HTML Desplegable (Blanco Crema Bistró)
-- **Botón Desplegable Compacto**: Ubicado bajo el botón principal de la carta (`VER CARTA EN DETALLE ▾`), manteniendo la web limpia y sin ocupar espacio innecesario por defecto.
-- **Estética Marfil Cálido (`#FAF7F2`)**: Eliminadas las tarjetas negras cuadradas. Nuevo contenedor con estética bistró de lujo y tonos dorados acordes al logotipo.
-- **Lista Editorial en 2 Columnas (Desktop) y 1 Columna (Móvil)**:
-  - Formato limpio con nombres en carbón elegante, línea de puntos guía sutil, precios destacados en dorado ámbar (`#9E782F`) y descripciones ligeras.
-  - Buscador en vivo interactivo y píldoras de filtrado por categoría (`Todos`, `Para Picar`, `Desayunos`, `Cafés`, `Menús`, `Combinados`).
-- **Botones Finales**:
-  - `⌃ Cerrar Carta` (pliega la carta y devuelve la vista arriba).
-  - `📅 Reservar Mesa` (enlace oficial directo con motor de reservas de **Bavoli**).
+### 3. Nueva Identidad Tipográfica Fontshare (Clash Display + Boska + Satoshi)
+- **Diagnóstico y solución del diseño en "Sobre Nosotros / Nuestra Historia"**: Eliminada la antigua `Playfair Display` en cursiva pesada que se veía anticuada y desordenada.
+- **Tríada tipográfica integrada desde Fontshare**:
+  - **`Clash Display` (H1 y H2)**: Titulares rotundos, limpios, sin cursivas deformadas, con estilo bistró gastronómico moderno (Hero, Historia, Carta, FAQ y Visítanos).
+  - **`Boska` (Cita Editorial)**: Serif contemporánea de alta gama para la frase célebre de Nuestra Historia y la comilla decorativa dorada.
+  - **`Satoshi` (Cuerpo, Menú, FAQ, UI y Legal)**: Máxima legibilidad, limpieza suiza y modernidad para todos los textos de lectura en `index.html`, `legal.html` y `carta.html`.
 
-### 4. Rediseño del Acordeón de Preguntas Frecuentes (FAQ)
-- Eliminado cualquier tecnicismo o mención a "HTML", redactado de forma natural y atractiva para los clientes.
-- Nueva FAQ destacada de **Reservas y Cancelaciones con Bavoli** (reserva instantánea online con confirmación por SMS/correo, selección de comensales y política de cancelación 100% gratuita y flexible).
-- Rediseño visual con esquinas redondeadas (`18px`), fondos translúcidos, tipografía fluida `Plus Jakarta Sans` y chevrons vectoriales SVG con rotación de 180°.
-
-### 5. Auditoría de Calidad y Responsive con Playwright
-- Verificados 6 viewports (320px, 375px, 414px, 768px, 1024px, 1440px).
-- **0 px de desbordamiento horizontal** en todos los anchos (`scrollWidth === innerWidth`).
-- Cero errores en consola JavaScript.
+### 4. Ajuste de Seguridad CSP en Cabeceras Cloudflare (`_headers`)
+- Detección y corrección del bloqueo Content Security Policy (CSP) en Cloudflare para autorizar los orígenes `https://api.fontshare.com` y `https://cdn.fontshare.com` en `style-src` y `font-src`.
+- Autorización de `https://static.cloudflareinsights.com` para analíticas sin errores en consola.
+- Corrección de rutas relativas de imágenes en `legal.html`.
 
 ---
 
-## Estado de Git & Fusiones
-- Rama `dev`: Commit `88655ca` realizado, sincronizado con remoto y subido con éxito (`c27c5f2`).
-- Rama `main`: Fusión completada y subida a GitHub (`1bfaaa2`).
-- Despliegue en Cloudflare Pages (`https://barlunallena.pages.dev/`): 100% verificado y activo en producción (HTTP/2 200 OK).
+## Mini-merges y Despliegues de la Sesión
+- `2026-11-08T16:26:14 | merge completo | all | push=1` (Merge dev ➔ main con tipografía Fontshare, FAQ shadcn y carta.html)
+- `2026-11-08T16:27:19 | merge completo | all | push=1` (Actualización de cabeceras CSP en `_headers`)
+- **Verificación en producción**: Web en Cloudflare Pages (`https://barlunallena.pages.dev/`) 100% activa, verificada con Playwright, renderizando las nuevas fuentes Fontshare con **0 errores de consola**.
+
+---
 
 ## Archivos modificados
-- `index.html`
-- `legal.html`
-- `legal/index.html`
-- `manifest.json`
-- `robots.txt`
-- `sitemap.xml`
-- `_headers`
-- `assets/swiper-bundle.min.js`
-- `assets/swiper-bundle.min.css`
-- `assets/tailwind.min.css`
-- `assets/nuevo-hero.webp`
-- `assets/logo-luna-llena.webp`
-- `assets/NEWLOGO.webp`
-- `docs/SESSION_LATEST_ES.md`
-- `docs/ROADMAP.md`
+- `index.html` (Acordeón FAQ shadcn, suite tipográfica Fontshare y eliminación de cursivas en títulos).
+- `legal.html` (Unificación con Clash Display y Satoshi, corrección de rutas relativas).
+- `carta.html` (Nueva página dedicada de carta con tipografía Fontshare unificada).
+- `_headers` (Reglas CSP ampliadas para Fontshare y Cloudflare Insights).
+- `.musa/merges.log` (Registro de despliegues y fusiones).
+- `docs/SESSION_LATEST_ES.md` (Documentación actualizada).
+- `docs/ROADMAP.md` (Roadmap actualizado).
+
+---
+
+## Problemas solucionados
+1. **Tipografía anticuada en Nuestra Historia**: Sustituida `Playfair Display` cursiva por `Clash Display` y la cita en `Boska`.
+2. **Caos de fuentes múltiples**: Eliminada la mezcla simultánea de Outfit, Playfair y Plus Jakarta Sans; unificado en la suite Fontshare.
+3. **Bloqueo CSP en producción**: Se ampliaron las directivas de seguridad en `_headers` para permitir las fuentes y CDNs sin advertencias en navegador.
+4. **Acordeón FAQ aparatoso**: Reemplazado por el diseño minimalista de 21st.dev/shadcn.
+
+---
+
+## Qué queda pendiente
+- Procesamiento y rastreo por parte de Google Search Console y motores de IA de la nueva estructura tipográfica y de contenido.
+- Monitorización del tráfico y comportamiento de reservas tras la implementación de Bavoli.
+
+---
+
+## Qué se recomienda hacer en la próxima sesión
+1. Solicitar re-indexación en Google Search Console para refrescar el contenido con los nuevos schemas y tipografía.
+2. Comprobar analíticas de Cloudflare Web Analytics para medir velocidad real de usuarios en Palma de Mallorca.
+3. Valorar la compra o asignación del dominio propio final (ej. `barlunallena.com`).
