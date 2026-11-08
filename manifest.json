@@ -2,6 +2,8 @@
   "name": "Bar Luna Llena 16",
   "short_name": "Luna Llena",
   "description": "Bar Luna Llena 16 en Santa Catalina, Palma de Mallorca. Hamburguesas caseras, pepitos y tapas.",
+  "lang": "es",
+  "dir": "ltr",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#050508",

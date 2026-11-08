@@ -8,47 +8,50 @@
     <meta name="description"
         content="Información legal, términos y condiciones, política de privacidad y cookies de Bar Luna Llena en Santa Catalina, Palma de Mallorca." />
     <meta name="robots" content="noindex, follow" />
+    <link rel="canonical" href="https://barlunallena.com/legal.html" />
+    <link rel="alternate" hreflang="es" href="https://barlunallena.com/legal.html" />
+    <link rel="alternate" hreflang="en" href="https://barlunallena.com/legal.html" />
+    <link rel="alternate" hreflang="x-default" href="https://barlunallena.com/legal.html" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
+    <link rel="preload" as="style"
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..700;1,400..700&display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-        rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        background: "#0B0F19",
-                        secondary: "#C5A059",
-                        "surface-dim": "#070A10",
-                        "surface": "#111625"
-                    },
-                    fontFamily: {
-                        serif: ["'Playfair Display'", "serif"],
-                        sans: ["'Outfit'", "sans-serif"]
-                    }
-                }
-            }
-        }
-    </script>
+        onload="this.onload=null;this.rel='stylesheet'" />
+    <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=arrow_back,cookie,description,gavel,shield&display=block"
+        onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..700;1,400..700&display=swap"
+            rel="stylesheet" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=arrow_back,cookie,description,gavel,shield&display=block"
+            rel="stylesheet" />
+    </noscript>
+    <link rel="stylesheet" href="/assets/tailwind.min.css" />
 
     <style>
         body {
-            font-family: 'Outfit', sans-serif;
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background-color: #0B0F19;
             color: #F5F5F3;
         }
 
         .font-serif-title {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        .material-symbols-outlined {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            line-height: 1;
+            overflow: hidden;
+            vertical-align: middle;
+            user-select: none;
+            flex-shrink: 0;
         }
 
         /* Pestañas limpias y elegantes */
@@ -77,7 +80,7 @@
         }
 
         .legal-section-title {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Playfair Display', Georgia, serif;
             color: #FFFFFF;
             font-size: 1.25rem;
             font-weight: 600;
@@ -252,8 +255,8 @@
     <!-- Cabecera Superior Fija Minimalista -->
     <header class="sticky top-0 z-50 bg-[#0B0F19]/95 backdrop-blur-md border-b border-white/5 py-3.5 px-5 md:px-12 transition-all">
         <div class="max-w-5xl mx-auto flex items-center justify-between">
-            <a href="index.html" class="flex items-center gap-3 group" aria-label="Volver al inicio de Bar Luna Llena">
-                <img src="/assets/NEWLOGO.jpg" alt="Logo Bar Luna Llena" class="w-9 h-9 md:w-10 md:h-10 rounded-full border border-[#C5A059]/40 object-cover shadow-sm group-hover:scale-105 transition-transform" />
+            <a href="index.html" class="flex items-center gap-3 group">
+                <img src="/assets/NEWLOGO.webp" alt="Logo Bar Luna Llena" width="40" height="40" decoding="async" class="w-9 h-9 md:w-10 md:h-10 rounded-full border border-[#C5A059]/40 object-cover shadow-sm group-hover:scale-105 transition-transform" />
                 <div class="flex flex-col">
                     <span class="font-serif-title font-bold text-base md:text-lg tracking-wider text-white group-hover:text-[#C5A059] transition-colors leading-tight">Bar Luna Llena</span>
                     <span class="text-[9px] md:text-[10px] tracking-[0.22em] text-[#C5A059]/80 uppercase font-medium">Santa Catalina · Palma</span>
@@ -263,14 +266,14 @@
             <div class="flex items-center gap-2.5 sm:gap-4">
                 <!-- Selector de Idioma -->
                 <div class="flex items-center gap-1 bg-white/5 border border-white/10 rounded-full p-0.5 text-xs">
-                    <button onclick="setLanguage('es')" id="lang-btn-es" class="px-2.5 py-1 rounded-full font-bold bg-[#C5A059] text-[#0B0F19] transition-all">ES</button>
-                    <button onclick="setLanguage('en')" id="lang-btn-en" class="px-2.5 py-1 rounded-full text-white/60 hover:text-white transition-all">EN</button>
+                    <button onclick="setLanguage('es')" id="lang-btn-es" class="px-2.5 py-1 rounded-full font-bold bg-[#C5A059] text-[#0B0F19] transition-all cursor-pointer">ES</button>
+                    <button onclick="setLanguage('en')" id="lang-btn-en" class="px-2.5 py-1 rounded-full text-white/60 hover:text-white transition-all cursor-pointer">EN</button>
                 </div>
 
                 <!-- Enlace sutil para volver a la página principal -->
-                <a href="index.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/10 hover:border-[#C5A059]/50 text-white/70 hover:text-[#C5A059] transition-all text-xs font-medium tracking-wider uppercase" aria-label="Volver a la página principal">
-                    <span class="material-symbols-outlined text-[16px]">arrow_back</span>
-                    <span class="hidden sm:inline" id="header-back-text">Inicio</span>
+                <a href="index.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/10 hover:border-[#C5A059]/50 text-white/70 hover:text-[#C5A059] transition-all text-xs font-medium tracking-wider uppercase">
+                    <span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_back</span>
+                    <span class="sr-only sm:not-sr-only" id="header-back-text">Inicio</span>
                 </a>
             </div>
         </div>
@@ -291,22 +294,22 @@
             <div class="w-12 h-[2px] bg-[#C5A059]/60 mx-auto mt-6"></div>
         </div>
 
-        <!-- Selector de Pestañas Horizontal y Minimalista -->
-        <nav class="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto no-scrollbar py-2 mb-10 border-b border-white/10" id="tabs-container" role="tablist" aria-label="Secciones legales">
+        <!-- Selector de Pestañas Horizontal y Minimalista (Envuelve limpiamente en móvil sin recorte horizontal) -->
+        <nav class="flex flex-wrap items-center justify-center gap-2 py-2 pb-4 mb-10 border-b border-white/10" id="tabs-container" role="tablist" aria-label="Secciones legales">
             <button onclick="switchTab('aviso')" id="tab-btn-aviso" role="tab" aria-selected="true"
-                class="tab-btn active shrink-0 px-4 py-2 rounded-full border border-transparent text-xs sm:text-sm font-semibold tracking-wider uppercase cursor-pointer">
+                class="tab-btn active shrink-0 px-3.5 sm:px-4 py-2 rounded-full border border-transparent text-xs sm:text-sm font-semibold tracking-wider uppercase cursor-pointer">
                 Aviso Legal
             </button>
             <button onclick="switchTab('terminos')" id="tab-btn-terminos" role="tab" aria-selected="false"
-                class="tab-btn shrink-0 px-4 py-2 rounded-full border border-white/10 text-white/70 text-xs sm:text-sm font-medium tracking-wider uppercase cursor-pointer hover:border-[#C5A059]/40 hover:text-white">
+                class="tab-btn shrink-0 px-3.5 sm:px-4 py-2 rounded-full border border-white/10 text-white/70 text-xs sm:text-sm font-medium tracking-wider uppercase cursor-pointer hover:border-[#C5A059]/40 hover:text-white">
                 Términos y Condiciones
             </button>
             <button onclick="switchTab('privacidad')" id="tab-btn-privacidad" role="tab" aria-selected="false"
-                class="tab-btn shrink-0 px-4 py-2 rounded-full border border-white/10 text-white/70 text-xs sm:text-sm font-medium tracking-wider uppercase cursor-pointer hover:border-[#C5A059]/40 hover:text-white">
+                class="tab-btn shrink-0 px-3.5 sm:px-4 py-2 rounded-full border border-white/10 text-white/70 text-xs sm:text-sm font-medium tracking-wider uppercase cursor-pointer hover:border-[#C5A059]/40 hover:text-white">
                 Privacidad
             </button>
             <button onclick="switchTab('cookies')" id="tab-btn-cookies" role="tab" aria-selected="false"
-                class="tab-btn shrink-0 px-4 py-2 rounded-full border border-white/10 text-white/70 text-xs sm:text-sm font-medium tracking-wider uppercase cursor-pointer hover:border-[#C5A059]/40 hover:text-white">
+                class="tab-btn shrink-0 px-3.5 sm:px-4 py-2 rounded-full border border-white/10 text-white/70 text-xs sm:text-sm font-medium tracking-wider uppercase cursor-pointer hover:border-[#C5A059]/40 hover:text-white">
                 Cookies
             </button>
         </nav>
@@ -314,13 +317,36 @@
         <!-- Bloque de Lectura Editorial: Sin cajas oscuras ni marcos artificiales -->
         <article class="w-full">
             <div class="flex items-center gap-3 pb-6 mb-8 border-b border-white/10">
-                <span class="material-symbols-outlined text-[#C5A059] text-2xl md:text-3xl" id="content-icon">gavel</span>
+                <span class="material-symbols-outlined text-[#C5A059] text-2xl md:text-3xl" id="content-icon" aria-hidden="true">gavel</span>
                 <h2 class="font-serif-title text-2xl sm:text-3xl text-white font-medium tracking-tight" id="content-title">Aviso Legal</h2>
             </div>
 
-            <!-- Cuerpo del texto legal inyectado limpiamente -->
+            <!-- Cuerpo del texto legal pre-renderizado para CLS = 0.000 -->
             <div id="content-body" class="legal-content-body">
-                <!-- Se inyecta dinámicamente -->
+                <section class="legal-section-block">
+                    <h3 class="legal-section-title"><span class="section-num">1.</span><span>Identificación del Titular (LSSI-CE)</span></h3>
+                    <div><p>En cumplimiento del artículo 10 de la <strong>Ley 34/2002, de 11 de julio</strong>, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE), se informa a los usuarios de los datos identificativos del establecimiento responsable de este sitio web:</p><ul><li><strong>Denominación Comercial:</strong> Bar Luna Llena (Bar-Cafetería Luna Llena 16)</li><li><strong>Actividad:</strong> Servicios de hostelería, cafetería, desayunos, tapas tradicionales, raciones y restauración.</li><li><strong>Dirección del Establecimiento:</strong> Carrer de Cotoner, 16, 07013 Palma de Mallorca, Illes Balears, España.</li><li><strong>Correo Electrónico:</strong> <a href="mailto:barlunallena16@gmail.com">barlunallena16@gmail.com</a></li><li><strong>Teléfono de Atención y Reservas:</strong> +34 631 122 757</li></ul></div>
+                </section>
+                <section class="legal-section-block">
+                    <h3 class="legal-section-title"><span class="section-num">2.</span><span>Objeto del Sitio Web</span></h3>
+                    <div><p>El presente portal web tiene por finalidad poner a disposición del público información general sobre la carta gastronómica, bebidas, ubicación, horarios de apertura y facilitar un canal de comunicación directo para solicitudes de reservas y pedidos en el establecimiento.</p></div>
+                </section>
+                <section class="legal-section-block">
+                    <h3 class="legal-section-title"><span class="section-num">3.</span><span>Propiedad Intelectual e Industrial</span></h3>
+                    <div><p>Todos los elementos de este sitio web —incluyendo diseño gráfico, código fuente, logotipos, textos, combinaciones cromáticas, fotografías de platos e instalaciones y estructura de navegación— son titularidad exclusiva de <strong>Bar Luna Llena</strong> o de sus legítimos licenciantes, estando amparados por la legislación española e internacional sobre derechos de autor y propiedad industrial.</p><p>Queda expresamente prohibida su reproducción, distribución o comunicación pública sin consentimiento previo y por escrito.</p></div>
+                </section>
+                <section class="legal-section-block">
+                    <h3 class="legal-section-title"><span class="section-num">4.</span><span>Exclusión de Responsabilidad</span></h3>
+                    <div><p>Bar Luna Llena no se responsabiliza de posibles errores de conexión, interrupciones temporales del servicio web ni del contenido de enlaces externos gestionados por terceros (como Google Maps para la geolocalización o WhatsApp para mensajería directa).</p></div>
+                </section>
+                <section class="legal-section-block">
+                    <h3 class="legal-section-title"><span class="section-num">5.</span><span>Respaldo Tecnológico</span></h3>
+                    <div><p>El desarrollo, mantenimiento técnico continuo y optimización de rendimiento de este sitio web están gestionados y respaldados tecnológicamente por <strong>MYNEXT</strong> (<a href="https://mynextbymusa.com" target="_blank" rel="noopener noreferrer">https://mynextbymusa.com</a>).</p></div>
+                </section>
+                <section class="legal-section-block">
+                    <h3 class="legal-section-title"><span class="section-num">6.</span><span>Legislación y Fuero</span></h3>
+                    <div><p>Para la resolución de cualquier controversia o conflicto derivado de la utilización de este sitio web, regirá la legislación española vigente, con sumisión a los Juzgados y Tribunales de Palma de Mallorca.</p></div>
+                </section>
             </div>
         </article>
 
@@ -334,9 +360,9 @@
                 <!-- Columna 1: Identidad y Redes Sociales -->
                 <div class="flex flex-col items-center md:items-start gap-4">
                     <a href="index.html#inicio" class="block transition-transform duration-300 hover:scale-105" aria-label="Ir al inicio de Bar Luna Llena">
-                        <img src="/assets/NEWLOGO.jpg" alt="Logo Bar Luna Llena"
+                        <img src="/assets/NEWLOGO.webp" alt="Logo Bar Luna Llena"
                             class="w-20 h-20 md:w-24 md:h-24 rounded-full border border-[#C5A059]/30 object-cover shadow-lg"
-                            loading="lazy" width="96" height="96">
+                            loading="lazy" decoding="async" width="96" height="96">
                     </a>
                     <div>
                         <h3 class="font-serif-title text-lg text-white font-semibold tracking-wide">Bar Luna Llena</h3>
@@ -355,7 +381,7 @@
                                     aria-label="Reseñas en Google Maps">
                                     <span class="tooltip" id="footer-tooltip-maps">Reseñas</span>
                                     <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                                         <circle cx="12" cy="10" r="3"></circle>
                                     </svg>
@@ -367,7 +393,7 @@
                                     aria-label="Instagram">
                                     <span class="tooltip" id="footer-tooltip-ig">En mantenimiento</span>
                                     <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                         <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                                         <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
                                         <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
@@ -380,7 +406,7 @@
                                     aria-label="Facebook">
                                     <span class="tooltip" id="footer-tooltip-fb">En mantenimiento</span>
                                     <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                         <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
                                     </svg>
                                 </a>
@@ -449,7 +475,7 @@
                             <circle cx="15" cy="12" r="7" fill="#EB001B" />
                             <circle cx="23" cy="12" r="7" fill="#F79E1B" fill-opacity="0.85" />
                         </svg>
-                        <span class="text-[10px] tracking-[0.18em] text-white/50 uppercase" id="footer-cards-text">
+                        <span class="text-[10px] tracking-[0.18em] text-white/60 uppercase" id="footer-cards-text">
                             Aceptamos tarjetas
                         </span>
                     </div>
@@ -459,13 +485,13 @@
 
             <!-- Fila Inferior: Copyright & MYNEXT -->
             <div class="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
-                <span class="text-[11px] tracking-[0.18em] uppercase font-light text-white/35" id="footer-copyright">
+                <span class="text-[11px] tracking-[0.18em] uppercase font-light text-white/60" id="footer-copyright">
                     © 2026 Bar Luna Llena. Todos los derechos reservados.
                 </span>
-                <span class="text-[11px] tracking-[0.18em] uppercase font-light text-white/35">
+                <span class="text-[11px] tracking-[0.18em] uppercase font-light text-white/60">
                     <span id="footer-made-by">Desarrollado por</span> 
                     <a href="https://mynextbymusa.com" target="_blank" rel="noopener noreferrer"
-                        class="text-[#C5A059] font-medium tracking-[0.24em] hover:opacity-100 opacity-80 transition-opacity">
+                        class="text-[#C5A059] font-medium tracking-[0.24em] hover:opacity-100 opacity-90 transition-opacity">
                         MYNEXT
                     </a>
                 </span>
@@ -901,10 +927,10 @@
                 const btn = document.getElementById('tab-btn-' + t);
                 if (btn) {
                     if (t === currentTab) {
-                        btn.className = 'tab-btn active shrink-0 px-4 py-2 rounded-full border border-[#C5A059] bg-[#C5A059] text-[#0B0F19] text-xs sm:text-sm font-semibold tracking-wider uppercase cursor-pointer shadow-[0_4px_16px_rgba(197,160,89,0.28)]';
+                        btn.className = 'tab-btn active shrink-0 px-3.5 sm:px-4 py-2 rounded-full border border-[#C5A059] bg-[#C5A059] text-[#0B0F19] text-xs sm:text-sm font-semibold tracking-wider uppercase cursor-pointer shadow-[0_4px_16px_rgba(197,160,89,0.28)]';
                         btn.setAttribute('aria-selected', 'true');
                     } else {
-                        btn.className = 'tab-btn shrink-0 px-4 py-2 rounded-full border border-white/10 text-white/70 text-xs sm:text-sm font-medium tracking-wider uppercase cursor-pointer hover:border-[#C5A059]/40 hover:text-white';
+                        btn.className = 'tab-btn shrink-0 px-3.5 sm:px-4 py-2 rounded-full border border-white/10 text-white/70 text-xs sm:text-sm font-medium tracking-wider uppercase cursor-pointer hover:border-[#C5A059]/40 hover:text-white';
                         btn.setAttribute('aria-selected', 'false');
                     }
                 }
@@ -928,17 +954,20 @@
 
         function setLanguage(lang) {
             currentLang = lang;
-            localStorage.setItem('bar_luna_lang', lang);
+            try {
+                localStorage.setItem('bar_luna_lang', lang);
+            } catch (e) { }
+            document.documentElement.lang = lang;
 
             const btnEs = document.getElementById('lang-btn-es');
             const btnEn = document.getElementById('lang-btn-en');
             if (btnEs && btnEn) {
                 if (lang === 'es') {
-                    btnEs.className = 'px-2.5 py-1 rounded-full font-bold bg-[#C5A059] text-[#0B0F19] transition-all';
-                    btnEn.className = 'px-2.5 py-1 rounded-full text-white/60 hover:text-white transition-all';
+                    btnEs.className = 'px-2.5 py-1 rounded-full font-bold bg-[#C5A059] text-[#0B0F19] transition-all cursor-pointer';
+                    btnEn.className = 'px-2.5 py-1 rounded-full text-white/60 hover:text-white transition-all cursor-pointer';
                 } else {
-                    btnEn.className = 'px-2.5 py-1 rounded-full font-bold bg-[#C5A059] text-[#0B0F19] transition-all';
-                    btnEs.className = 'px-2.5 py-1 rounded-full text-white/60 hover:text-white transition-all';
+                    btnEn.className = 'px-2.5 py-1 rounded-full font-bold bg-[#C5A059] text-[#0B0F19] transition-all cursor-pointer';
+                    btnEs.className = 'px-2.5 py-1 rounded-full text-white/60 hover:text-white transition-all cursor-pointer';
                 }
             }
 
@@ -976,14 +1005,13 @@
             switchTab(currentTab);
         }
 
-        // Inicializar pestaña a partir del hash (#aviso, #terminos, #privacidad, #cookies)
-        document.addEventListener('DOMContentLoaded', () => {
+        // Inicializar pestaña de forma síncrona (evita CLS al pintar por primera vez)
+        (function initLegalPage() {
             const hash = window.location.hash.replace('#', '').toLowerCase();
             const valid = ['aviso', 'terminos', 'privacidad', 'cookies'];
-            const initialTab = valid.includes(hash) ? hash : 'aviso';
+            currentTab = valid.includes(hash) ? hash : 'aviso';
             setLanguage(currentLang);
-            switchTab(initialTab);
-        });
+        })();
     </script>
 </body>
 
