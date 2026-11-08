@@ -1,4 +1,23 @@
 User-agent: *
 Allow: /
 
+# Motores de Búsqueda Conversacional e IAs Generativas (GEO)
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
 Sitemap: https://barlunallena.pages.dev/sitemap.xml
